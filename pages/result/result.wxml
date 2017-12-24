@@ -1,0 +1,31 @@
+<view class="icon-container">
+    <block wx:if="{{ iconType === 'success' }}">
+        <icon type="success" size="100" />
+        <view class="title">报名成功</view>
+        <view class="info">您的报名信息已经提交审核</view>
+    </block>
+    <block wx:if="{{ iconType === 'waiting' }}">
+        <icon type="waiting" size="100" />
+        <view class="title">正在确认...</view>
+        <view class="info">请等待操作确认结果</view>
+    </block>
+    <block wx:if="{{ iconType === 'cancel' }}">
+        <icon type="cancel" size="100" />
+        <view class="title cancel">支付失败</view>
+        <view class="info">您可以在个人中心查看所有报名信息，并完成缴费</view>
+    </block>
+    <block wx:if="{{ iconType === 'info' }}">
+        <icon type="info" size="100" />
+        <view class="title">提示</view>
+        <view class="info">请等待操作确认结果</view>
+    </block>
+    <block wx:if="{{ iconType === 'warn' }}">
+        <icon type="warn" size="100" />
+        <view class="title">警告</view>
+        <view class="info">请等待操作确认结果</view>
+    </block>
+</view>
+<view class="button-group">
+    <button type='primary' bindtap='goToIndex'>回到首页</button>
+    <button type='default' bindtap='goToMine'>查看结果</button>
+</view>

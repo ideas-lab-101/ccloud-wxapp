@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "howard-pager": "/utils/pagination/pagination"
+    }
+}

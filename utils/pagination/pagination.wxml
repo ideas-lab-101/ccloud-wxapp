@@ -1,0 +1,7 @@
+<view class="hw-pager">
+    <button class="hw-pager-prev" bindtap='prev' disabled='{{ curPage === 1 }}'>上一页</button>
+    <view class="hw-info">总{{ totalItems }}条</view>
+    <input class="hw-pager-indicator" type='number' value="{{ curPage }}" confirm-type="go" bindconfirm="jumpToPage"></input>
+    <view class="hw-info">共{{ totalPage }}页</view>
+    <button class="hw-pager-next" bindtap='next' disabled='{{ curPage === totalPage }}'>下一页</button>
+</view>

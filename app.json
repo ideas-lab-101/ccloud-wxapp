@@ -1,0 +1,40 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/order/order",
+        "pages/index/detail/detail",
+        "pages/index/detail/comments/comments",
+        "pages/mine/mine",
+        "pages/mine/enrolls/enrolls",
+        "pages/mine/guides/guides",
+        "pages/mine/guides/guidebook/guidebook",
+        "pages/mine/enrolls/form/form",
+        "pages/result/result"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fbca03",
+        "navigationBarTitleText": "重科云",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#8a8a8a",
+        "selectedColor": "#fbca03",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "活动",
+                "iconPath": "/assets/images/home.png",
+                "selectedIconPath": "/assets/images/home-fill.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的",
+                "iconPath": "/assets/images/user.png",
+                "selectedIconPath": "/assets/images/user-fill.png"
+            }
+        ]
+    }
+}

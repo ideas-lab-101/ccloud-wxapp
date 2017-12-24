@@ -1,0 +1,85 @@
+page {
+    background-color: #efefef;
+    padding-top: 30px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 30rpx;
+    font-size: 16px;
+    color: #888;
+    background-color: #efefef;
+}
+
+.enroll {
+    padding: 0 30rpx;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 #ccc;
+}
+
+.enroll-main {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30rpx;
+}
+
+.act-name {
+    /* flex: 1 1 auto; */
+    line-height: 40px;
+    /* display: flex;
+    align-items: center; */
+    font-size: 16px;
+    color: #576b95;
+    border-bottom: 2px dashed #eee;
+}
+
+.act-attr {
+    line-height: 26px;
+    font-size: 14px;
+    color: #888;
+}
+
+.enroll-info {
+    flex: 1 1 auto;
+}
+
+.enroll-opts {
+    flex: 0 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.enroll-opts .opt {
+    flex: 0 0 26px;
+    height: 26px;
+    line-height: 26px;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: #fbca03;
+    box-shadow: 0 0 10px 0 #ccc;
+}
+
+.enroll-opts .opt.pay {
+    background-color: #09bb07;
+}
+
+.enroll-opts .opt::after {
+    border: none;
+}
+
+.placeholder {
+    line-height: 30px;
+    font-size: 14px;
+    color: #888;
+    padding: 30px;
+    text-align: center;
+}

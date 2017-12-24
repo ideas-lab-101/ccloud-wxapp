@@ -1,0 +1,25 @@
+<!-- <import src="../../components/notice/notice.wxml" />
+<template is="notice" data="{{ ...noticeContent }}" /> -->
+<view class="head-login">
+    <image src="{{userInfo.avatarUrl}}" class="head-login-icon">
+    </image>
+    <view class="head-login-text">{{userInfo.nickname}}</view>
+</view>
+<view class="item" bindtap="goToEnrolls">
+    <image src="/assets/images/activity.png" class="item-icon"></image>
+    <view class="item-text">我的活动</view>
+    <view class="item-state has-more"></view>
+</view>
+<view class="item" bindtap="goToGuides">
+    <image src="/assets/images/help.png" class="item-icon"></image>
+    <view class="item-text">使用帮助</view>
+    <view class="item-state has-more"></view>
+</view>
+<!-- <view class="placeholder" wx:if="{{ activityList.length === 0 }}">您暂时未参与任何活动哦~去活动页发现更多吧</view> -->
+<!-- <view class="item">
+  <image src="/assets/images/contact.png" class="item-icon"></image>
+  <view class="item-text">联系客服
+  </view>
+  <contact-button size="26" session-from="weapp" class="contact_btn">
+  </contact-button>
+</view> -->

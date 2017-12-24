@@ -1,0 +1,104 @@
+<import src="../../../../components/actionsheet/actionsheet.wxml" />
+<import src="../../../../components/toptips/toptips.wxml" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<template is="toptips" data="{{ ...$wux.toptips }}" />
+<scroll-view scroll-y style="height: 100%;">
+    <view class="discover">报名信息</view>
+    <form bindsubmit="formSubmit">
+        <view class="form">
+            <view class="form_head">请填写报名表
+                <text>*</text>标注的为必填项</view>
+            <block wx:if="{{ renderBaseInfo }}">
+                <view class="form_block_head">基本信息</view>
+                <view class="section">
+                    <view class="section_title">
+                        <text>*</text>姓名(中文)</view>
+                    <input name="name" value="{{ formData.name }}" type='text' disabled='{{ isPreview }}' />
+                </view>
+                <view class="section_group">
+                    <view class="section">
+                        <view class="section_title">性别</view>
+                        <input name="sex" class="dropdown" disabled='true' type='text' value="{{ formData.sex }}" placeholder='请选择' bindtap='chooseGender' />
+                    </view>
+                    <view class="section">
+                        <view class="section_title">年龄</view>
+                        <input name="age" type='number' value="{{ formData.age }}" disabled='{{ isPreview }}' />
+                    </view>
+                </view>
+                <view class="section">
+                    <view class="section_title">联系电话</view>
+                    <input name="tel" type='number' value="{{ formData.tel }}" disabled='{{ isPreview }}' />
+                </view>
+                <picker bindchange="chooseNation" value="{{ formData.nation }}" range="{{ nations }}" disabled='{{ isPreview }}'>
+                    <view class="section">
+                        <view class="section_title">国籍</view>
+                        <input name="nation" class="dropdown" disabled='true' type='text' value="{{ formData.nation }}" placeholder='请选择' />
+                    </view>
+                </picker>
+                <view class="section_bottom"></view>
+            </block>
+            <block wx:if="{{ renderPhotoInfo }}">
+                <view class="form_block_head">照片</view>
+                <view class="picture">
+                    <view class="picture_notice">
+                        <view class="notice">一寸免冠照片</view>
+                        <view class="notice">点击右侧区域上传图片</view>
+                        <view class="notice">长按删除图片</view>
+                    </view>
+                    <view class="pic_area" bindtap='uploadPic'>
+                        <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
+                    </view>
+                </view>
+                <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
+                <view class="section_bottom"></view>
+            </block>
+            <block wx:if="{{ renderSchoolInfo }}">
+                <view class="form_block_head">学校信息</view>
+                <view class="section">
+                    <view class="section_title">就读学校</view>
+                    <view class="with_unit">
+                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}" disabled='{{ isPreview }}'>
+                            <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
+                        </picker>
+                        <view class="section_unit">区</view>
+                    </view>
+                    <view class="with_unit">
+                        <input name="school" type='text' value="{{ formData.school }}" disabled='{{ isPreview }}' />
+                        <view class="section_unit">学校</view>
+                    </view>
+                </view>
+                <view class="section">
+                    <view class="section_title">在读年级</view>
+                    <view class="with_unit">
+                        <input name="grade" type='text' value="{{ formData.grade }}" disabled='{{ isPreview }}' />
+                        <view class="section_unit">年级</view>
+                    </view>
+                    <view class="with_unit">
+                        <input name="class" type='text' value="{{ formData.class }}" disabled='{{ isPreview }}' />
+                        <view class="section_unit">班</view>
+                    </view>
+                    <view class="with_unit">
+                        <input name="major" type='text' value="{{ formData.major }}" disabled='{{ isPreview }}' />
+                        <view class="section_unit">专业(大学)</view>
+                    </view>
+                </view>
+                <view class="section_bottom"></view>
+            </block>
+            <block wx:if="{{ renderReferInfo }}">
+                <view class="form_block_head">推荐人信息</view>
+                <view class="section">
+                    <view class="section_title">推荐人</view>
+                    <input name="referName" type='text' value="{{ formData.referName }}" disabled='{{ isPreview }}' />
+                </view>
+                <view class="section">
+                    <view class="section_title">推荐人联系电话</view>
+                    <input name="referTel" type='text' value="{{ formData.referTel }}" disabled='{{ isPreview }}' />
+                </view>
+                <view class="section_bottom"></view>
+            </block>
+            <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
+            <button class="submit_btn" formType="submit" disabled='{{ isPreview }}'>确认修改</button>
+        </view>
+    </form>
+    <view style="height:30px;"></view>
+</scroll-view>

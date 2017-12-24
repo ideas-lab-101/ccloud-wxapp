@@ -1,0 +1,38 @@
+.icon-container {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-container icon {
+    flex: 1 0 100px;
+    margin-top: 50px;
+}
+
+.title {
+    flex: 0 0 50px;
+    line-height: 50px;
+    font-size: 18pt;
+    color: #353535;
+    text-align: center;
+}
+.cancel{
+    color: #e64340;
+}
+.info {
+    flex: 0 0 30px;
+    line-height: 30px;
+    font-size: 12pt;
+    color: #888;
+    text-align: center;
+}
+
+.button-group {
+    padding: 0 30px;
+}
+
+.button-group button {
+    margin: 10px 0;
+}

@@ -1,0 +1,12 @@
+<view class="header">帮助文档列表 共{{ pager.totalGuide }}项</view>
+<view class="enroll" wx:for="{{ guides }}">
+    <view class="act-name" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Title || '未知文档' }}</view>
+    <view class="enroll-main">
+        <view class="enroll-info">
+            <view class="act-attr" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Summary }}</view>
+            <view class="act-time">{{ item.AddTime || '未知时间' }}</view>
+        </view>
+    </view>
+</view>
+<view class="placeholder" wx:if="{{ guides.length === 0 }}">没有查找到帮助文档哦~</view>
+<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalGuide }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>

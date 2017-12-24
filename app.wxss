@@ -1,0 +1,13 @@
+@import 'components/wux.wxss';
+
+/* @import 'assets/styles/weui.wxss'; */
+
+/* @import 'assets/styles/skyvow.wxss'; */
+
+view {
+    box-sizing: border-box;
+}
+
+.black {
+    color: #3a342a;
+}
