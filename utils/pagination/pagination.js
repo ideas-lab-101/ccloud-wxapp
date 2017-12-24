@@ -29,6 +29,10 @@ Component({
             this.triggerEvent('next', 'next')
         },
         jumpToPage(e) {
+            const targetPage = parseInt(e.detail.value)
+            if ((typeof targetPage) !== 'number') {
+                return
+            }
             if (e.detail.value <= this.data.totalPage) {
                 this.triggerEvent('jumptopage', e.detail)
             }

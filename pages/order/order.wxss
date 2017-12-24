@@ -47,12 +47,12 @@ page {
 
 .act_name {
     position: absolute;
-    top: 40rpx;
+    top: 60rpx;
     left: 60rpx;
     width: 600rpx;
     line-height: 40px;
     color: #fff;
-    font-size: 26px;
+    font-size: 25px;
 }
 
 .act_location {

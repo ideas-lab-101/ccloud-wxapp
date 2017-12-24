@@ -8,10 +8,7 @@
         <view class="img_wrapper">
             <image src="{{imgUrl}}" class="slide-image" mode='aspectFill' />
         </view>
-        <view class="act_name">{{info.ActivityName}}
-            <view class="act_location">
-                <image src="../../assets/images/desc.png"></image>{{info.Desc}}</view>
-        </view>
+        <view class="act_name">{{info.ActivityName}}</view>
     </view>
     <!-- bindreset="formReset" -->
     <form bindsubmit="formSubmit">
@@ -27,16 +24,19 @@
                 </view>
                 <view class="section_group">
                     <view class="section">
-                        <view class="section_title">性别</view>
+                        <view class="section_title">
+                        <text>*</text>性别</view>
                         <input name="sex" class="dropdown" disabled='true' type='text' value="{{ formData.sex }}" placeholder='请选择' bindtap='chooseGender' />
                     </view>
                     <view class="section">
-                        <view class="section_title">年龄</view>
+                        <view class="section_title">
+                        <text>*</text>年龄</view>
                         <input name="age" type='number' value="{{ formData.age }}" />
                     </view>
                 </view>
                 <view class="section">
-                    <view class="section_title">联系电话</view>
+                    <view class="section_title">
+                    <text>*</text>联系电话</view>
                     <input name="tel" type='number' value="{{ formData.tel }}"/>
                 </view>
                 <picker bindchange="chooseNation" value="{{ formData.nation }}" range="{{ nations }}">
@@ -65,7 +65,8 @@
             <block wx:if="{{ renderSchoolInfo }}">
                 <view class="form_block_head">学校信息</view>
                 <view class="section">
-                    <view class="section_title">就读学校</view>
+                    <view class="section_title">
+                      <text>*</text>就读学校</view>
                     <view class="with_unit">
                         <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}">
                             <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
@@ -78,13 +79,14 @@
                     </view>
                 </view>
                 <view class="section">
-                    <view class="section_title">在读年级</view>
+                    <view class="section_title">
+                      <text>*</text>在读年级</view>
                     <view class="with_unit">
                         <input name="grade" type='text' value="{{ formData.grade }}" />
                         <view class="section_unit">年级</view>
                     </view>
                     <view class="with_unit">
-                        <input name="class" type='text' value="{{ formData.class }}" />
+                        <input name="classInfo" type='text' value="{{ formData.classInfo }}" />
                         <view class="section_unit">班</view>
                     </view>
                     <view class="with_unit">

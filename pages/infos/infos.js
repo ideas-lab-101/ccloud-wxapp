@@ -17,16 +17,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if (app.globalData.token) {
-            this._initData(0)
-        } else {
-            app.getToken()
-                .then(() => {
-                    this._initData(0)
-                }, function (err) {
-                    this.showErrorModal(err.toString())
-                })
-        }
+      this.cid = options.cid
+      if (app.globalData.token) {
+          this._initData(0)
+      } else {
+          app.getToken()
+              .then(() => {
+                  this._initData(0)
+              }, function (err) {
+                  this.showErrorModal(err.toString())
+              })
+      }
     },
 
     prev: function (e) {
@@ -48,7 +49,7 @@ Page({
 
     goToDetail: function (e) {
         wx.navigateTo({
-            url: `guidebook/guidebook?gid=${e.target.dataset.iid}`,
+            url: `infobook/infobook?gid=${e.target.dataset.iid}`,
         })
     },
 
@@ -63,7 +64,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                channelID: 6,
+                channelID: this.cid,
                 pageIndex: pageIndex,
                 pageSize: 10
             },

@@ -61,8 +61,8 @@
 				},
 				{
 					"id": 6,
-					"name": "帮助列表",
-					"pathName": "pages/mine/guides/guides",
+					"name": "文档列表",
+					"pathName": "pages/infos/infos",
 					"query": ""
 				}
 			]

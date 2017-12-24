@@ -21,13 +21,13 @@ Page({
     },
     goToGuides: function () {
         wx.navigateTo({
-            url: 'guides/guides',
+            url: '/pages/infos/infos?cid=6',
         })
     },
     showAbout() {
         this.setData({
             'noticeContent.title': '关于我们',
-            'noticeContent.content': `知书，打开学习新方式`,
+            'noticeContent.content': `教育信息化专家`,
             'noticeContent.isNoticeShow': true
         })
     },

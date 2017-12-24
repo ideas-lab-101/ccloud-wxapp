@@ -7,7 +7,7 @@ Page({
     data: {
         comments: [],
         isTaFocused: false,
-        taPlaceholder: '活动留言',
+        taPlaceholder: '用户留言',
         taContent: '',
         userOpenId: app.globalData.token,
         pager: {
@@ -37,6 +37,7 @@ Page({
             data: {
                 activityID: this.aid,
                 referID: this.referId,
+                formID: e.detail.formId,
                 token: app.globalData.token,
                 content: e.detail.value.comment
             },
@@ -49,7 +50,8 @@ Page({
                         duration: 2000
                     })
                     this.setData({
-                        taContent: ''
+                        taContent: '',
+                        isTaFocused: false
                     })
                     this._initData();
                 } else {
@@ -65,7 +67,7 @@ Page({
     commentOnActivity() {
         if (app.globalData.token) {
             this.setData({
-                taPlaceholder: '活动留言',
+                taPlaceholder: '用户留言',
                 isTaFocused: true
             })
             this.referId = 0
@@ -73,7 +75,7 @@ Page({
             app.getToken()
                 .then(() => {
                     this.setData({
-                        taPlaceholder: '活动留言',
+                        taPlaceholder: '用户留言',
                         isTaFocused: true
                     })
                     this.referId = 0
@@ -116,7 +118,7 @@ Page({
     },
 
     jumpToPage: function (e) {
-        this._initData('page:', e.detail.value - 1)
+        this._initData(e.detail.value - 1)
     },
     _initData: function (pageIndex = 0) {
         wx.showLoading({

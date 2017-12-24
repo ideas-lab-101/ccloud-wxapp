@@ -7,12 +7,25 @@ page {
     position: fixed;
     top: 0;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 30px;
     line-height: 30px;
     padding: 0 30rpx;
     font-size: 16px;
     color: #888;
     background-color: #efefef;
+    z-index: 1000;
+}
+
+.list_number {
+    flex: 0 0 50px;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    font-size: 16px;
+    color: #888;
 }
 
 .enroll {

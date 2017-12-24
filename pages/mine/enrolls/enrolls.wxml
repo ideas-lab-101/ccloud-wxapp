@@ -1,13 +1,15 @@
-<view class="header">报名列表 共{{ pager.totalEnroll }}项</view>
+<view class="header">报名列表
+    <view class="list_number">共{{ pager.totalEnroll }}项</view>
+</view>  
 <view class="enroll" wx:for="{{ enrolls }}">
     <view class="act-name" bindtap='goToDetail' data-aid="{{ item.ActivityID }}">{{ item.ActivityName || '未知活动' }}</view>
     <view class="enroll-main">
         <view class="enroll-info">
-            <view class="act-attr">{{ item.FeeName }}({{ item.TotalCost }} 元/人)</view>
-            <view class="act-attr">{{ item.name || '未知报名者' }}(
+            <view class="act-attr">{{ item.FeeName }} ({{ item.TotalCost }}元/人)</view>
+            <view class="act-attr">{{ item.name || '未知报名者' }} (
                 <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
                 <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
-                <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>)</view>
+                <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text> )</view>
             <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
         </view>
         <view class="enroll-opts">

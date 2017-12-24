@@ -6,9 +6,9 @@
         "pages/index/detail/comments/comments",
         "pages/mine/mine",
         "pages/mine/enrolls/enrolls",
-        "pages/mine/guides/guides",
-        "pages/mine/guides/guidebook/guidebook",
         "pages/mine/enrolls/form/form",
+        "pages/infos/infos",
+        "pages/infos/infobook/infobook",
         "pages/result/result"
     ],
     "window": {

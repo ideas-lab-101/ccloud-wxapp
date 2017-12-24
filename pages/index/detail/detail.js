@@ -36,9 +36,17 @@ Page({
     },
 
     join: function () {
+      if (this.activityInfo.intState == 1) {
         wx.navigateTo({
-            url: `/pages/order/order?aid=${this.aid}`,
+          url: `/pages/order/order?aid=${this.aid}`,
         })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '活动已结束',
+          showCancel: false
+        })
+      }
     },
 
     _initData: function (aid) {
@@ -72,6 +80,7 @@ Page({
                     //         id: el.FeeID
                     //     }
                     // })
+                    this.activityInfo = res.data.activityInfo
                     this.coordinate = JSON.parse(res.data.activityInfo.Coordinate)
                     this.setData({
                         imgUrls: imgUrls,
@@ -94,6 +103,20 @@ Page({
             }
         })
     },
+    goToInfoList: function (e) {
+        if (this.activityInfo.ChannelSetting){
+            wx.navigateTo({
+              url: `/pages/infos/infos?cid=${this.activityInfo.ChannelSetting}`,
+            })
+        }else {
+          wx.showModal({
+            title: '提示',
+            content: '尚未发布资讯',
+            showCancel: false
+          })
+        }
+    },
+
     goToComment: function (e) {
         wx.navigateTo({
             url: `/pages/index/detail/comments/comments?aid=${this.aid}`,
@@ -103,6 +126,7 @@ Page({
         wx.openLocation({
             latitude: parseFloat(this.coordinate.Latitude),
             longitude: parseFloat(this.coordinate.Longitude),
+            name: this.activityInfo.Address,
             scale: 18
         })
     },
@@ -116,7 +140,7 @@ Page({
         const that = this
         $wuxDialog.open({
             title: '分享活动给好友',
-            content: '来看看重科云的精彩活动',
+            content: '【'+this.activityInfo.ActivityName+'】',
             verticalButtons: !0,
             buttons: [
                 {
@@ -169,7 +193,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: `来看看重科云的精彩活动`,
+          title: '【' + this.activityInfo.ActivityName + '】',
             path: `/pages/index/detail/detail?aid=${this.aid}`,
             success: function (res) {
                 // 转发成功

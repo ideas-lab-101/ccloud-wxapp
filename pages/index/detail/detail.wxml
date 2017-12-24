@@ -23,12 +23,12 @@
             <view class="data">{{info.ActivityName||'未知活动'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/enroll.png"></image>
-            <view class="data">{{info.EnrollCount||'0'}}人已报名</view>
-        </view>
-        <view class="act_info">
             <image src="../../../assets/images/date.png"></image>
             <view class="data">{{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}</view>
+        </view>
+        <view class="act_info">
+            <image src="../../../assets/images/contact.png"></image>
+            <view class="data">{{info.Contact||'无联系方式'}}</view>
         </view>
         <view class="act_info">
             <image src="../../../assets/images/location.png"></image>
@@ -54,12 +54,16 @@
 </view>
 <view style='height:50px'></view>
 <view class="footer">
-     <view class="left" bindtap='goToComment'>
-         <image src='../../../assets/images/comment.png'></image> 
-        讨论区</view>  
-        <!-- open-type='share' -->
+    <view class="mid" bindtap='goToInfoList'>
+        <image src='../../../assets/images/info.png'></image> 资讯 
+    </view>
+    <button class="mid" bindtap='goToComment'>
+        <image src='../../../assets/images/comment.png'></image> 
+    </button>  
+     <!-- open-type='share' -->
     <button class="mid" bindtap="share">
-        <image src='../../../assets/images/share.png'></image>分享</button>
+        <image src='../../../assets/images/share.png'></image>
+    </button>
     <view class="right" bindtap='join'>报名参加
         <!-- <image src="../../../assets/images/more.png"></image> -->
     </view>
