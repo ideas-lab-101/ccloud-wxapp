@@ -10,6 +10,7 @@ Page({
     data: {
         cases: [],
         info: {},
+        isEnrolled:false,
         formData: {
             sex: '',
             nation: '',
@@ -450,6 +451,33 @@ Page({
             complete: () => {
                 wx.hideLoading();
             }
+        })
+        wx.request({
+            url: app.baseUrl + 'user/GetEnrollList',
+            method: 'GET',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                token: app.globalData.token,
+                activityID: aid,
+                intState: 2,
+                pageIndex: 0,
+                pageSize: 100
+            },
+            success: res => {
+                this.setData({
+                    isEnrolled: res.data.list.length > 0
+                })
+            },
+            fail: error => {
+                this._showToptips(error.toString())
+            }
+        })
+    },
+    goToUsercenter(){
+        wx.switchTab({
+            url: '/pages/mine/mine',
         })
     }
 })

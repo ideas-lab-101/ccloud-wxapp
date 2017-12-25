@@ -1,3 +1,4 @@
+import { $wuxActionSheet } from '../../../../components/wux'
 const app = getApp()
 Page({
 
@@ -9,7 +10,6 @@ Page({
         isTaFocused: false,
         taPlaceholder: '用户留言',
         taContent: '',
-        userOpenId: app.globalData.token,
         pager: {
             totalGuide: 0,
             totalPage: 0,
@@ -18,6 +18,20 @@ Page({
     },
     referId: 0,
     onLoad: function (options) {
+        if (app.globalData.token) {
+            this.setData({
+                userOpenId: app.globalData.token
+            })
+        } else {
+            app.getToken()
+                .then(() => {
+                    this.setData({
+                        userOpenId: app.globalData.token
+                    })
+                }, function (err) {
+                    this._openModal(err.toString())
+                })
+        }
         this.aid = options.aid
         this._initData()
     },
@@ -103,6 +117,40 @@ Page({
                     this._openModal(err.toString())
                 })
         }
+    },
+    deleteComment(e) {
+        const that = this;
+        $wuxActionSheet.show({
+            titleText: '确认删除该条评论吗',
+            className: 'cancel-action',
+            buttons: [{ text: '删除' }],
+            buttonClicked(index, item) {
+                wx.request({
+                    url: app.baseUrl + 'activity/DelComment',
+                    method: 'POST',
+                    header: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                        commentID: e.target.dataset.cid,
+                        token: app.globalData.token
+                    },
+                    success: res => {
+                        if(res.data.result){
+                            that._initData();
+                        }else{
+                            that._openModal(res.data.msg);
+                        }
+                    },
+                    fail: error => {
+                        this._openModal(error.toString())
+                    }
+                })
+                return true
+            },
+            cancelText: '取消',
+            cancel() { }
+        });
     },
     hideTa: function () {
         this.setData({

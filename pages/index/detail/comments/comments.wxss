@@ -103,12 +103,20 @@ page {
     color: #fbca03;
 }
 
-.comment_content image {
+.comment_content .comment-ico {
     position: absolute;
     right: 20px;
     bottom: 10px;
     height: 20px;
     width: 20px;
+}
+.comment_content .delete {
+    position: absolute;
+    right: 50px;
+    bottom: 9px;
+    width: 28px;
+    font-size: 12px;
+    color: #d81e06;
 }
 
 .commenter_wrapper {
@@ -154,4 +162,7 @@ page {
 .post_btn::after {
     border: 0;
     border-radius: 2px;
+}
+.cancel-action .action-sheet-option{
+    color: #d81e06;
 }

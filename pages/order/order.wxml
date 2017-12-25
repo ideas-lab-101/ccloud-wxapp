@@ -7,6 +7,7 @@
     <view class="activity">
         <view class="img_wrapper">
             <image src="{{imgUrl}}" class="slide-image" mode='aspectFill' />
+            <image src="../../assets/images/enrolled.png" class="enroll-success" wx:if="{{ isEnrolled }}"></image>
         </view>
         <view class="act_name">{{info.ActivityName}}</view>
     </view>
@@ -25,19 +26,19 @@
                 <view class="section_group">
                     <view class="section">
                         <view class="section_title">
-                        <text>*</text>性别</view>
+                            <text>*</text>性别</view>
                         <input name="sex" class="dropdown" disabled='true' type='text' value="{{ formData.sex }}" placeholder='请选择' bindtap='chooseGender' />
                     </view>
                     <view class="section">
                         <view class="section_title">
-                        <text>*</text>年龄</view>
+                            <text>*</text>年龄</view>
                         <input name="age" type='number' value="{{ formData.age }}" />
                     </view>
                 </view>
                 <view class="section">
                     <view class="section_title">
-                    <text>*</text>联系电话</view>
-                    <input name="tel" type='number' value="{{ formData.tel }}"/>
+                        <text>*</text>联系电话</view>
+                    <input name="tel" type='number' value="{{ formData.tel }}" />
                 </view>
                 <picker bindchange="chooseNation" value="{{ formData.nation }}" range="{{ nations }}">
                     <view class="section">
@@ -66,7 +67,7 @@
                 <view class="form_block_head">学校信息</view>
                 <view class="section">
                     <view class="section_title">
-                      <text>*</text>就读学校</view>
+                        <text>*</text>就读学校</view>
                     <view class="with_unit">
                         <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}">
                             <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
@@ -80,7 +81,7 @@
                 </view>
                 <view class="section">
                     <view class="section_title">
-                      <text>*</text>在读年级</view>
+                        <text>*</text>在读年级</view>
                     <view class="with_unit">
                         <input name="grade" type='text' value="{{ formData.grade }}" />
                         <view class="section_unit">年级</view>
@@ -111,5 +112,6 @@
             <button class="enroll_and_pay" formType="submit">报名并缴费</button>
         </view>
     </form>
+    <view class="usercenter" bindtap='goToUsercenter'>查看我的报名</view>
     <view style="height:30px;"></view>
 </scroll-view>

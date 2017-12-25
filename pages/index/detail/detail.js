@@ -87,7 +87,6 @@ Page({
                         info: res.data.activityInfo,
                         cases: res.data.activityFee
                     })
-                    console.log(res.data.activityInfo.Content)
                     WxParse.wxParse('detail', 'html', res.data.activityInfo.Content || '<p>暂无详情</p>', that, 5);
                 } else {
                     wx.showModal({
@@ -120,6 +119,11 @@ Page({
     goToComment: function (e) {
         wx.navigateTo({
             url: `/pages/index/detail/comments/comments?aid=${this.aid}`,
+        })
+    },
+    goToUsercenter: function (e) {
+        wx.switchTab({
+            url: '/pages/mine/mine',
         })
     },
     openLocation: function () {

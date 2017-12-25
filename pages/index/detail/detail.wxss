@@ -209,7 +209,22 @@ page {
     background-color: #fff;
     border-top: 1px solid #efefef;
 }
-
+.usercenter {
+    position: fixed;
+    bottom: 70px;
+    right: 0;
+    width: 60px;
+    height: 40px;
+    padding: 4px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-color: #fbca03;
+    box-shadow: 0 0 5px 0 #bfbfbf;
+}
+.usercenter image{
+    width: 32px;
+    height: 32px;
+}
 .footer .left {
     flex: 1 1 auto;
     display: flex;

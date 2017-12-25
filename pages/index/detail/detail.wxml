@@ -55,16 +55,19 @@
 <view style='height:50px'></view>
 <view class="footer">
     <view class="mid" bindtap='goToInfoList'>
-        <image src='../../../assets/images/info.png'></image> 资讯 
+        <image src='../../../assets/images/info.png'></image> 资讯
     </view>
     <button class="mid" bindtap='goToComment'>
-        <image src='../../../assets/images/comment.png'></image> 
-    </button>  
-     <!-- open-type='share' -->
+        <image src='../../../assets/images/comment.png'></image>
+    </button>
+    <!-- open-type='share' -->
     <button class="mid" bindtap="share">
         <image src='../../../assets/images/share.png'></image>
     </button>
     <view class="right" bindtap='join'>报名参加
         <!-- <image src="../../../assets/images/more.png"></image> -->
     </view>
+</view>
+<view class="usercenter" bindtap='goToUsercenter'>
+    <image src="../../../assets/images/usercenter.png"></image>
 </view>
