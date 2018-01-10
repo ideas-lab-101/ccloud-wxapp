@@ -7,9 +7,12 @@
         "pages/checkin/checkin",
         "pages/checkin/detail/detail",
         "pages/checkin/detail/comments/comments",
+        "pages/checkin/detail/order/order",
         "pages/mine/mine",
         "pages/mine/enrolls/enrolls",
+        "pages/mine/checkins/checkins",
         "pages/mine/enrolls/form/form",
+        "pages/mine/checkins/form/form",
         "pages/infos/infos",
         "pages/infos/infobook/infobook",
         "pages/result/result"
@@ -25,8 +28,7 @@
         "selectedColor": "#fbca03",
         "backgroundColor": "#ffffff",
         "borderStyle": "black",
-        "list": [
-            {
+        "list": [{
                 "pagePath": "pages/index/index",
                 "text": "活动",
                 "iconPath": "/assets/images/home.png",

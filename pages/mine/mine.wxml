@@ -10,6 +10,11 @@
     <view class="item-text">我的活动</view>
     <view class="item-state has-more"></view>
 </view>
+<view class="item" bindtap="goToCheckins">
+    <image src="/assets/images/meeting-g.png" class="item-icon"></image>
+    <view class="item-text">我的签到</view>
+    <view class="item-state has-more"></view>
+</view>
 <view class="item" bindtap="goToGuides">
     <image src="/assets/images/help.png" class="item-icon"></image>
     <view class="item-text">使用帮助</view>

@@ -55,7 +55,7 @@
 <view style='height:50px'></view>
 <view class="footer">
     <view class="mid" bindtap='goToInfoList'>
-        <image src='../../../assets/images/info.png'></image> 资讯
+        <image src='../../../assets/images/info.png'></image> 资料
     </view>
     <button class="mid" bindtap='goToComment'>
         <image src='../../../assets/images/comment.png'></image>

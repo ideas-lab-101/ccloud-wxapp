@@ -32,7 +32,7 @@ Page({
                     this._openModal(err.toString())
                 })
         }
-        this.aid = options.aid
+        this.cid = options.cid
         this._initData()
     },
     postComment(e) {
@@ -43,14 +43,14 @@ Page({
             title: '发送中...',
         })
         wx.request({
-            url: app.baseUrl + 'activity/UserComment',
+            url: app.baseUrl + 'attendance/UserComment',
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                activityID: this.aid,
-                referID: this.referId,
+                attendanceID: this.cid,
+                referID: this.referId || 0,
                 formID: e.detail.formId,
                 token: app.globalData.token,
                 content: e.detail.value.comment
@@ -126,7 +126,7 @@ Page({
             buttons: [{ text: '删除' }],
             buttonClicked(index, item) {
                 wx.request({
-                    url: app.baseUrl + 'activity/DelComment',
+                    url: app.baseUrl + 'attendance/DelComment',
                     method: 'POST',
                     header: {
                         'content-type': 'application/x-www-form-urlencoded'
@@ -173,13 +173,13 @@ Page({
             title: '请求数据...',
         })
         wx.request({
-            url: app.baseUrl + 'activity/GetActivityComment',
+            url: app.baseUrl + 'attendance/GetAttendanceComment',
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                activityID: this.aid,
+                attendanceID: this.cid,
                 pageIndex: pageIndex,
                 pageSize: 10
             },

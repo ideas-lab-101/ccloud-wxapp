@@ -38,12 +38,12 @@ Page({
     join: function() {
         if (this.attendanceInfo.intState == 1) {
             wx.navigateTo({
-                url: `/pages/order/order?cid=${this.cid}`,
+                url: `/pages/checkin/detail/order/order?cid=${this.cid}`,
             })
         } else {
             wx.showModal({
                 title: '提示',
-                content: '活动已结束',
+                content: '签到已结束',
                 showCancel: false
             })
         }
@@ -66,7 +66,6 @@ Page({
             },
             success: res => {
                 wx.hideLoading()
-                console.log(res.data.attendanceInfo)
                 if (res.data.result) {
                     const imgUrls = this.imgUrls = res.data.attendanceAttach.map(function(el, index) {
                         return app.resourseUrl + el.AttachURL
@@ -112,7 +111,7 @@ Page({
 
     goToComment: function(e) {
         wx.navigateTo({
-            url: `/pages/index/detail/comments/comments?cid=${this.cid}`,
+            url: `/pages/checkin/detail/comments/comments?cid=${this.cid}`,
         })
     },
     goToUsercenter: function(e) {
@@ -137,7 +136,7 @@ Page({
     share() {
         const that = this
         $wuxDialog.open({
-            title: '分享活动给好友',
+            title: '分享签到给好友',
             content: '【' + this.attendanceInfo.AttendanceName + '】',
             verticalButtons: !0,
             buttons: [{
@@ -158,7 +157,7 @@ Page({
                             },
                             data: {
                                 token: app.globalData.token,
-                                activityID: that.cid
+                                attendanceID: that.cid
                             },
                             success: res => {
                                 if (res.data.result) {
@@ -190,7 +189,7 @@ Page({
     onShareAppMessage: function() {
         return {
             title: '【' + this.attendanceInfo.AttendanceName + '】',
-            path: `/pages/index/detail/detail?cid=${this.cid}`,
+            path: `/pages/checkin/detail/detail?cid=${this.cid}`,
             success: function(res) {
                 // 转发成功
                 wx.showToast({

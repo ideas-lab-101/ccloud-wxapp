@@ -2,7 +2,7 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <view class="header">留言区
     <view class="comment_btn" bindtap='commentOnAttandence'>
-        <image src="../../../../assets/images/comment-o.png"></image>留言
+        <image src="../../../../assets/images/comment-g.png"></image>留言
     </view>
 </view>
 <view class="comments_wrapper" bindtap='hideTa'>
@@ -16,7 +16,7 @@
             <text>{{ item.refnickname ? '回复 '+item.refnickname+'：' : '' }}</text>{{ item.Comment }}
             <!-- <image src="../../../../assets/images/delete.png" class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}"></image> -->
             <view class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}">删除</view>
-            <image src="../../../../assets/images/comment-m.png" class='comment-ico' catchtap='commentOnComment' data-cid="{{ item.CommentID }}" data-name="{{ item.nickname }}"></image>
+            <image src="../../../../assets/images/comment-m-g.png" class='comment-ico' catchtap='commentOnComment' data-cid="{{ item.CommentID }}" data-name="{{ item.nickname }}"></image>
         </view>
     </view>
     <view class="placeholder" wx:if="{{ comments.length === 0 }}">暂无留言</view>

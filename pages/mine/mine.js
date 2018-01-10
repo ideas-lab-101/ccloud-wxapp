@@ -19,6 +19,11 @@ Page({
             url: 'enrolls/enrolls',
         })
     },
+    goToCheckins: function () {
+        wx.navigateTo({
+            url: 'checkins/checkins',
+        })
+    },
     goToGuides: function () {
         wx.navigateTo({
             url: '/pages/infos/infos?cid=6',

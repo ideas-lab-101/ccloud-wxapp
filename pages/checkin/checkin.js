@@ -13,18 +13,18 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         // options 中的 scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
-        var scene = decodeURIComponent(options.scene)
-        if (scene !== 'undefined') {
-            wx.navigateTo({
-                url: `/pages/checkin/detail/detail?cid=${scene}`,
-            })
-        }
+        // var scene = decodeURIComponent(options.scene)
+        // if (scene !== 'undefined') {
+        //     wx.navigateTo({
+        //         url: `/pages/checkin/detail/detail?cid=${scene}`,
+        //     })
+        // }
         this._initData()
     },
 
-    goToDetail: function (e) {
+    goToDetail: function(e) {
         console.log(e.target.dataset.cid || e.currentTarget.dataset.cid)
         wx.navigateTo({
             url: `/pages/checkin/detail/detail?cid=${e.target.dataset.cid || e.currentTarget.dataset.cid}`,
@@ -34,18 +34,18 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function () {
+    onHide: function() {
 
     },
 
-    swiperChange: function (e) {
+    swiperChange: function(e) {
         this.setData({
             bgImgUrl: this.data.activities[e.detail.current]
         })
@@ -58,7 +58,7 @@ Page({
 
     // },
 
-    _initData: function () {
+    _initData: function() {
         wx.showLoading({
             title: '加载中...',
             mask: true
@@ -72,7 +72,7 @@ Page({
             data: {},
             success: res => {
                 wx.hideLoading()
-                const activities = res.data.list.map(function (el, index) {
+                const activities = res.data.list.map(function(el, index) {
                     return {
                         id: el.AttendanceID,
                         imgUrl: app.resourseUrl + el.AttachURL,
