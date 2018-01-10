@@ -4,6 +4,9 @@
         "pages/order/order",
         "pages/index/detail/detail",
         "pages/index/detail/comments/comments",
+        "pages/checkin/checkin",
+        "pages/checkin/detail/detail",
+        "pages/checkin/detail/comments/comments",
         "pages/mine/mine",
         "pages/mine/enrolls/enrolls",
         "pages/mine/enrolls/form/form",
@@ -28,6 +31,12 @@
                 "text": "活动",
                 "iconPath": "/assets/images/home.png",
                 "selectedIconPath": "/assets/images/home-fill.png"
+            },
+            {
+                "pagePath": "pages/checkin/checkin",
+                "text": "签到",
+                "iconPath": "/assets/images/checkin.png",
+                "selectedIconPath": "/assets/images/checkin-fill.png"
             },
             {
                 "pagePath": "pages/mine/mine",

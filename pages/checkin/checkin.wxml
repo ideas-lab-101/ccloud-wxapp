@@ -1,0 +1,18 @@
+<view class="container">
+    <!-- <image class="bg_img" src="{{bgImgUrl}}" mode="aspectFill"></image> -->
+    <view class="bg_pure"></view>
+    <view class="discover">签到</view>
+    <swiper class="swiper" bindchange="swiperChange" indicator-dots='true' indicator-active-color='#8bc34a'>
+        <block wx:for="{{activities}}">
+            <swiper-item data-cid="{{item.id}}" bindtap='goToDetail'>
+                <view class="img_wrapper">
+                    <image src="{{item.imgUrl}}" class="slide-image" mode='aspectFill'/>
+                </view>
+                <view class="act_name">{{item.name}}
+                    <view class="act_location">
+                        <image src="../../assets/images/desc-g.png"></image>{{item.desc}}</view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

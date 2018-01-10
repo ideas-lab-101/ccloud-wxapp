@@ -1,11 +1,11 @@
 <import src="../../../assets/plugins/wxParse/wxParse.wxml" />
 <import src="../../../components/dialog/dialog.wxml" />
 <template is="dialog" data="{{ ...$wux.dialog }}" />
-<swiper class="swiper" indicator-dots="true" indicator-active-color='#fbca03' autoplay="true" circular="true">
+<swiper class="swiper" indicator-dots="true" indicator-active-color='#8bc34a' autoplay="true" circular="true">
     <block wx:for="{{imgUrls}}">
         <swiper-item>
             <image src="{{item}}" class="slide-image" mode='aspectFill' bindtap='viewImage' />
-            <!-- <view class="act_name">{{info.ActivityName}}
+            <!-- <view class="act_name">{{info.AttendanceName}}
                  <view class="act_location">
                     <image src="../../assets/images/location.png"></image>{{item.Address}}</view> 
             </view> -->
@@ -19,31 +19,34 @@
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
     <view class="act_info_group">
         <view class="act_info">
-            <image src="../../../assets/images/activity.png"></image>
-            <view class="data">{{info.ActivityName||'未知活动'}}</view>
+            <image src="../../../assets/images/meeting-g.png"></image>
+            <view class="data">{{info.AttendanceName||'未知活动'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/date.png"></image>
+            <image src="../../../assets/images/date-g.png"></image>
             <view class="data">{{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/contact.png"></image>
+            <image src="../../../assets/images/contact-g.png"></image>
             <view class="data">{{info.Contact||'无联系方式'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/location.png"></image>
+            <image src="../../../assets/images/location-g.png"></image>
             <view class="data has_more" bindtap='openLocation'>{{info.Address||'未知地点'}}</view>
         </view>
     </view>
-    <view class="collapse_bar" bindtap='toggleCollapse'>报名项目
+    <view class="collapse_bar" bindtap='toggleCollapse'>签到安排
         <image src="../../../assets/images/{{isCollapsed?'plus':'minus'}}.png"></image>
     </view>
-    <view class="collapse" style="height:{{isCollapsed?'0px':cases.length*50+'px'}}">
-        <view class="case" wx:for="{{cases}}">
-            <view class="index">{{index+1}}</view>
-            <view class="case_name">{{item.FeeName}}</view>
-            <view class="case_fee">{{item.TotalCost}}元/人</view>
-        </view>
+    <view class="collapse" style="height:{{isCollapsed?'0px':cases.length*70+'px'}}">
+        <block wx:for="{{cases}}">
+            <view class="case">
+                <view class="index">{{index+1}}</view>
+                <view class="case_name">{{item.TableName}}</view>
+                <view class="case_desc">{{item.TableDesc}}</view>
+                <view class="case_time">{{item.TableTime}}</view>
+            </view>
+        </block>
     </view>
     <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
 </view>
@@ -64,7 +67,7 @@
     <button class="mid" bindtap="share">
         <image src='../../../assets/images/share.png'></image>
     </button>
-    <view class="right" bindtap='join'>报名参加
+    <view class="right" bindtap='join'>立即签到
         <!-- <image src="../../../assets/images/more.png"></image> -->
     </view>
 </view>

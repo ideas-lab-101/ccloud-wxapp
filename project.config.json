@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -64,6 +64,18 @@
 					"name": "文档列表",
 					"pathName": "pages/infos/infos",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "签到",
+					"pathName": "pages/checkin/checkin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "签到详情页",
+					"pathName": "pages/checkin/detail/detail",
+					"query": "cid=11"
 				}
 			]
 		}

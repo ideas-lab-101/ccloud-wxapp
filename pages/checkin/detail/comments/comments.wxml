@@ -1,0 +1,31 @@
+<import src="../../../../components/actionsheet/actionsheet.wxml" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<view class="header">留言区
+    <view class="comment_btn" bindtap='commentOnAttandence'>
+        <image src="../../../../assets/images/comment-o.png"></image>留言
+    </view>
+</view>
+<view class="comments_wrapper" bindtap='hideTa'>
+    <view class="comment" wx:for="{{ comments }}">
+        <view class="comment_header">
+            <image src="{{ item.avatarUrl }}"></image>
+            <view class="username">{{ item.nickname }}</view>
+            <view class="time">{{ item.AddTime }}</view>
+        </view>
+        <view class="comment_content">
+            <text>{{ item.refnickname ? '回复 '+item.refnickname+'：' : '' }}</text>{{ item.Comment }}
+            <!-- <image src="../../../../assets/images/delete.png" class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}"></image> -->
+            <view class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}">删除</view>
+            <image src="../../../../assets/images/comment-m.png" class='comment-ico' catchtap='commentOnComment' data-cid="{{ item.CommentID }}" data-name="{{ item.nickname }}"></image>
+        </view>
+    </view>
+    <view class="placeholder" wx:if="{{ comments.length === 0 }}">暂无留言</view>
+</view>
+<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalComment }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>
+<view style="height:80px" bindtap='hideTa'></view>
+<form bindsubmit="postComment" report-submit="ture">
+    <view class="commenter_wrapper" hidden='{{ !isTaFocused }}'>
+        <textarea name="comment" placeholder=' {{ taPlaceholder }} ' focus="{{ isTaFocused }}" value="{{ taContent }}" fixed="true" cursor-spacing="50"></textarea>
+        <button class="post_btn" formType="submit">发布</button>
+    </view>
+</form>
