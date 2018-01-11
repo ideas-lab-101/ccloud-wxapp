@@ -71,7 +71,7 @@ page {
 
 .tab_content {
     padding-top: 10px;
-    background-color: #efefef;
+     background-color: #efefef; 
 }
 
 .html_content {
@@ -131,9 +131,12 @@ page {
 .act_info_group .act_info:last-child .data {
     border-color: #fff;
 }
-
+/* .green-gap{
+    height: 10px;
+    background-color: #daecc6;
+} */
 .act_desc {
-    margin-top: 10px;
+     margin-top: 10px; 
     margin-bottom: 10px;
     padding: 10px 30rpx;
     line-height: 30px;
@@ -188,7 +191,7 @@ page {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between; */
-    height: 70px;
+    height: 80px;
     padding: 0 30rpx;
     color: #3a342a;
     font-size: 16px;
@@ -205,8 +208,8 @@ page {
 .case .index {
     float: left;
     width: 40%;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     color: #000;
     text-align: center;
     font-size: 18px;
@@ -218,6 +221,23 @@ page {
     flex: 1 1 auto; */
     float: right;
     width: 40%;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+     -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; 
+    text-align: center;
+    color: #000;
+}
+.case .case_title {
+    /* -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto; */
     height: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -225,28 +245,33 @@ page {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
+     /* -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: center;  */
+    /* text-align: center; */
     color: #000;
 }
-
+.case .case_flex{
+display: flex;
+justify-content: space-between;
+}
 .case .case_desc {
     /* -webkit-box-flex: 0;
     -ms-flex: 0 0 100px;
     flex: 0 0 100px; */
-    float: left;
-    width: 40%;
-    height: 30px;
+    flex: auto;
+    /* width: 40%; */
+    height: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
+     /* -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: center;  */
+    /* text-align: center; */
     color: #8a8a8a;
     font-size: 12px;
 }
@@ -255,18 +280,20 @@ page {
     /* -webkit-box-flex: 0;
     -ms-flex: 0 0 100px;
     flex: 0 0 100px; */
-    float: right;
-    width: 40%;
-    height: 30px;
+    flex: none;
+    /* float: right; */
+    /* width: 40%; */
+    height: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
+     /* -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: center;  */
+     text-align: right; 
     color: #8a8a8a;
     font-size: 12px;
 }

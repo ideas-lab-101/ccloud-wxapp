@@ -38,16 +38,20 @@
     <view class="collapse_bar" bindtap='toggleCollapse'>签到安排
         <image src="../../../assets/images/{{isCollapsed?'plus':'minus'}}.png"></image>
     </view>
-    <view class="collapse" style="height:{{isCollapsed?'0px':cases.length*70+'px'}}">
+    <view class="collapse" style="height:{{isCollapsed?'0px':cases.length*80+'px'}}">
         <block wx:for="{{cases}}">
             <view class="case">
-                <view class="index">{{index+1}}</view>
-                <view class="case_name">{{item.TableName}}</view>
+                <!-- <view class="index">{{index+1}}</view>
+                <view class="case_name">{{item.TableName}}</view> -->
+                <view class="case_title">{{index+1}}  {{item.TableName}}</view>
+                <view class="case_flex">
                 <view class="case_desc">{{item.TableDesc}}</view>
                 <view class="case_time">{{item.TableTime}}</view>
+                </view>
             </view>
         </block>
     </view>
+    <!-- <view class="green-gap"></view> -->
     <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
 </view>
 <view class="tab_content" hidden='{{tabIndex!==1}}'>
