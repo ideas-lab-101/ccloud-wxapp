@@ -2,7 +2,7 @@
     <view class="list_number">共{{ pager.totalEnroll }}项</view>
 </view>  
 <view class="enroll" wx:for="{{ enrolls }}">
-    <view class="act-name" bindtap='goToDetail' data-aid="{{ item.ActivityID }}">{{ item.AttendanceName || '未知会议' }}</view>
+    <view class="act-name" bindtap='goToDetail' data-cid="{{ item.AttendanceID }}">{{ item.AttendanceName || '未知会议' }}</view>
     <view class="enroll-main">
         <view class="enroll-info">
             <view class="act-attr">{{ item.TableName }}</view>
@@ -12,9 +12,9 @@
         </view>
         <view class="enroll-opts">
             <button class="opt"  catchtap='modifyForm' data-sid="{{ item.SignID }}">修改签到表</button>
-            <button class="opt"  catchtap='previewForm' data-sid="{{ item.SignID }}">查看报名表</button>
+            <!-- <button class="opt"  catchtap='previewForm' data-sid="{{ item.SignID }}">查看签到表</button> -->
         </view>
     </view>
 </view>
-<view class="placeholder" wx:if="{{ enrolls.length === 0 }}">您暂时未参与任何签到哦~去签到页发现更多吧</view>
+<view class="placeholder" wx:if="{{ enrolls.length === 0 }}">您暂时未参与任何签到哦~</view>
 <howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>

@@ -3,7 +3,7 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
-    <view class="discover">签到信息</view>
+    <view class="discover">签到表</view>
     <form bindsubmit="formSubmit">
         <view class="form">
             <view class="form_head">请填写签到表
@@ -17,7 +17,7 @@
                 </view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>所属组织</view>
+                        <text>*</text>单位</view>
                     <input name="organization" type='text' value="{{ formData.organization }}" disabled='{{ isPreview }}'/>
                 </view>
                 <view class="section">

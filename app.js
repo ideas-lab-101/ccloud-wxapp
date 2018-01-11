@@ -128,6 +128,7 @@ App({
     baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
     // baseUrl: 'http://test.ideas-lab.cn/wxss/',
     resourseUrl: 'https://ccloud.ideas-lab.cn/resource/',
+    // resourseUrl: 'https://test.ideas-lab.cn/resource/ccloud/',
     globalData: {
         userInfo: null
     }

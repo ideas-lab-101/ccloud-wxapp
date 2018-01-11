@@ -3,7 +3,7 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
-    <view class="discover">报名信息</view>
+    <view class="discover">报名表</view>
     <form bindsubmit="formSubmit">
         <view class="form">
             <view class="form_head">请填写报名表

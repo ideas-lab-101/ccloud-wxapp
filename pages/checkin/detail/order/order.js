@@ -108,7 +108,12 @@ Page({
                         url: '/pages/result/result?type=checkin',
                     })
                 } else {
-                    this._showToptips(res.data.msg)
+                    wx.showModal({
+                      title: '出错了',
+                      content: res.data.msg,
+                      showCancel: false
+                    })
+                    // this._showToptips(res.data)
                 }
             },
             fail: error => {

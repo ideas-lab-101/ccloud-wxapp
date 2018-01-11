@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "文档中心",
+    "navigationBarTitleText": "文档列表",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"
     }

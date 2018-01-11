@@ -19,5 +19,5 @@
         </view>
     </view>
 </view>
-<view class="placeholder" wx:if="{{ enrolls.length === 0 }}">您暂时未参与任何活动哦~去首页发现更多吧</view>
+<view class="placeholder" wx:if="{{ enrolls.length === 0 }}">您暂时未参与任何活动哦~</view>
 <howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>

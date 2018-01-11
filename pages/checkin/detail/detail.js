@@ -103,7 +103,7 @@ Page({
         } else {
             wx.showModal({
                 title: '提示',
-                content: '尚未发布资讯',
+                content: '尚未发布资料',
                 showCancel: false
             })
         }

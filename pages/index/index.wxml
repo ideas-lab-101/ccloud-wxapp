@@ -1,7 +1,7 @@
 <view class="container">
     <!-- <image class="bg_img" src="{{bgImgUrl}}" mode="aspectFill"></image> -->
     <view class="bg_pure"></view>
-    <view class="discover">发现</view>
+    <view class="discover">活动</view>
     <swiper class="swiper" bindchange="swiperChange" indicator-dots='true' indicator-active-color='#fbca03'>
         <block wx:for="{{activities}}">
             <swiper-item data-aid="{{item.id}}" bindtap='goToDetail'>

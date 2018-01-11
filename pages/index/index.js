@@ -17,19 +17,22 @@ Page({
         // options 中的 scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
         var scene = decodeURIComponent(options.scene)
         if (scene !== 'undefined') {
-            if (scene.indexOf('a_') >= 0) {
-                wx.navigateTo({
-                    url: `/pages/index/detail/detail?aid=${scene.slice(2)}`,
-                })
-            } else if (scene.indexOf('c_') >= 0) {
-                wx.navigateTo({
-                    url: `/pages/checkin/detail/detail?cid=${scene.slice(2)}`,
-                })
-            } else {
-                wx.navigateTo({
-                    url: `/pages/index/detail/detail?aid=${scene}`,
-                })
-            }
+          wx.navigateTo({
+            url: `/pages/index/detail/detail?aid=${scene}`,
+          })
+          // if (scene.indexOf('a_') >= 0) {
+          //     wx.navigateTo({
+          //         url: `/pages/index/detail/detail?aid=${scene.slice(2)}`,
+          //     })
+          // } else if (scene.indexOf('c_') >= 0) {
+          //     wx.navigateTo({
+          //         url: `/pages/checkin/detail/detail?cid=${scene.slice(2)}`,
+          //     })
+          // } else {
+          //     wx.navigateTo({
+          //         url: `/pages/index/detail/detail?aid=${scene}`,
+          //     })
+          // }
         }
         this._initData()
     },

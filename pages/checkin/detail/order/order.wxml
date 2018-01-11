@@ -3,13 +3,13 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
-    <view class="discover">签到信息</view>
+    <view class="discover">签到表</view>
     <view class="activity">
         <view class="img_wrapper">
             <image src="{{imgUrl}}" class="slide-image" mode='aspectFill' />
-            <image src="../../../../assets/images/signed.png" class="enroll-success" wx:if="{{ isEnrolled }}"></image>
+            <!-- <image src="../../../../assets/images/signed.png" class="enroll-success" wx:if="{{ isEnrolled }}"></image> -->
         </view>
-        <view class="act_name">{{info.ActivityName}}</view>
+        <view class="act_name">{{info.AttendanceName}}</view>
     </view>
     <!-- bindreset="formReset" -->
     <form bindsubmit="formSubmit">
@@ -25,7 +25,7 @@
                 </view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>所属组织</view>
+                        <text>*</text>单位</view>
                     <input name="organization" type='text' value="{{ formData.organization }}" />
                 </view>
                 <view class="section">
