@@ -25,7 +25,7 @@ page {
     align-items: center;
     height: 40px;
     font-size: 15px;
-    color: #fbca03;
+    color: #fff;
 }
 
 .comment_btn image {
@@ -107,8 +107,8 @@ page {
     position: absolute;
     right: 20px;
     bottom: 10px;
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
 }
 .comment_content .delete {
     position: absolute;

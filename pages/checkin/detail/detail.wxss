@@ -35,8 +35,8 @@ page {
     line-height: 40px;
     color: #fff;
     font-size: 26px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#8bc34a), to(transparent));
-    background: linear-gradient(to bottom, #8bc34a, transparent);
+    background: -webkit-gradient(linear, left top, left bottom, from(#31786f), to(transparent));
+    background: linear-gradient(to bottom, #31786f, transparent);
 }
 
 .tab_bar {
@@ -66,7 +66,7 @@ page {
 .tab_item.active {
     color: #000;
     border-width: 2px;
-    border-color: #8bc34a;
+    border-color: #31786f;
 }
 
 .tab_content {
@@ -136,7 +136,7 @@ page {
     background-color: #daecc6;
 } */
 .act_desc {
-     margin-top: 10px; 
+    margin-top: 10px; 
     margin-bottom: 10px;
     padding: 10px 30rpx;
     line-height: 30px;
@@ -324,7 +324,7 @@ justify-content: space-between;
     padding: 4px;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    background-color: #8bc34a;
+    background-color: #31786f;
     -webkit-box-shadow: 0 0 5px 0 #bfbfbf;
     box-shadow: 0 0 5px 0 #bfbfbf;
 }
@@ -408,5 +408,5 @@ justify-content: space-between;
     height: 50px;
     color: #fff;
     letter-spacing: 2px;
-    background-color: #8bc34a;
+    background-color: #31786f;
 }

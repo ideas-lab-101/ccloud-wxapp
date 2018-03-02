@@ -25,7 +25,7 @@ page {
     align-items: center;
     height: 40px;
     font-size: 15px;
-    color: #8bc34a;
+    color: #fff;
 }
 
 .comment_btn image {
@@ -77,7 +77,7 @@ page {
     height: 40px;
     display: flex;
     align-items: center;
-    color: #8bc34a;
+    color: #31786f;
 }
 
 .comment_header .time {
@@ -100,15 +100,15 @@ page {
 }
 
 .comment_content text {
-    color: #8bc34a;
+    color: #31786f;
 }
 
 .comment_content .comment-ico {
     position: absolute;
     right: 20px;
     bottom: 10px;
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
 }
 .comment_content .delete {
     position: absolute;
@@ -155,7 +155,7 @@ page {
     text-align: center;
     font-size: 12px;
     color: #3a342a;
-    background-color: #8bc34a;
+    background-color: #31786f;
     box-shadow: 0 0 10px 0 #ccc;
 }
 

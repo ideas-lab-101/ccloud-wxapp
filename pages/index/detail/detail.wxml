@@ -59,7 +59,7 @@
         <image src='../../../assets/images/info.png'></image> 资料
     </view>
     <button class="mid" bindtap='goToComment'>
-        <image src='../../../assets/images/reply.png'></image>
+        <image src='../../../assets/images/message.png'></image>
     </button>
     <!-- open-type='share' -->
     <button class="mid" bindtap="share">

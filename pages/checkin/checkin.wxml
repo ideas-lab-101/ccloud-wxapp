@@ -2,7 +2,7 @@
     <!-- <image class="bg_img" src="{{bgImgUrl}}" mode="aspectFill"></image> -->
     <view class="bg_pure"></view>
     <view class="discover">签到</view>
-    <swiper class="swiper" bindchange="swiperChange" indicator-dots='true' indicator-active-color='#8bc34a'>
+    <swiper class="swiper" bindchange="swiperChange" indicator-dots='true' indicator-active-color='#31786f'>
         <block wx:for="{{activities}}">
             <swiper-item data-cid="{{item.id}}" bindtap='goToDetail'>
                 <view class="img_wrapper">

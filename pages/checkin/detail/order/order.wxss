@@ -319,7 +319,7 @@ page {
     line-height: 50px;
     color: #3a342a;
     font-size: 20px;
-    background-color: #8bc34a;
+    background-color: #31786f;
     border: 0;
     border-radius: 0 0 10px 10px;
 }
@@ -330,7 +330,7 @@ page {
 
 .usercenter {
     font-size: 16px;
-    color: #8bc34a;
+    color: #31786f;
     text-align: center;
     text-decoration: underline;
 }

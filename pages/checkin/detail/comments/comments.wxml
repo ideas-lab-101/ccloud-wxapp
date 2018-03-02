@@ -1,6 +1,6 @@
 <import src="../../../../components/actionsheet/actionsheet.wxml" />
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
-<view class="header">留言区
+<view class="header">留言列表
     <view class="comment_btn" bindtap='commentOnAttandence'>
         <image src="../../../../assets/images/comment.png"></image>留言
     </view>
