@@ -1,8 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/order/order",
         "pages/index/detail/detail",
+        "pages/index/detail/order/order",
         "pages/index/detail/comments/comments",
         "pages/checkin/checkin",
         "pages/checkin/detail/detail",
@@ -24,27 +24,27 @@
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
-        "color": "#8a8a8a",
-        "selectedColor": "#fbca03",
+        "color": "#888888",
+        "selectedColor": "#0e0e0e",
         "backgroundColor": "#ffffff",
         "borderStyle": "black",
         "list": [{
                 "pagePath": "pages/index/index",
                 "text": "活动",
-                "iconPath": "/assets/images/home.png",
-                "selectedIconPath": "/assets/images/home-fill.png"
+                "iconPath": "/assets/images/activity.png",
+                "selectedIconPath": "/assets/images/activity_fill.png"
             },
             {
                 "pagePath": "pages/checkin/checkin",
                 "text": "签到",
-                "iconPath": "/assets/images/checkin.png",
-                "selectedIconPath": "/assets/images/checkin-fill.png"
+                "iconPath": "/assets/images/check.png",
+                "selectedIconPath": "/assets/images/check_fill.png"
             },
             {
                 "pagePath": "pages/mine/mine",
                 "text": "我的",
                 "iconPath": "/assets/images/user.png",
-                "selectedIconPath": "/assets/images/user-fill.png"
+                "selectedIconPath": "/assets/images/user_fill.png"
             }
         ]
     }

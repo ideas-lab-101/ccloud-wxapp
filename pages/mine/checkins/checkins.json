@@ -1,6 +1,9 @@
 {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "签到列表",
-    "navigationBarBackgroundColor": "#8bc34a",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"
     }

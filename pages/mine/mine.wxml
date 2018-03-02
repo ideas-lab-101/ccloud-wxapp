@@ -1,22 +1,35 @@
 <!-- <import src="../../components/notice/notice.wxml" />
 <template is="notice" data="{{ ...noticeContent }}" /> -->
-<view class="head-login">
-    <image src="{{userInfo.avatarUrl}}" class="head-login-icon">
-    </image>
-    <view class="head-login-text">{{userInfo.nickname}}</view>
-</view>
+<view class="user-head">
+    <view class="uerinfo">
+      <text class="nickname">{{userInfo.nickname}}</text>
+      <view class="userdata">
+        <view class="dataone">
+          <text class="user-num">{{userInfo.eCount}}</text>
+          <text>活动</text>
+        </view>
+        <view class="dataone">
+          <text class="user-num">{{userInfo.sCount}}</text>
+          <text>签到</text>
+        </view>
+      </view>
+    </view>
+    <view class="avatar">
+      <image src="{{userInfo.avatarUrl}}" class="avatar-img"></image>
+    </view>
+  </view>
 <view class="item" bindtap="goToEnrolls">
-    <image src="/assets/images/activity.png" class="item-icon"></image>
+    <image src="/assets/images/ic_activity.png" class="item-icon"></image>
     <view class="item-text">我的活动</view>
     <view class="item-state has-more"></view>
 </view>
 <view class="item" bindtap="goToCheckins">
-    <image src="/assets/images/meeting-g.png" class="item-icon"></image>
+    <image src="/assets/images/ic_check.png" class="item-icon"></image>
     <view class="item-text">我的签到</view>
     <view class="item-state has-more"></view>
 </view>
 <view class="item" bindtap="goToGuides">
-    <image src="/assets/images/help.png" class="item-icon"></image>
+    <image src="/assets/images/ic_docs.png" class="item-icon"></image>
     <view class="item-text">使用帮助</view>
     <view class="item-state has-more"></view>
 </view>

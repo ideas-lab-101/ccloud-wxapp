@@ -1,5 +1,5 @@
-<import src="../../components/actionsheet/actionsheet.wxml" />
-<import src="../../components/toptips/toptips.wxml" />
+<import src="../../../../components/actionsheet/actionsheet.wxml" />
+<import src="../../../../components/toptips/toptips.wxml" />
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
@@ -7,7 +7,7 @@
     <view class="activity">
         <view class="img_wrapper">
             <image src="{{imgUrl}}" class="slide-image" mode='aspectFill' />
-            <image src="../../assets/images/enrolled.png" class="enroll-success" wx:if="{{ isEnrolled }}"></image>
+            <image src="../../../../assets/images/enrolled.png" class="enroll-success" wx:if="{{ isEnrolled }}"></image>
         </view>
         <view class="act_name">{{info.ActivityName}}</view>
     </view>
@@ -109,7 +109,7 @@
                 </view>
                 <view class="section_bottom"></view>
             </block>
-            <button class="enroll_and_pay" formType="submit">报名并缴费</button>
+            <button class="enroll_and_pay" formType="submit">报名参加</button>
         </view>
     </form>
     <view class="usercenter" bindtap='goToUsercenter'>查看我的报名</view>

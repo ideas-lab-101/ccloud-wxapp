@@ -19,19 +19,19 @@
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
     <view class="act_info_group">
         <view class="act_info">
-            <image src="../../../assets/images/activity.png"></image>
+            <image src="../../../assets/images/activity_fill.png"></image>
             <view class="data">{{info.ActivityName||'未知活动'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/date.png"></image>
+            <image src="../../../assets/images/calender_fill.png"></image>
             <view class="data">{{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/contact.png"></image>
+            <image src="../../../assets/images/tel_fill.png"></image>
             <view class="data">{{info.Contact||'无联系方式'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../../assets/images/location.png"></image>
+            <image src="../../../assets/images/location_fill.png"></image>
             <view class="data has_more" bindtap='openLocation'>{{info.Address||'未知地点'}}</view>
         </view>
     </view>
@@ -42,7 +42,8 @@
         <view class="case" wx:for="{{cases}}">
             <view class="index">{{index+1}}</view>
             <view class="case_name">{{item.FeeName}}</view>
-            <view class="case_fee">{{item.TotalCost}}元/人</view>
+            <view class="case_fee" wx:if="{{item.TotalCost > 0}}">{{item.TotalCost}}元/人</view>
+            <view class="case_fee" wx:if="{{item.TotalCost == 0}}">免费</view>
         </view>
     </view>
     <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
@@ -58,7 +59,7 @@
         <image src='../../../assets/images/info.png'></image> 资料
     </view>
     <button class="mid" bindtap='goToComment'>
-        <image src='../../../assets/images/comment.png'></image>
+        <image src='../../../assets/images/reply.png'></image>
     </button>
     <!-- open-type='share' -->
     <button class="mid" bindtap="share">

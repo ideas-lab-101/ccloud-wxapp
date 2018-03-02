@@ -38,7 +38,7 @@ Page({
     join: function () {
       if (this.activityInfo.intState == 1) {
         wx.navigateTo({
-          url: `/pages/order/order?aid=${this.aid}`,
+          url: `/pages/index/detail/order/order?aid=${this.aid}`,
         })
       } else {
         wx.showModal({

@@ -42,18 +42,20 @@ Page({
         })
     },
     onLoad: function (options) {
-        if (app.globalData.token) {
-            this._initData()
-        } else {
-            app.getToken()
-                .then(() => {
-                    this._initData()
-                }, function (err) {
-                    this._showErrorModal(err.toString())
-                })
-        }
+      // getApp().pages.add(this);
     },
-
+    onReady: function () {
+      if (app.globalData.token) {
+        this._initData()
+      } else {
+        app.getToken()
+          .then(() => {
+            this._initData()
+          }, function (err) {
+            this._showErrorModal(err.toString())
+          })
+      }
+    },
     _initData: function () {
         wx.showLoading({
             title: '请求数据...',

@@ -40,16 +40,21 @@ page {
 } */
 
 .act-name {
-    line-height: 30px;
+    line-height: 26px;
     font-size: 16px;
     color: #353535;
     border-bottom: 2px dashed #eee;
 }
 
 .act-attr {
-    line-height: 20px;
-    font-size: 14px;
-    color: #888;
+  font-size: 23rpx;
+  line-height: 1.5;
+  display: block;
+  margin-top: 5rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .act-time {
     line-height: 20px;

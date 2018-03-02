@@ -1,6 +1,6 @@
-import { $wuxActionSheet } from '../../components/wux'
-import { $wuxToptips } from '../../components/wux'
-import WxValidate from '../../assets/plugins/WxValidate'
+import { $wuxActionSheet } from '../../../../components/wux'
+import { $wuxToptips } from '../../../../components/wux'
+import WxValidate from '../../../../assets/plugins/WxValidate'
 const app = getApp()
 Page({
 
@@ -92,14 +92,25 @@ Page({
             success: res => {
                 wx.hideLoading()
                 if (res.data.result) {
+                    //根据是否支付来控制
+                  if (res.data.orderInfo){
                     $wuxToptips.success({
-                        hidden: !0,
-                        text: '提交成功',
+                      hidden: !0,
+                      text: '报名表提交成功',
                     })
-                    // pay
+                    //支付
                     this._pay(res.data.orderInfo, res.data.enrollID)
+                  }else{
+                    wx.redirectTo({
+                      url: '/pages/result/result?type=success',
+                    })
+                  }
                 } else {
-                    this._showToptips('出错了，重试一下吧')
+                  wx.showModal({
+                    title: '出错了',
+                    content: res.data.msg,
+                    showCancel: false
+                  })
                 }
             },
             fail: error => {
@@ -348,7 +359,7 @@ Page({
                 if (res.data.result) {
                     this.cases = res.data.activityFee.map(function (el, index) {
                         return {
-                            text: `${el.FeeName} -- ${el.TotalCost}/人`,
+                            text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
                             id: el.FeeID
                         }
                     })

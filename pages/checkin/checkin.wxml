@@ -10,7 +10,7 @@
                 </view>
                 <view class="act_name">{{item.name}}
                     <view class="act_location">
-                        <image src="../../assets/images/desc-g.png"></image>{{item.desc}}</view>
+                        <image src="../../assets/images/desc.png"></image>{{item.desc}}</view>
                 </view>
             </swiper-item>
         </block>
