@@ -1,9 +1,8 @@
-<view class="container">
-    <!-- <image class="bg_img" src="{{bgImgUrl}}" mode="aspectFill"></image> -->
+<!-- <view class="container">
     <view class="bg_pure"></view>
     <view class="discover">活动</view>
     <swiper class="swiper" bindchange="swiperChange" indicator-dots='true' indicator-active-color='#fbca03'>
-        <block wx:for="{{activities}}">
+        <block wx:for="{{items}}">
             <swiper-item data-aid="{{item.id}}" bindtap='goToDetail'>
                 <view class="img_wrapper">
                     <image src="{{item.imgUrl}}" class="slide-image" mode='aspectFill'/>
@@ -15,4 +14,13 @@
             </swiper-item>
         </block>
     </swiper>
+</view> -->
+<view class='container_fliud'>
+    <view class="item" wx:for="{{items}}">
+        <view class="info {{item.type}}">
+        </view>
+        <view class="drawer">
+            <image class="drawer_bg" src='{{item.imgUrl}}' mode='aspectFill'></image>
+        </view>
+    </view>
 </view>

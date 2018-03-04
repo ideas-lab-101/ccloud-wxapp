@@ -1,11 +1,41 @@
+const User = require('/utils/user.class')
+const Pages = require('/utils/pages.class')
+const HOST = "https://ccloud.ideas-lab.cn/wxss";
+
 App({
     onLaunch: function () {
         // var app = this
         // wx.getSystemInfo({
         //     success: function (res) {
         //         app.globalData.deviceHeight = res.windowHeight
+        //         app.globalData.deviceWidth = res.windowWidth
         //     },
         // })
+    },
+    user: new User(),
+    pages: new Pages(),
+    setPageMore(pageModel, pageData) {
+        if (pageData.totalRow <= 0) {
+            pageModel.setData({
+                noData: true,
+                noMore: false,
+                hasMore: false,
+            })
+        }
+        if (pageData.lastPage || pageData.totalRow == 0) {
+            pageModel.setData({
+                noMore: true,
+                hasMore: false,
+                moreDataText: "没有更多了"
+            })
+        } else {
+            pageModel.setData({
+                hasMore: true
+            })
+        }
+        pageModel.setData({
+            isLoading: false
+        })
     },
     getToken() {
         const app = this
@@ -124,6 +154,9 @@ App({
             content: '很遗憾，我们不能为你提供完整服务了',
             showCancel: false
         })
+    },
+    api: {
+        login: HOST + '/system/WXSSMain',
     },
     baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
     // baseUrl: 'http://test.ideas-lab.cn/wxss/',
