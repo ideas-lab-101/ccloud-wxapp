@@ -7,7 +7,3 @@
 view {
     box-sizing: border-box;
 }
-
-.black {
-    color: #3a342a;
-}

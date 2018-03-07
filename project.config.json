@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -94,6 +98,12 @@
 					"name": "签到留言",
 					"pathName": "pages/checkin/detail/comments/comments",
 					"query": "cid=11"
+				},
+				{
+					"id": -1,
+					"name": "demo",
+					"pathName": "pages/demo/demo",
+					"query": ""
 				}
 			]
 		}

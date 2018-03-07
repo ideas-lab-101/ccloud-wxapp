@@ -157,6 +157,7 @@ App({
     },
     api: {
         login: HOST + '/system/WXSSMain',
+        index: HOST + '/system/index'
     },
     baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
     // baseUrl: 'http://test.ideas-lab.cn/wxss/',

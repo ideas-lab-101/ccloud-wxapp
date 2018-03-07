@@ -44,63 +44,51 @@ Page({
     },
 
     /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    swiperChange: function (e) {
-        this.setData({
-            bgImgUrl: this.data.items[e.detail.current]
-        })
-    },
-
-    /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    // onPullDownRefresh: function () {
-
-    // },
+    onPullDownRefresh: function () {
+        this._initData();
+    },
 
     _initData: function () {
-        wx.showLoading({
-            title: '加载中...',
-            mask: true
-        })
+        wx.showNavigationBarLoading()
         wx.request({
-            url: app.baseUrl + 'activity/GetActivityList',
+            url: app.api.index,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {},
             success: res => {
-                wx.hideLoading()
                 const items = res.data.list.map(function (el, index) {
                     return {
-                        id: el.ActivityID,
-                        'type': el.ActivityID ? 'activity' : 'checkin',
-                        imgUrl: app.resourseUrl + el.AttachURL,
-                        name: el.ActivityName,
-                        // location: el.Address
-                        desc: el.Desc
+                        id: el.ID,
+                        'type': el.DataType,
+                        imgUrl: app.resourseUrl + el.CoverURL,
+                        name: el.Name,
+                        location: el.Address,
+                        time: el.StartTime,
+                        desc: el.Desc,
+                        isShowDetail: false,
+                        organisation: el.OrgName
                     }
                 })
                 this.setData({
                     items: items
                 })
             },
-            fail: error => {
-                wx.hideLoading()
+            complete() {
+                wx.hideNavigationBarLoading()
+                wx.stopPullDownRefresh()
             }
+        })
+    },
+
+    showItemDetail(e) {
+        const items = this.data.items
+        items[e.target.dataset.index].isShowDetail = !items[e.target.dataset.index].isShowDetail
+        this.setData({
+            items: items
         })
     }
 })

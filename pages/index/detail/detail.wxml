@@ -1,26 +1,24 @@
 <import src="../../../assets/plugins/wxParse/wxParse.wxml" />
 <import src="../../../components/dialog/dialog.wxml" />
 <template is="dialog" data="{{ ...$wux.dialog }}" />
-<swiper class="swiper" indicator-dots="true" indicator-active-color='#fbca03' autoplay="true" circular="true">
-    <block wx:for="{{imgUrls}}">
-        <swiper-item>
-            <image src="{{item}}" class="slide-image" mode='aspectFill' bindtap='viewImage' />
-            <!-- <view class="act_name">{{info.ActivityName}}
-                 <view class="act_location">
-                    <image src="../../assets/images/location.png"></image>{{item.Address}}</view> 
-            </view> -->
-        </swiper-item>
-    </block>
-</swiper>
-<view class="tab_bar">
-    <view class="tab_item{{tabIndex===0?' active':''}}" bindtap='setTabIndex' data-tab-index="0">信息</view>
-    <view class="tab_item{{tabIndex===1?' active':''}}" bindtap='setTabIndex' data-tab-index="1">详情</view>
+
+<view class="image_container">
+    <image class="banner" src="{{imgUrls[0]}}" mode="aspectFill" bindtap='viewImage'></image>
+    <view class="tab_bar">
+        <view class="tab_item{{tabIndex===0?' active':''}}" catchtap='setTabIndex' data-tab-index="0">信息</view>
+        <view class="tab_item{{tabIndex===1?' active':''}}" catchtap='setTabIndex' data-tab-index="1">详情</view>
+    </view>
+    <view class="card_head">
+        <image src="../../../assets/images/query.png" class="head_icon"></image>
+        <view class="head_desc">活动信息</view>
+    </view>
 </view>
+
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
     <view class="act_info_group">
         <view class="act_info">
             <image src="../../../assets/images/activity_fill.png"></image>
-            <view class="data">{{info.ActivityName||'未知活动'}}</view>
+            <view class="data fsz_16">{{info.ActivityName||'未知活动'}}</view>
         </view>
         <view class="act_info">
             <image src="../../../assets/images/calender_fill.png"></image>
@@ -32,7 +30,23 @@
         </view>
         <view class="act_info">
             <image src="../../../assets/images/location_fill.png"></image>
-            <view class="data has_more" bindtap='openLocation'>{{info.Address||'未知地点'}}</view>
+            <view class="data has_more" hover-class='hover' bindtap='openLocation'>{{info.Address||'未知地点'}}</view>
+        </view>
+    </view>
+    <view class="case_card">
+        <view class="head">
+            <image src="../../../assets/images/cases.png" class="head_icon"></image>
+            <view class="head_desc">报名项目</view>
+        </view>
+        <view class="list">
+            <view class="collapse" style="height:{{cases.length*50+'px'}}">
+                <view class="case" wx:for="{{cases}}">
+                    <view class="index">{{index+1}}</view>
+                    <view class="case_name">{{item.FeeName}}</view>
+                    <view class="case_fee" wx:if="{{item.TotalCost > 0}}">{{item.TotalCost}}元/人</view>
+                    <view class="case_fee" wx:if="{{item.TotalCost == 0}}">免费</view>
+                </view>
+            </view>
         </view>
     </view>
     <view class="collapse_bar" bindtap='toggleCollapse'>报名项目
@@ -53,7 +67,7 @@
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
     </view>
 </view>
-<view style='height:50px'></view>
+<!-- <view style='height:50px'></view>
 <view class="footer">
     <view class="mid" bindtap='goToInfoList'>
         <image src='../../../assets/images/info.png'></image> 资料
@@ -61,14 +75,12 @@
     <button class="mid" bindtap='goToComment'>
         <image src='../../../assets/images/message.png'></image>
     </button>
-    <!-- open-type='share' -->
     <button class="mid" bindtap="share">
         <image src='../../../assets/images/share.png'></image>
     </button>
     <view class="right" bindtap='join'>报名参加
-        <!-- <image src="../../../assets/images/more.png"></image> -->
     </view>
 </view>
 <view class="usercenter" bindtap='goToUsercenter'>
     <image src="../../../assets/images/usercenter.png"></image>
-</view>
+</view> -->
