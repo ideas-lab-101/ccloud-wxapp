@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "留言",
-    "usingComponents": {
-        "howard-pager": "/utils/pagination/pagination"
-    }
-}

@@ -1,6 +1,6 @@
-import { $wuxActionSheet } from '../../../../components/wux'
-import { $wuxToptips } from '../../../../components/wux'
-import WxValidate from '../../../../assets/plugins/WxValidate'
+import { $wuxActionSheet } from '../../../components/wux'
+import { $wuxToptips } from '../../../components/wux'
+import WxValidate from '../../../assets/plugins/WxValidate'
 const app = getApp()
 Page({
 

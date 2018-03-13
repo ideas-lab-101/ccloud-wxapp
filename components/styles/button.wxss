@@ -6,7 +6,7 @@
     height: 50px;
     border-radius: 50%;
     z-index: 1500;
-    background-color: #E40A5D;
+    background-color: #3f51b5;
     color: #fff;
     overflow: hidden;
     -webkit-transition-duration: .3s;
@@ -88,7 +88,7 @@
     position: relative;
     z-index: 1;
     overflow: visible;
-    background-color: #E40A5D;
+    background-color: #3f51b5;
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     display: -webkit-box;

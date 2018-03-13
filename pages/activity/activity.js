@@ -1,5 +1,5 @@
-const WxParse = require('../../../assets/plugins/wxParse/wxParse.js')
-import { $wuxDialog } from '../../../components/wux'
+const WxParse = require('../../assets/plugins/wxParse/wxParse.js')
+import { $wuxDialog, $wuxButton } from '../../components/wux'
 
 const app = getApp()
 Page({
@@ -12,7 +12,12 @@ Page({
         imgUrls: [],
         cases: [],
         info: {},
-        isCollapsed: true
+        opened: !1,
+        noticeContent: {
+            isNoticeShow: false,
+            title: '项目简介',
+            deviceHeight: app.globalData.deviceHeight
+        }
     },
 
     /**
@@ -21,32 +26,71 @@ Page({
     onLoad: function (options) {
         this.aid = options.aid
         this._initData(options.aid)
+        this.initButton()
     },
+    initButton() {
+        const self = this
+        this.setData({
+            opened: !1,
+        })
 
+        this.button = $wuxButton.init('br', {
+            position: 'bottomRight',
+            buttons: [
+                {
+                    label: '报名参加',
+                    icon: "../../../assets/images/bmcj.png",
+                },
+                {
+                    label: '参与讨论',
+                    icon: "../../../assets/images/cytl.png",
+                },
+                {
+                    label: '资料',
+                    icon: "../../../assets/images/zl.png",
+                },
+                {
+                    label: '个人中心',
+                    icon: "../../../assets/images/grzx.png",
+                },
+                {
+                    label: '分享',
+                    icon: "../../../assets/images/fx.png",
+                }
+            ],
+            buttonClicked(index, item) {
+                index === 0 && self.join()
+                index === 1 && self.goToComment()
+                index === 2 && self.goToInfoList()
+                index === 3 && self.goToUsercenter()
+                index === 4 && self.share()
+                return true
+            },
+            callback(vm, opened) {
+                vm.setData({
+                    opened,
+                })
+            },
+        })
+    },
     setTabIndex: function (e) {
         this.setData({
             tabIndex: parseInt(e.target.dataset.tabIndex)
         })
     },
 
-    toggleCollapse: function () {
-        this.setData({
-            isCollapsed: !this.data.isCollapsed
-        })
-    },
-
     join: function () {
-      if (this.activityInfo.intState == 1) {
-        wx.navigateTo({
-          url: `/pages/index/detail/order/order?aid=${this.aid}`,
-        })
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: '活动已结束',
-          showCancel: false
-        })
-      }
+        if (this.activityInfo.intState == 1) {
+            wx.navigateTo({
+                url: `/pages/activity/order/order?aid=${this.aid}`,
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '活动已结束',
+                showCancel: false
+            })
+        }
     },
 
     _initData: function (aid) {
@@ -66,7 +110,6 @@ Page({
             },
             success: res => {
                 wx.hideLoading()
-                console.log(res.data.activityInfo)
                 if (res.data.result) {
                     const imgUrls = this.imgUrls = res.data.activityAttach.map(function (el, index) {
                         return app.resourseUrl + el.AttachURL
@@ -103,22 +146,22 @@ Page({
         })
     },
     goToInfoList: function (e) {
-        if (this.activityInfo.ChannelSetting){
+        if (this.activityInfo.ChannelSetting) {
             wx.navigateTo({
-              url: `/pages/infos/infos?cid=${this.activityInfo.ChannelSetting}`,
+                url: `/pages/infos/infos?cid=${this.activityInfo.ChannelSetting}`,
             })
-        }else {
-          wx.showModal({
-            title: '提示',
-            content: '尚未发布资料',
-            showCancel: false
-          })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '尚未发布资料',
+                showCancel: false
+            })
         }
     },
 
     goToComment: function (e) {
         wx.navigateTo({
-            url: `/pages/index/detail/comments/comments?aid=${this.aid}`,
+            url: `/pages/activity/comments/comments?aid=${this.aid}`,
         })
     },
     goToUsercenter: function (e) {
@@ -144,7 +187,7 @@ Page({
         const that = this
         $wuxDialog.open({
             title: '分享活动给好友',
-            content: '【'+this.activityInfo.ActivityName+'】',
+            content: '【' + this.activityInfo.ActivityName + '】',
             verticalButtons: !0,
             buttons: [
                 {
@@ -192,13 +235,25 @@ Page({
             ],
         })
     },
+    hideNotice() {
+        this.setData({
+            'noticeContent.isNoticeShow': false
+        })
+    },
+    showFeeDesc(e) {
+        const index = e.target.dataset.index || e.currentTarget.dataset.index
+        this.setData({
+            'noticeContent.content': this.data.cases[index].FeeDesc,
+            'noticeContent.isNoticeShow': true
+        })
+    },
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
         return {
-          title: '【' + this.activityInfo.ActivityName + '】',
-            path: `/pages/index/detail/detail?aid=${this.aid}`,
+            title: '【' + this.activityInfo.ActivityName + '】',
+            path: `/pages/activity/detail?aid=${this.aid}`,
             success: function (res) {
                 // 转发成功
                 wx.showToast({

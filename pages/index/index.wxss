@@ -25,7 +25,7 @@ page {
 }
 
 .info.activity {
-    border-left: 5px solid #03a9f4;
+    border-left: 5px solid #3f51b5;
 }
 
 .info.sign {
@@ -33,7 +33,7 @@ page {
 }
 
 .info.open.activity .info_left {
-    background-color: #03a9f4;
+    background-color: #3f51b5;
 }
 
 .info.open.sign .info_left {

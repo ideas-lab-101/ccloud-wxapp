@@ -1,0 +1,45 @@
+.backdrop {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px 30px;
+}
+
+.notice_wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+
+.backdrop .head {
+  height: 70px;
+  line-height: 70px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.notice {
+  line-height: 25px;
+  font-size: 14px;
+}
+
+.backdrop .foot {
+  height: 50px;
+}
+
+.backdrop .foot .cancel {
+  float: right;
+  height: 50px;
+  line-height: 50px;
+  width: 200rpx;
+  text-align: center;
+  color: #3f51b5;
+  font-size: 16px;
+  background-color: #eceef8;  
+}

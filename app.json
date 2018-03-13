@@ -1,13 +1,12 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/index/detail/detail",
-        "pages/index/detail/order/order",
-        "pages/index/detail/comments/comments",
+        "pages/activity/activity",
         "pages/checkin/checkin",
-        "pages/checkin/detail/detail",
-        "pages/checkin/detail/comments/comments",
-        "pages/checkin/detail/order/order",
+        "pages/activity/order/order",
+        "pages/activity/comments/comments",
+        "pages/checkin/comments/comments",
+        "pages/checkin/order/order",
         "pages/mine/mine",
         "pages/mine/enrolls/enrolls",
         "pages/mine/checkins/checkins",
@@ -24,7 +23,7 @@
         "navigationBarTextStyle": "white"
     },
     "tabBar": {
-        "color": "#888888",
+        "color": "#4e5e71",
         "selectedColor": "#4e5e71",
         "backgroundColor": "#ffffff",
         "borderStyle": "black",

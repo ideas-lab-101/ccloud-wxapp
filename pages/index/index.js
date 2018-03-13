@@ -18,19 +18,19 @@ Page({
         var scene = decodeURIComponent(options.scene)
         if (scene !== 'undefined') {
             wx.navigateTo({
-                url: `/pages/index/detail/detail?aid=${scene}`,
+                url: `/pages/activity/activity?aid=${scene}`,
             })
             // if (scene.indexOf('a_') >= 0) {
             //     wx.navigateTo({
-            //         url: `/pages/index/detail/detail?aid=${scene.slice(2)}`,
+            //         url: `/pages/activity/activity?aid=${scene.slice(2)}`,
             //     })
             // } else if (scene.indexOf('c_') >= 0) {
             //     wx.navigateTo({
-            //         url: `/pages/checkin/detail/detail?cid=${scene.slice(2)}`,
+            //         url: `/pages/checkin/checkin?cid=${scene.slice(2)}`,
             //     })
             // } else {
             //     wx.navigateTo({
-            //         url: `/pages/index/detail/detail?aid=${scene}`,
+            //         url: `/pages/activity/activity?aid=${scene}`,
             //     })
             // }
         }
@@ -38,9 +38,17 @@ Page({
     },
 
     goToDetail: function (e) {
-        wx.navigateTo({
-            url: `/pages/index/detail/detail?aid=${e.target.dataset.aid || e.currentTarget.dataset.aid}`,
-        })
+        const itemType = e.target.dataset.type || e.currentTarget.dataset.type
+        if (itemType === 'sign') {
+            wx.navigateTo({
+                url: `/pages/checkin/checkin?cid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
+            })
+        } else {
+            wx.navigateTo({
+                url: `/pages/activity/activity?aid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
+            })
+
+        }
     },
 
     /**

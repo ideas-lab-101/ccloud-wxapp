@@ -25,12 +25,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/index/detail/detail",
+					"pathName": "pages/activity/activity",
 					"query": "aid=11"
 				},
 				{
@@ -42,7 +42,7 @@
 				{
 					"id": 2,
 					"name": "讨论区",
-					"pathName": "pages/index/detail/comments/comments",
+					"pathName": "pages/activity/comments/comments",
 					"query": "aid=11"
 				},
 				{
@@ -76,9 +76,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "签到详情页",
-					"pathName": "pages/checkin/detail/detail",
+					"pathName": "pages/checkin/checkin",
 					"query": "cid=11"
 				},
 				{

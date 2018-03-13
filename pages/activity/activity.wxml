@@ -15,7 +15,7 @@
     </view>
     <view class="card_head">
         <image src="../../assets/images/query.png" class="head_icon"></image>
-        <view class="head_desc">签到信息</view>
+        <view class="head_desc">活动信息</view>
     </view>
 </view>
 
@@ -23,7 +23,7 @@
     <view class="act_info_group">
         <view class="act_info">
             <image src="../../assets/images/activity_fill.png"></image>
-            <view class="data">{{info.AttendanceName||'未知签到'}}</view>
+            <view class="data">{{info.ActivityName||'未知活动'}}</view>
         </view>
         <view class="act_info">
             <image src="../../assets/images/calender_fill.png"></image>
@@ -41,19 +41,20 @@
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/cases.png" class="head_icon"></image>
-            <view class="head_desc">签到安排</view>
+            <view class="head_desc">报名项目</view>
         </view>
         <view class="case_list">
-            <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showTableDesc' data-index="{{index}}">
-                <view class="case_name">{{item.TableName}}</view>
-                <view class="case_fee">{{item.TableTime}}</view>
+            <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">
+                <view class="case_name">{{item.FeeName}}</view>
+                <view class="case_fee" wx:if="{{item.TotalCost > 0}}">{{item.TotalCost}}元/人</view>
+                <view class="case_fee" wx:if="{{item.TotalCost == 0}}">免费</view>
             </view>
         </view>
     </view>
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/info-w.png" class="head_icon"></image>
-            <view class="head_desc">签到简介</view>
+            <view class="head_desc">活动简介</view>
         </view>
         <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     </view>

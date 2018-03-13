@@ -1,5 +1,5 @@
 page {
-    background-color: #edf8f6;
+    background-color: #eceef8;
 }
 
 .image_container {
@@ -44,7 +44,7 @@ page {
 .tab_item.active {
     color: #fff;
     border-width: 2px;
-    border-color: #31786f;
+    border-color: #3f51b5;
 }
 
 .image_container .card_head {
@@ -59,7 +59,7 @@ page {
     width: 96%;
     padding-top: 20px;
     margin: 0 auto 0;
-    background-color: #edf8f6;
+    background-color: #eceef8;
     overflow: visible;
 }
 
@@ -131,7 +131,7 @@ page {
 
 .case_card .head, .card_head {
     display: flex;
-    background-color: #31786f;
+    background-color: #3f51b5;
 }
 
 .case_card .head .head_icon, .card_head .head_icon {
@@ -149,7 +149,7 @@ page {
     font-size: 16px;
     color: #333;
     background-color: #fff;
-    border-bottom: 1px solid #31786f;
+    border-bottom: 1px solid #3f51b5;
 }
 
 .case_list {
@@ -172,14 +172,13 @@ page {
     height: 60px;
     margin: 0 10px 10px;
     padding: 0 30rpx;
-    border: 1px solid #31786f;
+    border: 1px solid #3f51b5;
 }
 
 .case.clicked {
-    background-color: #31786f;
+    background-color: #3f51b5;
     color: #fff;
 }
-
 
 .case.clicked .case_fee {
     color: #fff;
@@ -197,7 +196,7 @@ page {
 .case .case_fee {
     flex: auto;
     font-size: 10px;
-    color: #31786f;
+    color: #3f51b5;
 }
 
 .footer {
@@ -231,8 +230,6 @@ page {
     height: 32px;
 }
 
-
-
 .wxParse {
     margin: 0 5px;
     font-family: Helvetica, sans-serif;
@@ -244,18 +241,4 @@ page {
 .html_content view {
     word-break: break-all;
     overflow: auto;
-}
-.speed-dial-buttons .speed-dial-button {
-    background-color: #31786f;
-}
-.floating-button {
-    background-color: #31786f;
-}
-.backdrop .head {
-  color: #31786f;
-}
-
-.backdrop .foot .cancel {
-  color: #31786f;
-  background-color: #edf8f6;  
 }

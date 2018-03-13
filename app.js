@@ -4,13 +4,13 @@ const HOST = "https://ccloud.ideas-lab.cn/wxss";
 
 App({
     onLaunch: function () {
-        // var app = this
-        // wx.getSystemInfo({
-        //     success: function (res) {
-        //         app.globalData.deviceHeight = res.windowHeight
-        //         app.globalData.deviceWidth = res.windowWidth
-        //     },
-        // })
+        var app = this
+        wx.getSystemInfo({
+            success: function (res) {
+                app.globalData.deviceHeight = res.windowHeight
+                app.globalData.deviceWidth = res.windowWidth
+            },
+        })
     },
     user: new User(),
     pages: new Pages(),

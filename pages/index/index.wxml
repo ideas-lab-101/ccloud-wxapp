@@ -2,7 +2,7 @@
     <view class="item" wx:for="{{items}}">
         <view class="drawer{{item.isShowDetail?' open':''}}">
             <image class="drawer_bg" src='{{item.imgUrl}}' mode='aspectFill' bindtap='showItemDetail' data-index="{{index}}"></image>
-            <view class="button" catchtap='goToDetail' data-aid="{{item.id}}">查看详情</view>
+            <view class="button" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}">查看详情</view>
         </view>
         <view class="info {{item.type}}{{item.isShowDetail?' open':''}}">
             <view class="info_left">

@@ -17,3 +17,4 @@
 @import './styles/toast.wxss';
 @import './styles/toptips.wxss';
 /* @import './styles/xnumber.wxss'; */
+@import './styles/notice.wxss';
