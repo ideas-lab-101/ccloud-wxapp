@@ -93,8 +93,9 @@ Page({
     },
 
     showItemDetail(e) {
-        const items = this.data.items
-        items[e.target.dataset.index].isShowDetail = !items[e.target.dataset.index].isShowDetail
+        const items = this.data.items,
+            index = e.target.dataset.index||e.currentTarget.dataset.index
+        items[index].isShowDetail = !items[index].isShowDetail
         this.setData({
             items: items
         })

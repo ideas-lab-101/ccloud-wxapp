@@ -1,8 +1,8 @@
 {
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "活动列表",
-    "backgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#3f51b5",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "我的活动",
+    "backgroundColor": "#3f51b5",
     "backgroundTextStyle": "light",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"

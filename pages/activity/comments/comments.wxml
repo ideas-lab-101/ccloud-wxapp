@@ -17,9 +17,7 @@
             </view>
             <view class="time">{{ item.AddTime }}</view>
         </view>
-        <!-- <view class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}">删除</view>
-            <image src="../../../assets/images/reply.png" class='comment-ico' catchtap='commentOnComment' data-cid="{{ item.CommentID }}" data-name="{{ item.nickname }}"></image> -->
-        <view class="more_opts" catchtap='moreOpts' index="{{index}}" hover-class='touched' hover-start-time='0'>
+        <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
             <image src="../../../assets/images/more_opts_b.png"></image>
         </view>
     </view>

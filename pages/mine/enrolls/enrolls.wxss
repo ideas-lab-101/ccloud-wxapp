@@ -14,8 +14,8 @@ page {
     line-height: 30px;
     padding: 0 30rpx;
     font-size: 16px;
-    color: #888;
-    background-color: #efefef;
+    color: #fff;
+    background-color: #3f51b5;
     z-index: 1000;
 }
 
@@ -25,68 +25,49 @@ page {
     align-items: center;
     height: 30px;
     font-size: 16px;
-    color: #888;
+    color: #fff;
 }
 
 .enroll {
-    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
     background-color: #fff;
-    box-shadow: 0 0 10px 0 #ccc;
 }
 
 .enroll-main {
-    display: flex;
-    justify-content: space-between;
+    flex: auto;
     padding-left: 30rpx;
 }
 
+.more_opts {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    margin-left: 10px;
+}
+
+.more_opts.touched {
+    background-color: #eceef8;
+}
+
+.more_opts image {
+    width: 20px;
+    height: 20px;
+}
+
 .act-name {
-    /* flex: 1 1 auto; */
-    line-height: 40px;
-    /* display: flex;
-    align-items: center; */
-    font-size: 16px;
-    color: #576b95;
-    border-bottom: 2px dashed #eee;
+    line-height: 30px;
+    color: #3f51b5;
+    font-size: 14px;
 }
 
 .act-attr {
-    line-height: 26px;
-    font-size: 14px;
+    line-height: 20px;
+    font-size: 12px;
     color: #888;
-}
-
-.enroll-info {
-    flex: 1 1 auto;
-}
-
-.enroll-opts {
-    flex: 0 0 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.enroll-opts .opt {
-    flex: 0 0 26px;
-    height: 26px;
-    line-height: 26px;
-    width: 100px;
-    padding: 0;
-    font-size: 14px;
-    color: #fff;
-    background-color: #fbca03;
-    box-shadow: 0 0 10px 0 #ccc;
-}
-
-.enroll-opts .opt.pay {
-    background-color: #8bc34a;
-}
-
-.enroll-opts .opt::after {
-    border: none;
 }
 
 .placeholder {

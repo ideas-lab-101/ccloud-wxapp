@@ -1,7 +1,7 @@
 <import src="../../../components/actionsheet/actionsheet.wxml" />
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <view class="header">留言列表
-    <view class="comment_btn" bindtap='commentOnAttandence'>
+    <view class="comment_btn" bindtap='commentOnActivity'>
         <image src="../../../assets/images/comment.png"></image>留言
     </view>
 </view>
@@ -9,14 +9,16 @@
     <view class="comment" wx:for="{{ comments }}">
         <view class="comment_header">
             <image src="{{ item.avatarUrl }}"></image>
-            <view class="username">{{ item.nickname }}</view>
-            <view class="time">{{ item.AddTime }}</view>
         </view>
         <view class="comment_content">
-            <text>{{ item.refnickname ? '回复 '+item.refnickname+'：' : '' }}</text>{{ item.Comment }}
-            <!-- <image src="../../../assets/images/delete.png" class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}"></image> -->
-            <view class='delete' catchtap='deleteComment' data-cid="{{ item.CommentID }}" wx:if="{{ item.openid === userOpenId}}">删除</view>
-            <image src="../../../assets/images/reply.png" class='comment-ico' catchtap='commentOnComment' data-cid="{{ item.CommentID }}" data-name="{{ item.nickname }}"></image>
+            <view class="username">{{ item.nickname }}</view>
+            <view class="content_wrapper">
+                <text>{{ item.refnickname ? '回复 '+item.refnickname+'：' : '' }}</text>{{ item.Comment }}
+            </view>
+            <view class="time">{{ item.AddTime }}</view>
+        </view>
+        <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+            <image src="../../../assets/images/more_opts_g.png"></image>
         </view>
     </view>
     <view class="placeholder" wx:if="{{ comments.length === 0 }}">暂无留言</view>

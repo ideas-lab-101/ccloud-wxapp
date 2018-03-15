@@ -1,3 +1,4 @@
+import { $wuxActionSheet } from '../../../components/wux'
 const app = getApp()
 Page({
 
@@ -28,17 +29,107 @@ Page({
                 })
         }
     },
-    goToDetail: function (e) {
-        wx.navigateTo({
-            url: `/pages/index/detail/detail?aid=${e.target.dataset.aid || e.currentTarget.dataset.aid}`,
-        })
-    },
+
     prev: function (e) {
         this._initData(this.data.pager.pageNumber - 2)
     },
 
-    onShow: function () {
+    moreOpts(e) {
+        const that = this;
+        const enrollIndex = e.currentTarget.dataset.index
+        const actionConfig = {
+            titleText: '活动操作',
+            buttons: [{
+                text: '查看活动详情',
+                method: function (index) {
+                    wx.navigateTo({
+                        url: `/pages/activity/activity?aid=${this.data.enrolls[index].ActivityID}`,
+                    })
+                }
+            }],
+            buttonClicked(index, item) {
+                item.method.call(that, enrollIndex)
 
+                return true
+            },
+            cancelText: '取消',
+            cancel() {
+            }
+        };
+        if (that.data.enrolls[enrollIndex].intState === 0 || that.data.enrolls[enrollIndex].intState === 1) {
+            actionConfig.buttons.push({
+                text: '修改报名表',
+                method: function (index) {
+                    wx.navigateTo({
+                        url: `form/form?eid=${this.data.enrolls[index].EnrollID}&prev=false`,
+                    })
+                }
+            });
+        } else if (that.data.enrolls[enrollIndex].intState === 2) {
+            actionConfig.buttons.push({
+                text: '查看报名表',
+                method: function (index) {
+                    wx.navigateTo({
+                        url: `form/form?eid=${this.data.enrolls[index].EnrollID}&prev=true`,
+                    })
+                }
+            });
+        }
+        if (that.data.enrolls[enrollIndex].orderState === 1001) {
+            actionConfig.buttons.push({
+                text: '缴费',
+                method: function (index) {
+                    const that = this
+                    wx.showLoading({
+                        title: '处理中...',
+                        mask: true
+                    })
+                    wx.request({
+                        url: app.baseUrl + 'pay/wx_repay',
+                        method: 'POST',
+                        header: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        data: {
+                            prepay_id: this.data.enrolls[index].prepayID,
+                            token: app.globalData.token
+                        },
+                        success: res => {
+                            if (res.data.data) {
+                                wx.requestPayment({
+                                    'timeStamp': res.data.data.timeStamp,
+                                    'nonceStr': res.data.data.nonceStr,
+                                    'package': res.data.data.package,
+                                    'signType': res.data.data.signType,
+                                    'paySign': res.data.data.paySign,
+                                    'success': function (res) {
+                                        wx.redirectTo({
+                                            url: '/pages/result/result?type=success',
+                                        })
+                                    },
+                                    'fail': function (res) {
+                                        wx.redirectTo({
+                                            url: '/pages/result/result?type=cancel',
+                                        })
+                                    }
+                                })
+                            } else {
+                                wx.redirectTo({
+                                    url: '/pages/result/result?type=cancel',
+                                })
+                            }
+                        },
+                        fail: error => {
+                            that.showErrorModal('出错了，重试一下吧')
+                        },
+                        complete: () => {
+                            wx.hideLoading()
+                        }
+                    })
+                }
+            });
+        }
+        $wuxActionSheet.show(actionConfig);
     },
 
     next: function (e) {
@@ -47,18 +138,6 @@ Page({
 
     jumpToPage: function (e) {
         this._initData('page:', e.detail.value - 1)
-    },
-
-
-    modifyForm: function (e) {
-        wx.navigateTo({
-            url: `form/form?eid=${e.target.dataset.eid}&prev=false`,
-        })
-    },
-    previewForm: function (e) {
-        wx.navigateTo({
-            url: `form/form?eid=${e.target.dataset.eid}&prev=true`,
-        })
     },
 
     _initData: function (pageIndex = 0) {
@@ -88,55 +167,6 @@ Page({
             },
             fail: error => {
                 this.showErrorModal(error.toString())
-            },
-            complete: () => {
-                wx.hideLoading()
-            }
-        })
-    },
-    pay(e) {
-        const that = this
-        wx.showLoading({
-            title: '处理中...',
-            mask: true
-        })
-        wx.request({
-            url: app.baseUrl + 'pay/wx_repay',
-            method: 'POST',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                prepay_id: e.target.dataset.pid,
-                token: app.globalData.token
-            },
-            success: res => {
-                if (res.data.data) {
-                    wx.requestPayment({
-                        'timeStamp': res.data.data.timeStamp,
-                        'nonceStr': res.data.data.nonceStr,
-                        'package': res.data.data.package,
-                        'signType': res.data.data.signType,
-                        'paySign': res.data.data.paySign,
-                        'success': function (res) {
-                            wx.redirectTo({
-                                url: '/pages/result/result?type=success',
-                            })
-                        },
-                        'fail': function (res) {
-                            wx.redirectTo({
-                                url: '/pages/result/result?type=cancel',
-                            })
-                        }
-                    })
-                } else {
-                    wx.redirectTo({
-                        url: '/pages/result/result?type=cancel',
-                    })
-                }
-            },
-            fail: error => {
-                that.showErrorModal('出错了，重试一下吧')
             },
             complete: () => {
                 wx.hideLoading()

@@ -98,27 +98,27 @@ Page({
                 })
         }
     },
-    commentOnComment(e) {
+    commentOnComment(commentIndex) {
         if (app.globalData.token) {
             this.setData({
-                taPlaceholder: `回复 ${e.target.dataset.name}:`,
+                taPlaceholder: `回复 ${this.data.comments[commentIndex].nickname}:`,
                 isTaFocused: true
             })
-            this.referId = e.target.dataset.cid
+            this.referId = this.data.comments[commentIndex].CommentID
         } else {
             app.getToken()
                 .then(() => {
                     this.setData({
-                        taPlaceholder: `回复 ${e.target.dataset.name}:`,
+                        taPlaceholder: `回复 ${this.data.comments[commentIndex].nickname}:`,
                         isTaFocused: true
                     })
-                    this.referId = e.target.dataset.cid
+                    this.referId = this.data.comments[commentIndex].CommentID
                 }, function (err) {
                     this._openModal(err.toString())
                 })
         }
     },
-    deleteComment(e) {
+    deleteComment(commentIndex) {
         const that = this;
         $wuxActionSheet.show({
             titleText: '确认删除该条评论吗',
@@ -132,13 +132,13 @@ Page({
                         'content-type': 'application/x-www-form-urlencoded'
                     },
                     data: {
-                        commentID: e.target.dataset.cid,
+                        commentID: that.data.comments[commentIndex].CommentID,
                         token: app.globalData.token
                     },
                     success: res => {
-                        if(res.data.result){
+                        if (res.data.result) {
                             that._initData();
-                        }else{
+                        } else {
                             that._openModal(res.data.msg);
                         }
                     },
@@ -151,6 +151,28 @@ Page({
             cancelText: '取消',
             cancel() { }
         });
+    },
+    moreOpts(e) {
+        const that = this;
+        const commentIndex = e.currentTarget.dataset.index
+        const actionConfig = {
+            titleText: '评论操作',
+            buttons: [{ text: '回复' }],
+            buttonClicked(index, item) {
+                that.commentOnComment(commentIndex);
+                return true
+            },
+            cancelText: '取消',
+            cancel() {
+            }
+        };
+        if (that.data.comments[commentIndex].openid === this.data.userOpenId) {
+            actionConfig.destructiveText = '删除';
+            actionConfig.destructiveButtonClicked = function () {
+                that.deleteComment(commentIndex);
+            };
+        }
+        $wuxActionSheet.show(actionConfig);
     },
     hideTa: function () {
         this.setData({
