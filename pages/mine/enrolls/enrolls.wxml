@@ -10,13 +10,10 @@
         <view class="act-attr">{{ item.name || '未知报名者' }} (
             <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
             <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
-            <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text> )</view>
+            <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>
+            <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text>
+             )</view>
         <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
-        <!-- <view class="enroll-opts">
-            <button class="opt" wx:if="{{ item.intState === 0 || item.intState === 1 }}" catchtap='modifyForm' data-eid="{{ item.EnrollID }}">修改报名表</button>
-            <button class="opt" wx:if="{{ item.intState === 2 }}" catchtap='previewForm' data-eid="{{ item.EnrollID }}">查看报名表</button>
-            <button class="opt pay" wx:if="{{ item.orderState === 1001 }}" catchtap='pay' data-pid="{{ item.prepayID }}">缴费</button>
-        </view> -->
     </view>
     <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
         <image src="../../../assets/images/more_opts_b.png"></image>

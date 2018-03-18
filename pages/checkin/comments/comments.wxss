@@ -102,7 +102,7 @@ page {
     margin-left: 10px;
 }
 .more_opts.touched{
-     background-color: #eceef8; 
+     background-color: #edf8f6; 
 }
 .more_opts image{
     width: 20px;

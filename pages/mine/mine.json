@@ -1,8 +1,7 @@
 {
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black",
+  "navigationBarTextStyle": "white",
   "navigationBarTitleText": "个人中心",
   "backgroundColor": "#ffffff",
-  "backgroundTextStyle": "light",
+  "backgroundTextStyle": "dark",
   "enablePullDownRefresh": false
 }

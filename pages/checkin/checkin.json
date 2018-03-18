@@ -1,4 +1,6 @@
 {
     "navigationBarTitleText": "签到详情",
-    "navigationBarBackgroundColor": "#31786f"
+    "navigationBarBackgroundColor": "#31786f",
+    "backgroundColor": "#31786f",
+    "backgroundTextStyle": "light"
 }

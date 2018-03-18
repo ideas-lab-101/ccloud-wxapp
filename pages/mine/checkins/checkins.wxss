@@ -7,117 +7,67 @@ page {
     position: fixed;
     top: 0;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    justify-content: space-between;
+    align-items: center;
     height: 30px;
     line-height: 30px;
     padding: 0 30rpx;
     font-size: 16px;
-    color: #888;
-    background-color: #efefef;
+    color: #fff;
+    background-color: #31786f;
     z-index: 1000;
 }
 
 .list_number {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50px;
-            flex: 0 0 50px;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex: 0 0 50px;
+    justify-content: space-around;
+    align-items: center;
     height: 30px;
     font-size: 16px;
-    color: #888;
+    color: #fff;
 }
 
 .enroll {
-    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
     background-color: #fff;
-    -webkit-box-shadow: 0 0 10px 0 #ccc;
-            box-shadow: 0 0 10px 0 #ccc;
 }
 
 .enroll-main {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    flex: auto;
     padding-left: 30rpx;
 }
 
+.more_opts {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    margin-left: 10px;
+}
+
+.more_opts.touched {
+    background-color: #edf8f6;
+}
+
+.more_opts image {
+    width: 20px;
+    height: 20px;
+}
+
 .act-name {
-    /* flex: 1 1 auto; */
-    line-height: 40px;
-    /* display: flex;
-    align-items: center; */
-    font-size: 16px;
-    color: #576b95;
-    border-bottom: 2px dashed #eee;
+    line-height: 30px;
+    color: #31786f;
+    font-size: 14px;
 }
 
 .act-attr {
-    line-height: 26px;
-    font-size: 14px;
+    line-height: 20px;
+    font-size: 12px;
     color: #888;
-}
-
-.enroll-info {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-}
-
-.enroll-opts {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 100px;
-            flex: 0 0 100px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.enroll-opts .opt {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 26px;
-            flex: 0 0 26px;
-    height: 26px;
-    line-height: 26px;
-    width: 100px;
-    padding: 0;
-    font-size: 14px;
-    color: #fff;
-    background-color: #8bc34a;
-    -webkit-box-shadow: 0 0 10px 0 #ccc;
-            box-shadow: 0 0 10px 0 #ccc;
-}
-
-.enroll-opts .opt.pay {
-    background-color: #09bb07;
-}
-
-.enroll-opts .opt::after {
-    border: none;
 }
 
 .placeholder {

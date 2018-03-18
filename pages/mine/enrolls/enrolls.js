@@ -56,7 +56,7 @@ Page({
             cancel() {
             }
         };
-        if (that.data.enrolls[enrollIndex].intState === 0 || that.data.enrolls[enrollIndex].intState === 1) {
+        if (that.data.enrolls[enrollIndex].intState === 0 || that.data.enrolls[enrollIndex].intState === 1 || that.data.enrolls[enrollIndex].intState === 2) {
             actionConfig.buttons.push({
                 text: '修改报名表',
                 method: function (index) {
@@ -65,7 +65,7 @@ Page({
                     })
                 }
             });
-        } else if (that.data.enrolls[enrollIndex].intState === 2) {
+        } else if (that.data.enrolls[enrollIndex].intState === 99) {
             actionConfig.buttons.push({
                 text: '查看报名表',
                 method: function (index) {

@@ -77,7 +77,7 @@ Page({
                         location: el.Address,
                         time: el.StartTime,
                         desc: el.Desc,
-                        isShowDetail: false,
+                        isShowDetail: index===0,
                         organisation: el.OrgName
                     }
                 })

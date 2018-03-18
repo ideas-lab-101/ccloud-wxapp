@@ -1,6 +1,8 @@
 {
     "navigationBarTitleText": "签到留言",
     "navigationBarBackgroundColor": "#31786f",
+    "backgroundColor": "#31786f",
+    "backgroundTextStyle": "light",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"
     }

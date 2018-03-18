@@ -39,23 +39,23 @@ Page({
             buttons: [
                 {
                     label: '立即签到',
-                    icon: "../../../assets/images/bmcj.png",
+                    icon: "/assets/images/bmcj.png",
                 },
                 {
                     label: '参与讨论',
-                    icon: "../../../assets/images/cytl.png",
+                    icon: "/assets/images/cytl.png",
                 },
                 {
                     label: '资料',
-                    icon: "../../../assets/images/zl.png",
+                    icon: "/assets/images/zl.png",
                 },
                 {
                     label: '个人中心',
-                    icon: "../../../assets/images/grzx.png",
+                    icon: "/assets/images/grzx.png",
                 },
                 {
                     label: '分享',
-                    icon: "../../../assets/images/fx.png",
+                    icon: "/assets/images/fx.png",
                 }
             ],
             buttonClicked(index, item) {
