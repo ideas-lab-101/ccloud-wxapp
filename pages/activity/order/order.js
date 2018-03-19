@@ -10,17 +10,17 @@ Page({
     data: {
         cases: [],
         info: {},
-        isEnrolled:false,
+        isEnrolled: false,
         formData: {
             sex: '',
             nation: '',
             photoURL: '',
             district: ''
         },
-        renderBaseInfo: false,
-        renderPhotoInfo: false,
-        renderSchoolInfo: false,
-        renderReferInfo: false,
+        isRenderBaseInfo: false,
+        isRenderPhotoInfo: false,
+        isRenderSchoolInfo: false,
+        isRenderReferInfo: false,
     },
 
     /**
@@ -93,24 +93,24 @@ Page({
                 wx.hideLoading()
                 if (res.data.result) {
                     //根据是否支付来控制
-                  if (res.data.orderInfo){
-                    $wuxToptips.success({
-                      hidden: !0,
-                      text: '报名表提交成功',
-                    })
-                    //支付
-                    this._pay(res.data.orderInfo, res.data.enrollID)
-                  }else{
-                    wx.redirectTo({
-                      url: '/pages/result/result?type=success',
-                    })
-                  }
+                    if (res.data.orderInfo) {
+                        $wuxToptips.success({
+                            hidden: !0,
+                            text: '报名表提交成功',
+                        })
+                        //支付
+                        this._pay(res.data.orderInfo, res.data.enrollID)
+                    } else {
+                        wx.redirectTo({
+                            url: '/pages/result/result?type=success',
+                        })
+                    }
                 } else {
-                  wx.showModal({
-                    title: '出错了',
-                    content: res.data.msg,
-                    showCancel: false
-                  })
+                    wx.showModal({
+                        title: '出错了',
+                        content: res.data.msg,
+                        showCancel: false
+                    })
                 }
             },
             fail: error => {
@@ -289,6 +289,63 @@ Page({
             }
         })
     },
+    provinces: [],
+    _getProvincesData() {
+        wx.request({
+            url: app.api.provinces,
+            method: 'GET',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                activityID: this.aid
+            },
+            success: res => {
+                this.provinces = res.data;
+                this.setData({
+                    provinces: this.provinces
+                })
+            },
+            fail: error => {
+                this._showToptips('出错了，重试一下吧')
+            }
+        })
+    },
+    chooseProvince: function (e) {
+        console.log(e.detail)
+        this.setData({
+            'formData.province': e.detail.value.ProvinceName
+        })
+        this._getCityData(e.detail.value.ScopeID);
+    },
+    cities: [],
+    _getCityData(pid) {
+        wx.request({
+            url: app.api.cities,
+            method: 'GET',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                provinceID: pid
+            },
+            success: res => {
+                this.cities = res.data;
+                this.setData({
+                    cities: this.cities
+                })
+            },
+            fail: error => {
+                this._showToptips('出错了，重试一下吧')
+            }
+        })
+    },
+    chooseCity: function (e) {
+        this.setData({
+            'formData.province': e.detail.value.CityName
+        })
+        // this._getDistrictData(e.detail.value.ScopeID);
+    },
     uploadPic: function () {
         var that = this;
         // 选择图片
@@ -319,7 +376,8 @@ Page({
                     },
                     fail: err => {
                         that._showToptips(err.toString())
-                    }, complete: () => {
+                    },
+                    complete: () => {
                         wx.hideLoading()
                     }
                 })
@@ -327,17 +385,19 @@ Page({
         })
     },
     deletePic() {
-        wx.showModal({
-            title: '删除图片',
-            content: '确定删除该图片吗？',
-            success: res => {
-                if (res.confirm) {
-                    this.setData({
-                        photoURL: ''
-                    })
+        if (this.data.photoURL !== '') {
+            wx.showModal({
+                title: '删除图片',
+                content: '确定删除该图片吗？',
+                success: res => {
+                    if (res.confirm) {
+                        this.setData({
+                            photoURL: ''
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }
     },
     _initData: function (aid) {
         var that = this;
@@ -363,11 +423,11 @@ Page({
                             id: el.FeeID
                         }
                     })
-                    const renderBaseInfo = res.data.activityInfo.FormSetting.indexOf('baseInfo') >= 0
-                    const renderPhotoInfo = res.data.activityInfo.FormSetting.indexOf('photoInfo') >= 0
-                    const renderSchoolInfo = res.data.activityInfo.FormSetting.indexOf('schoolInfo') >= 0
-                    const renderReferInfo = res.data.activityInfo.FormSetting.indexOf('referInfo') >= 0
-                    if (renderBaseInfo) {
+                    const isRenderBaseInfo = res.data.activityInfo.FormSetting.indexOf('baseInfo') >= 0
+                    const isRenderPhotoInfo = res.data.activityInfo.FormSetting.indexOf('photoInfo') >= 0
+                    const isRenderSchoolInfo = res.data.activityInfo.FormSetting.indexOf('schoolInfo') >= 0
+                    const isRenderReferInfo = res.data.activityInfo.FormSetting.indexOf('referInfo') >= 0
+                    if (isRenderBaseInfo) {
                         this._getGenderData()
                         this._getNationData()
                         Object.assign(this.validators, {
@@ -403,7 +463,7 @@ Page({
                             }
                         })
                     }
-                    if (renderSchoolInfo) {
+                    if (isRenderSchoolInfo) {
                         this._getDistrictData()
                         Object.assign(this.validators, {
                             'district': {
@@ -427,8 +487,9 @@ Page({
                                 required: '请输入年级'
                             }
                         })
+                        this._getProvincesData();
                     }
-                    if (renderPhotoInfo) {
+                    if (isRenderPhotoInfo) {
                         this._getDistrictData()
                         Object.assign(this.validators, {
                             'photoURL': {
@@ -443,10 +504,10 @@ Page({
                     }
                     this.setData({
                         imgUrl: app.resourseUrl + res.data.activityAttach[0].AttachURL,
-                        renderBaseInfo: renderBaseInfo,
-                        renderPhotoInfo: renderPhotoInfo,
-                        renderSchoolInfo: renderSchoolInfo,
-                        renderReferInfo: renderReferInfo,
+                        isRenderBaseInfo: isRenderBaseInfo,
+                        isRenderPhotoInfo: isRenderPhotoInfo,
+                        isRenderSchoolInfo: isRenderSchoolInfo,
+                        isRenderReferInfo: isRenderReferInfo,
                         info: res.data.activityInfo,
                         cases: res.data.activityFee
                     })
@@ -486,7 +547,7 @@ Page({
             }
         })
     },
-    goToUsercenter(){
+    goToUsercenter() {
         wx.switchTab({
             url: '/pages/mine/mine',
         })

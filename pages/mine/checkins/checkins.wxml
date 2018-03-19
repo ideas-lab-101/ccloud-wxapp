@@ -15,7 +15,7 @@
         <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
     </view>
     <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-        <image src="../../../assets/images/more_opts_b.png"></image>
+        <image src="../../../assets/images/more_opts_g.png"></image>
     </view>
 </view>
 <view class="placeholder" wx:if="{{ enrolls.length === 0 }}">您暂时未参与任何签到哦~</view>

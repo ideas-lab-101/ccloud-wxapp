@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -114,6 +114,12 @@
 					"name": "签到列表",
 					"pathName": "pages/mine/checkins/checkins",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动表单",
+					"pathName": "pages/activity/order/order",
+					"query": "aid=13"
 				}
 			]
 		}

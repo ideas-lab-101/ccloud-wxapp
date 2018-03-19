@@ -157,7 +157,9 @@ App({
     },
     api: {
         login: HOST + '/system/WXSSMain',
-        index: HOST + '/system/index'
+        index: HOST + '/system/index',
+        provinces: HOST + '/activity/GetActivityScope',
+        cities: HOST + '/activity/GetCityList'
     },
     baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
     // baseUrl: 'http://test.ideas-lab.cn/wxss/',
