@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -74,9 +74,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "签到",
-					"pathName": "pages/checkin/checkin",
+					"id": 7,
+					"name": "签到表单",
+					"pathName": "pages/checkin/order/order",
 					"query": ""
 				},
 				{
@@ -86,28 +86,22 @@
 					"query": "cid=11"
 				},
 				{
-					"id": -1,
-					"name": "签到表格",
-					"pathName": "pages/checkin/detail/order/order",
-					"query": "cid=11"
+					"id": 9,
+					"name": "活动修改表单",
+					"pathName": "pages/mine/enrolls/form/form",
+					"query": "eid=26&prev=false"
 				},
 				{
-					"id": -1,
-					"name": "签到列表",
-					"pathName": "pages/mine/checkins/checkins",
-					"query": ""
+					"id": 10,
+					"name": "查看活动表单",
+					"pathName": "pages/mine/enrolls/form/form",
+					"query": "eid=26&prev=true"
 				},
 				{
 					"id": -1,
 					"name": "签到留言",
 					"pathName": "pages/checkin/detail/comments/comments",
 					"query": "cid=11"
-				},
-				{
-					"id": -1,
-					"name": "demo",
-					"pathName": "pages/demo/demo",
-					"query": ""
 				},
 				{
 					"id": -1,

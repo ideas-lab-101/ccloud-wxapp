@@ -58,29 +58,37 @@
                 </view>
                 <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
             </block> 
-            <block wx:if="{{ isRenderSchoolInfo }}">
-                <view class="form_block_head">学校信息</view>
+            <block wx:if="{{ isRenderRegionInfo }}">
+                <view class="form_block_head">地域信息</view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>就读学校</view>
+                        <text>*</text>所在地区</view>
                     <view class="with_unit">
                         <picker bindchange="chooseProvince" value="{{ formData.province }}" range="{{ provinces }}" range-key="ProvinceName"> 
                             <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">省</view>
-                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}">
-                            <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
+                        <picker bindchange="chooseCity" value="{{ formData.city }}" range="{{ cities }}" range-key="CityName">
+                            <input name="city" class="dropdown" disabled='true' type='text' value="{{ formData.city }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">市</view>
                     </view>
                 </view>
                 <view class="section">
                     <view class="with_unit">
-                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}">
+                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}" range-key='DistrictName'>
                             <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">区</view>
                     </view>
+                </view>
+                <view class="section_bottom"></view>
+            </block>
+            <block wx:if="{{ isRenderSchoolInfo }}">
+                <view class="form_block_head">学校信息</view>
+                <view class="section">
+                    <view class="section_title">
+                        <text>*</text>就读学校</view>
                 </view>
                 <view class="section">
                     <view class="with_unit">
@@ -94,8 +102,6 @@
                     <view class="with_unit">
                         <input name="grade" type='text' value="{{ formData.grade }}" />
                         <view class="section_unit">年级</view>
-                    </view>
-                    <view class="with_unit">
                         <input name="classInfo" type='text' value="{{ formData.classInfo }}" />
                         <view class="section_unit">班</view>
                     </view>
@@ -118,8 +124,8 @@
                 </view>
                 <view class="section_bottom"></view>
             </block>
-            <button class="enroll_and_pay" formType="submit">报名参加</button>
         </view>
+            <button class="enroll_and_pay" formType="submit">报名参加</button>
     </form>
     <view class="usercenter" bindtap='goToUsercenter'>查看我的报名</view>
     <view style="height:30px;"></view>

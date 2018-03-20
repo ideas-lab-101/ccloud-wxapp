@@ -21,6 +21,7 @@ Page({
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,
         isRenderReferInfo: false,
+        isRenderRegionInfo:false
     },
 
     /**
@@ -78,7 +79,7 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'activity/UserEnroll',
+            url: app.api.enroll,
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -126,7 +127,7 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'pay/wxPay',
+            url: app.api.wxPay,
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -201,15 +202,10 @@ Page({
             'formData.nation': this.nations[e.detail.value]
         })
     },
-    chooseDistrict: function (e) {
-        this.setData({
-            'formData.district': this.districts[e.detail.value]
-        })
-    },
     genders: [],
     _getGenderData() {
         wx.request({
-            url: app.baseUrl + 'system/GetEnumDetail',
+            url: app.api.enumValues,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -236,7 +232,7 @@ Page({
     nations: [],
     _getNationData() {
         wx.request({
-            url: app.baseUrl + 'system/GetEnumDetail',
+            url: app.api.enumValues,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -251,34 +247,6 @@ Page({
                     })
                     this.setData({
                         nations: this.nations
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
-    districts: [],
-    _getDistrictData() {
-        wx.request({
-            url: app.baseUrl + 'system/GetDistricts',
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                cityID: 234
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.districts = res.data.list.map(function (el, index) {
-                        return el.DistrictName
-                    })
-                    this.setData({
-                        districts: this.districts
                     })
                 } else {
                     this._showToptips('出错了，重试一下吧')
@@ -312,11 +280,12 @@ Page({
         })
     },
     chooseProvince: function (e) {
-        console.log(e.detail)
         this.setData({
-            'formData.province': e.detail.value.ProvinceName
+            'formData.province': this.provinces[e.detail.value].ProvinceName,
+            'formData.city': '',
+            'formData.district': ''           
         })
-        this._getCityData(e.detail.value.ScopeID);
+        this._getCityData(this.provinces[e.detail.value].ProvinceID);
     },
     cities: [],
     _getCityData(pid) {
@@ -330,7 +299,7 @@ Page({
                 provinceID: pid
             },
             success: res => {
-                this.cities = res.data;
+                this.cities = res.data.list;
                 this.setData({
                     cities: this.cities
                 })
@@ -342,9 +311,41 @@ Page({
     },
     chooseCity: function (e) {
         this.setData({
-            'formData.province': e.detail.value.CityName
+            'formData.city': this.cities[e.detail.value].CityName,
+            'formData.district': ''  
         })
-        // this._getDistrictData(e.detail.value.ScopeID);
+        this._getDistrictData(this.cities[e.detail.value].CityID);
+    },
+    districts: [],
+    _getDistrictData(cid) {
+        wx.request({
+            url: app.api.districts,
+            method: 'GET',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                cityID: cid
+            },
+            success: res => {
+                if (res.data.list) {
+                    this.districts = res.data.list
+                    this.setData({
+                        districts: this.districts
+                    })
+                } else {
+                    this._showToptips('出错了，重试一下吧')
+                }
+            },
+            fail: error => {
+                this._showToptips('出错了，重试一下吧')
+            }
+        })
+    },
+    chooseDistrict: function (e) {
+        this.setData({
+            'formData.district': this.districts[e.detail.value].DistrictName
+        })
     },
     uploadPic: function () {
         var that = this;
@@ -358,7 +359,7 @@ Page({
                     mask: true
                 })
                 wx.uploadFile({
-                    url: app.baseUrl + 'user/UploadPhoto',
+                    url: app.api.uploadPhoto,
                     filePath: filePath,
                     name: 'photoFile',
                     formData: {
@@ -406,7 +407,7 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'activity/GetActivityInfo',
+            url: app.api.activityInfo,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -427,6 +428,7 @@ Page({
                     const isRenderPhotoInfo = res.data.activityInfo.FormSetting.indexOf('photoInfo') >= 0
                     const isRenderSchoolInfo = res.data.activityInfo.FormSetting.indexOf('schoolInfo') >= 0
                     const isRenderReferInfo = res.data.activityInfo.FormSetting.indexOf('referInfo') >= 0
+                    const isRenderRegionInfo = res.data.activityInfo.FormSetting.indexOf('regionInfo') >= 0
                     if (isRenderBaseInfo) {
                         this._getGenderData()
                         this._getNationData()
@@ -464,11 +466,7 @@ Page({
                         })
                     }
                     if (isRenderSchoolInfo) {
-                        this._getDistrictData()
                         Object.assign(this.validators, {
-                            'district': {
-                                required: true
-                            },
                             'school': {
                                 required: true
                             },
@@ -477,9 +475,6 @@ Page({
                             }
                         })
                         Object.assign(this.validationMsgs, {
-                            'district': {
-                                required: '请选择区',
-                            },
                             'school': {
                                 required: '请输入学校'
                             },
@@ -487,10 +482,8 @@ Page({
                                 required: '请输入年级'
                             }
                         })
-                        this._getProvincesData();
                     }
                     if (isRenderPhotoInfo) {
-                        this._getDistrictData()
                         Object.assign(this.validators, {
                             'photoURL': {
                                 required: true
@@ -502,12 +495,38 @@ Page({
                             },
                         })
                     }
+                    if (isRenderRegionInfo){
+                        this._getProvincesData();
+                        Object.assign(this.validators, {
+                            'province': {
+                                required: true
+                            },
+                            'city': {
+                                required: true
+                            },
+                            'district': {
+                                required: true
+                            }
+                        })
+                        Object.assign(this.validationMsgs, {
+                            'province': {
+                                required: '请选择所在省份',
+                            },
+                            'city': {
+                                required: '请选择所在市'
+                            },
+                            'district': {
+                                required: '请选择所在区'
+                            }
+                        })
+                    }
                     this.setData({
                         imgUrl: app.resourseUrl + res.data.activityAttach[0].AttachURL,
                         isRenderBaseInfo: isRenderBaseInfo,
                         isRenderPhotoInfo: isRenderPhotoInfo,
                         isRenderSchoolInfo: isRenderSchoolInfo,
                         isRenderReferInfo: isRenderReferInfo,
+                        isRenderRegionInfo: isRenderRegionInfo,
                         info: res.data.activityInfo,
                         cases: res.data.activityFee
                     })
@@ -525,7 +544,7 @@ Page({
             }
         })
         wx.request({
-            url: app.baseUrl + 'user/GetEnrollList',
+            url: app.api.enrollList,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
