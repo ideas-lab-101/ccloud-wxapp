@@ -167,8 +167,9 @@ App({
         enumValues: HOST + '/system/GetEnumDetail',
         activityInfo: HOST + '/activity/GetActivityInfo',
         enrollList: HOST + '/user/GetEnrollList',
-        enrollInfo:HOST + '/activity/GetEnrollInfo',
+        enrollInfo: HOST + '/activity/GetEnrollInfo',
         getAttachList: HOST + '/activity/GetEnrollAttach',
+        getUploadToken: HOST + '/system/GetUploadToken'
     },
     baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
     // baseUrl: 'http://test.ideas-lab.cn/wxss/',

@@ -11,6 +11,7 @@
         "pages/mine/enrolls/enrolls",
         "pages/mine/checkins/checkins",
         "pages/mine/enrolls/form/form",
+        "pages/mine/enrolls/form/attachment/attachment",
         "pages/mine/checkins/form/form",
         "pages/infos/infos",
         "pages/infos/infobook/infobook",

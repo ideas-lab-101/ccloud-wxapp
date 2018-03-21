@@ -133,5 +133,10 @@
         </view>
         <button class="enroll_and_pay" formType="submit" disabled='{{ isPreview }}'>确认修改</button>
     </form>
-    <view style="height:30px;"></view>
+    <view style="height:50px;"></view>
 </scroll-view>
+<view class="bottom_buttons">
+    <view class="button" hover-class='clicked' bindtap='qrcode'>二维码</view>
+    <view class="button" hover-class='clicked' bindtap='attachmentManage'>活动附件</view>
+    <view class="button" hover-class='clicked' bindtap='feedback'>信息反馈</view>
+</view>

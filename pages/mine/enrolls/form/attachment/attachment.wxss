@@ -1,0 +1,108 @@
+page {
+    height: 100%;
+    background-color: #efefef;
+}
+
+.weui-toptips {
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.form {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.form_block_head {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #8a8a8a;
+    background-color: #efefef;
+    padding: 0 30rpx;
+}
+
+.fake_input {
+    height: 0;
+    width: 0;
+    min-height: unset;
+    opacity: 0;
+}
+
+.attachment {
+    display: flex;
+    justify-content: space-around;
+    background-color: #efefef;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    align-items: center;
+    margin: 10px 30rpx;
+    overflow: hidden;
+}
+
+.attachment .attachment_thumb {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.attachment .attachment_title {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    color: #8a8a8a;
+    font-size: 12px;
+}
+
+.attachment .attachment_size {
+    flex: none;
+    color: #8a8a8a;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.attachment .attachment_opts {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+}
+
+.attachment .attachment_opts.clicked {
+    background-color: #8a8a8a;
+}
+
+.attachment .attachment_opts image {
+    width: 20px;
+    height: 20px;
+}
+
+.add_attachment {
+    height: 80px;
+    line-height: 78px;
+    margin: 20px 30rpx;
+    text-align: center;
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #8a8a8a;
+}
+
+.add_attachment.clicked {
+    background-color: #efefef;
+}
+
+.add_attachment text {
+    font-size: 18px;
+    margin-right: 12px;
+}

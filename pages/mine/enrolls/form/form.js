@@ -477,5 +477,10 @@ Page({
                 this._showToptips('出错了，重试一下吧')
             }
         })
+    },
+    attachmentManage(){
+        wx.navigateTo({
+            url: `attachment/attachment?eid=${this.eid}`
+        })
     }
 })

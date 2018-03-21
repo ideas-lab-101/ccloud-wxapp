@@ -1,0 +1,25 @@
+<import src="../../../../../components/actionsheet/actionsheet.wxml" />
+<import src="../../../../../components/toptips/toptips.wxml" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<template is="toptips" data="{{ ...$wux.toptips }}" />
+<scroll-view scroll-y style="height: 100%;">
+    <form bindsubmit="formSubmit">
+        <view class="form">
+            <view class="form_block_head">附件</view>
+            <view class="attachment" wx:for="{{ attachments }}">
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-image-thumb.png' wx:if="{{ item.AttachType === 'jpg' }}"></image>
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-video-thumb.png' wx:else></image>
+                <view class="attachment_title">{{ item.AttachName }}</view>
+                <view class="attachment_size">231kb</view>
+                <view class="attachment_opts" hover-class='clicked'>
+                    <image src='../../../../../assets/images/more_opts_b.png'></image>
+                </view>
+            </view>
+            <view bindtap="addAttachment" class="add_attachment" hover-class='clicked'>
+                <text>+</text>添加附件</view>
+            <view class="section_bottom"></view>
+            <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
+        </view>
+    </form>
+    <view style="height:50px;"></view>
+</scroll-view>
