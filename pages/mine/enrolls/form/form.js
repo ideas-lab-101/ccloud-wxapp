@@ -480,7 +480,7 @@ Page({
     },
     attachmentManage(){
         wx.navigateTo({
-            url: `attachment/attachment?eid=${this.eid}`
+            url: `attachment/attachment?eid=${this.eid}&aid=${this.aid}`
         })
     }
 })

@@ -1,6 +1,7 @@
 import { $wuxActionSheet } from '../../../../../components/wux'
 import { $wuxToptips } from '../../../../../components/wux'
 import WxValidate from '../../../../../assets/plugins/WxValidate'
+import { formatTime } from '../../../../../utils/util.js'
 const qiniuUploader = require("../../../../../utils/qiniuUploader.js");
 
 const app = getApp()
@@ -42,11 +43,37 @@ Page({
         if (this.data.isPreview) {
             return
         }
-        if (this.qiNiuToken) {
-            this._uploadAttachment()
-        } else {
-            this._getUploadToken(this._uploadAttachment)
+        // 校验上传次数
+        if (this.opCount >= 10) {
+            wx.showModal({
+                title: '添加失败',
+                content: '上传附件次数已超过限制',
+                showCancel: false
+            })
+            return
         }
+        const that = this
+        $wuxActionSheet.show({
+            titleText: '请选择附件类型',
+            buttons: [{
+                text: '图片',
+                method: '_uploadImage'
+            },
+            {
+                text: '视频',
+                method: '_uploadVideo'
+            }],
+            buttonClicked(index, item) {
+                if (that.qiNiuToken) {
+                    that[item.method]()
+                } else {
+                    that._getUploadToken(that[item.method])
+                }
+                return true
+            },
+            cancelText: '取消',
+            cancel() { }
+        })
     },
     _getUploadToken(callback) {
         wx.request({
@@ -69,30 +96,96 @@ Page({
             }
         })
     },
-    _uploadAttachment() {
-        var that = this;
+    _uploadImage() {
+        // 校验附件数量
+        // if (){
+
+        // }
+        const that = this;
         // 选择图片
         wx.chooseImage({
             count: 1,
             success: function (res) {
-                console.log(res)
-                var filePath = res.tempFilePaths[0];
+                // 1. 限制文件大小
+                const imageSize = res.tempFiles[0].size
+                if (imageSize > 4 * 1024 * 1024) {
+                    wx.showModal({
+                        title: '上传失败',
+                        content: '所选图片大小不能大于4M',
+                        showCancel: false
+                    })
+                    return
+                }
+                // 2. 文件命名
+                const filePath = res.tempFilePaths[0]
+                let filePathArr = filePath.split('.')
+                const imageType = filePathArr[filePathArr.length - 1]
+                const timeStamp = formatTime(new Date())
+                const fileName = `${timeStamp}.${imageType}`
                 // 交给七牛上传
+                wx.showLoading({
+                    title: '上传中...',
+                    mask: true
+                })
                 qiniuUploader
                     .upload(filePath, (uploadRes) => {
-                        console.log(uploadRes)
+                        console.log(uploadRes.imageURL, uploadRes.key)
+                        const attachInfo = {
+                            AttachName: fileName,
+                            AttachSize: parseInt(imageSize / 1024),
+                            AttachDesc: '',
+                            AttachURL: uploadRes.imageURL
+                        }
+                        that._setAttachment(attachInfo, 1)
                     }, (error) => {
+                        wx.hideLoading()
                         that._showToptips('上传图片失败，请重试')
                     }, {
                         uploadURL: 'https://up-z2.qbox.me',
                         region: 'SCN',
-                        domain: 'sagacity.bkt.clouddn.com',
+                        domain: 'http://cloud.ideas-lab.cn/',
+                        key: `${app.globalData.token}/${that.eid}/${fileName}`,
                         uptoken: that.qiNiuToken
                     }, (res) => {
                         console.log('上传进度', res.progress)
                         console.log('已经上传的数据长度', res.totalBytesSent)
                         console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
                     });
+            }
+        })
+    },
+
+    _setAttachment(attachInfo, opType) {
+        // opType(1 - 新增；2 - 修改；0 - 删除)
+        console.log(attachInfo)
+        wx.request({
+            url: app.api.setEnrollAttachment,
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                token: app.globalData.token,
+                enrollID: this.eid,
+                opType: opType,
+                attachInfo: JSON.stringify(attachInfo)
+            },
+            success: res => {
+                wx.hideLoading()
+                console.log(res.data)
+                if (res.data.result) {
+                    $wuxToptips.success({
+                        hidden: !0,
+                        text: '上传成功',
+                    })
+                    this._initData()
+                } else {
+                    this._showToptips('出错了，重试一下吧')
+                }
+            },
+            fail: error => {
+                wx.hideLoading()
+                this._showToptips('出错了，重试一下吧')
             }
         })
     },
@@ -146,37 +239,6 @@ Page({
             success: () => { }
         })
     },
-    uploadPic: function () {
-        var that = this;
-        if (this.data.isPreview) {
-            return
-        }
-        // 选择图片
-        wx.chooseImage({
-            count: 1,
-            success: function (res) {
-                var filePath = res.tempFilePaths[0];
-                wx.uploadFile({
-                    url: app.api.uploadPhoto,
-                    filePath: filePath,
-                    name: 'photoFile',
-                    formData: {
-                        'token': app.globalData.token
-                    },
-                    success: function (res) {
-                        var data = JSON.parse(res.data)
-                        if (data.result) {
-                            that.setData({
-                                'formData.photoURL': app.resourseUrl + data.photoURL
-                            })
-                        } else {
-                            that._showToptips(data.msg)
-                        }
-                    }
-                })
-            }
-        })
-    },
     _initData() {
         var that = this;
         wx.showLoading({
@@ -194,9 +256,9 @@ Page({
                 enrollID: this.eid
             },
             success: res => {
+                this.opCount = res.data.opCount
                 this.setData({
-                    attachments: res.data.list,
-                    attachmentOpCount: res.data.opCount,
+                    attachments: res.data.list
                 })
             },
             fail: error => {
@@ -206,5 +268,28 @@ Page({
                 wx.hideLoading()
             }
         })
-    }
+    },
+    moreOpts(e) {
+        const that = this
+        const index = e.currentTarget.dataset.index || e.target.dataset.index
+        $wuxActionSheet.show({
+            titleText: '附件操作',
+            buttons: [
+                // {
+                //     text: '修改',
+                //     method: ''
+                // },
+                {
+                    text: '删除附件',
+                    method: '_setAttachment',
+                    args: [that.data.attachments[index], 0]
+                }],
+            buttonClicked(index, item) {
+                that[item.method].apply(that, item.args)
+                return true
+            },
+            cancelText: '取消',
+            cancel() { }
+        })
+    },
 })

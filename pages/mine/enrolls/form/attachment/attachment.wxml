@@ -7,12 +7,12 @@
         <view class="form">
             <view class="form_block_head">附件</view>
             <view class="attachment" wx:for="{{ attachments }}">
-                <image class="attachment_thumb" src='../../../../../assets/images/attach-image-thumb.png' wx:if="{{ item.AttachType === 'jpg' }}"></image>
-                <image class="attachment_thumb" src='../../../../../assets/images/attach-video-thumb.png' wx:else></image>
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-image-thumb.png' wx:if="{{ item.AttachType === 'image' }}"></image>
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-video-thumb.png' wx:if="{{ item.AttachType === 'video' }}"></image>
                 <view class="attachment_title">{{ item.AttachName }}</view>
-                <view class="attachment_size">231kb</view>
-                <view class="attachment_opts" hover-class='clicked'>
-                    <image src='../../../../../assets/images/more_opts_b.png'></image>
+                <view class="attachment_size">{{ item.AttachSize + 'KB' }}</view>
+                <view class="attachment_opts" hover-class='clicked' bindtap='moreOpts' data-index="{{ index }}">
+                    <image src='../../../../../assets/images/more_opts_b.png' data-index="{{ index }}"></image>
                 </view>
             </view>
             <view bindtap="addAttachment" class="add_attachment" hover-class='clicked'>
