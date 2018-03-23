@@ -7,10 +7,13 @@
         <view class="form">
             <view class="form_block_head">附件</view>
             <view class="attachment" wx:for="{{ attachments }}">
-                <image class="attachment_thumb" src='../../../../../assets/images/attach-image-thumb.png' wx:if="{{ item.AttachType === 'image' }}"></image>
-                <image class="attachment_thumb" src='../../../../../assets/images/attach-video-thumb.png' wx:if="{{ item.AttachType === 'video' }}"></image>
-                <view class="attachment_title">{{ item.AttachName }}</view>
-                <view class="attachment_size">{{ item.AttachSize + 'KB' }}</view>
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-image-thumb.png' wx:if="{{ item.fileType === 'image' }}"></image>
+                <image class="attachment_thumb" src='../../../../../assets/images/attach-video-thumb.png' wx:if="{{ item.fileType === 'video' }}"></image>
+                <view class="attachment_info">
+                    <view class="attachment_name">{{ item.AttachName }}</view>
+                    <view class="attachment_desc">{{ item.AttachDesc || '无描述' }}</view>
+                </view>
+                <view class="attachment_size">{{ item.fileSize }}</view>
                 <view class="attachment_opts" hover-class='clicked' bindtap='moreOpts' data-index="{{ index }}">
                     <image src='../../../../../assets/images/more_opts_b.png' data-index="{{ index }}"></image>
                 </view>

@@ -1,7 +1,7 @@
 const User = require('/utils/user.class')
 const Pages = require('/utils/pages.class')
-// const HOST = "https://ccloud.ideas-lab.cn/wxss";
-const HOST = "http://test.ideas-lab.cn/wxss";
+const HOST = "https://ccloud.ideas-lab.cn/wxss";
+// const HOST = "http://test.ideas-lab.cn/wxss";
 
 
 App({
@@ -174,10 +174,10 @@ App({
         getUploadToken: HOST + '/system/GetUploadToken',
         setEnrollAttachment: HOST + '/activity/SetEnrollAttach'
     },
-    // baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
-    baseUrl: 'http://test.ideas-lab.cn/wxss/',
-    // resourseUrl: 'https://ccloud.ideas-lab.cn/resource/',
-    resourseUrl: 'https://test.ideas-lab.cn/resource/ccloud/',
+    baseUrl: 'https://ccloud.ideas-lab.cn/wxss/',
+    // baseUrl: 'http://test.ideas-lab.cn/wxss/',
+    resourseUrl: 'https://ccloud.ideas-lab.cn/resource/',
+    // resourseUrl: 'https://test.ideas-lab.cn/resource/ccloud/',
     globalData: {
         userInfo: null
     }

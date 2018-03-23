@@ -33,18 +33,25 @@ page {
 }
 
 .attachment {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     background-color: #efefef;
     height: 60px;
     border: 1px solid #ddd;
     border-radius: 2px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin: 10px 30rpx;
     overflow: hidden;
 }
 
 .attachment .attachment_thumb {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
     flex: none;
     width: 32px;
     height: 32px;
@@ -52,16 +59,48 @@ page {
     margin-right: 10px;
 }
 
-.attachment .attachment_title {
+.attachment .attachment_info {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
     flex: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    word-break: break-all;
+}
+
+.attachment .attachment_info .attachment_name {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    line-height: 25px;
     color: #8a8a8a;
+    font-size: 14px;
+}
+
+.attachment .attachment_info .attachment_desc {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    line-height: 20px;
+    text-align: left;
+    color: #ddd;
     font-size: 12px;
-    word-break:break-all;
 }
 
 .attachment .attachment_size {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
     flex: none;
     color: #8a8a8a;
     font-size: 10px;
@@ -70,9 +109,17 @@ page {
 }
 
 .attachment .attachment_opts {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
     flex: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     width: 50px;
     height: 100%;

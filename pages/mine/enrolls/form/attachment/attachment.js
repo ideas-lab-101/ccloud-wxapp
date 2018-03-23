@@ -2,7 +2,7 @@ import { $wuxActionSheet } from '../../../../../components/wux'
 import { $wuxToptips } from '../../../../../components/wux'
 import WxValidate from '../../../../../assets/plugins/WxValidate'
 import { formatTime } from '../../../../../utils/util.js'
-const qiniuUploader = require("../../../../../utils/qiniuUploader.js");
+const qiniuUploader = require("../../../../../utils/qiniuUploader.js")
 
 const app = getApp()
 Page({
@@ -19,11 +19,12 @@ Page({
         },
         isPreview: false
     },
-
+    imageFileCount: 0, // 已上传的图片类型附件数量
+    videoFileCount: 0, // 已上传的视频类型附件数量
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         this.eid = options.eid
         this.setData({
             isPreview: options.prev === 'true'
@@ -34,7 +35,7 @@ Page({
             app.getToken()
                 .then(() => {
                     this._initData(options.eid)
-                }, function (err) {
+                }, function(err) {
                     this._showToptips(err.toString())
                 })
         }
@@ -56,13 +57,14 @@ Page({
         $wuxActionSheet.show({
             titleText: '请选择附件类型',
             buttons: [{
-                text: '图片',
-                method: '_uploadImage'
-            },
-            {
-                text: '视频',
-                method: '_uploadVideo'
-            }],
+                    text: '图片',
+                    method: '_uploadImage'
+                },
+                {
+                    text: '视频',
+                    method: '_uploadVideo'
+                }
+            ],
             buttonClicked(index, item) {
                 if (that.qiNiuToken) {
                     that[item.method]()
@@ -72,7 +74,7 @@ Page({
                 return true
             },
             cancelText: '取消',
-            cancel() { }
+            cancel() {}
         })
     },
     _getUploadToken(callback) {
@@ -98,14 +100,15 @@ Page({
     },
     _uploadImage() {
         // 校验附件数量
-        // if (){
-
-        // }
-        const that = this;
-        // 选择图片
+        if (this.imageFileCount >= 3) {
+            this._showToptips('最多可上传3份图片附件')
+            return false
+        }
+        const that = this
+            // 选择图片
         wx.chooseImage({
             count: 1,
-            success: function (res) {
+            success: function(res) {
                 // 1. 限制文件大小
                 const imageSize = res.tempFiles[0].size
                 if (imageSize > 4 * 1024 * 1024) {
@@ -122,7 +125,7 @@ Page({
                 const imageType = filePathArr[filePathArr.length - 1]
                 const timeStamp = formatTime(new Date())
                 const fileName = `${timeStamp}.${imageType}`
-                // 交给七牛上传
+                    // 交给七牛上传
                 wx.showLoading({
                     title: '上传中...',
                     mask: true
@@ -132,7 +135,7 @@ Page({
                         console.log(uploadRes.imageURL, uploadRes.key)
                         const attachInfo = {
                             AttachName: fileName,
-                            AttachSize: parseInt(imageSize / 1024),
+                            AttachSize: imageSize,
                             AttachDesc: '',
                             AttachURL: uploadRes.imageURL
                         }
@@ -150,11 +153,17 @@ Page({
                         console.log('上传进度', res.progress)
                         console.log('已经上传的数据长度', res.totalBytesSent)
                         console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-                    });
+                    })
             }
         })
     },
-
+    _uploadVideo() {
+        // 校验附件数量
+        if (this.videoFileCount >= 1) {
+            this._showToptips('最多可上传1份视频附件')
+            return false
+        }
+    },
     _setAttachment(attachInfo, opType) {
         // opType(1 - 新增；2 - 修改；0 - 删除)
         console.log(attachInfo)
@@ -190,7 +199,7 @@ Page({
         })
     },
     _updateEnroll(formData) {
-        var that = this;
+        var that = this
         wx.showLoading({
             title: '加载中...',
             mask: true
@@ -234,13 +243,13 @@ Page({
     _showToptips(error) {
         const hideToptips = $wuxToptips.show({
             timer: 3000,
-            text: error.msg || '请填写正确的字段',
+            text: error.msg || error || '请填写正确的字段',
             hidden: true,
-            success: () => { }
+            success: () => {}
         })
     },
     _initData() {
-        var that = this;
+        var that = this
         wx.showLoading({
             title: '加载中...',
             mask: true
@@ -257,8 +266,22 @@ Page({
             },
             success: res => {
                 this.opCount = res.data.opCount
+                let imageFileCount = 0,
+                    videoFileCount = 0;
+                let attachments = res.data.list.map(attachment => {
+                    attachment.fileType = attachment.AttachType.split('/')[0]
+                    if (attachment.fileType === 'image') {
+                        imageFileCount++
+                    } else if (attachment.fileType === 'video') {
+                        videoFileCount++
+                    }
+                    attachment.fileSize = attachment.AttachSize ? this._getSizeString(attachment.AttachSize) : '未知大小'
+                    return attachment
+                })
+                this.imageFileCount = imageFileCount
+                this.videoFileCount = videoFileCount
                 this.setData({
-                    attachments: res.data.list
+                    attachments: attachments
                 })
             },
             fail: error => {
@@ -268,6 +291,25 @@ Page({
                 wx.hideLoading()
             }
         })
+    },
+    /**
+     * 计算文件大小字符串，根据文件大小自动调整单位
+     * 
+     * @param {any} bytes 
+     */
+    _getSizeString(bytes) {
+        if (bytes > 1024) {
+            if (bytes > 1024 * 1024) {
+                // 以MB为单位
+                return (bytes / 1024 / 1024).toFixed(2) + 'MB'
+            } else {
+                // 以KB为单位
+                return (bytes / 1024).toFixed(2) + 'KB'
+            }
+
+        } else {
+            return bytes + 'B'
+        }
     },
     moreOpts(e) {
         const that = this
@@ -283,13 +325,14 @@ Page({
                     text: '删除附件',
                     method: '_setAttachment',
                     args: [that.data.attachments[index], 0]
-                }],
+                }
+            ],
             buttonClicked(index, item) {
                 that[item.method].apply(that, item.args)
                 return true
             },
             cancelText: '取消',
-            cancel() { }
+            cancel() {}
         })
     },
 })
