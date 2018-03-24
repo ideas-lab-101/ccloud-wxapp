@@ -49,6 +49,10 @@
                 <view class="case_fee" wx:if="{{item.TotalCost > 0}}">{{item.TotalCost}}元/人</view>
                 <view class="case_fee" wx:if="{{item.TotalCost == 0}}">免费</view>
             </view>
+            <view class="case" hover-class='clicked' hover-start-time='0' bindtap='showMoreFee' wx:if="{{ info.FeeCount > cases.length }}">
+                <view class="case_name">更多</view>
+                <view class="case_fee">点击查看更多报名项目</view>
+            </view>
         </view>
     </view>
     <view class="case_card">
@@ -64,4 +68,17 @@
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
     </view>
 </view>
-<view style='height:30px'></view>
+<view style='height:50px'></view>
+<view class="bottom_buttons">
+    <view class="button" hover-class='clicked' bindtap='goToComment'>
+        <image src="/assets/images/cytl.png"></image>参与讨论</view>
+    <view class="button" hover-class='clicked' bindtap='goToInfoList'>
+        <image src="/assets/images/zl.png"></image>资料</view>
+    <view class="button" hover-class='clicked' bindtap=''>
+        <image src="/assets/images/zl.png"></image>精彩图库</view>
+    <view class="button" hover-class='clicked' bindtap='join'>
+        <image src="/assets/images/bmcj.png"></image>报名参加</view>
+</view>
+<view style="height:0;overflow:hidden">
+    <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>
+</view>

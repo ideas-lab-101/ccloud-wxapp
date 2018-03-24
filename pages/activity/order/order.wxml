@@ -12,8 +12,18 @@
     </view> 
     <form bindsubmit="formSubmit">
         <view class="form">
-            <view class="form_head">请填写报名表
-                <text>*</text>标注的为必填项</view>
+            <!-- <view class="form_head">请填写报名表
+                <text>*</text>标注的为必填项</view> -->
+                <block wx:if="{{ !isRenderGroupInfo }}">
+                <!-- <view class="form_block_head">报名项目</view> -->
+                <picker bindchange="chooseFee" value="{{ feeName }}" range="{{ fees }}" range-key="text">
+                    <view class="section">
+                         <view class="section_title">报名项目</view> 
+                        <input class="dropdown" disabled='true' type='text' value="{{ feeName }}" placeholder='请选择报名项目' />
+                    </view>
+                </picker>
+                <view class="section_bottom"></view>
+            </block> 
              <block wx:if="{{ isRenderBaseInfo }}">
                 <view class="form_block_head">基本信息</view>
                 <view class="section">

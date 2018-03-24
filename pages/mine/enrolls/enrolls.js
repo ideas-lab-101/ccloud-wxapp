@@ -61,7 +61,7 @@ Page({
                 text: '修改报名表',
                 method: function (index) {
                     wx.navigateTo({
-                        url: `form/form?eid=${this.data.enrolls[index].EnrollID}&prev=false`,
+                        url: `form/form?aid=${this.data.enrolls[index].ActivityID}&eid=${this.data.enrolls[index].EnrollID}&prev=false`,
                     })
                 }
             });
@@ -70,7 +70,7 @@ Page({
                 text: '查看报名表',
                 method: function (index) {
                     wx.navigateTo({
-                        url: `form/form?eid=${this.data.enrolls[index].EnrollID}&prev=true`,
+                        url: `form/form?aid=${this.data.enrolls[index].ActivityID}&eid=${this.data.enrolls[index].EnrollID}&prev=true`,
                     })
                 }
             });

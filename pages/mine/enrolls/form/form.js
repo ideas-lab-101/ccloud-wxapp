@@ -1,5 +1,6 @@
 import { $wuxActionSheet } from '../../../../components/wux'
 import { $wuxToptips } from '../../../../components/wux'
+import { $wuxQrcode } from '../../../../components/wux'
 import WxValidate from '../../../../assets/plugins/WxValidate'
 const app = getApp()
 Page({
@@ -18,15 +19,15 @@ Page({
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,
         isRenderReferInfo: false,
-        hasAttachList:false,
         isPreview: false
     },
-
+    hasQrcode:false,
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         this.eid = options.eid
+        this.aid = options.aid
         this.setData({
             isPreview: options.prev === 'true'
         })
@@ -445,6 +446,8 @@ Page({
                     formData: res.data.formData
                 })
                 this._initValidate()
+                this.hasQrcode = res.data.enrollInfo.EnrollCode
+                res.data.enrollInfo.EnrollCode && this._initCanvas(res.data.enrollInfo.EnrollCode)
             },
             fail: error => {
                 this._showToptips('出错了，重试一下吧')
@@ -454,6 +457,13 @@ Page({
             }
         })
         this._getAttachmentData(eid)
+    },
+    _initCanvas(value) {
+        $wuxQrcode.init('qrcode', value, {
+            width:200,
+            height:200,
+            fgColor: '#000000'
+        })
     },
     _getAttachmentData(eid) {
         wx.request({
@@ -468,9 +478,7 @@ Page({
             },
             success: res => {
                 this.setData({
-                    attachments: res.data.list,
-                    attachmentOpCount: res.data.opCount,
-                    hasAttachList:true
+                    attachments: res.data.list
                 })
             },
             fail: error => {
@@ -478,9 +486,27 @@ Page({
             }
         })
     },
-    attachmentManage(){
+    attachmentManage() {
         wx.navigateTo({
             url: `attachment/attachment?eid=${this.eid}&aid=${this.aid}`
         })
+    },
+    showQrcode() {
+        if (this.hasQrcode) {
+            wx.canvasToTempFilePath({
+                canvasId: 'qrcode',
+                success: res => {
+                    wx.previewImage({
+                        urls: [res.tempFilePath]
+                    })
+                }
+            })
+        } else {
+            wx.showModal({
+                title: '获取二维码失败',
+                content: '报名号未生成',
+                showCancel: false
+            })
+        }
     }
 })

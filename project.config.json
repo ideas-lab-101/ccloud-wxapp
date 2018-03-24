@@ -29,13 +29,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "详情页",
 					"pathName": "pages/activity/activity",
-					"query": "aid=11"
+					"query": "aid=13"
 				},
 				{
 					"id": 1,
@@ -89,7 +89,7 @@
 					"id": 9,
 					"name": "活动修改表单",
 					"pathName": "pages/mine/enrolls/form/form",
-					"query": "eid=26&prev=false"
+					"query": "eid=1440&prev=false&aid=23"
 				},
 				{
 					"id": 10,
@@ -119,7 +119,7 @@
 					"id": 14,
 					"name": "查看报名附件",
 					"pathName": "pages/mine/enrolls/form/attachment/attachment",
-					"query": "eid=26&prev=false"
+					"query": "eid=1440&prev=false"
 				}
 			]
 		}

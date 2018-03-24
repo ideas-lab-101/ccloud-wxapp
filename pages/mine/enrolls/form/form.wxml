@@ -1,5 +1,6 @@
 <import src="../../../../components/actionsheet/actionsheet.wxml" />
 <import src="../../../../components/toptips/toptips.wxml" />
+
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
@@ -7,17 +8,6 @@
         <view class="form">
             <view class="form_head">请填写报名表
                 <text>*</text>标注的为必填项</view>
-            <block wx:if="{{ hasAttachList }}">
-                <view class="form_block_head">附件</view>
-                <view class="attachment" wx:for="{{ attachments }}">
-                    <image class="attachment_thumb" src='../../../../assets/images/attach-image-thumb.png' wx:if="{{ true }}"></image>
-                    <image class="attachment_thumb" src='../../../../assets/images/attach-video-thumb.png' wx:else></image>
-                    <view class="attachment_title">abcdefg.png</view>
-                    <view class="attachment_size">231kb</view>
-                    <image class="attachment_opts" src='../../../../assets/images/more_opts_b.png'></image>
-                </view>
-                <view class="section_bottom"></view>
-            </block>
             <block wx:if="{{ isRenderBaseInfo }}">
                 <view class="form_block_head">基本信息</view>
                 <view class="section">
@@ -136,7 +126,10 @@
     <view style="height:50px;"></view>
 </scroll-view>
 <view class="bottom_buttons">
-    <view class="button" hover-class='clicked' bindtap='qrcode'>二维码</view>
+    <view class="button" hover-class='clicked' bindtap='showQrcode'>二维码</view>
     <view class="button" hover-class='clicked' bindtap='attachmentManage'>活动附件</view>
     <view class="button" hover-class='clicked' bindtap='feedback'>信息反馈</view>
+</view>
+<view style="height:0;overflow:hidden">
+    <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>
 </view>

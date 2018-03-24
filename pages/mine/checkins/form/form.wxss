@@ -110,8 +110,9 @@ page {
     height: 30px;
     line-height: 30px;
     font-size: 16px;
-    color: #8a8a8a;
+    color: #4e5e71;
     background-color: #efefef;
+    border-left: 5px solid #4e5e71;
     padding: 0 30rpx;
     margin-top: 10px;
 }

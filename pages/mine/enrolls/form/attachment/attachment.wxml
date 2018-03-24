@@ -1,5 +1,8 @@
 <import src="../../../../../components/actionsheet/actionsheet.wxml" />
 <import src="../../../../../components/toptips/toptips.wxml" />
+<import src="../../../../../components/dialog/dialog.wxml"/>
+
+<template is="dialog" data="{{ ...$wux.dialog }}"/>
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">

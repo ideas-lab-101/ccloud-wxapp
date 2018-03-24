@@ -29,7 +29,7 @@ Page({
         this.initButton()
     },
     initButton() {
-        const self = this
+        const that = this
         this.setData({
             opened: !1,
         })
@@ -37,33 +37,37 @@ Page({
         this.button = $wuxButton.init('br', {
             position: 'bottomRight',
             buttons: [
-                {
-                    label: '报名参加',
-                    icon: "/assets/images/bmcj.png",
-                },
-                {
-                    label: '参与讨论',
-                    icon: "/assets/images/cytl.png",
-                },
-                {
-                    label: '资料',
-                    icon: "/assets/images/zl.png",
-                },
+                // {
+                //     label: '报名参加',
+                //     icon: "/assets/images/bmcj.png",
+                //     method:'join'
+                // },
+                // {
+                //     label: '参与讨论',
+                //     icon: "/assets/images/cytl.png",
+                //     method:'goToComment'
+                // },
+                // {
+                //     label: '资料',
+                //     icon: "/assets/images/zl.png",
+                //     method: 'goToInfoList'
+
+                // },
                 {
                     label: '个人中心',
                     icon: "/assets/images/grzx.png",
+                    method: 'goToUsercenter'
+
                 },
                 {
                     label: '分享',
                     icon: "/assets/images/fx.png",
+                    method: 'share'
+
                 }
             ],
             buttonClicked(index, item) {
-                index === 0 && self.join()
-                index === 1 && self.goToComment()
-                index === 2 && self.goToInfoList()
-                index === 3 && self.goToUsercenter()
-                index === 4 && self.share()
+                that[item.method].call(that)
                 return true
             },
             callback(vm, opened) {
@@ -81,9 +85,20 @@ Page({
 
     join: function () {
         if (this.activityInfo.intState == 1) {
-            wx.navigateTo({
-                url: `/pages/activity/order/order?aid=${this.aid}`,
-            })
+            if (this.data.info.mode == 3) {
+                wx.showActionSheet({
+                    itemList: ['个人报名', '团体报名'],
+                    success: res=> {
+                        wx.navigateTo({
+                            url: `/pages/activity/order/order?aid=${this.aid}&mode=${res.tapIndex+1}`,
+                        })
+                    },
+                })
+            } else {
+                wx.navigateTo({
+                    url: `/pages/activity/order/order?aid=${this.aid}&mode=${this.data.info.mode}`,
+                })
+            }
         } else {
             wx.showModal({
                 title: '提示',

@@ -168,6 +168,7 @@ App({
         wxPay: HOST + '/pay/wxPay',
         enumValues: HOST + '/system/GetEnumDetail',
         activityInfo: HOST + '/activity/GetActivityInfo',
+        activityEnroll: HOST + '/activity/GetActivityEnroll',
         enrollList: HOST + '/user/GetEnrollList',
         enrollInfo: HOST + '/activity/GetEnrollInfo',
         getAttachList: HOST + '/activity/GetEnrollAttach',

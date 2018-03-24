@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        cases: [],
+        fees: [],
         info: {},
         isEnrolled: false,
         formData: {
@@ -21,7 +21,8 @@ Page({
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,
         isRenderReferInfo: false,
-        isRenderRegionInfo:false
+        isRenderRegionInfo: false,
+        isRenderGroupInfo: false
     },
 
     /**
@@ -29,6 +30,7 @@ Page({
      */
     onLoad: function (options) {
         this.aid = options.aid
+        this.mode = options.mode
         wx.getStorage({
             key: 'userInfo',
             success: res => {
@@ -50,7 +52,10 @@ Page({
     },
 
     formSubmit(e) {
-        const that = this
+        if (!this.feeId) {
+            this._showToptips('请选择报名项目')
+            return false
+        }
         const params = e.detail.value
         if (!this.WxValidate.checkForm(e)) {
             const error = this.WxValidate.errorList[0]
@@ -61,16 +66,7 @@ Page({
             key: 'userInfo',
             data: params,
         })
-        $wuxActionSheet.show({
-            titleText: '请选择报名项目',
-            buttons: this.cases,
-            buttonClicked(index, item) {
-                that._enroll(item.id, params)
-                return true
-            },
-            cancelText: '取消',
-            cancel() { }
-        })
+        this._enroll(this.feeId, params)
     },
     _enroll(fid, formData) {
         var that = this;
@@ -178,7 +174,7 @@ Page({
     _showToptips(error) {
         const hideToptips = $wuxToptips.show({
             timer: 3000,
-            text: error.msg || '请填写正确的字段',
+            text: error.msg || error || '请填写正确的字段',
             hidden: true,
             success: () => { }
         })
@@ -201,6 +197,12 @@ Page({
         this.setData({
             'formData.nation': this.nations[e.detail.value]
         })
+    },
+    chooseFee: function (e) {
+        this.setData({
+            feeName: this.data.fees[e.detail.value].text
+        })
+        this.feeId = this.data.fees[e.detail.value].id
     },
     genders: [],
     _getGenderData() {
@@ -283,7 +285,7 @@ Page({
         this.setData({
             'formData.province': this.provinces[e.detail.value].ProvinceName,
             'formData.city': '',
-            'formData.district': ''           
+            'formData.district': ''
         })
         this._getCityData(this.provinces[e.detail.value].ProvinceID);
     },
@@ -312,7 +314,7 @@ Page({
     chooseCity: function (e) {
         this.setData({
             'formData.city': this.cities[e.detail.value].CityName,
-            'formData.district': ''  
+            'formData.district': ''
         })
         this._getDistrictData(this.cities[e.detail.value].CityID);
     },
@@ -407,28 +409,30 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.api.activityInfo,
+            url: app.api.activityEnroll,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                activityID: aid
+                activityID: aid,
+                mode: this.mode
             },
             success: res => {
                 wx.hideLoading()
                 if (res.data.result) {
-                    this.cases = res.data.activityFee.map(function (el, index) {
-                        return {
-                            text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
-                            id: el.FeeID
-                        }
-                    })
-                    const isRenderBaseInfo = res.data.activityInfo.FormSetting.indexOf('baseInfo') >= 0
-                    const isRenderPhotoInfo = res.data.activityInfo.FormSetting.indexOf('photoInfo') >= 0
-                    const isRenderSchoolInfo = res.data.activityInfo.FormSetting.indexOf('schoolInfo') >= 0
-                    const isRenderReferInfo = res.data.activityInfo.FormSetting.indexOf('referInfo') >= 0
-                    const isRenderRegionInfo = res.data.activityInfo.FormSetting.indexOf('regionInfo') >= 0
+                    // this.fees = res.data.activityFee.map(function (el, index) {
+                    //     return {
+                    //         text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
+                    //         id: el.FeeID
+                    //     }
+                    // })
+                    const isRenderBaseInfo = res.data.formSetting.FormSetting.indexOf('baseInfo') >= 0
+                    const isRenderPhotoInfo = res.data.formSetting.FormSetting.indexOf('photoInfo') >= 0
+                    const isRenderSchoolInfo = res.data.formSetting.FormSetting.indexOf('schoolInfo') >= 0
+                    const isRenderReferInfo = res.data.formSetting.FormSetting.indexOf('referInfo') >= 0
+                    const isRenderRegionInfo = res.data.formSetting.FormSetting.indexOf('regionInfo') >= 0
+                    const isRenderGroupInfo = res.data.formSetting.FormSetting.indexOf('orgInfo') >= 0
                     if (isRenderBaseInfo) {
                         this._getGenderData()
                         this._getNationData()
@@ -495,7 +499,7 @@ Page({
                             },
                         })
                     }
-                    if (isRenderRegionInfo){
+                    if (isRenderRegionInfo) {
                         this._getProvincesData();
                         Object.assign(this.validators, {
                             'province': {
@@ -527,8 +531,14 @@ Page({
                         isRenderSchoolInfo: isRenderSchoolInfo,
                         isRenderReferInfo: isRenderReferInfo,
                         isRenderRegionInfo: isRenderRegionInfo,
+                        isRenderGroupInfo: isRenderGroupInfo,
                         info: res.data.activityInfo,
-                        cases: res.data.activityFee
+                        fees: res.data.activityFee.map(function (el, index) {
+                            return {
+                                text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
+                                id: el.FeeID
+                            }
+                        })
                     })
                     this._initValidate()
                 } else {

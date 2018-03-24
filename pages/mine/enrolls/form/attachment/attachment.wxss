@@ -20,8 +20,9 @@ page {
     height: 30px;
     line-height: 30px;
     font-size: 16px;
-    color: #8a8a8a;
+    color: #4e5e71;
     background-color: #efefef;
+    border-left: 5px solid #4e5e71;
     padding: 0 30rpx;
 }
 
@@ -73,9 +74,6 @@ page {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
     word-break: break-all;
 }
 
@@ -94,8 +92,8 @@ page {
     flex: auto;
     line-height: 20px;
     text-align: left;
-    color: #ddd;
-    font-size: 12px;
+    color: #ccc;
+    font-size: 10px;
 }
 
 .attachment .attachment_size {

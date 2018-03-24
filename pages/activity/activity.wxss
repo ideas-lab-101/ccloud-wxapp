@@ -242,3 +242,44 @@ page {
     word-break: break-all;
     overflow: auto;
 }
+
+.bottom_buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-right: 50px;
+    display: flex;
+    background-color: #3f51b5;
+}
+
+.bottom_buttons .button {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    width: 80px;
+    color: #fff;
+    font-size: 10px;
+}
+
+.bottom_buttons .button image{
+    flex: none;
+    width: 20px;
+    height: 20px;
+}
+
+.bottom_buttons .button.clicked {
+    background-color: #354497;
+}
+
+ .speed-dial-bottom-right.speed-dial {
+    right: 0;
+    bottom: 0;
+} 
+
+.floating-button{
+    box-shadow: none;
+}
