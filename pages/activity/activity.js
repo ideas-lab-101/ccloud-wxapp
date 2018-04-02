@@ -15,7 +15,7 @@ Page({
         opened: !1,
         noticeContent: {
             isNoticeShow: false,
-            title: '项目简介',
+            title: '项目介绍',
             deviceHeight: app.globalData.deviceHeight
         }
     },
@@ -37,22 +37,6 @@ Page({
         this.button = $wuxButton.init('br', {
             position: 'bottomRight',
             buttons: [
-                // {
-                //     label: '报名参加',
-                //     icon: "/assets/images/bmcj.png",
-                //     method:'join'
-                // },
-                // {
-                //     label: '参与讨论',
-                //     icon: "/assets/images/cytl.png",
-                //     method:'goToComment'
-                // },
-                // {
-                //     label: '资料',
-                //     icon: "/assets/images/zl.png",
-                //     method: 'goToInfoList'
-
-                // },
                 {
                     label: '个人中心',
                     icon: "/assets/images/grzx.png",
@@ -60,9 +44,9 @@ Page({
 
                 },
                 {
-                    label: '分享',
-                    icon: "/assets/images/fx.png",
-                    method: 'share'
+                    label: '精彩瞬间',
+                    icon: "/assets/images/media.png",
+                    method: 'goToMedia'
 
                 }
             ],
@@ -115,7 +99,7 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'activity/GetActivityInfo',
+            url: app.api.activityInfo,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -132,13 +116,10 @@ Page({
                     this.imgOriginUrls = this.imgUrls.map(function (el, index) {
                         return el.replace('/s/', '/o/')
                     })
-                    // this.cases = res.data.activityFee.map(function (el, index) {
-                    //     return {
-                    //         text: `${el.FeeName} -- ${el.TotalCost}/人`,
-                    //         id: el.FeeID
-                    //     }
-                    // })
                     this.activityInfo = res.data.activityInfo
+                    wx.setNavigationBarTitle({
+                      title: res.data.activityInfo.ActivityName
+                    })
                     this.coordinate = JSON.parse(res.data.activityInfo.Coordinate)
                     this.setData({
                         imgUrls: imgUrls,
@@ -173,10 +154,33 @@ Page({
             })
         }
     },
+    goToMedia: function (e){
+      if (this.activityInfo.Media) {
+        wx.navigateToMiniProgram({
+          appId: 'wxb7f754f66ce708ae',
+          path: this.activityInfo.Media,
+          envVersion: 'release',
+          success(res) {
+            // 打开成功  
+          }
+        })  
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '敬请期待',
+          showCancel: false
+        })
+      }
+    },
 
     goToComment: function (e) {
         wx.navigateTo({
-            url: `/pages/activity/comments/comments?aid=${this.aid}`,
+            url: `/pages/comments/comments?dataType=activity&dataId=${this.aid}`,
+        })
+    },
+    showMoreFee: function (e){
+        wx.navigateTo({
+          url: `fee/fee?aid=${this.aid}`,
         })
     },
     goToUsercenter: function (e) {
@@ -192,7 +196,13 @@ Page({
             scale: 18
         })
     },
-
+    callTel: function () {
+        if(this.data.info.ContactTel){
+            wx.makePhoneCall({
+              phoneNumber: this.data.info.ContactTel
+            })
+        }
+    },
     viewImage: function (e) {
         wx.previewImage({
             urls: this.imgOriginUrls,
@@ -200,55 +210,58 @@ Page({
     },
     share() {
         const that = this
-        $wuxDialog.open({
-            title: '分享活动给好友',
-            content: '【' + this.activityInfo.ActivityName + '】',
-            verticalButtons: !0,
-            buttons: [
-                {
-                    text: '转发给好友或微信群',
-                    bold: !0,
-                    onTap(e) {
+        app.user.isLogin(token => {
+            $wuxDialog.open({
+                title: '分享活动给好友',
+                content: this.activityInfo.ActivityName,
+                verticalButtons: !0,
+                buttons: [
+                    {
+                        text: '转发给好友或微信群',
+                        bold: !0,
+                        onTap(e) {
 
-                    }
-                },
-                {
-                    text: '生成分享码到朋友圈',
-                    bold: !0,
-                    onTap(e) {
-                        wx.request({
-                            url: app.baseUrl + 'system/GetWXSSCode',
-                            header: {
-                                'content-type': 'application/x-www-form-urlencoded'
-                            },
-                            data: {
-                                token: app.globalData.token,
-                                activityID: that.aid
-                            },
-                            success: res => {
-                                if (res.data.result) {
-                                    wx.previewImage({
-                                        urls: [res.data.qr_code],
-                                    })
-                                } else {
-                                    wx.showModal({
-                                        title: '出错了',
-                                        content: res.data.msg,
-                                        showCancel: false
-                                    })
+                        }
+                    },
+                    {
+                        text: '生成分享码到朋友圈',
+                        bold: !0,
+                        onTap(e) {
+                            wx.request({
+                                url: app.api.getShareCode,
+                                header: {
+                                    'content-type': 'application/x-www-form-urlencoded'
+                                },
+                                data: {
+                                    token: token,
+                                    dataID: that.aid,
+                                    type: 'a',
+                                },
+                                success: res => {
+                                    if (res.data.result) {
+                                        wx.previewImage({
+                                            urls: [res.data.qr_code],
+                                        })
+                                    } else {
+                                        wx.showModal({
+                                            title: '出错了',
+                                            content: res.data.msg,
+                                            showCancel: false
+                                        })
+                                    }
                                 }
-                            }
-                        })
-                    }
-                },
-                {
-                    text: '取消分享',
-                    bold: false,
-                    onTap(e) {
-                    }
-                },
-            ],
-        })
+                            })
+                        }
+                    },
+                    {
+                        text: '取消分享',
+                        bold: false,
+                        onTap(e) {
+                        }
+                    },
+                ],
+            })
+        })    
     },
     hideNotice() {
         this.setData({
@@ -267,12 +280,12 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: '【' + this.activityInfo.ActivityName + '】',
-            path: `/pages/activity/detail?aid=${this.aid}`,
+            title: this.activityInfo.ActivityName,
+            path: `/pages/activity/activity?aid=${this.aid}`,
             success: function (res) {
                 // 转发成功
                 wx.showToast({
-                    title: '转发有奖^_^:)',
+                    title: '谢谢转发^_^:)',
                     icon: 'success'
                 })
             },

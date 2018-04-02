@@ -1,7 +1,10 @@
 import { $wuxActionSheet } from '../../../components/wux'
 import { $wuxToptips } from '../../../components/wux'
 import WxValidate from '../../../assets/plugins/WxValidate'
+import SystemEnum from '../../../utils/SystemEnum'
+
 const app = getApp()
+const en = new SystemEnum()
 Page({
 
     /**
@@ -9,6 +12,7 @@ Page({
      */
     data: {
         fees: [],
+        mode: 0,
         info: {},
         isEnrolled: false,
         formData: {
@@ -31,6 +35,10 @@ Page({
     onLoad: function (options) {
         this.aid = options.aid
         this.mode = options.mode
+        this.setData({
+          mode: options.mode
+        })
+        //取缓存数据
         wx.getStorage({
             key: 'userInfo',
             success: res => {
@@ -39,20 +47,13 @@ Page({
                 })
             },
         })
-        if (app.globalData.token) {
+        app.user.isLogin(token => {
             this._initData(options.aid)
-        } else {
-            app.getToken()
-                .then(() => {
-                    this._initData(options.aid)
-                }, function (err) {
-                    this._showToptips(err.toString())
-                })
-        }
+        })
     },
 
     formSubmit(e) {
-        if (!this.feeId) {
+        if (!this.feeId && this.mode == 1) { //仅针对个人报名
             this._showToptips('请选择报名项目')
             return false
         }
@@ -66,7 +67,7 @@ Page({
             key: 'userInfo',
             data: params,
         })
-        this._enroll(this.feeId, params)
+        this._enroll(this.feeId ? this.feeId:0, params)
     },
     _enroll(fid, formData) {
         var that = this;
@@ -82,8 +83,9 @@ Page({
             },
             data: {
                 activityID: this.aid,
+                mode: this.mode,
                 feeID: fid,
-                token: app.globalData.token,
+                token: app.user.authToken,
                 formData: JSON.stringify(formData)
             },
             success: res => {
@@ -104,7 +106,7 @@ Page({
                     }
                 } else {
                     wx.showModal({
-                        title: '出错了',
+                        title: '提示',
                         content: res.data.msg,
                         showCancel: false
                     })
@@ -131,7 +133,7 @@ Page({
             data: {
                 out_trade_no: order.orderCode,
                 total_fee: order.totalPrice,
-                token: app.globalData.token
+                token: app.user.authToken
             },
             success: res => {
                 if (res.data.data) {
@@ -182,7 +184,7 @@ Page({
     chooseGender: function () {
         $wuxActionSheet.show({
             titleText: '请选择性别',
-            buttons: this.genders,
+            buttons: en.genders,
             buttonClicked(index, item) {
                 this.setData({
                     'formData.sex': item.text
@@ -195,7 +197,7 @@ Page({
     },
     chooseNation: function (e) {
         this.setData({
-            'formData.nation': this.nations[e.detail.value]
+            'formData.nation': en.nations[e.detail.value]
         })
     },
     chooseFee: function (e) {
@@ -204,149 +206,34 @@ Page({
         })
         this.feeId = this.data.fees[e.detail.value].id
     },
-    genders: [],
-    _getGenderData() {
-        wx.request({
-            url: app.api.enumValues,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                masterID: 23
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.genders = res.data.list.map(function (el, index) {
-                        return {
-                            text: el.Caption
-                        }
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
-    nations: [],
-    _getNationData() {
-        wx.request({
-            url: app.api.enumValues,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                masterID: 26
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.nations = res.data.list.map(function (el, index) {
-                        return el.Caption
-                    })
-                    this.setData({
-                        nations: this.nations
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
-    provinces: [],
-    _getProvincesData() {
-        wx.request({
-            url: app.api.provinces,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                activityID: this.aid
-            },
-            success: res => {
-                this.provinces = res.data;
-                this.setData({
-                    provinces: this.provinces
-                })
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
     chooseProvince: function (e) {
+        var that = this
         this.setData({
-            'formData.province': this.provinces[e.detail.value].ProvinceName,
+            'formData.province': en.provinces[e.detail.value].ProvinceName,
             'formData.city': '',
             'formData.district': ''
         })
-        this._getCityData(this.provinces[e.detail.value].ProvinceID);
-    },
-    cities: [],
-    _getCityData(pid) {
-        wx.request({
-            url: app.api.cities,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                provinceID: pid
-            },
-            success: res => {
-                this.cities = res.data.list;
-                this.setData({
-                    cities: this.cities
-                })
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
+        en._getCityData(en.provinces[e.detail.value].ProvinceID, function(){
+          that.setData({
+            cities: en.cities
+          })
+        });
     },
     chooseCity: function (e) {
+        var that = this
         this.setData({
-            'formData.city': this.cities[e.detail.value].CityName,
+            'formData.city': en.cities[e.detail.value].CityName,
             'formData.district': ''
         })
-        this._getDistrictData(this.cities[e.detail.value].CityID);
-    },
-    districts: [],
-    _getDistrictData(cid) {
-        wx.request({
-            url: app.api.districts,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                cityID: cid
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.districts = res.data.list
-                    this.setData({
-                        districts: this.districts
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
+        en._getDistrictData(en.cities[e.detail.value].CityID , function () {
+          that.setData({
+            districts: en.districts
+          })
+        });
     },
     chooseDistrict: function (e) {
         this.setData({
-            'formData.district': this.districts[e.detail.value].DistrictName
+            'formData.district': en.districts[e.detail.value].DistrictName
         })
     },
     uploadPic: function () {
@@ -365,7 +252,7 @@ Page({
                     filePath: filePath,
                     name: 'photoFile',
                     formData: {
-                        'token': app.globalData.token
+                        'token': app.user.authToken
                     },
                     success: function (res) {
                         var data = JSON.parse(res.data)
@@ -421,21 +308,19 @@ Page({
             success: res => {
                 wx.hideLoading()
                 if (res.data.result) {
-                    // this.fees = res.data.activityFee.map(function (el, index) {
-                    //     return {
-                    //         text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
-                    //         id: el.FeeID
-                    //     }
-                    // })
                     const isRenderBaseInfo = res.data.formSetting.FormSetting.indexOf('baseInfo') >= 0
                     const isRenderPhotoInfo = res.data.formSetting.FormSetting.indexOf('photoInfo') >= 0
                     const isRenderSchoolInfo = res.data.formSetting.FormSetting.indexOf('schoolInfo') >= 0
                     const isRenderReferInfo = res.data.formSetting.FormSetting.indexOf('referInfo') >= 0
                     const isRenderRegionInfo = res.data.formSetting.FormSetting.indexOf('regionInfo') >= 0
-                    const isRenderGroupInfo = res.data.formSetting.FormSetting.indexOf('orgInfo') >= 0
+                    const isRenderGroupInfo = res.data.formSetting.FormSetting.indexOf('groupInfo') >= 0
                     if (isRenderBaseInfo) {
-                        this._getGenderData()
-                        this._getNationData()
+                        en._getGenderData()
+                        en._getNationData(function(){
+                          that.setData({
+                            nations: en.nations
+                          })
+                        })
                         Object.assign(this.validators, {
                             'name': {
                                 required: true
@@ -469,6 +354,32 @@ Page({
                             }
                         })
                     }
+                    if (isRenderGroupInfo) {
+                      Object.assign(this.validators, {
+                        'group': {
+                          required: true
+                        },
+                        'contactName': {
+                          required: true
+                        },
+                        'contactTel': {
+                          required: true,
+                          tel: true,
+                        },
+                      })
+                      Object.assign(this.validationMsgs, {
+                        'group': {
+                          required: '请输入团队名称'
+                        },
+                        'contactName': {
+                          required: '请输入联系人姓名',
+                        },
+                        'contactTel': {
+                          required: '请输入联系人手机',
+                          tel: '请输入正确的手机号',
+                        },
+                      })
+                    }
                     if (isRenderSchoolInfo) {
                         Object.assign(this.validators, {
                             'school': {
@@ -500,7 +411,11 @@ Page({
                         })
                     }
                     if (isRenderRegionInfo) {
-                        this._getProvincesData();
+                        en._getProvincesData(this.aid, function(){
+                            that.setData({
+                              provinces: en.provinces
+                            })
+                        })
                         Object.assign(this.validators, {
                             'province': {
                                 required: true
@@ -509,6 +424,9 @@ Page({
                                 required: true
                             },
                             'district': {
+                                required: true
+                            },
+                            'address': {
                                 required: true
                             }
                         })
@@ -521,7 +439,10 @@ Page({
                             },
                             'district': {
                                 required: '请选择所在区'
-                            }
+                            },
+                            'address': {
+                              required: '请输入街道地址'
+                            },
                         })
                     }
                     this.setData({
@@ -560,7 +481,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                token: app.globalData.token,
+                token: app.user.authToken,
                 activityID: aid,
                 intState: 2,
                 pageIndex: 0,
@@ -577,8 +498,8 @@ Page({
         })
     },
     goToUsercenter() {
-        wx.switchTab({
-            url: '/pages/mine/mine',
+        wx.navigateTo({
+          url: '/pages/mine/enrolls/enrolls',
         })
     }
 })

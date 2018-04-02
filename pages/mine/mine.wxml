@@ -1,43 +1,55 @@
-<!-- <import src="../../components/notice/notice.wxml" />
-<template is="notice" data="{{ ...noticeContent }}" /> -->
-<view class="user-head">
-    <view class="uerinfo">
-      <text class="nickname">{{userInfo.nickname}}</text>
-      <view class="userdata">
-        <view class="dataone">
-          <text class="user-num">{{userInfo.eCount}}</text>
-          <text>活动</text>
+<block>
+    <view class="user-head" wx:if="{{is_login}}">
+        <view class="uerinfo">
+          <text class="nickname">{{userInfo.nickname}}</text>
+          <view class="userdata">
+            <view class="dataone">
+              <text class="user-num">{{userInfo.eCount}}</text>
+              <text>积分</text>
+            </view>
+            <view class="dataone">
+              <text class="user-num">{{userInfo.sCount}}</text>
+              <text>活动券</text>
+            </view>
+          </view>
         </view>
-        <view class="dataone">
-          <text class="user-num">{{userInfo.sCount}}</text>
-          <text>签到</text>
+        <view class="avatar">
+          <image src="{{userInfo.avatarUrl}}" class="avatar-img"></image>
         </view>
-      </view>
     </view>
-    <view class="avatar">
-      <image src="{{userInfo.avatarUrl}}" class="avatar-img"></image>
+    <view class="no-login" wx:else>
+        <button class="login-btn" type="warn" open-type="getUserInfo" bindgetuserinfo="get_userInfo">立即登录</button>
     </view>
-  </view>
-<view class="item" bindtap="goToEnrolls">
-    <image src="/assets/images/ic_activity.png" class="item-icon"></image>
-    <view class="item-text">我的活动</view>
-    <view class="item-state has-more"></view>
+</block>
+<!-- 中间的业务入口 -->
+<view class="func-grid" hover-start-time='0'>
+    <view class="func-item" bindtap="scan_code" hover-class='clicked'>
+        <text class='c-iconfont icon-icon_scan'/>登陆网页版
+    </view>
+    <view class="func-item" bindtap="goto_interact" hover-class='clicked'>
+        <text class='c-iconfont icon-icon_airplay'/>活动上墙
+    </view>
 </view>
-<view class="item" bindtap="goToCheckins">
-    <image src="/assets/images/ic_check.png" class="item-icon"></image>
-    <view class="item-text">我的签到</view>
-    <view class="item-state has-more"></view>
-</view>
-<view class="item" bindtap="goToGuides">
-    <image src="/assets/images/ic_docs.png" class="item-icon"></image>
-    <view class="item-text">使用帮助</view>
-    <view class="item-state has-more"></view>
-</view>
-<!-- <view class="placeholder" wx:if="{{ activityList.length === 0 }}">您暂时未参与任何活动哦~去活动页发现更多吧</view> -->
-<!-- <view class="item">
-  <image src="/assets/images/contact.png" class="item-icon"></image>
-  <view class="item-text">联系客服
-  </view>
-  <contact-button size="26" session-from="weapp" class="contact_btn">
-  </contact-button>
-</view> -->
+<!-- 下方的业务入口 -->
+<view>
+    <view class="item" bindtap="goToEnrolls">
+        <text class='c-iconfont icon-view-list'></text>
+        <view class="item-text">活动记录</view>
+        <view class="item-state has-more"></view>
+    </view>
+    <view class="item" bindtap="goToCoupon">
+        <text class='c-iconfont icon-coupon'></text>
+        <view class="item-text">我的活动券</view>
+        <view class="item-state has-more"></view>
+    </view>
+    <view class="item" bindtap="goToMessage">
+        <text class='c-iconfont icon-comment-processing'></text>
+        <view class="item-text">我的消息</view>
+        <view class="item-state has-more"></view>
+    </view>
+    <view class="item" bindtap="goToGuides">
+        <text class='c-iconfont icon-help-circle'></text>
+        <view class="item-text">使用帮助</view>
+        <view class="item-state has-more"></view>
+    </view>
+</view>    

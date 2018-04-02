@@ -1,0 +1,17 @@
+<view class="">
+<view class="back-tip">您的反馈是对我们最好的帮助！</view>
+ <radio-group class="radio-group" bindchange="radioChange" >
+    <label class="radio" wx:for="{{items}}" wx:key="{{item}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+  </radio-group>
+  <form bindsubmit="bindFormSubmit">
+    <view class="content text-14 aui-bg-white aui-border-b">
+      <textarea maxlength="-1" auto-height="{{true}}" name="textarea" bindinput="reply_input" style="width:auto; padding:20rpx; min-height:400rpx;" placeholder="请简要说明你的反馈信息" auto-focus />
+    </view>
+    <view style="width:auto; padding:20rpx;">
+      <button type="warn" disabled="{{disabled}}" form-type="submit"> 提交 </button>
+    </view>
+  </form>
+ 
+</view>

@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "项目列表",
+    "navigationBarBackgroundColor": "#3f51b5",
+    "backgroundTextStyle": "light",
+    "usingComponents": {
+        "howard-pager": "/utils/pagination/pagination"
+    }
+}

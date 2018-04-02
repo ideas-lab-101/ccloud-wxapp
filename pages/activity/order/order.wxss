@@ -211,12 +211,10 @@ page {
 
 .picture_notice .logo {
     flex: none;
-    width: 32px;
-    height: 32px;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwUlEQVQ4T92TwQ0CIRBFmY7sQO2AUjwx170CF0vYEuxA7cBS7GDMJ2BmdxmyiTdJOPH/Y5j5kPtx0cifUjrgPITwsnQmoJrv1Xi2IF1ANd+cc+1mVOJ7kA1Amb2IeFRARIBhbyALgDbjthjjBAAzT+uz1pMFIOd8EpF3K1UDYABERGZmLs0t1Y2msAb0tP8CiDFearev+p1WD7S+9MASWlHW+i+AiI5E9Njzt0QE434iHwVQ51tSt3chncjLcIx7YB/G73YR8BGCIAAAAABJRU5ErkJggg==);
-    background-size: 16px 16px;
-    background-position: center center;
-    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    color: #777777;
 }
 
 .fake_input {

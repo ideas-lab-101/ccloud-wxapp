@@ -2,7 +2,10 @@ import { $wuxActionSheet } from '../../../../components/wux'
 import { $wuxToptips } from '../../../../components/wux'
 import { $wuxQrcode } from '../../../../components/wux'
 import WxValidate from '../../../../assets/plugins/WxValidate'
+import SystemEnum from '../../../../utils/SystemEnum'
+
 const app = getApp()
+const en = new SystemEnum()
 Page({
 
     /**
@@ -15,10 +18,12 @@ Page({
             photoURL: '',
             district: ''
         },
+        enrollInfo: {},
         isRenderBaseInfo: false,
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,
         isRenderReferInfo: false,
+        isRenderGroupInfo: false,
         isPreview: false
     },
     hasQrcode:false,
@@ -31,16 +36,9 @@ Page({
         this.setData({
             isPreview: options.prev === 'true'
         })
-        if (app.globalData.token) {
+        app.user.isLogin(token => {
             this._initData(options.eid)
-        } else {
-            app.getToken()
-                .then(() => {
-                    this._initData(options.eid)
-                }, function (err) {
-                    this._showToptips(err.toString())
-                })
-        }
+        }) 
     },
 
     formSubmit(e) {
@@ -67,14 +65,14 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'activity/UpdateEnrollInfo',
+            url: app.api.updateEnroll,
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
                 enrollID: this.eid,
-                token: app.globalData.token,
+                token: app.user.authToken,
                 formData: JSON.stringify(formData)
             },
             success: res => {
@@ -116,7 +114,7 @@ Page({
         }
         $wuxActionSheet.show({
             titleText: '请选择性别',
-            buttons: this.genders,
+            buttons: en.genders,
             buttonClicked(index, item) {
                 this.setData({
                     'formData.sex': item.text
@@ -132,149 +130,34 @@ Page({
             'formData.nation': this.nations[e.detail.value]
         })
     },
-    genders: [],
-    _getGenderData() {
-        wx.request({
-            url: app.api.enumValues,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                masterID: 23
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.genders = res.data.list.map(function (el, index) {
-                        return {
-                            text: el.Caption
-                        }
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
-    nations: [],
-    _getNationData() {
-        wx.request({
-            url: app.api.enumValues,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                masterID: 26
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.nations = res.data.list.map(function (el, index) {
-                        return el.Caption
-                    })
-                    this.setData({
-                        nations: this.nations
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
-    provinces: [],
-    _getProvincesData() {
-        wx.request({
-            url: app.api.provinces,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                activityID: this.aid
-            },
-            success: res => {
-                this.provinces = res.data;
-                this.setData({
-                    provinces: this.provinces
-                })
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
-    },
     chooseProvince: function (e) {
+        var that = this
         this.setData({
-            'formData.province': this.provinces[e.detail.value].ProvinceName,
+            'formData.province': en.provinces[e.detail.value].ProvinceName,
             'formData.city': '',
             'formData.district': ''
         })
-        this._getCityData(this.provinces[e.detail.value].ProvinceID);
-    },
-    cities: [],
-    _getCityData(pid) {
-        wx.request({
-            url: app.api.cities,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                provinceID: pid
-            },
-            success: res => {
-                this.cities = res.data.list;
-                this.setData({
-                    cities: this.cities
-                })
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
+        en._getCityData(en.provinces[e.detail.value].ProvinceID, function () {
+          that.setData({
+            cities: en.cities
+          })
+        });
     },
     chooseCity: function (e) {
+        var that = this
         this.setData({
-            'formData.city': this.cities[e.detail.value].CityName,
+            'formData.city': en.cities[e.detail.value].CityName,
             'formData.district': ''
         })
-        this._getDistrictData(this.cities[e.detail.value].CityID);
-    },
-    districts: [],
-    _getDistrictData(cid) {
-        wx.request({
-            url: app.api.districts,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                cityID: cid
-            },
-            success: res => {
-                if (res.data.list) {
-                    this.districts = res.data.list
-                    this.setData({
-                        districts: this.districts
-                    })
-                } else {
-                    this._showToptips('出错了，重试一下吧')
-                }
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
-        })
+        en._getDistrictData(en.cities[e.detail.value].CityID, function () {
+          that.setData({
+            districts: en.districts
+          })
+        });
     },
     chooseDistrict: function (e) {
         this.setData({
-            'formData.district': this.districts[e.detail.value].DistrictName
+            'formData.district': en.districts[e.detail.value].DistrictName
         })
     },
     uploadPic: function () {
@@ -292,7 +175,7 @@ Page({
                     filePath: filePath,
                     name: 'photoFile',
                     formData: {
-                        'token': app.globalData.token
+                        'token': app.user.authToken
                     },
                     success: function (res) {
                         var data = JSON.parse(res.data)
@@ -337,18 +220,28 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                token: app.globalData.token,
+                token: app.user.authToken,
                 enrollID: eid
             },
             success: res => {
+                //报名信息
+                this.data.enrollInfo = res.data.enrollInfo
+                wx.setNavigationBarTitle({
+                  title: res.data.enrollInfo.mode == 1 ? '个人报名表' : '团队报名表'
+                })
                 const isRenderBaseInfo = res.data.formData.name !== null
+                const isRenderGroupInfo = res.data.formData.group !== null
                 const isRenderPhotoInfo = res.data.formData.photoURL !== null
                 const isRenderSchoolInfo = res.data.formData.school !== null
                 const isRenderReferInfo = res.data.formData.referName !== null
                 const isRenderRegionInfo = res.data.formData.province !== null
                 if (isRenderBaseInfo) {
-                    this._getGenderData()
-                    this._getNationData()
+                    en._getGenderData()
+                    en._getNationData(function () {
+                      that.setData({
+                        nations: en.nations
+                      })
+                    })
                     Object.assign(this.validators, {
                         'name': {
                             required: true
@@ -413,7 +306,11 @@ Page({
                     })
                 }
                 if (isRenderRegionInfo) {
-                    this._getProvincesData();
+                    en._getProvincesData(this.aid, function () {
+                      that.setData({
+                        provinces: en.provinces
+                      })
+                    })
                     Object.assign(this.validators, {
                         'province': {
                             required: true
@@ -423,6 +320,9 @@ Page({
                         },
                         'district': {
                             required: true
+                        },
+                        'address': {
+                          required: true
                         }
                     })
                     Object.assign(this.validationMsgs, {
@@ -434,16 +334,21 @@ Page({
                         },
                         'district': {
                             required: '请选择所在区'
+                        },
+                        'address': {
+                          required: '请输入街道地址'
                         }
                     })
                 }
                 this.setData({
                     isRenderBaseInfo: isRenderBaseInfo,
+                    isRenderGroupInfo: isRenderGroupInfo,
                     isRenderPhotoInfo: isRenderPhotoInfo,
                     isRenderSchoolInfo: isRenderSchoolInfo,
                     isRenderReferInfo: isRenderReferInfo,
                     isRenderRegionInfo: isRenderRegionInfo,
-                    formData: res.data.formData
+                    formData: res.data.formData,
+                    enrollInfo : this.data.enrollInfo
                 })
                 this._initValidate()
                 this.hasQrcode = res.data.enrollInfo.EnrollCode
@@ -456,7 +361,6 @@ Page({
                 wx.hideLoading()
             }
         })
-        this._getAttachmentData(eid)
     },
     _initCanvas(value) {
         $wuxQrcode.init('qrcode', value, {
@@ -465,30 +369,22 @@ Page({
             fgColor: '#000000'
         })
     },
-    _getAttachmentData(eid) {
-        wx.request({
-            url: app.api.getAttachList,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                token: app.globalData.token,
-                enrollID: eid
-            },
-            success: res => {
-                this.setData({
-                    attachments: res.data.list
-                })
-            },
-            fail: error => {
-                this._showToptips('出错了，重试一下吧')
-            }
+    attachmentManage() {
+        //传入是否为只读模式
+        wx.navigateTo({
+          url: `attachment/attachment?eid=${this.eid}&prev=${this.data.isPreview}`
         })
     },
-    attachmentManage() {
+    groupList() {
+        wx.showModal({
+          title: '操作提示',
+          content: '团队清单请至电脑端操作',
+          showCancel: false
+        })
+    },
+    feedback() {
         wx.navigateTo({
-            url: `attachment/attachment?eid=${this.eid}&aid=${this.aid}`
+          url: `/pages/feedback/feedback?data_type=activity&data_id=${this.eid}`
         })
     },
     showQrcode() {

@@ -18,16 +18,7 @@ Page({
      */
     onLoad: function (options) {
       this.cid = options.cid
-      if (app.globalData.token) {
-          this._initData(0)
-      } else {
-          app.getToken()
-              .then(() => {
-                  this._initData(0)
-              }, function (err) {
-                  this.showErrorModal(err.toString())
-              })
-      }
+      this._initData(0)
     },
 
     prev: function (e) {
@@ -58,7 +49,7 @@ Page({
             title: '请求数据...',
         })
         wx.request({
-            url: app.baseUrl + 'info/GetInfoList',
+            url: app.api.getInfoList,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'

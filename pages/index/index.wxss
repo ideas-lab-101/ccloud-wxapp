@@ -129,14 +129,16 @@ page {
     height: 220px;
     margin-top: -50px;
     background-color: #d4d4d5;
-    filter: brightness(40%);
+    opacity: 0.4;
+    /* filter: brightness(40%); */
     transition: margin-top 0.5s ease-out, filter 0.5s ease-out;
     overflow: hidden;
 }
 
 .drawer.open {
     margin-top: 130px;
-    filter: brightness(100%);
+    opacity: 1;
+    /* filter: brightness(100%); */
 }
 
 .drawer_bg {

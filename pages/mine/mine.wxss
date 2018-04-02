@@ -7,7 +7,7 @@ page {
   display: flex;
   justify-content: space-between;
   padding: 30rpx 30rpx 10rpx;
-  margin-bottom: 5px;
+  border-bottom: 1rpx #f2f2f2 solid;
 }
 
 .uerinfo {
@@ -37,6 +37,10 @@ page {
   font-family: microsoft yahei;
 }
 
+.no-login{
+  padding: 100rpx 160rpx;
+}
+
 /*数据栏*/
 .userdata {
   display: flex;
@@ -59,20 +63,46 @@ page {
   font-family: microsoft yahei;
 }
 
+/*功能格子*/
+
+.func-grid {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 30rpx #f7f7f7 solid;
+}
+
+.func-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 9pt;
+  padding: 40rpx 0;
+}
+
+.func-item .clicked {
+    background-color: #8f8f8f;
+}
+
+.func-item .c-iconfont {
+  font-size: 35px;
+  margin-bottom: 20rpx;
+}
+
 .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    margin-top: 10px;
+    height: 48px;
+    margin-top: 1px;
     background-color: #fff;
     border-top: 1rpx #f0f0f0 solid;
 }
 
-.item-icon {
+.item .c-iconfont {
     flex: 0 0 18px;
-    width: 18px;
-    height: 18px;
+    font-size: 38rpx;
+    color: #555;
     margin-left: 30rpx;
 }
 
@@ -101,6 +131,7 @@ page {
     padding-right: 30rpx;
     margin: 0 30rpx;
     background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoElEQVQ4T6XTzQ2DMAwFYL+R2AAmKQwRX9urs0QZhREYhU6QKlIOIX+yBTcS3ifHOKDiEZEdwMHMe7nXeke+mMKvtLZpkBvgvV+J6JuhEzOfo0puQPywQC4iWkZIBViRJmBBuoAWGQIREZEPgHdqZNUTExBC+AGY86aqj9AKx6pUTeyFu0A+C6NwE7CEK6AcZQCLc+5Qj/Ljy5T+u+k6/wGZ+WkRJKl76gAAAABJRU5ErkJggg==') right center no-repeat;
+    background-size: 10px;
 }
 
 /* .placeholder {

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "互动留言",
+    "usingComponents": {
+        "howard-pager": "/utils/pagination/pagination"
+    },
+    "navigationBarBackgroundColor": "#3f51b5",
+    "backgroundColor": "#3f51b5",
+    "backgroundTextStyle": "light"
+}

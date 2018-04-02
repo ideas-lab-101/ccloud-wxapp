@@ -1,3 +1,4 @@
+@import '/assets/styles/cloud-icon.wxss';
 @import 'components/wux.wxss';
 
 view {

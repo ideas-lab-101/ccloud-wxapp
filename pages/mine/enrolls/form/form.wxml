@@ -6,8 +6,26 @@
 <scroll-view scroll-y style="height: 100%;">
     <form bindsubmit="formSubmit">
         <view class="form">
-            <view class="form_head">请填写报名表
-                <text>*</text>标注的为必填项</view>
+            <block wx:if="{{ isRenderGroupInfo }}">
+                <view class="form_block_head">团队信息</view>
+                <view class="section">
+                    <view class="section_title"><text>*</text>团队名称</view>
+                    <input name="group" type='text' value="{{ formData.group }}" disabled='{{ isPreview }}'/>
+                </view>
+                <view class="section_group">
+                    <view class="section">
+                        <view class="section_title">
+                            <text>*</text>联系人</view>
+                        <input name="contactName" type='text' value="{{ formData.contactName }}" disabled='{{ isPreview }}'/>
+                    </view>
+                    <view class="section">
+                        <view class="section_title">
+                            <text>*</text>联系电话</view>
+                        <input name="contactTel" type='number' value="{{ formData.contactTel }}" disabled='{{ isPreview }}'/>
+                    </view>
+                </view>
+            </block>
+            <!-- 个人基本信息     -->    
             <block wx:if="{{ isRenderBaseInfo }}">
                 <view class="form_block_head">基本信息</view>
                 <view class="section">
@@ -47,17 +65,17 @@
                         <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
                     </view>
                     <view class="picture_notice" bindtap='uploadPic'>
-                        <view class="logo"></view>
+                        <view class="logo c-iconfont icon-upload"></view>
                         <view class="notice">一寸免冠照片</view>
                     </view>
                 </view>
                 <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
             </block>
             <block wx:if="{{ isRenderRegionInfo }}">
-                <view class="form_block_head">地域信息</view>
+                <view class="form_block_head">位置信息</view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>所在地区</view>
+                        <text>*</text>信息地址</view>
                     <view class="with_unit">
                         <picker bindchange="chooseProvince" value="{{ formData.province }}" range="{{ provinces }}" range-key="ProvinceName" disabled='{{ isPreview }}'>
                             <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
@@ -77,6 +95,12 @@
                         <view class="section_unit">区</view>
                     </view>
                 </view>
+                <view class="section">
+                    <view class="with_unit">
+                        <input name="address" type='text' value="{{ formData.address }}" disabled='{{ isPreview }}'/>
+                        <view class="section_unit">街道</view>
+                    </view>    
+                </view>
                 <view class="section_bottom"></view>
             </block>
             <block wx:if="{{ isRenderSchoolInfo }}">
@@ -93,10 +117,10 @@
                 </view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>在读年级</view>
+                        <text>*</text>在读信息</view>
                     <view class="with_unit">
                         <input name="grade" type='text' value="{{ formData.grade }}" disabled='{{ isPreview }}' />
-                        <view class="section_unit">年级</view>
+                        <view class="section_unit">级</view>
                         <input name="classInfo" type='text' value="{{ formData.classInfo }}" disabled='{{ isPreview }}' />
                         <view class="section_unit">班</view>
                     </view>
@@ -121,14 +145,19 @@
             </block>
             <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
         </view>
-        <button class="enroll_and_pay" formType="submit" disabled='{{ isPreview }}'>确认修改</button>
+        <button class="enroll_and_pay" formType="submit" wx:if="{{ !isPreview }}">确认修改</button>
     </form>
     <view style="height:50px;"></view>
 </scroll-view>
 <view class="bottom_buttons">
-    <view class="button" hover-class='clicked' bindtap='showQrcode'>二维码</view>
-    <view class="button" hover-class='clicked' bindtap='attachmentManage'>活动附件</view>
-    <view class="button" hover-class='clicked' bindtap='feedback'>信息反馈</view>
+    <view class='button' hover-class='clicked' bindtap='showQrcode'>
+        <text class="c-iconfont icon-erweima"/>参赛码</view>
+    <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
+        <text class="c-iconfont icon-fujian"/>附件管理</view>
+    <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='groupList'>
+        <text class="c-iconfont icon-liebiaorongqi"/>团队清单</view>    
+    <view class="button" hover-class='clicked' bindtap='feedback'>
+        <text class="c-iconfont icon-op-edit"/>信息反馈</view>
 </view>
 <view style="height:0;overflow:hidden">
     <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>

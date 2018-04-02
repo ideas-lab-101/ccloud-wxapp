@@ -84,10 +84,10 @@ page {
     background-color: #8a8a8a;
 }
 
-.act_info>image {
+.act_info>.c-iconfont {
     flex: none;
-    height: 22px;
-    width: 22px;
+    font-size: 42rpx;
+    color: #2f2f2f;
     margin-left: 30rpx;
     margin-right: 30rpx;
 }
@@ -106,6 +106,7 @@ page {
 
 .act_info>.data.has_more {
     background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoElEQVQ4T6XTzQ2DMAwFYL+R2AAmKQwRX9urs0QZhREYhU6QKlIOIX+yBTcS3ifHOKDiEZEdwMHMe7nXeke+mMKvtLZpkBvgvV+J6JuhEzOfo0puQPywQC4iWkZIBViRJmBBuoAWGQIREZEPgHdqZNUTExBC+AGY86aqj9AKx6pUTeyFu0A+C6NwE7CEK6AcZQCLc+5Qj/Ljy5T+u+k6/wGZ+WkRJKl76gAAAABJRU5ErkJggg==') right center no-repeat;
+    background-size: 10px 10px;
 }
 
 .act_info_group .act_info:last-child .data {

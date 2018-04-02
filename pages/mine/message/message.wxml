@@ -1,0 +1,22 @@
+<import src="../../../components/actionsheet/actionsheet.wxml" />
+<import src="../../../components/notice/notice.wxml" />
+
+<template is="notice" data="{{ ...noticeContent }}" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<view class="header">消息列表
+    <view class="list_number">共{{ pager.totalMessage }}项</view>
+</view>
+<view class="message" wx:for="{{ messages }}">
+    <view class="message-main">
+        <view class="act-name">{{ item.SourceName }}</view>
+        <view class="act-attr">
+            <view class='c-iconfont icon-speechbubble'/> {{ item.Summary}}
+        </view>    
+        <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
+    </view>
+    <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+        <view class="c-iconfont icon-more"></view>
+    </view>
+</view>
+<view class="placeholder" wx:if="{{ messages.length === 0 }}">暂未收到消息~</view>
+<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>

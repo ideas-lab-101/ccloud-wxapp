@@ -23,7 +23,7 @@ Page({
             mask: true
         })
         wx.request({
-            url: app.baseUrl + 'info/GetInfoContent',
+            url: app.api.getInfoContent,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -34,9 +34,9 @@ Page({
             success: res => {
                 wx.hideLoading()
                 if (res.data.data) {
-                    // wx.setNavigationBarTitle({
-                    //     title: res.data.data.Title,
-                    // })
+                    wx.setNavigationBarTitle({
+                        title: res.data.data.Title,
+                    })
                     that.setData({
                         Title: res.data.data.Title,
                         Source: res.data.data.Source,

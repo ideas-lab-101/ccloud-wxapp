@@ -1,44 +1,51 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/catalog/catalog",
+        "pages/search/search",
         "pages/activity/activity",
-        "pages/checkin/checkin",
+        "pages/activity/fee/fee",
         "pages/activity/order/order",
-        "pages/activity/comments/comments",
-        "pages/checkin/comments/comments",
-        "pages/checkin/order/order",
         "pages/mine/mine",
         "pages/mine/enrolls/enrolls",
-        "pages/mine/checkins/checkins",
+        "pages/mine/message/message",
         "pages/mine/enrolls/form/form",
         "pages/mine/enrolls/form/attachment/attachment",
-        "pages/mine/checkins/form/form",
+
+        "pages/feedback/feedback",
+        "pages/comments/comments",
         "pages/infos/infos",
         "pages/infos/infobook/infobook",
-        "pages/result/result"
+        "pages/result/result",
+        "pages/interact/interact"
     ],
     "window": {
         "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#4e5e71",
-        "navigationBarTitleText": "重科云",
+        "navigationBarTitleText": "晓得La",
         "navigationBarTextStyle": "white"
     },
     "tabBar": {
-        "color": "#4e5e71",
+        "color": "#888888",
         "selectedColor": "#4e5e71",
         "backgroundColor": "#ffffff",
         "borderStyle": "black",
-        "list": [{
-                "pagePath": "pages/index/index",
-                "text": "发现",
-                "iconPath": "/assets/images/activity.png",
-                "selectedIconPath": "/assets/images/activity_fill.png"
-            },
+        "list": [
             {
+                "pagePath": "pages/index/index",
+                "text": "热门",
+                "iconPath": "/assets/images/list_blank.png",
+                "selectedIconPath": "/assets/images/list_fill.png"
+            },{
+              "pagePath": "pages/catalog/catalog",
+              "text": "分类",
+              "iconPath": "/assets/images/catalog_blank.png",
+              "selectedIconPath": "/assets/images/catalog_fill.png"
+            },{
                 "pagePath": "pages/mine/mine",
                 "text": "我的",
-                "iconPath": "/assets/images/user.png",
-                "selectedIconPath": "/assets/images/user_fill.png"
+                "iconPath": "/assets/images/account_blank.png",
+                "selectedIconPath": "/assets/images/account_fill.png"
             }
         ]
     }

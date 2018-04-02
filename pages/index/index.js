@@ -17,37 +17,39 @@ Page({
         // options 中的 scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
         var scene = decodeURIComponent(options.scene)
         if (scene !== 'undefined') {
-            wx.navigateTo({
-                url: `/pages/activity/activity?aid=${scene}`,
-            })
-            // if (scene.indexOf('a_') >= 0) {
-            //     wx.navigateTo({
-            //         url: `/pages/activity/activity?aid=${scene.slice(2)}`,
-            //     })
-            // } else if (scene.indexOf('c_') >= 0) {
-            //     wx.navigateTo({
-            //         url: `/pages/checkin/checkin?cid=${scene.slice(2)}`,
-            //     })
-            // } else {
-            //     wx.navigateTo({
-            //         url: `/pages/activity/activity?aid=${scene}`,
-            //     })
-            // }
+            // wx.navigateTo({
+            //     url: `/pages/activity/activity?aid=${scene}`,
+            // })
+            if (scene.indexOf('a_') >= 0) { //活动
+                wx.navigateTo({
+                    url: `/pages/activity/activity?aid=${scene.slice(2)}`,
+                })
+            } else if (scene.indexOf('c_') >= 0) { //签到
+
+            } else {
+                wx.navigateTo({
+                    url: `/pages/index/index`,
+                })
+            }
         }
         this._initData()
     },
 
     goToDetail: function (e) {
         const itemType = e.target.dataset.type || e.currentTarget.dataset.type
-        if (itemType === 'sign') {
+        switch (itemType){
+          case "activity" :
             wx.navigateTo({
-                url: `/pages/checkin/checkin?cid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
+              url: `/pages/activity/activity?aid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
             })
-        } else {
-            wx.navigateTo({
-                url: `/pages/activity/activity?aid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
-            })
-
+            break;
+          case "sign" :
+            // wx.navigateTo({
+            //   url: `/pages/checkin/checkin?cid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
+            // })
+            break;
+          default:
+            break;
         }
     },
 
@@ -68,8 +70,9 @@ Page({
             },
             data: {},
             success: res => {
-                const items = res.data.list.map(function (el, index) {
-                    return {
+                const datas = res.data.list.map(function (el, index) {
+                    var data = Object.assign({
+                    },{
                         id: el.ID,
                         'type': el.DataType,
                         imgUrl: app.resourseUrl + el.CoverURL,
@@ -77,12 +80,13 @@ Page({
                         location: el.Address,
                         time: el.StartTime,
                         desc: el.Desc,
-                        isShowDetail: index===0,
+                        isShowDetail: index === 0,
                         organisation: el.OrgName
-                    }
+                    })
+                    return data
                 })
                 this.setData({
-                    items: items
+                    items: datas
                 })
             },
             complete() {
@@ -93,11 +97,11 @@ Page({
     },
 
     showItemDetail(e) {
-        const items = this.data.items,
+        const datas = this.data.items,
             index = e.target.dataset.index||e.currentTarget.dataset.index
-        items[index].isShowDetail = !items[index].isShowDetail
+        datas[index].isShowDetail = !datas[index].isShowDetail
         this.setData({
-            items: items
+            items: datas
         })
     }
 })

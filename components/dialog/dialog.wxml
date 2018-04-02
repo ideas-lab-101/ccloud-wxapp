@@ -12,7 +12,7 @@
         </view>
         <view class="weui-dialog__ft {{ verticalButtons ? 'weui-dialog__btns_vertical' : '' }}" wx:if="{{ buttons.length && verticalButtons}}">
             <button class="weui-dialog__btn weui-dialog__btn_default {{ buttons[0].type }} {{ buttons[0].bold ? 'weui-dialog__btn_bold' : '' }}" data-index="0" bindtap="{{ buttonTapped }}" open-type='share'>{{ buttons[0].text }}</button>
-            <view class="weui-dialog__btn weui-dialog__btn_default {{ buttons[1].type }} {{ buttons[1].bold ? 'weui-dialog__btn_bold' : '' }}" data-index="1" bindtap="{{ buttonTapped }}">{{ buttons[1].text }}</view>
+            <button class="weui-dialog__btn weui-dialog__btn_default {{ buttons[1].type }} {{ buttons[1].bold ? 'weui-dialog__btn_bold' : '' }}" data-index="1" bindtap="{{ buttonTapped }}">{{ buttons[1].text }}</button>
             <view class="weui-dialog__btn weui-dialog__btn_default {{ buttons[2].type }} {{ buttons[2].bold ? 'weui-dialog__btn_bold' : '' }}" data-index="2" bindtap="{{ buttonTapped }}">{{ buttons[2].text }}</view>
         </view>
         <view class="weui-dialog__ft {{ verticalButtons ? 'weui-dialog__btns_vertical' : '' }}" wx:else>

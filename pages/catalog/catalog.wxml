@@ -1,0 +1,34 @@
+<view class="">
+  <!-- 搜索窗 -->  
+  <view class="search-view" wx:if="{{true}}" bindtap="go_search">
+    <text class="search-text">搜索活动</text>
+    <icon class="search-icon" type="search" size="15" />
+  </view>
+  <!-- 分类标签 -->
+  <view class="class-list" wx:for="{{data_list}}" wx:key="{{item}}">
+    <view class="class-title">
+      <text>{{item.TypeName}}</text>
+      <text class="c-iconfont icon-ellipsis"></text>
+    </view>
+    <view class="class-data-list">
+      <block wx:for="{{item.activity}}" wx:key="{{item}}">
+        <view class="class-data-list-item" data-id="{{item.id}}">
+          <view class="class-data-list-img-box">
+            <navigator url="/pages/activity/activity?aid={{item.ActivityID}}">
+              <image mode="aspectFill" class="class-data-list-img-box-img" src="{{resourceURL}}{{item.AttachURL}}"></image>
+
+              <text class="data-info" >{{item.StartTime}}</text>
+              <view class="view-count">
+                <text class="view-count-text">{{item.viewCount}}点击</text>
+              </view>
+            </navigator>
+          </view>
+          <view class="class-data-list-info-box">{{item.ActivityName}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="bottom-text" wx:if="{{data_list.length>0}}">到底了，快去参加活动吧！</view>
+
+</view>

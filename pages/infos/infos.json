@@ -1,9 +1,5 @@
 {
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "文档列表",
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"
     }

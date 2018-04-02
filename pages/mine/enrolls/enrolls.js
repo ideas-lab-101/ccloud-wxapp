@@ -18,16 +18,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if (app.globalData.token) {
+        app.user.isLogin(token => {
             this._initData(0)
-        } else {
-            app.getToken()
-                .then(() => {
-                    this._initData(0)
-                }, function (err) {
-                    this.showErrorModal(err.toString())
-                })
-        }
+        })  
     },
 
     prev: function (e) {
@@ -85,14 +78,14 @@ Page({
                         mask: true
                     })
                     wx.request({
-                        url: app.baseUrl + 'pay/wx_repay',
+                        url: app.api.rePay,
                         method: 'POST',
                         header: {
                             'content-type': 'application/x-www-form-urlencoded'
                         },
                         data: {
                             prepay_id: this.data.enrolls[index].prepayID,
-                            token: app.globalData.token
+                            token: app.user.authToken
                         },
                         success: res => {
                             if (res.data.data) {
@@ -145,13 +138,13 @@ Page({
             title: '请求数据...',
         })
         wx.request({
-            url: app.baseUrl + 'user/GetEnrollList',
+            url: app.api.enrollList,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                token: app.globalData.token,
+                token: app.user.authToken,
                 pageIndex: pageIndex,
                 pageSize: 10
             },

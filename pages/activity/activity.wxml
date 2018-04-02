@@ -22,19 +22,19 @@
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
     <view class="act_info_group">
         <view class="act_info">
-            <image src="../../assets/images/activity_fill.png"></image>
+            <text class='c-iconfont icon-widgets'/>
             <view class="data">{{info.ActivityName||'未知活动'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../assets/images/calender_fill.png"></image>
+            <text class='c-iconfont icon-calendar-clock'/>
             <view class="data">{{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../assets/images/tel_fill.png"></image>
-            <view class="data">{{info.Contact||'无联系方式'}}</view>
+            <text class='c-iconfont icon-phone-outgoing'/>
+            <view class="data has_more" hover-class='hover' bindtap='callTel' >{{info.Contact||'无联系方式'}}</view>
         </view>
         <view class="act_info">
-            <image src="../../assets/images/location_fill.png"></image>
+            <text class='c-iconfont icon-location'/>
             <view class="data has_more" hover-class='hover' bindtap='openLocation'>{{info.Address||'未知地点'}}</view>
         </view>
     </view>
@@ -71,11 +71,11 @@
 <view style='height:50px'></view>
 <view class="bottom_buttons">
     <view class="button" hover-class='clicked' bindtap='goToComment'>
-        <image src="/assets/images/cytl.png"></image>参与讨论</view>
+        <image src="/assets/images/cytl.png"></image>留言</view>
     <view class="button" hover-class='clicked' bindtap='goToInfoList'>
         <image src="/assets/images/zl.png"></image>资料</view>
-    <view class="button" hover-class='clicked' bindtap=''>
-        <image src="/assets/images/zl.png"></image>精彩图库</view>
+    <view class="button" hover-class='clicked' bindtap='share'>
+        <image src="/assets/images/fx.png"></image>分享</view>
     <view class="button" hover-class='clicked' bindtap='join'>
         <image src="/assets/images/bmcj.png"></image>报名参加</view>
 </view>
