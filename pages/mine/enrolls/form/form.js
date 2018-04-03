@@ -134,6 +134,7 @@ Page({
         var that = this
         this.setData({
             'formData.province': en.provinces[e.detail.value].ProvinceName,
+            'formData.provinceID': en.provinces[e.detail.value].ProvinceID,
             'formData.city': '',
             'formData.district': ''
         })
@@ -147,6 +148,7 @@ Page({
         var that = this
         this.setData({
             'formData.city': en.cities[e.detail.value].CityName,
+            'formData.cityID': en.cities[e.detail.value].CityID,
             'formData.district': ''
         })
         en._getDistrictData(en.cities[e.detail.value].CityID, function () {
@@ -157,7 +159,8 @@ Page({
     },
     chooseDistrict: function (e) {
         this.setData({
-            'formData.district': en.districts[e.detail.value].DistrictName
+            'formData.district': en.districts[e.detail.value].DistrictName,
+            'formData.districtID': en.districts[e.detail.value].DistrictID
         })
     },
     uploadPic: function () {
@@ -376,10 +379,8 @@ Page({
         })
     },
     groupList() {
-        wx.showModal({
-          title: '操作提示',
-          content: '团队清单请至电脑端操作',
-          showCancel: false
+        wx.navigateTo({
+          url: `grouplist/grouplist?aid=${this.aid}`
         })
     },
     feedback() {

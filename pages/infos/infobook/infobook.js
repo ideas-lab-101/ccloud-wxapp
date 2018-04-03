@@ -6,17 +6,18 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        is_add: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this._initData(options.gid)
+        this.gid = options.gid
+        this._initData()
     },
 
-    _initData: function (gid) {
+    _initData: function () {
         var that = this;
         wx.showLoading({
             title: '加载中...',
@@ -29,7 +30,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                infoID: gid
+                infoID: this.gid
             },
             success: res => {
                 wx.hideLoading()
@@ -56,5 +57,43 @@ Page({
                 wx.hideLoading()
             }
         })
+    },
+    go_home: function(){
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+    },
+    add_favor: function(){
+      wx.showNavigationBarLoading()
+      app.user.isLogin(token => {
+        wx.request({
+          url: app.api.userFavor,
+          method: 'post',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            token: token,
+            dataID: this.gid,
+            type: 'info'
+          }, success: res => {
+            if (res.data.result) {
+              this.setData({
+                is_add: true
+              })
+              wx.showToast({
+                title: res.data.msg
+              })
+            } else {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+              })
+            }
+          }, complete: res => {
+            wx.hideNavigationBarLoading()
+          }
+        })
+      })
     }
 })

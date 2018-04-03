@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "团队清单",
+    "usingComponents": {
+        "howard-pager": "/utils/pagination/pagination"
+    }
+}

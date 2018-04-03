@@ -23,3 +23,36 @@
     color: #576b95;
     margin-right: 10px;
 }
+
+.bottom_buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: rgba(ff, ff, ff, 0.7);
+}
+
+.bottom_buttons button::after{
+    border: none;
+}
+.bottom_buttons button{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    width: 80px;
+    color: #2b2b2b;
+    padding: 15rpx 0rpx;
+}
+
+.bottom_buttons button .c-iconfont{
+    margin-top: 5rpx;
+    font-size: 25px;
+}
+
+.bottom_buttons button .clicked{
+   background-color: #000;
+}

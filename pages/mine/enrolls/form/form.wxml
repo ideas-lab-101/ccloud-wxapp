@@ -72,16 +72,16 @@
                 <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
             </block>
             <block wx:if="{{ isRenderRegionInfo }}">
-                <view class="form_block_head">位置信息</view>
+                <view class="form_block_head">地址信息</view>
                 <view class="section">
                     <view class="section_title">
-                        <text>*</text>信息地址</view>
+                        <text>*</text>详细地址</view>
                     <view class="with_unit">
-                        <picker bindchange="chooseProvince" value="{{ formData.province }}" range="{{ provinces }}" range-key="ProvinceName" disabled='{{ isPreview }}'>
+                        <picker name="provinceID" bindchange="chooseProvince" value="{{ formData.provinceID }}" range="{{ provinces }}" range-key="ProvinceName" disabled='{{ isPreview }}'>
                             <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">省</view>
-                        <picker bindchange="chooseCity" value="{{ formData.city }}" range="{{ cities }}" range-key="CityName" disabled='{{ isPreview }}'>
+                        <picker name="cityID" bindchange="chooseCity" value="{{ formData.cityID }}" range="{{ cities }}" range-key="CityName" disabled='{{ isPreview }}'>
                             <input name="city" class="dropdown" disabled='true' type='text' value="{{ formData.city }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">市</view>
@@ -89,7 +89,7 @@
                 </view>
                 <view class="section">
                     <view class="with_unit">
-                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}" range-key='DistrictName' disabled='{{ isPreview }}'>
+                        <picker name="districtID" bindchange="chooseDistrict" value="{{ formData.districtID }}" range="{{ districts }}" range-key='DistrictName' disabled='{{ isPreview }}'>
                             <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">区</view>
@@ -159,6 +159,6 @@
     <view class="button" hover-class='clicked' bindtap='feedback'>
         <text class="c-iconfont icon-op-edit"/>信息反馈</view>
 </view>
-<view style="height:0;overflow:hidden">
-    <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>
+<view style="height:0; overflow:hidden; padding:10px;">
+    <canvas class="qrcode" canvas-id="qrcode"></canvas>
 </view>

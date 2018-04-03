@@ -2,7 +2,6 @@ const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
 // const HOST = "http://web.tunnel.cdqidi.cn/";
-// const HOST = "http://127.0.0.1/";
 
 App({
     onLaunch: function () {
@@ -58,6 +57,8 @@ App({
       accountInfo: HOST + "wxss/user/GetAccountInfo",
       uploadPhoto: HOST + 'wxss/user/UploadPhoto',
       enrollList: HOST + 'wxss/user/GetEnrollList',
+      userFavor: HOST + 'wxss/user/userFavor',
+
       //基础数据
       provinces: HOST + 'wxss/activity/GetActivityScope',
       cities: HOST + 'wxss/system/GetCityList',
@@ -76,6 +77,7 @@ App({
       enrollInfo: HOST + 'wxss/activity/GetEnrollInfo',
       getAttachList: HOST + 'wxss/activity/GetEnrollAttach',
       setEnrollAttachment: HOST + 'wxss/activity/SetEnrollAttach',
+      getGroupEnrollList: HOST + 'wxss/activity/GetGroupEnrollList',
       //支付相关
       wxPay: HOST + 'wxss/pay/wxPay',
       rePay: HOST + 'wxss/pay/wx_repay',

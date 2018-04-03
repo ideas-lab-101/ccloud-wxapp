@@ -1,6 +1,15 @@
 <import src="../../../assets/plugins/wxParse/wxParse.wxml" />
+
 <view class="title">{{ Title }}</view>
 <view class="source"><text>{{ Source }}</text> {{ AddTime }}</view>
 <view class="html_content">
     <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+</view>
+<view class="bottom_buttons">
+    <button  hover-class='clicked' bindtap='go_home'>
+        <text class="c-iconfont icon-home"/></button>
+    <button  hover-class='clicked' bindtap='add_favor'>
+        <text class="c-iconfont icon-favorite"/></button>
+    <button  hover-class='clicked' open-type='share'>
+        <text class="c-iconfont icon-share1"/></button>
 </view>

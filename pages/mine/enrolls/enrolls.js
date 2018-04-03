@@ -51,7 +51,7 @@ Page({
         };
         if (that.data.enrolls[enrollIndex].intState === 0 || that.data.enrolls[enrollIndex].intState === 1 || that.data.enrolls[enrollIndex].intState === 2) {
             actionConfig.buttons.push({
-                text: '修改报名表',
+                text: '完善报名信息',
                 method: function (index) {
                     wx.navigateTo({
                         url: `form/form?aid=${this.data.enrolls[index].ActivityID}&eid=${this.data.enrolls[index].EnrollID}&prev=false`,
@@ -60,7 +60,7 @@ Page({
             });
         } else if (that.data.enrolls[enrollIndex].intState === 99) {
             actionConfig.buttons.push({
-                text: '查看报名表',
+                text: '查看报名信息',
                 method: function (index) {
                     wx.navigateTo({
                         url: `form/form?aid=${this.data.enrolls[index].ActivityID}&eid=${this.data.enrolls[index].EnrollID}&prev=true`,

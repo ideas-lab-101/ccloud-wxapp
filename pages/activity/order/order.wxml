@@ -94,16 +94,16 @@
             </block>
             <!-- 地域  -->
             <block wx:if="{{ isRenderRegionInfo }}">
-                <view class="form_block_head">位置信息</view>
+                <view class="form_block_head">地址信息</view>
                 <view class="section">
                     <view class="section_title">
                         <text>*</text>详细地址</view>
                     <view class="with_unit">
-                        <picker bindchange="chooseProvince" value="{{ formData.province }}" range="{{ provinces }}" range-key="ProvinceName"> 
+                        <picker name="provinceID" bindchange="chooseProvince" value="{{ formData.provinceID }}" range="{{ provinces }}" range-key="ProvinceName"> 
                             <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">省</view>
-                        <picker bindchange="chooseCity" value="{{ formData.city }}" range="{{ cities }}" range-key="CityName">
+                        <picker name="cityID" bindchange="chooseCity" value="{{ formData.cityID }}" range="{{ cities }}" range-key="CityName">
                             <input name="city" class="dropdown" disabled='true' type='text' value="{{ formData.city }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">市</view>
@@ -111,7 +111,7 @@
                 </view>
                 <view class="section">
                     <view class="with_unit">
-                        <picker bindchange="chooseDistrict" value="{{ formData.district }}" range="{{ districts }}" range-key='DistrictName'>
+                        <picker name="districtID" bindchange="chooseDistrict" value="{{ formData.districtID }}" range="{{ districts }}" range-key='DistrictName'>
                             <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
                         </picker>
                         <view class="section_unit">区</view>

@@ -11,6 +11,7 @@
         "pages/mine/message/message",
         "pages/mine/enrolls/form/form",
         "pages/mine/enrolls/form/attachment/attachment",
+        "pages/mine/enrolls/form/grouplist/grouplist",
 
         "pages/feedback/feedback",
         "pages/comments/comments",

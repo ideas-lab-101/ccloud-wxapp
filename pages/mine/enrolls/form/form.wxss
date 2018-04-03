@@ -288,3 +288,8 @@ page {
 .bottom_buttons .button .clicked{
    background-color: #000;
 }
+
+.qrcode{
+  height: 200px;
+  width: 200px;
+}

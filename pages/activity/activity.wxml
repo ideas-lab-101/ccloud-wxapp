@@ -41,7 +41,7 @@
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/cases.png" class="head_icon"></image>
-            <view class="head_desc">报名项目</view>
+            <view class="head_desc">项目介绍</view>
         </view>
         <view class="case_list">
             <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">

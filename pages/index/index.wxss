@@ -122,6 +122,8 @@ page {
     padding-left: 10px;
     font-size: 12px;
     color: #6e6b60;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .drawer {

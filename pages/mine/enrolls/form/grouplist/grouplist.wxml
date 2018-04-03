@@ -1,0 +1,22 @@
+<import src="../../../../../components/actionsheet/actionsheet.wxml" />
+<import src="../../../../../components/notice/notice.wxml" />
+
+<template is="notice" data="{{ ...noticeContent }}" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<view class="header">成员列表
+    <view class="list_number">共{{ pager.totalMember }}项</view>
+</view>
+<view class="member" wx:for="{{ members }}">
+    <view class="member-main">
+        <view class="act-name">{{ item.name }}</view>
+        <view class="act-attr">
+            <view class='c-iconfont icon-menu'/> 
+            <text >报名项目：{{ item.FeeName}}</text>
+        </view>
+    </view>
+    <view class="more_infos">
+        <text>{{ item.AddTime}}</text>
+    </view>
+</view>
+<view class="placeholder" wx:if="{{ members.length === 0 }}">没有成员数据~</view>
+<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalMember }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>

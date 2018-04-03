@@ -9,13 +9,11 @@ Page({
     resourceURL: ''
   },
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中',
-    })
     //加载首页
     this.get_data()
   },
   get_data() {
+    wx.showNavigationBarLoading()
     this.setData({
       is_load: true
     })
@@ -31,9 +29,9 @@ Page({
           resourceURL: app.resourseUrl
         })
 
-        wx.stopPullDownRefresh()
       }, complete: () => {
-        wx.hideLoading()
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
