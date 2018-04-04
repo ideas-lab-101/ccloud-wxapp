@@ -4,7 +4,7 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
-    <form bindsubmit="formSubmit">
+    <form bindsubmit="formSubmit" report-submit="ture">
         <view class="form">
             <block wx:if="{{ isRenderGroupInfo }}">
                 <view class="form_block_head">团队信息</view>

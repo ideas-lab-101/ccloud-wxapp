@@ -67,9 +67,9 @@ Page({
             key: 'userInfo',
             data: params,
         })
-        this._enroll(this.feeId ? this.feeId:0, params)
+        this._enroll(e.detail.formId, this.feeId ? this.feeId:0, params)
     },
-    _enroll(fid, formData) {
+    _enroll(formId, fid, formData) {
         var that = this;
         wx.showLoading({
             title: '加载中...',
@@ -84,6 +84,7 @@ Page({
             data: {
                 activityID: this.aid,
                 mode: this.mode,
+                formID: formId,
                 feeID: fid,
                 token: app.user.authToken,
                 formData: JSON.stringify(formData)

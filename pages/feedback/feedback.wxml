@@ -5,7 +5,7 @@
     <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
   </label>
   </radio-group>
-  <form bindsubmit="bindFormSubmit">
+  <form bindsubmit="bindFormSubmit" report-submit="ture">
     <view class="content text-14 aui-bg-white aui-border-b">
       <textarea maxlength="-1" auto-height="{{true}}" name="textarea" bindinput="reply_input" style="width:auto; padding:20rpx; min-height:400rpx;" placeholder="请简要说明你的反馈信息" auto-focus />
     </view>

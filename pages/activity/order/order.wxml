@@ -10,7 +10,7 @@
         </view>
         <view class="act_name">{{info.ActivityName}}</view>
     </view> 
-    <form bindsubmit="formSubmit">
+    <form bindsubmit="formSubmit" report-submit="ture">
         <view class="form">
             <block wx:if="{{ mode == 1 }}">
                 <picker bindchange="chooseFee" value="{{ feeName }}" range="{{ fees }}" range-key="text">

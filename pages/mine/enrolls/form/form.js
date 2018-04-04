@@ -56,9 +56,9 @@ Page({
             key: 'userInfo',
             data: params,
         })
-        that._updateEnroll(params)
+        that._updateEnroll(e.detail.formId, params)
     },
-    _updateEnroll(formData) {
+    _updateEnroll(formId, formData) {
         var that = this;
         wx.showLoading({
             title: '加载中...',
@@ -72,6 +72,7 @@ Page({
             },
             data: {
                 enrollID: this.eid,
+                formID: formId,
                 token: app.user.authToken,
                 formData: JSON.stringify(formData)
             },

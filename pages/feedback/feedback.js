@@ -45,6 +45,7 @@ Page({
         },
         data: {
           token: token,
+          formID: e.detail.formId,
           data_id: this.data.data_id,
           data_type: this.data.data_type,
           content: content,

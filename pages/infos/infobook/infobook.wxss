@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     display: flex;
-    background-color: rgba(ff, ff, ff, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .bottom_buttons button::after{
@@ -44,15 +44,16 @@
     align-items: center;
     height: 50px;
     width: 80px;
-    color: #2b2b2b;
-    padding: 15rpx 0rpx;
+    border-radius: 0px;
+    background-color: transparent;
 }
 
 .bottom_buttons button .c-iconfont{
+    color: #fff;
     margin-top: 5rpx;
-    font-size: 25px;
+    font-size: 36rpx;
 }
 
 .bottom_buttons button .clicked{
-   background-color: #000;
+   background-color: #f2f2f2;
 }
