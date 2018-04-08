@@ -1,5 +1,5 @@
 const WxParse = require('../../assets/plugins/wxParse/wxParse.js')
-import { $wuxDialog, $wuxButton } from '../../components/wux'
+import { $wuxDialog, $wuxButton, $wuxActionSheet } from '../../components/wux'
 
 const app = getApp()
 Page({
@@ -78,6 +78,25 @@ Page({
                         })
                     },
                 })
+                // const that = this
+                // $wuxActionSheet.show({
+                //   titleText: '报名类型',
+                //   theme: 'wx',
+                //   buttons: [{
+                //       text: '个人报名',
+                //     },
+                //     {
+                //       text: '团体报名',
+                //     }],
+                //   buttonClicked(index, item) {
+                //       wx.navigateTo({
+                //         url: `/pages/activity/order/order?aid=${that.aid}&mode=${index + 1}`,
+                //       })
+                //       return true
+                //   },
+                //   cancelText: '取消',
+                //   cancel() { }
+                // })
             } else {
                 wx.navigateTo({
                     url: `/pages/activity/order/order?aid=${this.aid}&mode=${this.data.info.mode}`,

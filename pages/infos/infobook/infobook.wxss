@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .bottom_buttons button::after{

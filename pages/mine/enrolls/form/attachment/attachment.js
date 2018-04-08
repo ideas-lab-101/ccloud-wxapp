@@ -233,7 +233,7 @@ Page({
                 attachInfo: JSON.stringify(attachInfo)
             },
             success: res => {
-                console.log(res.data)
+                //console.log(res.data)
                 if (res.data.result) {
                     $wuxToptips.success({
                         hidden: !0,
@@ -355,7 +355,15 @@ Page({
         if (!this.data.isPreview) {
             actionConfig.destructiveText = '删除附件';
             actionConfig.destructiveButtonClicked = function () {
-                that._setAttachment(that.data.attachments[index], 0);
+              wx.showModal({
+                title: '删除附件',
+                content: '确定删除该附件吗？',
+                success: res => {
+                  if (res.confirm) {
+                      that._setAttachment(that.data.attachments[index], 0);
+                  }
+                }
+              })
             };
         }
         $wuxActionSheet.show(actionConfig);

@@ -2,8 +2,10 @@
 <import src="../../components/dialog/dialog.wxml" />
 <import src="../../components/button/button.wxml" />
 <import src="../../components/notice/notice.wxml" />
+<import src="../../components/actionsheet/actionsheet.wxml" />
 
 <template is="notice" data="{{ ...noticeContent }}" />
+<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="button" data="{{ ...$wux.button.br }}" />
 <template is="dialog" data="{{ ...$wux.dialog }}" />
 

@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -60,12 +60,6 @@
 					"name": "报名列表",
 					"pathName": "pages/mine/enrolls/enrolls",
 					"query": ""
-				},
-				{
-					"id": 5,
-					"name": "结果页",
-					"pathName": "pages/result/result",
-					"query": "type=cancel"
 				},
 				{
 					"id": 6,
@@ -120,6 +114,12 @@
 					"name": "查看报名附件",
 					"pathName": "pages/mine/enrolls/form/attachment/attachment",
 					"query": "eid=1440&prev=false"
+				},
+				{
+					"id": -1,
+					"name": "分类",
+					"pathName": "pages/catalog/catalog",
+					"query": ""
 				}
 			]
 		}
