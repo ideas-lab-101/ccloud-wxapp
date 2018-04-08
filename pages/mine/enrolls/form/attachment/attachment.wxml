@@ -20,7 +20,7 @@
                 </view>
                 <view class="attachment_size">{{ item.fileSize }}</view>
                 <view class="attachment_opts" hover-class='clicked' bindtap='moreOpts' data-index="{{ index }}">
-                    <view class="c-iconfont icon-more"></view>
+                    <view class="c-iconfont icon-more" bindtap='moreOpts' data-index="{{ index }}"></view>
                 </view>
             </view>
             <view bindtap="addAttachment" class="add_attachment" hover-class='clicked'>
