@@ -73,6 +73,7 @@ page {
 
 .func-item {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -81,7 +82,7 @@ page {
 }
 
 .func-item.clicked {
-    background-color: #8f8f8f;
+    background-color: #f2f2f2;
 }
 
 .func-item .c-iconfont {
