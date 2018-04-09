@@ -54,6 +54,6 @@
     font-size: 36rpx;
 }
 
-.bottom_buttons button .clicked{
+.bottom_buttons button.clicked{
    background-color: #f2f2f2;
 }

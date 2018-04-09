@@ -285,7 +285,7 @@ page {
     font-size: 18px;
 }
 
-.bottom_buttons .button .clicked{
+.bottom_buttons .button.clicked{
    background-color: #000;
 }
 

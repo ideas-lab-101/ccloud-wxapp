@@ -80,7 +80,7 @@ page {
   padding: 40rpx 0;
 }
 
-.func-item .clicked {
+.func-item.clicked {
     background-color: #8f8f8f;
 }
 
