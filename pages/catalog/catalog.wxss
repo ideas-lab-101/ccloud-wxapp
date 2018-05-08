@@ -1,6 +1,6 @@
 /**index.wxss**/
 page {
-    background-color: #f7f7f7;
+    background-color: #efefef;
 }
 
 .search-view{
@@ -65,7 +65,7 @@ page {
   border-radius: 8rpx;
 }
 
-.data-info {
+.date-info {
   position: absolute;
   left: 5rpx;
   bottom: 5rpx;

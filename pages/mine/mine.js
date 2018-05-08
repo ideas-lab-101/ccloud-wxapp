@@ -8,6 +8,7 @@ Page({
         is_login: false,
         token: app.user.ckLogin(),
         userInfo: [],
+        msgCount: 0,
     },
     goToEnrolls: function () {
         wx.navigateTo({
@@ -54,6 +55,7 @@ Page({
         this.setData({
           is_login: app.user.ckLogin()
         })
+        this.get_systemNotice()
     },
     login() {
       app.user.isLogin(token => {
@@ -70,6 +72,24 @@ Page({
       if (res.detail.errMsg == "getUserInfo:ok") {
         this.login()
       }
+    },
+    get_systemNotice() {
+      wx.request({
+        url: app.api.getSystemNotice,
+        method: 'get',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          token: app.user.authToken
+        }, success: res => {
+          this.setData({
+            msgCount: res.data.msgCount
+          })
+        }, complete: res => {
+
+        }
+      })
     },
     goto_interact() {
       getApp().user.isLogin(token => {

@@ -12,12 +12,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        formData: {
-            sex: '',
-            nation: '',
-            photoURL: '',
-            district: ''
-        },
+        formData: {},
         enrollInfo: {},
         isRenderBaseInfo: false,
         isRenderPhotoInfo: false,

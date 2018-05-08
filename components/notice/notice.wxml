@@ -4,7 +4,7 @@
       <view class="head">
         {{title}}
       </view>
-      <scroll-view scroll-y class="notice" style="height:{{deviceHeight-200}}px">
+      <scroll-view scroll-y class="notice" style="height:{{deviceHeight*0.65}}px">
         <text>{{content}}</text>
       </scroll-view>
       <view class="foot">

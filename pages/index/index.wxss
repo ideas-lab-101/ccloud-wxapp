@@ -1,5 +1,5 @@
 page {
-    background-color: #4e5e71;
+    background-color: #efefef;
 }
 
 .container_fliud {
@@ -25,20 +25,20 @@ page {
 }
 
 .info.activity {
-    border-left: 5px solid #3f51b5;
+    border-left: 5px solid #FF8200;
 }
 
-.info.sign {
-    border-left: 5px solid #4caf50;
+.info.activity.open .info_left {
+    background-color: #FF8200;
 }
 
-.info.open.activity .info_left {
-    background-color: #3f51b5;
+/* .info.sign {
+    border-left: 5px solid #1596f2;
 }
 
 .info.open.sign .info_left {
-    background-color: #4caf50;
-}
+    background-color: #1596f2;
+} */
 
 .info.open .info_left .type, .info.open .info_left .title,
 .info.open .info_left .time {
@@ -164,7 +164,7 @@ page {
     font-size: 14px;
     letter-spacing: 5px;
     text-align: center;
-    color: #333;
+    color: #fff;
     border-radius: 5px;
-    background-color: #ffeb3b;
+    background-color: #1596f2;
 }

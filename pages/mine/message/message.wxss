@@ -1,6 +1,6 @@
 page {
-    background-color: #efefef;
     padding-top: 30px;
+    background-color: #efefef;
 }
 
 .header {
@@ -15,12 +15,14 @@ page {
     padding: 0 30rpx;
     font-size: 12px;
     color: #fff;
-    background-color: #4e5e71;
+    background-color: #1596f2;
     z-index: 1000;
 }
 
 .list_number {
-    flex: 0 0 50px;
+    flex-shrink: 0;
+    flex-grow: 1;
+    text-align: right;
     justify-content: space-around;
     align-items: center;
     height: 30px;
@@ -31,7 +33,7 @@ page {
 .message {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     background-color: #fff;
 }
 
@@ -73,8 +75,13 @@ page {
     color: #888;
 }
 
-.act-attr .c-iconfont {
-    margin-right: 5px;
+.act-attr .bubble {
+  display: inline-block;
+  background:#E64340;
+  border-radius:50%;
+  width:12rpx;
+  height:12rpx;
+  margin-right:8rpx;
 }
 
 .placeholder {

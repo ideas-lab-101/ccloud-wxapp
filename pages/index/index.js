@@ -71,19 +71,17 @@ Page({
             data: {},
             success: res => {
                 const datas = res.data.list.map(function (el, index) {
-                    var data = Object.assign({
-                    },{
-                        id: el.ID,
-                        'type': el.DataType,
-                        imgUrl: app.resourseUrl + el.CoverURL,
-                        name: el.Name,
-                        location: el.Address,
-                        time: el.StartTime,
-                        desc: el.Desc,
-                        isShowDetail: index === 0,
-                        organisation: el.OrgName
-                    })
-                    return data
+                  return {
+                    id: el.ID,
+                    'type': el.DataType,
+                    imgUrl: app.resourseUrl + el.CoverURL,
+                    name: el.Name,
+                    location: el.Address,
+                    time: el.StartTime,
+                    desc: el.Desc,
+                    isShowDetail: index === 0,
+                    organisation: el.OrgName
+                  }
                 })
                 this.setData({
                     items: datas

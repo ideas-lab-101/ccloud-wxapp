@@ -266,3 +266,29 @@ view {
 .wxParse-figure {
     overflow: hidden;
 }
+
+.no_more{
+  line-height: 90rpx;
+  text-align: center;
+  background: #f7f7f7;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.no_data {
+  font-size: 24rpx;
+  text-align: center;
+  padding: 300rpx 0;
+  color: #666;
+  background: #f7f7f7;
+}
+
+.no_data_icon {
+  width: 155px;
+  height: 50px;
+  margin-bottom: 30rpx;
+}
+
+.no_data_text {
+  background: #f7f7f7;
+}

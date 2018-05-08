@@ -15,7 +15,6 @@ Page({
         opened: !1,
         noticeContent: {
             isNoticeShow: false,
-            title: '项目介绍',
             deviceHeight: app.globalData.deviceHeight
         }
     },
@@ -38,9 +37,9 @@ Page({
             position: 'bottomRight',
             buttons: [
                 {
-                    label: '个人中心',
-                    icon: "/assets/images/grzx.png",
-                    method: 'goToUsercenter'
+                    label: '留言',
+                    icon: "/assets/images/cytl.png",
+                    method: 'goToComment'
 
                 },
                 {
@@ -70,33 +69,24 @@ Page({
     join: function () {
         if (this.activityInfo.intState == 1) {
             if (this.data.info.mode == 3) {
-                wx.showActionSheet({
-                    itemList: ['个人报名', '团体报名'],
-                    success: res=> {
-                        wx.navigateTo({
-                            url: `/pages/activity/order/order?aid=${this.aid}&mode=${res.tapIndex+1}`,
-                        })
+                const that = this
+                $wuxActionSheet.show({
+                  titleText: '选择报名类型',
+                  buttons: [{
+                      text: '个人报名',
                     },
+                    {
+                      text: '团体报名',
+                    }],
+                  buttonClicked(index, item) {
+                      wx.navigateTo({
+                        url: `/pages/activity/order/order?aid=${that.aid}&mode=${index + 1}`,
+                      })
+                      return true
+                  },
+                  cancelText: '取消',
+                  cancel() { }
                 })
-                // const that = this
-                // $wuxActionSheet.show({
-                //   titleText: '报名类型',
-                //   theme: 'wx',
-                //   buttons: [{
-                //       text: '个人报名',
-                //     },
-                //     {
-                //       text: '团体报名',
-                //     }],
-                //   buttonClicked(index, item) {
-                //       wx.navigateTo({
-                //         url: `/pages/activity/order/order?aid=${that.aid}&mode=${index + 1}`,
-                //       })
-                //       return true
-                //   },
-                //   cancelText: '取消',
-                //   cancel() { }
-                // })
             } else {
                 wx.navigateTo({
                     url: `/pages/activity/order/order?aid=${this.aid}&mode=${this.data.info.mode}`,
@@ -208,19 +198,30 @@ Page({
         })
     },
     openLocation: function () {
-        wx.openLocation({
+      if (this.activityInfo.Coordinate){
+          wx.openLocation({
             latitude: parseFloat(this.coordinate.Latitude),
             longitude: parseFloat(this.coordinate.Longitude),
             name: this.activityInfo.Address,
             scale: 18
-        })
+          })
+      }
     },
     callTel: function () {
-        if(this.data.info.ContactTel){
-            wx.makePhoneCall({
-              phoneNumber: this.data.info.ContactTel
-            })
-        }
+      if (this.activityInfo.ContactTel){
+        wx.makePhoneCall({
+          phoneNumber: this.activityInfo.ContactTel
+        })
+      }
+    },
+    showSchedule: function () {
+      if (this.activityInfo.Schedule) {
+        this.setData({
+          'noticeContent.title': '活动安排',
+          'noticeContent.content': this.activityInfo.Schedule,
+          'noticeContent.isNoticeShow': true
+        })
+      }
     },
     viewImage: function (e) {
         wx.previewImage({
@@ -236,14 +237,14 @@ Page({
                 verticalButtons: !0,
                 buttons: [
                     {
-                        text: '转发给好友或微信群',
+                        text: '转发好友或群',
                         bold: !0,
                         onTap(e) {
 
                         }
                     },
                     {
-                        text: '生成分享码到朋友圈',
+                        text: '生成活动封面',
                         bold: !0,
                         onTap(e) {
                             wx.request({
@@ -290,6 +291,7 @@ Page({
     showFeeDesc(e) {
         const index = e.target.dataset.index || e.currentTarget.dataset.index
         this.setData({
+            'noticeContent.title': '项目介绍',
             'noticeContent.content': this.data.cases[index].FeeDesc,
             'noticeContent.isNoticeShow': true
         })

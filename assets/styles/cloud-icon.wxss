@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'c-iconfont';  /* project id 593200 */
-  src: url('//at.alicdn.com/t/font_593200_f1uq1fl3i66tuik9.eot');
-  src: url('//at.alicdn.com/t/font_593200_f1uq1fl3i66tuik9.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_593200_f1uq1fl3i66tuik9.woff') format('woff'),
-  url('//at.alicdn.com/t/font_593200_f1uq1fl3i66tuik9.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_593200_f1uq1fl3i66tuik9.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_593200_bqud0wld1jbxogvi.eot');
+  src: url('//at.alicdn.com/t/font_593200_bqud0wld1jbxogvi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_593200_bqud0wld1jbxogvi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_593200_bqud0wld1jbxogvi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_593200_bqud0wld1jbxogvi.svg#iconfont') format('svg');
 }
 
 .c-iconfont {
@@ -279,6 +279,12 @@
 
 .icon-skipprevious:before { content: "\ea9f"; }
 
+.icon-accountbox:before { content: "\e609"; }
+
+.icon-accountcircle:before { content: "\e60b"; }
+
+.icon-close:before { content: "\e64a"; }
+
 .icon-drivedocument:before { content: "\e674"; }
 
 .icon-favoriteoutline:before { content: "\e696"; }
@@ -291,9 +297,13 @@
 
 .icon-home:before { content: "\e6c8"; }
 
+.icon-panorama:before { content: "\e70f"; }
+
 .icon-person:before { content: "\e718"; }
 
 .icon-sharealt:before { content: "\e75b"; }
+
+.icon-videoyoutube:before { content: "\e7a1"; }
 
 .icon-arrow-right:before { content: "\e606"; }
 
@@ -304,6 +314,8 @@
 .icon-arrow-up:before { content: "\e60a"; }
 
 .icon-coupon:before { content: "\e74b"; }
+
+.icon-activity:before { content: "\e7a0"; }
 
 .icon-chat:before { content: "\e65f"; }
 
@@ -327,6 +339,8 @@
 
 .icon-calendar-clock:before { content: "\e67e"; }
 
+.icon-camcorder-box:before { content: "\e7f0"; }
+
 .icon-chart-bubble:before { content: "\e69d"; }
 
 .icon-checkerboard:before { content: "\e6c4"; }
@@ -346,6 +360,8 @@
 .icon-rss:before { content: "\e883"; }
 
 .icon-share1:before { content: "\e89b"; }
+
+.icon-star1:before { content: "\e8c0"; }
 
 .icon-view-list:before { content: "\e91c"; }
 

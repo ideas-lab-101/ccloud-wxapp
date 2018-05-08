@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/list/list",
         "pages/catalog/catalog",
         "pages/search/search",
         "pages/activity/activity",
@@ -22,13 +23,14 @@
     ],
     "window": {
         "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#4e5e71",
+        "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "晓得La",
-        "navigationBarTextStyle": "white"
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#efefef"
     },
     "tabBar": {
         "color": "#888888",
-        "selectedColor": "#4e5e71",
+        "selectedColor": "#FF8200",
         "backgroundColor": "#ffffff",
         "borderStyle": "black",
         "list": [

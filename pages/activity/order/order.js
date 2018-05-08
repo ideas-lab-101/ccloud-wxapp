@@ -15,12 +15,7 @@ Page({
         mode: 0,
         info: {},
         isEnrolled: false,
-        formData: {
-            sex: '',
-            nation: '',
-            photoURL: '',
-            district: ''
-        },
+        formData: {},
         isRenderBaseInfo: false,
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,

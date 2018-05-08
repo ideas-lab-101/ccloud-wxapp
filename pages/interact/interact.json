@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "light",
+  "backgroundTextStyle": "dark",
   "backgroundColor": "#f7f7f7",
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTitleText": "活动上墙",

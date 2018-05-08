@@ -151,7 +151,7 @@
 </scroll-view>
 <view class="bottom_buttons">
     <view class='button' hover-class='clicked' bindtap='showQrcode'>
-        <text class="c-iconfont icon-erweima"/>参赛码</view>
+        <text class="c-iconfont icon-erweima"/>报名号</view>
     <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
         <text class="c-iconfont icon-fujian"/>附件管理</view>
     <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='groupList'>

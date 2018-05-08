@@ -40,10 +40,7 @@ Page({
         buttons: [{
           text: '查看消息详情',
           method: function (index) {
-            this.setData({
-              'noticeContent.content': this.data.messages[messageIndex].Content,
-              'noticeContent.isNoticeShow': true
-            })
+            that.readMessage(messageIndex)
           }
         }],
         buttonClicked(index, item) {
@@ -61,6 +58,47 @@ Page({
       this.setData({
         'noticeContent.isNoticeShow': false
       })
+    },
+
+    readMessage(index){
+      if (this.data.messages[index].ReadTime == null){
+        wx.showNavigationBarLoading()
+        app.user.isLogin(token => {
+          wx.request({
+            url: app.api.readMessage,
+            method: 'post',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              token: token,
+              messageID: this.data.messages[index].MessageID
+            }, success: res => {
+              if (res.data.result) {
+                let data = this.data.messages
+                data[index].ReadTime = 'now'
+                this.setData({
+                  messages: data,
+                  'noticeContent.content': this.data.messages[index].Content,
+                  'noticeContent.isNoticeShow': true
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                })
+              }
+            }, complete: res => {
+              wx.hideNavigationBarLoading()
+            }
+          })
+        })
+      }else{
+        this.setData({
+          'noticeContent.content': this.data.messages[index].Content,
+          'noticeContent.isNoticeShow': true
+        })
+      }
     },
 
     next: function (e) {

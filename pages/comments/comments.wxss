@@ -1,5 +1,5 @@
 page {
-    background-color: #fff;
+    background-color: #efefef;
     padding-top: 40px;
 }
 
@@ -14,7 +14,7 @@ page {
     font-size: 12px;
     padding: 0 30rpx;
     color: #fff;
-    background-color: #3f51b5;
+    background-color: #1596f2;
     z-index: 1000;
 }
 
@@ -32,11 +32,6 @@ page {
   font-size: 40rpx;
 }
 
-.comments_wrapper {
-    padding: 30rpx 0;
-    background-color: #fff;
-}
-
 .placeholder {
     height: 50px;
     line-height: 50px;
@@ -48,9 +43,10 @@ page {
 .comment {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1rpx #f2f2f2 solid;
+    /* border-bottom: 1rpx #f2f2f2 solid; */
     /* border-radius: 5px; *//* box-shadow: 0 0 10px 0 #ccc; */
-    margin-bottom: 15px;
+    margin-bottom: 1px;
+    background-color: #fff;
 }
 
 .comment_header {

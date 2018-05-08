@@ -6,20 +6,20 @@
   </view>
   <!-- 分类标签 -->
   <view class="class-list" wx:for="{{data_list}}" wx:key="{{item}}">
-    <view class="class-title">
+    <navigator class="class-title" url="../list/list?typeId={{item.TypeID}}">
       <text>{{item.TypeName}}</text>
       <text class="c-iconfont icon-ellipsis"></text>
-    </view>
+    </navigator>
     <view class="class-data-list">
       <block wx:for="{{item.activity}}" wx:key="{{item}}">
-        <view class="class-data-list-item" data-id="{{item.id}}">
+        <view class="class-data-list-item">
           <view class="class-data-list-img-box">
             <navigator url="/pages/activity/activity?aid={{item.ActivityID}}">
               <image mode="aspectFill" class="class-data-list-img-box-img" src="{{resourceURL}}{{item.AttachURL}}"></image>
 
-              <text class="data-info" >{{item.StartTime}}</text>
+              <text class="date-info" >{{item.StartTime}}</text>
               <view class="view-count">
-                <text class="view-count-text">{{item.viewCount}}点击</text>
+                <text class="view-count-text">{{item.viewCount}} 浏览</text>
               </view>
             </navigator>
           </view>

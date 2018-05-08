@@ -22,6 +22,7 @@ App({
     },
     user: new User(),
     pages: new Pages(),
+    // 分页调用方法
     setPageMore(pageModel, pageData) {
         if (pageData.totalRow <= 0) {
             pageModel.setData({
@@ -53,6 +54,7 @@ App({
       feedback: HOST + "wxss/system/Feedback",
       getShareCode: HOST + "wxss/system/GetWXSSCode",
       scanCodeLogin: HOST + "wxss/system/ScanLogin",
+      getSystemNotice: HOST + "wxss/system/GetSystemNotice",
       //账户类
       accountInfo: HOST + "wxss/user/GetAccountInfo",
       uploadPhoto: HOST + 'wxss/user/UploadPhoto',
@@ -69,6 +71,7 @@ App({
       searchTip: HOST + 'wxss/system/SearchTip',
       //活动相关
       catalog: HOST + 'wxss/activity/GetCatalogIndex',
+      activityList: HOST + 'wxss/activity/GetActivityList',
       enroll: HOST + 'wxss/activity/UserEnroll',
       activityInfo: HOST + 'wxss/activity/GetActivityInfo',
       feeList: HOST + 'wxss/activity/GetFeeList',
@@ -90,6 +93,7 @@ App({
       getInfoList: HOST + 'wxss/info/GetInfoList',
       //消息相关
       getMessageList: HOST + 'wxss/message/GetMessageList',
+      readMessage: HOST + 'wxss/message/SetMessage',
       //互动相关
       getInteractActivity: HOST + 'wxss/interact/getInteractActivity'
     },

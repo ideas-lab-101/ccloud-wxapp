@@ -127,12 +127,30 @@ page {
     min-height: 20px;
     display: flex;
     align-items: center;
+    position: relative;
     font-size: 14px;
     color: #8a8a8a;
     padding-right: 30rpx;
     margin: 0 30rpx;
     background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoElEQVQ4T6XTzQ2DMAwFYL+R2AAmKQwRX9urs0QZhREYhU6QKlIOIX+yBTcS3ifHOKDiEZEdwMHMe7nXeke+mMKvtLZpkBvgvV+J6JuhEzOfo0puQPywQC4iWkZIBViRJmBBuoAWGQIREZEPgHdqZNUTExBC+AGY86aqj9AKx6pUTeyFu0A+C6NwE7CEK6AcZQCLc+5Qj/Ljy5T+u+k6/wGZ+WkRJKl76gAAAABJRU5ErkJggg==') right center no-repeat;
     background-size: 10px;
+}
+
+.item-state .bubble {
+    display: inline-block;
+    background-color: #E64340;
+    text-align: center;
+    justify-content: flex-start;
+    align-content: center;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    line-height: 15px;
+    border-radius: 99px;
+    color:#fff;
+    font-size: 22rpx;
 }
 
 /* .placeholder {

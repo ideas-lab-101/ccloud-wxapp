@@ -1,5 +1,7 @@
 {
     "navigationBarTitleText": "我的消息",
+    "navigationBarBackgroundColor": "#1596f2",
+    "navigationBarTextStyle": "white",
     "usingComponents": {
         "howard-pager": "/utils/pagination/pagination"
     }

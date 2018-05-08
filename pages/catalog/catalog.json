@@ -1,6 +1,4 @@
 {
     "navigationBarTitleText": "活动库",
-    "enablePullDownRefresh":true,
-    "backgroundColor": "#f7f7f7",
-    "backgroundTextStyle": "blank"
+    "enablePullDownRefresh":true
 }

@@ -1,10 +1,10 @@
 <view class="header">文档列表 
     <view class="list_number">共{{ pager.totalGuide }}项</view>
 </view>  
-<view class="enroll" wx:for="{{ guides }}">
+<view class="list" wx:for="{{ guides }}">
     <view class="act-name" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Title || '未知文档' }}</view>
-    <view class="enroll-main">
-        <view class="enroll-info">
+    <view class="list-main">
+        <view class="list-info">
             <view class="act-attr" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Summary }}</view>
             <view class="act-time">{{ item.AddTime || '未知时间' }}</view>
         </view>

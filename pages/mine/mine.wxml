@@ -45,7 +45,9 @@
     <view class="item" bindtap="goToMessage">
         <text class='c-iconfont icon-comment-processing'></text>
         <view class="item-text">我的消息</view>
-        <view class="item-state has-more"></view>
+        <view class="item-state has-more">
+            <label class='bubble'>{{msgCount}}</label>
+        </view>
     </view>
     <view class="item" bindtap="goToGuides">
         <text class='c-iconfont icon-help-circle'></text>
