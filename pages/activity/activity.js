@@ -12,11 +12,13 @@ Page({
         imgUrls: [],
         cases: [],
         info: {},
+        org: {},
+        is_follow: false,
         opened: !1,
         noticeContent: {
             isNoticeShow: false,
             deviceHeight: app.globalData.deviceHeight
-        }
+        },
     },
 
     /**
@@ -101,6 +103,36 @@ Page({
         }
     },
 
+    btn_follow: function (event) {
+        let orgID = event.currentTarget.dataset.id;
+        app.user.isLogin(token => {
+            wx.showNavigationBarLoading()
+            wx.request({
+                url: app.api.userFollow,
+                method: 'post',
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    token: token,
+                    orgID: orgID
+                }, success: res => {
+                    if (res.data.result) {
+                        this.setData({
+                            is_follow: res.data.is_follow
+                        })
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                        })
+                    }
+                }, complete: res => {
+                    wx.hideNavigationBarLoading()
+                }
+            })
+        })
+    },
+
     _initData: function (aid) {
         var that = this;
         wx.showLoading({
@@ -114,6 +146,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
+                token: app.user.ckLogin(),
                 activityID: aid
             },
             success: res => {
@@ -130,9 +163,15 @@ Page({
                       title: res.data.activityInfo.ActivityName
                     })
                     this.coordinate = JSON.parse(res.data.activityInfo.Coordinate)
+                    
+                    let orgInfo = res.data.orgInfo
+                    orgInfo.LogoURL = app.resourseUrl + orgInfo.LogoURL
+                     
                     this.setData({
                         imgUrls: imgUrls,
                         info: res.data.activityInfo,
+                        org: orgInfo,
+                        is_follow: res.data.is_follow,
                         cases: res.data.activityFee
                     })
                     WxParse.wxParse('detail', 'html', res.data.activityInfo.Content || '<p>暂无详情</p>', that, 5);
@@ -181,7 +220,11 @@ Page({
         })
       }
     },
-
+    goTop: function (e) {
+        wx.pageScrollTo({
+            scrollTop: 0
+        })
+    },
     goToComment: function (e) {
         wx.navigateTo({
             url: `/pages/comments/comments?dataType=activity&dataId=${this.aid}`,

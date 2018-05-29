@@ -2,10 +2,11 @@ import { $wuxActionSheet } from '../../../../../components/wux'
 import { $wuxToptips } from '../../../../../components/wux'
 import { $wuxDialog } from '../../../../../components/wux'
 import WxValidate from '../../../../../assets/plugins/WxValidate'
-import { formatTime } from '../../../../../utils/util.js'
+// import { formatTime } from '../../../../../utils/util.js'
 const qiniuUploader = require("../../../../../utils/qiniuUploader.js")
 
 const app = getApp()
+const utils = require('../../../../../utils/util.js')
 Page({
 
     /**
@@ -122,9 +123,9 @@ Page({
                 // 2. 文件命名
                 const filePath = res.tempFilePaths[0]
                 let filePathArr = filePath.split('.')
-                const imageType = filePathArr[filePathArr.length - 1]
-                const timeStamp = formatTime(new Date())
-                const fileName = `${timeStamp}.${imageType}`
+                const fileType = filePathArr[filePathArr.length - 1]
+                const timeStamp = utils.formatTime(new Date())
+                const fileName = `${timeStamp}.${fileType}`
                 // 交给七牛上传
                 wx.showLoading({
                     title: '上传中...',
@@ -182,7 +183,7 @@ Page({
                 const filePath = res.tempFilePath
                 let filePathArr = filePath.split('.')
                 const fileType = filePathArr[filePathArr.length - 1]
-                const timeStamp = formatTime(new Date())
+                const timeStamp = utils.formatTime(new Date())
                 const fileName = `${timeStamp}.${fileType}`
                 // 交给七牛上传
                 wx.showLoading({
@@ -292,7 +293,7 @@ Page({
                     } else if (attachment.fileType === 'video') {
                         videoFileCount++
                     }
-                    attachment.fileSize = attachment.AttachSize ? this._getSizeString(attachment.AttachSize) : '未知大小'
+                    attachment.fileSize = attachment.AttachSize ? utils.formartFileSize(attachment.AttachSize) : '未知大小'
                     return attachment
                 })
                 this.imageFileCount = imageFileCount
@@ -314,20 +315,20 @@ Page({
      * 
      * @param {any} bytes 
      */
-    _getSizeString(bytes) {
-        if (bytes > 1024) {
-            if (bytes > 1024 * 1024) {
-                // 以MB为单位
-                return (bytes / 1024 / 1024).toFixed(2) + 'MB'
-            } else {
-                // 以KB为单位
-                return (bytes / 1024).toFixed(2) + 'KB'
-            }
+    // _getSizeString(bytes) {
+    //     if (bytes > 1024) {
+    //         if (bytes > 1024 * 1024) {
+    //             // 以MB为单位
+    //             return (bytes / 1024 / 1024).toFixed(2) + 'MB'
+    //         } else {
+    //             // 以KB为单位
+    //             return (bytes / 1024).toFixed(2) + 'KB'
+    //         }
 
-        } else {
-            return bytes + 'B'
-        }
-    },
+    //     } else {
+    //         return bytes + 'B'
+    //     }
+    // },
     moreOpts(e) {
         const that = this
         const index = e.currentTarget.dataset.index || e.target.dataset.index
@@ -390,10 +391,8 @@ Page({
             urls: [attachInfo.AttachURL]
           })
       } else if (attachInfo.AttachType.indexOf('video/') >= 0){
-          wx.showModal({
-            title: '提示',
-            content: '暂不支持视频类附件预览',
-            showCancel: false
+          wx.navigateTo({
+              url: '../../../../video/video?attach_id=' + attachInfo.AttachID
           })
       }
     },

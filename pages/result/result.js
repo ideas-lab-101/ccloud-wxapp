@@ -5,7 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        iconType: 'waiting'
+        iconType: 'waiting',
+        enrollID: 0
     },
 
     /**
@@ -13,7 +14,8 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            iconType: options.type
+            iconType: options.type,
+            enrollID: options.enrollID
         })
     },
     goToIndex: function () {
@@ -25,6 +27,12 @@ Page({
     goToMine: function () {
         wx.switchTab({
             url: '/pages/mine/mine',
+        })
+    },
+
+    goToAttach: function () {
+        wx.navigateTo({
+            url: '/pages/mine/enrolls/form/attachment/attachment?eid=' + this.data.enrollID +"&prev=false",
         })
     }
 })

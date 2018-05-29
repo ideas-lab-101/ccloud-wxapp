@@ -1,0 +1,13 @@
+<!--pages/video/video.wxml-->
+<view class="section tc">
+        <video class='top-video' src="{{video.AttachURL}}" 
+        poster="{{video.AttachURL}}?vframe/jpg/offset/1" binderror="videoErrorCallback" />
+</view>
+<view class='info-top'>
+    <view class='info-main'>
+        <view class="info-content">
+            <view class="info-title">{{video.AttachName}}</view>
+            <view class="info-desc"> <text class='c-iconfont icon-fujian'> 附件 </text>{{video.FileSize}}</view>
+        </view>
+    </view>
+</view>    

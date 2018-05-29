@@ -7,7 +7,8 @@
     <view class="enroll-main">
         <view class="act-name">{{ item.ActivityName || '未知活动' }}</view>
         <block wx:if="{{item.mode == 1}}">
-            <view class="act-attr">{{ item.FeeName }} ({{ item.TotalCost }}元/人)</view>
+            <view class="act-attr" wx:if="{{ item.FeeID>0 }}">{{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
+            <view class="act-attr" wx:else>无效项</view>
             <view class="act-attr">
                 <view class='c-iconfont icon-person'/>{{ item.name || '未知报名者' }} (
                 <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
@@ -16,7 +17,9 @@
                 <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text> )
             </view>
         </block>
-        <block wx:if="{{item.mode == 2}}">    
+        <block wx:if="{{item.mode == 2}}">
+            <view class="act-attr" wx:if="{{ item.FeeID>0 }}">{{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
+            <view class="act-attr" wx:else>无效项</view>    
             <view class="act-attr">
                 <view class='c-iconfont icon-group'/>{{ item.group || '未知团队' }} (
                 <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>

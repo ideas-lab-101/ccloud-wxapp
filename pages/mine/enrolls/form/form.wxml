@@ -24,6 +24,7 @@
                         <input name="contactTel" type='number' value="{{ formData.contactTel }}" disabled='{{ isPreview }}'/>
                     </view>
                 </view>
+                <view class="section_bottom"></view>
             </block>
             <!-- 个人基本信息     -->    
             <block wx:if="{{ isRenderBaseInfo }}">
@@ -154,8 +155,8 @@
         <text class="c-iconfont icon-erweima"/>报名号</view>
     <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
         <text class="c-iconfont icon-fujian"/>附件管理</view>
-    <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='groupList'>
-        <text class="c-iconfont icon-liebiaorongqi"/>团队清单</view>    
+    <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
+        <text class="c-iconfont icon-liebiaorongqi"/>附件管理</view>    
     <view class="button" hover-class='clicked' bindtap='feedback'>
         <text class="c-iconfont icon-op-edit"/>信息反馈</view>
 </view>

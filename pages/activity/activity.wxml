@@ -22,6 +22,7 @@
 </view>
 
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
+    <!-- 活动基本信息 -->
     <view class="act_info_group">
         <view class="act_info">
             <text class='c-iconfont icon-widgets'/>
@@ -33,19 +34,40 @@
               {{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}
             </view>
         </view>
-        <view class="act_info">
+        <view class="act_info" wx:if="{{info.blnShowContact}}">
             <text class='c-iconfont icon-phone-outgoing'/>
             <view class="data {{info.ContactTel?' has_more':''}}" hover-class='hover' bindtap='callTel'>
               {{info.Contact||'无联系方式'}}
             </view>
         </view>
-        <view class="act_info">
+        <view class="act_info" wx:if="{{info.blnShowAddress}}">
             <text class='c-iconfont icon-location'/>
             <view class="data {{info.Coordinate?' has_more':''}}" hover-class='hover' bindtap='openLocation'>
               {{info.Address||'未知地点'}}
             </view>
         </view>
     </view>
+    <!-- 活动主办方 -->
+    <view class="org-card">
+        <view class='info-main'>
+            <view class='info-head'>
+                <image class="logo" src="{{org.LogoURL}}"></image>
+            </view>    
+            <view class="info-content">
+                <navigator class="info-title" url="../list/list?orgId={{org.OrgID}}">
+                    {{org.OrgName}}<!-- <text class='c-iconfont icon-search'/> -->
+                </navigator>
+                <view class="info-desc"><text class='c-iconfont icon-tag'> 活动 </text>{{org.ACount}}</view>
+            </view>
+            <view class='info-btn'>
+                <view class="mini-btn" bindtap="btn_follow" data-id="{{org.OrgID}}">
+                    <block wx:if="{{is_follow}}"><text class='c-iconfont icon-squareminus'/> 已关注</block>
+                    <block wx:if="{{!is_follow}}"><text class='c-iconfont icon-squareplus'/> 关注</block>
+                </view>
+            </view> 
+        </view>
+    </view>    
+    <!-- 活动项目 -->
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/cases.png" class="head_icon"></image>
@@ -54,8 +76,7 @@
         <view class="case_list">
             <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">
                 <view class="case_name">{{item.FeeName}}</view>
-                <view class="case_fee" wx:if="{{item.TotalCost > 0}}">{{item.TotalCost}}元/人</view>
-                <view class="case_fee" wx:if="{{item.TotalCost == 0}}">免费</view>
+                <view class="case_fee">{{item.TotalCost > 0? item.TotalCost+'元':'免费'}}</view>
             </view>
             <view class="case" hover-class='clicked' hover-start-time='0' bindtap='showMoreFee' wx:if="{{ info.FeeCount > cases.length }}">
                 <view class="case_name">更多</view>
@@ -63,10 +84,13 @@
             </view>
         </view>
     </view>
+    <!-- 活动简介 --> 
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/info-w.png" class="head_icon"></image>
-            <view class="head_desc">活动简介</view>
+            <view class="head_desc" bindtap="setTabIndex" data-tab-index="1">
+                活动介绍<text class="c-iconfont icon-ellipsis" data-tab-index="1"></text>
+            </view> 
         </view>
         <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     </view>
@@ -75,6 +99,7 @@
     <view class="html_content">
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
     </view>
+    <view class="topBtn" style="bottom: 180rpx;" catchtap="goTop">返回顶部</view>
 </view>
 <view style='height:50px'></view>
 <view class="bottom_buttons">
@@ -87,6 +112,6 @@
     <view class="button" hover-class='clicked' bindtap='goToUsercenter'>
         <image src="/assets/images/grzx.png"></image>个人中心</view>    
 </view>
-<view style="height:0;overflow:hidden">
+<!-- <view style="height:0;overflow:hidden">
     <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>
-</view>
+</view> -->

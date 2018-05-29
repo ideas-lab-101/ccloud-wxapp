@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
@@ -110,10 +110,10 @@
 					"query": "aid=13"
 				},
 				{
-					"id": 14,
+					"id": 13,
 					"name": "查看报名附件",
 					"pathName": "pages/mine/enrolls/form/attachment/attachment",
-					"query": "eid=1440&prev=false"
+					"query": "eid=1442&prev=false"
 				},
 				{
 					"id": -1,

@@ -4,11 +4,11 @@
         <view class="title">报名成功</view>
         <view class="info">您的报名信息已经提交审核</view>
     </block>
-    <block wx:if="{{ iconType === 'checkin' }}">
+    <!-- <block wx:if="{{ iconType === 'checkin' }}">
         <icon type="success" size="100" />
         <view class="title">签到成功</view>
         <view class="info">感谢您的出席</view>
-    </block>
+    </block> -->
     <block wx:if="{{ iconType === 'waiting' }}">
         <icon type="waiting" size="100" />
         <view class="title">正在确认...</view>
@@ -33,4 +33,5 @@
 <view class="button-group">
     <button type='primary' bindtap='goToIndex'>回到首页</button>
     <button type='default' bindtap='goToMine'>查看结果</button>
+    <button type='default' bindtap='goToAttach' wx:if="{{ enrollID>0 }}">上传附件</button>
 </view>

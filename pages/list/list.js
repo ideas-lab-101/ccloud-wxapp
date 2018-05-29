@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    typeId: 0,
+    typeId: '',
+    orgId: '',
     activitys: {},
     totalRows: 0,
     page: 0,
@@ -21,9 +22,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {
-    this.data.typeId = option.typeId
-    this._initData()
+  onLoad: function (options) {
+      if (decodeURIComponent(options.typeId) !== 'undefined'){
+          this.data.typeId = options.typeId
+      }
+      if (decodeURIComponent(options.orgId) !== 'undefined'){
+          this.data.orgId = options.orgId
+      }
+      this._initData()
   },
   _initData() {
     wx.showNavigationBarLoading()
@@ -37,7 +43,8 @@ Page({
       },
       data: {
           pageIndex: this.data.page,
-          typeID: this.data.typeId
+          typeID: this.data.typeId,
+          orgID: this.data.orgId,
       },
       success: (res) => {
         this.setData({

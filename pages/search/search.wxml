@@ -37,15 +37,15 @@
   </view>
   <view class="search-data" wx:if="{{is_search}}">
     <view class="view-bg data-info-main" wx:if="{{data_list.length}}">
-      <view class="data-info">相关活动</view>
-      <scroll-view scroll-x="true">
+        <view class="data-info">相关活动</view>
+        <scroll-view scroll-x="true">
         <view class="doc-list">
           <view class="so-doc-item" wx:for="{{data_list}}" wx:key="{{item}}" data-id="{{item.ActivityID}}" bindtap="go_data">
             <image class="so-doc-img" mode="aspectFill" src="{{resourceURL}}{{item.AttachURL}}"></image>
             <view class="sd-doc-title"><text class="sd-doc-title-text">{{item.ActivityName}}</text></view>
           </view>
         </view>
-      </scroll-view>
+        </scroll-view>
     </view>
     <view class="">
       <view class="data-info">找到相关结果<text class="color-danger">{{data.total}}</text>条（用时{{data.searchTime}}秒）</view>

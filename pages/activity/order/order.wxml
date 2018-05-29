@@ -12,7 +12,7 @@
     </view> 
     <form bindsubmit="formSubmit" report-submit="ture">
         <view class="form">
-            <block wx:if="{{ mode == 1 }}">
+            <!-- <block wx:if="{{ mode == 1 }}">
                 <picker bindchange="chooseFee" value="{{ feeName }}" range="{{ fees }}" range-key="text">
                     <view class="section">
                          <view class="section_title">报名项目</view> 
@@ -25,7 +25,15 @@
                 <view class="section">
                     <view class="section_title">团队报名，请先完善团队信息！</view> 
                 </view>
-            </block>
+            </block> -->
+
+            <picker bindchange="chooseFee" value="{{ feeName }}" range="{{ fees }}" range-key="text">
+                <view class="section">
+                    <view class="section_title">报名项目</view> 
+                    <input class="dropdown" disabled='true' type='text' value="{{ feeName }}" placeholder='请选择报名项目' />
+                </view>
+            </picker>
+            <view class="section_bottom"></view>
             <!-- 团队信息 -->
             <block wx:if="{{ isRenderGroupInfo }}">
                 <view class="form_block_head">团队信息</view>
@@ -45,6 +53,7 @@
                         <input name="contactTel" type='number' value="{{ formData.contactTel }}" />
                     </view>
                 </view>
+                <view class="section_bottom"></view>
             </block>
             <!-- 个人基本信息     -->
             <block wx:if="{{ isRenderBaseInfo }}">
@@ -170,6 +179,6 @@
         </view>
             <button class="enroll_and_pay" formType="submit">报名参加</button>
     </form>
-    <view class="usercenter" bindtap='goToUsercenter'>查看我的报名</view>
+    <view class="usercenter" bindtap='goToMine'>查看我的报名</view>
     <view style="height:30px;"></view>
 </scroll-view>

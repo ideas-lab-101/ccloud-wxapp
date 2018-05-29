@@ -11,8 +11,7 @@
         <view class="act-name">{{ item.FeeName }}</view>
         <view class="act-attr">
             <view class='c-iconfont icon-menu'/> 
-            <text wx:if="{{item.TotalCost > 0}}">{{ item.TotalCost}}元/人</text>
-            <text wx:if="{{item.TotalCost == 0}}">免费</text>
+            <text >{{item.TotalCost > 0? item.TotalCost+'元':'免费'}}</text>
         </view>
     </view>
     <view class="more_opts" catchtap='showDetail' data-index="{{index}}" hover-class='touched' hover-start-time='0'>

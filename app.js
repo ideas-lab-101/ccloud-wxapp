@@ -60,6 +60,7 @@ App({
       uploadPhoto: HOST + 'wxss/user/UploadPhoto',
       enrollList: HOST + 'wxss/user/GetEnrollList',
       userFavor: HOST + 'wxss/user/userFavor',
+      userFollow: HOST + 'wxss/user/userFollow',
 
       //基础数据
       provinces: HOST + 'wxss/activity/GetActivityScope',
@@ -79,6 +80,7 @@ App({
       updateEnroll: HOST + 'wxss/activity/UpdateEnrollInfo',
       enrollInfo: HOST + 'wxss/activity/GetEnrollInfo',
       getAttachList: HOST + 'wxss/activity/GetEnrollAttach',
+      getAttachInfo: HOST + 'wxss/activity/GetAttachInfo',
       setEnrollAttachment: HOST + 'wxss/activity/SetEnrollAttach',
       getGroupEnrollList: HOST + 'wxss/activity/GetGroupEnrollList',
       //支付相关

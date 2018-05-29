@@ -21,7 +21,8 @@ Page({
         isRenderSchoolInfo: false,
         isRenderReferInfo: false,
         isRenderRegionInfo: false,
-        isRenderGroupInfo: false
+        isRenderGroupInfo: false,
+        enrollID: 0,
     },
 
     /**
@@ -48,7 +49,7 @@ Page({
     },
 
     formSubmit(e) {
-        if (!this.feeId && this.mode == 1) { //仅针对个人报名
+        if (!this.feeId) { //仅针对个人报名
             this._showToptips('请选择报名项目')
             return false
         }
@@ -88,6 +89,7 @@ Page({
                 wx.hideLoading()
                 if (res.data.result) {
                     //根据是否支付来控制
+                    this.data.enrollID = res.data.enrollID
                     if (res.data.orderInfo) {
                         $wuxToptips.success({
                             hidden: !0,
@@ -97,7 +99,7 @@ Page({
                         this._pay(res.data.orderInfo, res.data.enrollID)
                     } else {
                         wx.redirectTo({
-                            url: '/pages/result/result?type=success',
+                            url: '/pages/result/result?type=success&enrollID='+this.data.enrollID,
                         })
                     }
                 } else {
@@ -141,7 +143,7 @@ Page({
                         'paySign': res.data.data.paySign,
                         'success': function (res) {
                             wx.redirectTo({
-                                url: '/pages/result/result?type=success',
+                                url: '/pages/result/result?type=success&enrollID='+this.data.enrollID,
                             })
                         },
                         'fail': function (res) {
@@ -455,7 +457,7 @@ Page({
                         info: res.data.activityInfo,
                         fees: res.data.activityFee.map(function (el, index) {
                             return {
-                                text: `${el.FeeName} -- ${el.TotalCost} 元/人`,
+                                text: `${el.FeeName} -- ${el.TotalCost > 0 ? el.TotalCost+'元':'免费'}`,
                                 id: el.FeeID
                             }
                         })
@@ -496,9 +498,9 @@ Page({
             }
         })
     },
-    goToUsercenter() {
+    goToMine() {
         wx.navigateTo({
-          url: '/pages/mine/enrolls/enrolls',
+            url: '/pages/mine/enrolls/enrolls',
         })
     }
 })
