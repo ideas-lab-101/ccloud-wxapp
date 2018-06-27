@@ -1,12 +1,15 @@
 <import src="../../../../../components/actionsheet/actionsheet.wxml" />
 <import src="../../../../../components/toptips/toptips.wxml" />
 <import src="../../../../../components/dialog/dialog.wxml"/>
+<import src="../../../../../components/notice/notice.wxml" />
 
 <template is="dialog" data="{{ ...$wux.dialog }}"/>
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<template is="notice" data="{{ ...noticeContent }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <view class="header">附件列表 
     <view class="list_number">共{{ attachments.length }}项</view>
+    <text class="c-iconfont icon-info" bindtap='showInfo' />
 </view> 
 <scroll-view scroll-y style="height: 100%;">
     <form bindsubmit="formSubmit">

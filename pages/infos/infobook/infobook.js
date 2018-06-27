@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        is_add: false
+        is_favor: false
     },
 
     /**
@@ -30,6 +30,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
+                token: app.user.ckLogin(),
                 infoID: this.gid
             },
             success: res => {
@@ -42,6 +43,7 @@ Page({
                         Title: res.data.data.Title,
                         Source: res.data.data.Source,
                         AddTime: res.data.data.AddTime,
+                        is_favor: res.data.is_favor
                     })
                     WxParse.wxParse('detail', 'html', res.data.data.Content || '<p>暂无信息</p>', that, 5);
                 } else {
@@ -63,7 +65,7 @@ Page({
           url: '/pages/index/index',
         })
     },
-    add_favor: function(){
+    btn_favor: function(){
       wx.showNavigationBarLoading()
       app.user.isLogin(token => {
         wx.request({
@@ -79,10 +81,7 @@ Page({
           }, success: res => {
             if (res.data.result) {
               this.setData({
-                is_add: true
-              })
-              wx.showToast({
-                title: res.data.msg
+                  is_favor: res.data.is_favor
               })
             } else {
               wx.showToast({

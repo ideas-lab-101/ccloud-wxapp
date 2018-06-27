@@ -20,15 +20,18 @@ page {
     z-index: 1000;
 }
 
-.list_number {
-    flex-shrink: 0;
-    flex-grow: 1;
-    text-align: right;
+.header .list_number {
+    flex: auto;
+    text-align: center;
     justify-content: space-around;
     align-items: center;
     height: 30px;
     font-size: 16px;
     color: #fff;
+}
+
+.header .c-iconfont {
+    text-align: right;
 }
 
 .weui-toptips {

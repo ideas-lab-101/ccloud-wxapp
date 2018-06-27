@@ -9,8 +9,8 @@
     <button hover-class='clicked' bindtap='go_home'>
         <text class="c-iconfont icon-home"> 首页</text>
     </button>
-    <button hover-class='clicked' bindtap='add_favor'>
-        <text class="c-iconfont icon-favorite"> 收藏</text>
+    <button hover-class='clicked' bindtap='btn_favor'>
+        <text class="c-iconfont{{is_favor?' added':''}} icon-favorite"> {{is_favor?'已收藏':'收藏'}}</text>
     </button>
     <button hover-class='clicked' open-type='share'>
         <text class="c-iconfont icon-share1"> 转发</text>

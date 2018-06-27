@@ -15,7 +15,7 @@
             <view class="content_wrapper">
                 <text>{{ item.refnickname ? '回复 '+item.refnickname+'：' : '' }}</text>{{ item.Comment }}
             </view>
-            <view class="time">{{ item.AddTime }}</view>
+            <view class="time">{{ item.FormatTime }}</view>
         </view>
         <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
             <view class="c-iconfont icon-more"></view>

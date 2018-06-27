@@ -9,17 +9,16 @@
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
 
-.wxParse {
+/* .wxParse {
     margin: 0 5px;
     font-family: Helvetica, sans-serif;
     font-size: 28rpx;
     color: #666;
     line-height: 1.8;
-}
+} */
 
 view {
-    word-break: break-all;
-    overflow: auto;
+    box-sizing: border-box;
 }
 
 .wxParse-inline {
@@ -163,6 +162,8 @@ view {
 .wxParse-img {
     /*background-color: #efefef;*/
     overflow: hidden;
+    margin: 0 auto 10rpx auto;
+    width: 100% !important;
 }
 
 .wxParse-blockquote {

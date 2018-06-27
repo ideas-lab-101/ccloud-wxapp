@@ -16,37 +16,15 @@
         <view class="tab_item{{tabIndex===1?' active':''}}" catchtap='setTabIndex' data-tab-index="1">详情</view>
     </view>
     <view class="card_head">
-        <image src="../../assets/images/query.png" class="head_icon"></image>
-        <view class="head_desc">活动信息</view>
+        <image src="../../assets/images/info-w.png" class="head_icon"></image>
+        <view class="head_desc" bindtap="setTabIndex" data-tab-index="{{tabIndex==1?0:1}}">
+            活动介绍<text class="c-iconfont icon-ellipsis" data-tab-index="{{tabIndex==1?0:1}}"></text>
+        </view>
     </view>
 </view>
 
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
-    <!-- 活动基本信息 -->
-    <view class="act_info_group">
-        <view class="act_info">
-            <text class='c-iconfont icon-widgets'/>
-            <view class="data">{{info.ActivityName||'未知活动'}}</view>
-        </view>
-        <view class="act_info">
-            <text class='c-iconfont icon-calendar-clock'/>
-            <view class="data {{info.Schedule?' has_more':''}}" hover-class='hover' bindtap='showSchedule'>
-              {{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}
-            </view>
-        </view>
-        <view class="act_info" wx:if="{{info.blnShowContact}}">
-            <text class='c-iconfont icon-phone-outgoing'/>
-            <view class="data {{info.ContactTel?' has_more':''}}" hover-class='hover' bindtap='callTel'>
-              {{info.Contact||'无联系方式'}}
-            </view>
-        </view>
-        <view class="act_info" wx:if="{{info.blnShowAddress}}">
-            <text class='c-iconfont icon-location'/>
-            <view class="data {{info.Coordinate?' has_more':''}}" hover-class='hover' bindtap='openLocation'>
-              {{info.Address||'未知地点'}}
-            </view>
-        </view>
-    </view>
+    <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     <!-- 活动主办方 -->
     <view class="org-card">
         <view class='info-main'>
@@ -71,7 +49,7 @@
     <view class="case_card">
         <view class="head">
             <image src="../../assets/images/cases.png" class="head_icon"></image>
-            <view class="head_desc">项目介绍</view>
+            <view class="head_desc">活动项目</view>
         </view>
         <view class="case_list">
             <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">
@@ -87,12 +65,34 @@
     <!-- 活动简介 --> 
     <view class="case_card">
         <view class="head">
-            <image src="../../assets/images/info-w.png" class="head_icon"></image>
-            <view class="head_desc" bindtap="setTabIndex" data-tab-index="1">
-                活动介绍<text class="c-iconfont icon-ellipsis" data-tab-index="1"></text>
-            </view> 
+            <image src="../../assets/images/query.png" class="head_icon"></image>
+            <view class="head_desc">活动信息</view> 
         </view>
-        <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
+        <!-- 活动基本信息 -->
+        <view class="act_info_group">
+            <view class="act_info">
+                <text class='c-iconfont icon-widgets'/>
+                <view class="data">{{info.ActivityName||'未知活动'}}</view>
+            </view>
+            <view class="act_info">
+                <text class='c-iconfont icon-calendar-clock'/>
+                <view class="data {{info.Schedule?' has_more':''}}" hover-class='hover' bindtap='showSchedule'>
+                {{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}
+                </view>
+            </view>
+            <view class="act_info" wx:if="{{info.blnShowContact}}">
+                <text class='c-iconfont icon-phone-outgoing'/>
+                <view class="data {{info.ContactTel?' has_more':''}}" hover-class='hover' bindtap='callTel'>
+                {{info.Contact||'无联系方式'}}
+                </view>
+            </view>
+            <view class="act_info" wx:if="{{info.blnShowAddress}}">
+                <text class='c-iconfont icon-location'/>
+                <view class="data {{info.Coordinate?' has_more':''}}" hover-class='hover' bindtap='openLocation'>
+                {{info.Address||'未知地点'}}
+                </view>
+            </view>
+        </view>
     </view>
 </view>
 <view class="tab_content" hidden='{{tabIndex!==1}}'>

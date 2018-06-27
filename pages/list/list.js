@@ -1,4 +1,5 @@
 const app = getApp()
+const utils = require('../../utils/util.js')
 
 Page({
 
@@ -65,7 +66,7 @@ Page({
           })
         }
         //统一的分页调用
-        app.setPageMore(this, res.data)
+        utils.setPageMore(this, res.data)
       }, complete: () => {
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh()

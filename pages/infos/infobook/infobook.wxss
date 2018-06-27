@@ -1,3 +1,5 @@
+@import '/assets/plugins/wxParse/wxParse.wxss';
+
 .html_content {
     padding: 30px 30rpx;
     background-color: #fefefe;
@@ -52,6 +54,9 @@
     color: #fff;
     margin-top: 5rpx;
     font-size: 36rpx;
+}
+.bottom_buttons button .c-iconfont.added{
+    color: red;
 }
 
 .bottom_buttons button.clicked{

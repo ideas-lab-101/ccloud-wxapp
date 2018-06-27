@@ -1,3 +1,5 @@
+@import '/assets/plugins/wxParse/wxParse.wxss';
+
 page {
     background-color: #eceef8;
 }
@@ -130,8 +132,8 @@ page {
 }
 
 .act_desc {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     padding: 10px 30rpx;
     line-height: 30px;
     text-indent: 2em;

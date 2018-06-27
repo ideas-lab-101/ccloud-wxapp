@@ -13,11 +13,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        formData: {
-            sex: '',
-            nation: '',
-            photoURL: '',
-            district: ''
+        noticeContent: {
+            isNoticeShow: false,
+            title: '附件管理',
+            deviceHeight: app.globalData.deviceHeight
         },
         isPreview: false
     },
@@ -112,10 +111,10 @@ Page({
             success: function (res) {
                 // 1. 限制文件大小
                 const imageSize = res.tempFiles[0].size
-                if (imageSize > 4 * 1024 * 1024) {
+                if (imageSize > that.opInfo.picSize * 1024 * 1024) {
                     wx.showModal({
                         title: '上传失败',
-                        content: '所选图片大小不能大于4M',
+                        content: '所选图片大小不能大于'+that.opInfo.picSize+'M',
                         showCancel: false
                     })
                     return
@@ -171,10 +170,10 @@ Page({
                 // 1. 限制视频长度
                 const fileSize = res.size,
                     videoDuration = res.duration
-                if (videoDuration > 5 * 60) {
+                if (videoDuration > that.opInfo.videoLength * 60) {
                     wx.showModal({
                         title: '上传失败',
-                        content: '所选视频长度不能超过5分钟',
+                        content: '所选视频长度不能超过'+that.opInfo.videoLength+'分钟',
                         showCancel: false
                     })
                     return
@@ -310,25 +309,6 @@ Page({
             }
         })
     },
-    /**
-     * 计算文件大小字符串，根据文件大小自动调整单位
-     * 
-     * @param {any} bytes 
-     */
-    // _getSizeString(bytes) {
-    //     if (bytes > 1024) {
-    //         if (bytes > 1024 * 1024) {
-    //             // 以MB为单位
-    //             return (bytes / 1024 / 1024).toFixed(2) + 'MB'
-    //         } else {
-    //             // 以KB为单位
-    //             return (bytes / 1024).toFixed(2) + 'KB'
-    //         }
-
-    //     } else {
-    //         return bytes + 'B'
-    //     }
-    // },
     moreOpts(e) {
         const that = this
         const index = e.currentTarget.dataset.index || e.target.dataset.index
@@ -395,5 +375,22 @@ Page({
               url: '../../../../video/video?attach_id=' + attachInfo.AttachID
           })
       }
+    },
+
+    showInfo() {
+        let message = `可上传图片文件${this.opInfo.picLimit}张`
+        message += `，图片大小限制${this.opInfo.picSize}M`
+        message += `，可上传视频文件${this.opInfo.videoLimit}份`
+        message += `，视频时长限制${this.opInfo.videoLength}分钟。`
+        this.setData({
+            'noticeContent.content': message,
+            'noticeContent.isNoticeShow': true
+        })
+    },
+
+    hideNotice() {
+        this.setData({
+            'noticeContent.isNoticeShow': false
+        })
     },
 })

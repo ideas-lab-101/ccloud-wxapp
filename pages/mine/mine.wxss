@@ -78,7 +78,11 @@ page {
   justify-content: center;
   align-items: center;
   font-size: 9pt;
-  padding: 40rpx 0;
+  margin: 40rpx 0rpx;
+  border-right: #f7f7f7 solid 2px;
+}
+.func-item:last-child {
+  border-right: 0px;
 }
 
 .func-item.clicked {

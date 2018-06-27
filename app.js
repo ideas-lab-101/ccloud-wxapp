@@ -1,3 +1,4 @@
+const Version = '1.8.2';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
@@ -22,30 +23,6 @@ App({
     },
     user: new User(),
     pages: new Pages(),
-    // 分页调用方法
-    setPageMore(pageModel, pageData) {
-        if (pageData.totalRow <= 0) {
-            pageModel.setData({
-                noData: true,
-                noMore: false,
-                hasMore: false,
-            })
-        }
-        if (pageData.lastPage || pageData.totalRow == 0) {
-            pageModel.setData({
-                noMore: true,
-                hasMore: false,
-                moreDataText: "没有更多了"
-            })
-        } else {
-            pageModel.setData({
-                hasMore: true
-            })
-        }
-        pageModel.setData({
-            isLoading: false
-        })
-    },
     api: {
       //系统类
       login: HOST + 'wxss/system/WXSSMain',

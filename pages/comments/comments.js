@@ -1,5 +1,6 @@
 import { $wuxActionSheet } from '../../components/wux'
 const app = getApp()
+const utils = require('../../utils/util.js')
 Page({
 
     /**
@@ -175,7 +176,10 @@ Page({
             success: res => {
                 wx.hideLoading()
                 this.setData({
-                    comments: res.data.list,
+                    comments: res.data.list.map(comment => {
+                        comment.FormatTime = utils.convertTime(comment.AddTime)
+                        return comment
+                    }),
                     pager: {
                         totalComment: res.data.totalRow,
                         totalPage: res.data.totalPage,
