@@ -10,7 +10,8 @@
     <view class="message-main">
         <view class="act-name">{{ item.SourceName }}</view>
         <view class="act-attr">
-            <view wx:if="{{ item.ReadTime == null }}" class='bubble'/> {{ item.Summary}}
+            <view class="indicator" wx:if="{{ item.ReadTime == null }}"><label class='bubble'/></view> 
+            <text>{{ item.Summary}}</text>
         </view>    
         <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
     </view>

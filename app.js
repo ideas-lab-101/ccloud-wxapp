@@ -1,4 +1,4 @@
-const Version = '1.8.2';
+const Version = '1.8.6';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
@@ -27,6 +27,7 @@ App({
       //系统类
       login: HOST + 'wxss/system/WXSSMain',
       index: HOST + 'wxss/system/index',
+      mainList: HOST + 'wxss/system/mainList',
       getUploadToken: HOST + 'wxss/system/GetUploadToken',
       feedback: HOST + "wxss/system/Feedback",
       getShareCode: HOST + "wxss/system/GetWXSSCode",

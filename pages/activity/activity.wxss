@@ -71,7 +71,7 @@ page {
     background-color: #fff;
 }
 
-.topBtn{
+.scrollBtn{
     width: 150rpx;
     height: 60rpx;
     background-color: #FF8200;
@@ -80,7 +80,7 @@ page {
     position: fixed;
     right: 0rpx;
     bottom: 85rpx;
-    border-radius: 20rpx 0rpx 0rpx 20rpx;
+    border-radius: 50rpx 0rpx 0rpx 50rpx;
     border: solid 1px black;
     font-size: 26rpx;
     line-height: 58rpx;

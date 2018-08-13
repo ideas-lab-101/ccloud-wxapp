@@ -1,7 +1,7 @@
 @import '/assets/plugins/wxParse/wxParse.wxss';
 
 .html_content {
-    padding: 30px 30rpx;
+    padding: 30px 30rpx 60px 30rpx;
     background-color: #fefefe;
     color: #888;
 }
@@ -41,19 +41,24 @@
 .bottom_buttons button{
     flex: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
     align-items: center;
     height: 50px;
-    width: 80px;
+    width: 120px;
+    padding-left: 20px;
     border-radius: 0px;
     background-color: transparent;
 }
 
+.bottom_buttons button label{
+    color: #fff;
+    font-size: 32rpx;
+}
+
 .bottom_buttons button .c-iconfont{
     color: #fff;
-    margin-top: 5rpx;
-    font-size: 36rpx;
+    font-size: 40rpx;
+    margin: 0px 3px;
 }
 .bottom_buttons button .c-iconfont.added{
     color: red;

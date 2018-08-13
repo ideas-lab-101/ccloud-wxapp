@@ -50,6 +50,17 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   that.setData(bindData)
   that.wxParseImgLoad = wxParseImgLoad;
   that.wxParseImgTap = wxParseImgTap;
+  that.wxParseTagATap = wxParseTagATap;
+}
+// 链接点击事件
+function wxParseTagATap(e) {
+  var that = this;
+  var linkUrl = e.target.dataset.src || e.currentTarget.dataset.src;
+  if (typeof (linkUrl) != 'undefined'){
+    wx.navigateTo({
+      url: '/pages/system/webview/webview?src=' + encodeURIComponent(linkUrl),
+    })
+  }
 }
 // 图片点击事件
 function wxParseImgTap(e) {

@@ -274,6 +274,38 @@ Page({
                         }
                     })
                 }
+                if (isRenderGroupInfo) {
+                  Object.assign(this.validators, {
+                    'group': {
+                      required: true
+                    },
+                    'groupNum': {
+                      required: true
+                    },
+                    'contactName': {
+                      required: true
+                    },
+                    'contactTel': {
+                      required: true,
+                      tel: true,
+                    },
+                  })
+                  Object.assign(this.validationMsgs, {
+                    'group': {
+                      required: '请输入团队名称'
+                    },
+                    'groupNum': {
+                      required: '请输入团队人数'
+                    },
+                    'contactName': {
+                      required: '请输入联系人姓名',
+                    },
+                    'contactTel': {
+                      required: '请输入联系人手机',
+                      tel: '请输入正确的手机号',
+                    },
+                  })
+                }
                 if (isRenderSchoolInfo) {
                     Object.assign(this.validators, {
                         'school': {

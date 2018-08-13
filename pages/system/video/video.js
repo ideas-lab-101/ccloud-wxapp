@@ -1,4 +1,4 @@
-const utils = require('../../utils/util.js')
+const utils = require('../../../utils/util.js')
 const app = getApp()
 Page({
 

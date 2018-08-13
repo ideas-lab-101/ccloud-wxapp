@@ -372,7 +372,7 @@ Page({
           })
       } else if (attachInfo.AttachType.indexOf('video/') >= 0){
           wx.navigateTo({
-              url: '../../../../video/video?attach_id=' + attachInfo.AttachID
+              url: '../../../../system/video/video?attach_id=' + attachInfo.AttachID
           })
       }
     },

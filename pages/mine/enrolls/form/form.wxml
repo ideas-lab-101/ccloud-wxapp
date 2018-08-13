@@ -4,162 +4,168 @@
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
-    <form bindsubmit="formSubmit" report-submit="ture">
-        <view class="form">
-            <block wx:if="{{ isRenderGroupInfo }}">
-                <view class="form_block_head">团队信息</view>
-                <view class="section">
-                    <view class="section_title"><text>*</text>团队名称</view>
-                    <input name="group" type='text' value="{{ formData.group }}" disabled='{{ isPreview }}'/>
-                </view>
-                <view class="section_group">
-                    <view class="section">
-                        <view class="section_title">
-                            <text>*</text>联系人</view>
-                        <input name="contactName" type='text' value="{{ formData.contactName }}" disabled='{{ isPreview }}'/>
-                    </view>
-                    <view class="section">
-                        <view class="section_title">
-                            <text>*</text>联系电话</view>
-                        <input name="contactTel" type='number' value="{{ formData.contactTel }}" disabled='{{ isPreview }}'/>
-                    </view>
-                </view>
-                <view class="section_bottom"></view>
-            </block>
-            <!-- 个人基本信息     -->    
-            <block wx:if="{{ isRenderBaseInfo }}">
-                <view class="form_block_head">基本信息</view>
-                <view class="section">
-                    <view class="section_title">
-                        <text>*</text>姓名(中文)</view>
-                    <input name="name" type='text' value="{{ formData.name }}" disabled='{{ isPreview }}' />
-                </view>
-                <view class="section_group">
-                    <view class="section">
-                        <view class="section_title">
-                            <text>*</text>性别</view>
-                        <input name="sex" class="dropdown" disabled='true' type='text' value="{{ formData.sex }}" placeholder='请选择' bindtap='chooseGender' />
-                    </view>
-                    <view class="section">
-                        <view class="section_title">
-                            <text>*</text>年龄</view>
-                        <input name="age" type='number' value="{{ formData.age }}" disabled='{{ isPreview }}' />
-                    </view>
-                </view>
-                <view class="section">
-                    <view class="section_title">
-                        <text>*</text>联系电话</view>
-                    <input name="tel" type='number' value="{{ formData.tel }}" disabled='{{ isPreview }}' />
-                </view>
-                <picker bindchange="chooseNation" value="{{ formData.nation }}" range="{{ nations }}" disabled='{{ isPreview }}'>
-                    <view class="section">
-                        <view class="section_title">国籍</view>
-                        <input name="nation" class="dropdown" disabled='true' type='text' value="{{ formData.nation }}" placeholder='请选择' />
-                    </view>
-                </picker>
-                <view class="section_bottom"></view>
-            </block>
-            <block wx:if="{{ isRenderPhotoInfo }}">
-                <view class="form_block_head">照片</view>
-                <view class="picture">
-                    <view class="pic_area">
-                        <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
-                    </view>
-                    <view class="picture_notice" bindtap='uploadPic'>
-                        <view class="logo c-iconfont icon-upload"></view>
-                        <view class="notice">一寸免冠照片</view>
-                    </view>
-                </view>
-                <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
-            </block>
-            <block wx:if="{{ isRenderRegionInfo }}">
-                <view class="form_block_head">地址信息</view>
-                <view class="section">
-                    <view class="section_title">
-                        <text>*</text>详细地址</view>
-                    <view class="with_unit">
-                        <picker name="provinceID" bindchange="chooseProvince" value="{{ formData.provinceID }}" range="{{ provinces }}" range-key="ProvinceName" disabled='{{ isPreview }}'>
-                            <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
-                        </picker>
-                        <view class="section_unit">省</view>
-                        <picker name="cityID" bindchange="chooseCity" value="{{ formData.cityID }}" range="{{ cities }}" range-key="CityName" disabled='{{ isPreview }}'>
-                            <input name="city" class="dropdown" disabled='true' type='text' value="{{ formData.city }}" placeholder='请选择' />
-                        </picker>
-                        <view class="section_unit">市</view>
-                    </view>
-                </view>
-                <view class="section">
-                    <view class="with_unit">
-                        <picker name="districtID" bindchange="chooseDistrict" value="{{ formData.districtID }}" range="{{ districts }}" range-key='DistrictName' disabled='{{ isPreview }}'>
-                            <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
-                        </picker>
-                        <view class="section_unit">区</view>
-                    </view>
-                </view>
-                <view class="section">
-                    <view class="with_unit">
-                        <input name="address" type='text' value="{{ formData.address }}" disabled='{{ isPreview }}'/>
-                        <view class="section_unit">街道</view>
-                    </view>    
-                </view>
-                <view class="section_bottom"></view>
-            </block>
-            <block wx:if="{{ isRenderSchoolInfo }}">
-                <view class="form_block_head">学校信息</view>
-                <view class="section">
-                    <view class="section_title">
-                        <text>*</text>就读学校</view>
-                </view>
-                <view class="section">
-                    <view class="with_unit">
-                        <input name="school" type='text' value="{{ formData.school }}" disabled='{{ isPreview }}' />
-                        <view class="section_unit">学校</view>
-                    </view>
-                </view>
-                <view class="section">
-                    <view class="section_title">
-                        <text>*</text>在读信息</view>
-                    <view class="with_unit">
-                        <input name="grade" type='text' value="{{ formData.grade }}" disabled='{{ isPreview }}' />
-                        <view class="section_unit">级</view>
-                        <input name="classInfo" type='text' value="{{ formData.classInfo }}" disabled='{{ isPreview }}' />
-                        <view class="section_unit">班</view>
-                    </view>
-                    <view class="with_unit">
-                        <input name="major" type='text' value="{{ formData.major }}" disabled='{{ isPreview }}' />
-                        <view class="section_unit">专业(大学)</view>
-                    </view>
-                </view>
-                <view class="section_bottom"></view>
-            </block>
-            <block wx:if="{{ isRenderReferInfo }}">
-                <view class="form_block_head">推荐人信息</view>
-                <view class="section">
-                    <view class="section_title">推荐人</view>
-                    <input name="referName" type='text' value="{{ formData.referName }}" disabled='{{ isPreview }}' />
-                </view>
-                <view class="section">
-                    <view class="section_title">推荐人联系电话</view>
-                    <input name="referTel" type='text' value="{{ formData.referTel }}" disabled='{{ isPreview }}' />
-                </view>
-                <view class="section_bottom"></view>
-            </block>
-            <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
+  <form bindsubmit="formSubmit" report-submit="ture">
+    <view class="form">
+      <block wx:if="{{ isRenderGroupInfo }}">
+        <view class="form_block_head">团队信息</view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>团队名称</view>
+          <input name="group" type='text' value="{{ formData.group }}" disabled='{{ isPreview }}' />
         </view>
-        <button class="enroll_and_pay" formType="submit" wx:if="{{ !isPreview }}">确认修改</button>
-    </form>
-    <view style="height:50px;"></view>
+        <view class="section_group">
+          <view class="section">
+            <view class="section_title">
+              <text>*</text>团队人数</view>
+            <input name="groupNum" type='number' value="{{ formData.groupNum }}" disabled='{{ isPreview }}' />
+          </view>
+          <view class="section">
+            <view class="section_title">
+              <text>*</text>联系人</view>
+            <input name="contactName" type='text' value="{{ formData.contactName }}" disabled='{{ isPreview }}' />
+          </view>
+        </view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>团队联系电话</view>
+          <input name="contactTel" type='number' value="{{ formData.contactTel }}" disabled='{{ isPreview }}' />
+        </view>
+        <view class="section_bottom"></view>
+      </block>
+      <!--  个人基本信息  -->
+      <block wx:if="{{ isRenderBaseInfo }}">
+        <view class="form_block_head">基本信息</view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>姓名(中文)</view>
+          <input name="name" type='text' value="{{ formData.name }}" disabled='{{ isPreview }}' />
+        </view>
+        <view class="section_group">
+          <view class="section">
+            <view class="section_title">
+              <text>*</text>性别</view>
+            <input name="sex" class="dropdown" disabled='true' type='text' value="{{ formData.sex }}" placeholder='请选择' bindtap='chooseGender' />
+          </view>
+          <view class="section">
+            <view class="section_title">
+              <text>*</text>年龄</view>
+            <input name="age" type='number' value="{{ formData.age }}" disabled='{{ isPreview }}' />
+          </view>
+        </view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>联系电话</view>
+          <input name="tel" type='number' value="{{ formData.tel }}" disabled='{{ isPreview }}' />
+        </view>
+        <picker bindchange="chooseNation" value="{{ formData.nation }}" range="{{ nations }}" disabled='{{ isPreview }}'>
+          <view class="section">
+            <view class="section_title">国籍</view>
+            <input name="nation" class="dropdown" disabled='true' type='text' value="{{ formData.nation }}" placeholder='请选择' />
+          </view>
+        </picker>
+        <view class="section_bottom"></view>
+      </block>
+      <block wx:if="{{ isRenderPhotoInfo }}">
+        <view class="form_block_head">照片</view>
+        <view class="picture">
+          <view class="pic_area">
+            <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
+          </view>
+          <view class="picture_notice" bindtap='uploadPic'>
+            <view class="logo c-iconfont icon-upload"></view>
+            <view class="notice">一寸免冠照片</view>
+          </view>
+        </view>
+        <input class="fake_input" name="photoURL" type='text' value="{{ formData.photoURL }}" />
+      </block>
+      <block wx:if="{{ isRenderRegionInfo }}">
+        <view class="form_block_head">地址信息</view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>详细地址</view>
+          <view class="with_unit">
+            <picker name="provinceID" bindchange="chooseProvince" value="{{ formData.provinceID }}" range="{{ provinces }}" range-key="ProvinceName" disabled='{{ isPreview }}'>
+              <input name="province" class="dropdown" disabled='true' type='text' value="{{ formData.province }}" placeholder='请选择' />
+            </picker>
+            <view class="section_unit">省</view>
+            <picker name="cityID" bindchange="chooseCity" value="{{ formData.cityID }}" range="{{ cities }}" range-key="CityName" disabled='{{ isPreview }}'>
+              <input name="city" class="dropdown" disabled='true' type='text' value="{{ formData.city }}" placeholder='请选择' />
+            </picker>
+            <view class="section_unit">市</view>
+          </view>
+        </view>
+        <view class="section">
+          <view class="with_unit">
+            <picker name="districtID" bindchange="chooseDistrict" value="{{ formData.districtID }}" range="{{ districts }}" range-key='DistrictName' disabled='{{ isPreview }}'>
+              <input name="district" class="dropdown" disabled='true' type='text' value="{{ formData.district }}" placeholder='请选择' />
+            </picker>
+            <view class="section_unit">区</view>
+          </view>
+        </view>
+        <view class="section">
+          <view class="with_unit">
+            <input name="address" type='text' value="{{ formData.address }}" disabled='{{ isPreview }}' />
+            <view class="section_unit">街道</view>
+          </view>
+        </view>
+        <view class="section_bottom"></view>
+      </block>
+      <block wx:if="{{ isRenderSchoolInfo }}">
+        <view class="form_block_head">学校信息</view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>就读学校</view>
+        </view>
+        <view class="section">
+          <view class="with_unit">
+            <input name="school" type='text' value="{{ formData.school }}" disabled='{{ isPreview }}' />
+            <view class="section_unit">学校</view>
+          </view>
+        </view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>在读信息</view>
+          <view class="with_unit">
+            <input name="grade" type='text' value="{{ formData.grade }}" disabled='{{ isPreview }}' />
+            <view class="section_unit">级</view>
+            <input name="classInfo" type='text' value="{{ formData.classInfo }}" disabled='{{ isPreview }}' />
+            <view class="section_unit">班</view>
+          </view>
+          <view class="with_unit">
+            <input name="major" type='text' value="{{ formData.major }}" disabled='{{ isPreview }}' />
+            <view class="section_unit">专业(大学)</view>
+          </view>
+        </view>
+        <view class="section_bottom"></view>
+      </block>
+      <block wx:if="{{ isRenderReferInfo }}">
+        <view class="form_block_head">指导教师信息</view>
+        <view class="section">
+          <view class="section_title">指导教师姓名</view>
+          <input name="referName" type='text' value="{{ formData.referName }}" disabled='{{ isPreview }}' />
+        </view>
+        <view class="section">
+          <view class="section_title">指导教师电话</view>
+          <input name="referTel" type='text' value="{{ formData.referTel }}" disabled='{{ isPreview }}' />
+        </view>
+        <view class="section_bottom"></view>
+      </block>
+      <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
+    </view>
+    <button class="enroll_and_pay" formType="submit" wx:if="{{ !isPreview }}">确认修改</button>
+  </form>
+  <view style="height:50px;"></view>
 </scroll-view>
 <view class="bottom_buttons">
-    <view class='button' hover-class='clicked' bindtap='showQrcode'>
-        <text class="c-iconfont icon-erweima"/>报名号</view>
-    <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
-        <text class="c-iconfont icon-fujian"/>附件管理</view>
-    <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
-        <text class="c-iconfont icon-liebiaorongqi"/>附件管理</view>    
-    <view class="button" hover-class='clicked' bindtap='feedback'>
-        <text class="c-iconfont icon-op-edit"/>信息反馈</view>
+  <view class='button' hover-class='clicked' bindtap='showQrcode'>
+    <text class="c-iconfont icon-erweima" />报名号</view>
+  <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
+    <text class="c-iconfont icon-fujian" />附件管理</view>
+  <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
+    <text class="c-iconfont icon-liebiaorongqi" />附件管理</view>
+  <view class="button" hover-class='clicked' bindtap='feedback'>
+    <text class="c-iconfont icon-op-edit" />信息反馈</view>
 </view>
 <view style="height:0; overflow:hidden; padding:10px;">
-    <canvas class="qrcode" canvas-id="qrcode"></canvas>
+  <canvas class="qrcode" canvas-id="qrcode"></canvas>
 </view>

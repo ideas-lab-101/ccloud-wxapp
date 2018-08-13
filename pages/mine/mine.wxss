@@ -20,8 +20,8 @@ page {
 }
 
 .avatar-img {
-  width: 180rpx;
-  height: 180rpx;
+  width: 165rpx;
+  height: 165rpx;
   border-radius: 50%;
 }
 
@@ -147,14 +147,14 @@ page {
     justify-content: flex-start;
     align-content: center;
     position: absolute;
-    top: 3px;
-    right: 12px;
+    top: 5rpx;
+    right: 25rpx;
     width: 16px;
     height: 16px;
-    line-height: 15px;
+    font-size: 22rpx;
+    line-height: 32rpx;
     border-radius: 99px;
     color:#fff;
-    font-size: 22rpx;
 }
 
 /* .placeholder {

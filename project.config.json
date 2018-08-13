@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -62,22 +62,10 @@
 					"query": ""
 				},
 				{
-					"id": 6,
+					"id": 5,
 					"name": "文档列表",
 					"pathName": "pages/infos/infos",
-					"query": ""
-				},
-				{
-					"id": 7,
-					"name": "签到表单",
-					"pathName": "pages/checkin/order/order",
-					"query": ""
-				},
-				{
-					"id": 8,
-					"name": "签到详情页",
-					"pathName": "pages/checkin/checkin",
-					"query": "cid=11"
+					"query": "cid=6"
 				},
 				{
 					"id": 9,
@@ -90,18 +78,6 @@
 					"name": "查看活动表单",
 					"pathName": "pages/mine/enrolls/form/form",
 					"query": "eid=26&prev=true"
-				},
-				{
-					"id": -1,
-					"name": "签到留言",
-					"pathName": "pages/checkin/detail/comments/comments",
-					"query": "cid=11"
-				},
-				{
-					"id": -1,
-					"name": "签到列表",
-					"pathName": "pages/mine/checkins/checkins",
-					"query": ""
 				},
 				{
 					"id": -1,
@@ -126,6 +102,24 @@
 					"name": "搜索",
 					"pathName": "pages/search/search",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息列表",
+					"pathName": "pages/mine/message/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "信息详情页",
+					"pathName": "pages/infos/infobook/infobook",
+					"query": "gid=41"
+				},
+				{
+					"id": -1,
+					"name": "视频详情",
+					"pathName": "pages/video/video",
+					"query": "attach_id=7304"
 				}
 			]
 		}

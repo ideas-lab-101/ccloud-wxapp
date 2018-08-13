@@ -36,17 +36,19 @@ Page({
     },
 
     goToDetail: function (e) {
-        const itemType = e.target.dataset.type || e.currentTarget.dataset.type
-        switch (itemType){
+        const dataType = e.target.dataset.type || e.currentTarget.dataset.type
+        const dataID = e.target.dataset.id || e.currentTarget.dataset.id
+
+        switch (dataType){
           case "activity" :
             wx.navigateTo({
-              url: `/pages/activity/activity?aid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
+              url: `/pages/activity/activity?aid=${dataID}`,
             })
             break;
-          case "sign" :
-            // wx.navigateTo({
-            //   url: `/pages/checkin/checkin?cid=${e.target.dataset.id || e.currentTarget.dataset.id}`,
-            // })
+          case "news" :
+            wx.navigateTo({
+              url: `/pages/infos/infobook/infobook?gid=${dataID}`,
+            })
             break;
           default:
             break;
@@ -63,7 +65,7 @@ Page({
     _initData: function () {
         wx.showNavigationBarLoading()
         wx.request({
-            url: app.api.index,
+            url: app.api.mainList,
             method: 'GET',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -74,13 +76,13 @@ Page({
                   return {
                     id: el.ID,
                     'type': el.DataType,
-                    imgUrl: app.resourseUrl + el.CoverURL,
+                    imgUrl: app.resourseUrl+el.CoverURL,
                     name: el.Name,
-                    location: el.Address,
-                    time: el.StartTime,
+                    extInfo: el.ExtInfo,
+                    time: el.TimeInfo,
                     desc: el.Desc,
                     isShowDetail: index === 0,
-                    organisation: el.OrgName
+                    source: el.Source
                   }
                 })
                 this.setData({

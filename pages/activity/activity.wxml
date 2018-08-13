@@ -99,8 +99,9 @@
     <view class="html_content">
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
     </view>
-    <view class="topBtn" style="bottom: 180rpx;" catchtap="goTop">返回顶部</view>
+    <view class="scrollBtn" style="bottom: 180rpx;" catchtap="goTop">返回顶部</view>
 </view>
+<ad wx:if="{{info.isAd}}" unit-id="adunit-e0113343045a7cab"></ad>
 <view style='height:50px'></view>
 <view class="bottom_buttons">
     <view class="button" hover-class='clicked' bindtap='join'>
@@ -112,6 +113,3 @@
     <view class="button" hover-class='clicked' bindtap='goToUsercenter'>
         <image src="/assets/images/grzx.png"></image>个人中心</view>    
 </view>
-<!-- <view style="height:0;overflow:hidden">
-    <canvas style="height:200px;width:200px;" canvas-id="qrcode"></canvas>
-</view> -->

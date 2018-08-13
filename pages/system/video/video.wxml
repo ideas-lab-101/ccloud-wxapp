@@ -1,0 +1,5 @@
+<!--pages/video/video.wxml-->
+<view class="content">
+        <video class='content-video' src="{{video.AttachURL}}" controls="{{true}}"
+        poster="{{video.AttachURL}}?vframe/jpg/offset/3" binderror="videoErrorCallback" />
+</view>    

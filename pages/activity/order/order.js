@@ -360,6 +360,9 @@ Page({
                         'group': {
                           required: true
                         },
+                        'groupNum': {
+                          required: true
+                        },
                         'contactName': {
                           required: true
                         },
@@ -371,6 +374,9 @@ Page({
                       Object.assign(this.validationMsgs, {
                         'group': {
                           required: '请输入团队名称'
+                        },
+                        'groupNum': {
+                          required: '请输入团队人数'
                         },
                         'contactName': {
                           required: '请输入联系人姓名',

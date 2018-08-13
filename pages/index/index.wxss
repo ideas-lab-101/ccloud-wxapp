@@ -32,13 +32,13 @@ page {
     background-color: #FF8200;
 }
 
-/* .info.sign {
+.info.news {
     border-left: 5px solid #1596f2;
 }
 
-.info.open.sign .info_left {
+.info.news.open .info_left {
     background-color: #1596f2;
-} */
+}
 
 .info.open .info_left .type, .info.open .info_left .title,
 .info.open .info_left .time {
@@ -116,7 +116,7 @@ page {
     color: #9e9b90;
 }
 
-.info_right .location {
+.info_right .content {
     height: 30px;
     line-height: 15px;
     padding-left: 10px;
@@ -124,6 +124,9 @@ page {
     color: #6e6b60;
     overflow: hidden;
     text-overflow: ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
 }
 
 .drawer {
