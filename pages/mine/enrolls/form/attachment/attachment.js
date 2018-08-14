@@ -1,7 +1,4 @@
-import { $wuxActionSheet } from '../../../../../components/wux'
-import { $wuxToptips } from '../../../../../components/wux'
-import { $wuxDialog } from '../../../../../components/wux'
-// import WxValidate from '../../../../../utlis/WxValidate'
+import { $wuxActionSheet, $wuxToptips, $wuxDialog } from '../../../../../components/wux/index'
 const qiniuUploader = require("../../../../../utils/qiniuUploader.js")
 const utils = require('../../../../../utils/util.js')
 

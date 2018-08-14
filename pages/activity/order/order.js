@@ -1,5 +1,4 @@
-import { $wuxActionSheet } from '../../../components/wux'
-import { $wuxToptips } from '../../../components/wux'
+import { $wuxActionSheet, $wuxToptips } from '../../../components/wux/index'
 import WxValidate from '../../../utils/WxValidate'
 import SystemEnum from '../../../utils/SystemEnum'
 

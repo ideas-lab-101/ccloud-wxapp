@@ -1,4 +1,4 @@
-import { $wuxActionSheet } from '../../../components/wux'
+import { $wuxActionSheet } from '../../../components/wux/index'
 const app = getApp()
 Page({
 

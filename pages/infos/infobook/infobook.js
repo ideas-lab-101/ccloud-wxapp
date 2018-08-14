@@ -1,4 +1,4 @@
-const WxParse = require('../../components/wxParse/wxParse.js')
+const WxParse = require('../../../components/wxParse/wxParse.js')
 const app = getApp()
 Page({
 

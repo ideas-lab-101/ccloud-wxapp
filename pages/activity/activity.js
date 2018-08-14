@@ -1,5 +1,5 @@
 const WxParse = require('../../components/wxParse/wxParse.js')
-import { $wuxDialog, $wuxButton, $wuxActionSheet } from '../../components/wux'
+import { $wuxDialog, $wuxButton, $wuxActionSheet } from '../../components/wux/index'
 
 const app = getApp()
 Page({
@@ -27,7 +27,7 @@ Page({
     onLoad: function (options) {
         this.aid = options.aid
         this._initData(options.aid)
-        this.initButton()
+        //this.initButton()
     },
     initButton() {
         const that = this

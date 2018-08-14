@@ -1,5 +1,5 @@
-import { $wuxActionSheet } from '../../../components/wux'
 const app = getApp()
+
 Page({
 
     /**

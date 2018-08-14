@@ -1,8 +1,7 @@
-<import src="../../../components/actionsheet/actionsheet.wxml" />
 <import src="../../../components/notice/notice.wxml" />
 
 <template is="notice" data="{{ ...noticeContent }}" />
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+
 <view class="header">项目列表
     <view class="list_number">共{{ pager.totalFee }}项</view>
 </view>
