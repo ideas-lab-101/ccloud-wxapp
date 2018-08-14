@@ -1,7 +1,6 @@
-<import src="../../../components/actionsheet/actionsheet.wxml" />
-<import src="../../../components/toptips/toptips.wxml" />
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
-<template is="toptips" data="{{ ...$wux.toptips }}" />
+<wux-actionsheet id="wux-actionsheet"></wux-actionsheet>
+<wux-toptips id="wux-toptips"></wux-toptips>
+
 <scroll-view scroll-y style="height: 100%;">
   <view class="activity">
     <view class="img_wrapper">

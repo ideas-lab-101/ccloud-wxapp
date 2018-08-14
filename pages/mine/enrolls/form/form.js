@@ -1,4 +1,4 @@
-import { $wuxActionSheet, $wuxToptips, $wuxQrcode } from '../../../../components/wux/index'
+import { $wuxActionSheet, $wuxToptips, $wuxQrcode, $wuxBackdrop } from '../../../../components/wux/index'
 import WxValidate from '../../../../utils/WxValidate'
 import SystemEnum from '../../../../utils/SystemEnum'
 
@@ -72,7 +72,7 @@ Page({
             success: res => {
                 wx.hideLoading()
                 if (res.data.result) {
-                    $wuxToptips.success({
+                    $wuxToptips().success({
                         hidden: !0,
                         text: '提交成功',
                     })
@@ -95,7 +95,7 @@ Page({
         this.WxValidate = new WxValidate(this.validators, this.validationMsgs)
     },
     _showToptips(error) {
-        const hideToptips = $wuxToptips.show({
+        const hideToptips = $wuxToptips().show({
             timer: 3000,
             text: error.msg || '请填写正确的字段',
             hidden: true,
@@ -106,7 +106,7 @@ Page({
         if (this.data.isPreview) {
             return
         }
-        $wuxActionSheet.show({
+        $wuxActionSheet().showSheet({
             titleText: '请选择性别',
             buttons: en.genders,
             buttonClicked(index, item) {
@@ -392,11 +392,11 @@ Page({
         })
     },
     _initCanvas(value) {
-        $wuxQrcode.init('qrcode', value, {
-            width:200,
-            height:200,
-            fgColor: '#000000'
-        })
+        // $wuxQrcode.init('qrcode', value, {
+        //     width:200,
+        //     height:200,
+        //     fgColor: '#000000'
+        // })
     },
     attachmentManage() {
         //传入是否为只读模式
@@ -416,20 +416,22 @@ Page({
     },
     showQrcode() {
         if (this.hasQrcode) {
-            wx.canvasToTempFilePath({
-                canvasId: 'qrcode',
-                success: res => {
-                    wx.previewImage({
-                        urls: [res.tempFilePath]
-                    })
-                }
+            $wuxBackdrop().retain()
+            this.setData({
+                in: true
             })
-        } else {
+        }else {
             wx.showModal({
                 title: '获取二维码失败',
                 content: '报名号未生成',
                 showCancel: false
             })
         }
+    },
+    closeQrcode() {
+        $wuxBackdrop().release()
+        this.setData({
+            in: false
+        })
     }
 })

@@ -133,6 +133,23 @@ Component({
         onTap() {
             this.triggerEvent('tap')
         },
+
+        /**
+         * 查看二维码
+         */
+        viewCode() {
+            wx.canvasToTempFilePath({
+                canvasId: this.data.canvasId,
+                success: res => {
+                    wx.previewImage({
+                        urls: [res.tempFilePath]
+                    })
+                },
+                fail: ret => {
+                    console.log(ret)
+                }
+            })
+        }
     },
     attached() {
         this.draw()

@@ -1,12 +1,6 @@
 <import src="/components/wxParse/wxParse.wxml" />
-<import src="../../components/dialog/dialog.wxml" />
-<import src="../../components/button/button.wxml" />
-<import src="../../components/notice/notice.wxml" />
 
-<template is="notice" data="{{ ...noticeContent }}" />
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
-<template is="button" data="{{ ...$wux.button.br }}" />
-<template is="dialog" data="{{ ...$wux.dialog }}" />
+<wux-actionsheet id="wux-actionsheet"/>
 
 <view class="image_container">
     <image class="banner" src="{{imgUrls[0]}}" mode="aspectFill" bindtap='viewImage'></image>
@@ -23,19 +17,15 @@
 </view>
 
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
-    <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     <!-- 活动主办方 -->
     <view class="org-card">
         <view class='info-main'>
             <view class='info-head'>
                 <image class="logo" src="{{org.LogoURL}}"></image>
-            </view>    
-            <view class="info-content">
-                <navigator class="info-title" url="../list/list?orgId={{org.OrgID}}">
-                    {{org.OrgName}}<!-- <text class='c-iconfont icon-search'/> -->
-                </navigator>
-                <view class="info-desc"><text class='c-iconfont icon-tag'> 活动 </text>{{org.ACount}}</view>
             </view>
+            <navigator class="info-title" url="../list/list?orgId={{org.OrgID}}">
+                {{org.OrgName}}
+            </navigator>
             <view class='info-btn'>
                 <view class="mini-btn" bindtap="btn_follow" data-id="{{org.OrgID}}">
                     <block wx:if="{{is_follow}}"><text class='c-iconfont icon-squareminus'/> 已关注</block>
@@ -43,7 +33,41 @@
                 </view>
             </view> 
         </view>
-    </view>    
+    </view>
+
+    <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
+    <!-- 活动操作-->
+    <view class="org-btn">
+        <view class="_oper">
+            <view bindtap="btn_favor" wx:if="{{!is_favor}}">
+                <text class="c-iconfont icon-favoriteoutline"></text>
+                <text>收藏</text>
+            </view>
+            <view bindtap="btn_favor" wx:else style="color: #FF8200;">
+                <text class="c-iconfont icon-favorite"></text>
+                <text>取消</text>
+            </view>
+            <view bindtap='goToInfoList'>
+                <text class="c-iconfont icon-wendang"></text>
+                <text>资料</text>
+            </view>
+            <button plain open-type="share">
+                <text class="c-iconfont icon-share"></text>
+                <text>分享</text>
+            </button>
+            <view bindtap="goToComment">
+                <text class="c-iconfont icon-comment-processing-outline"></text>
+                <text>留言</text>
+            </view>
+        </view>
+        <view bindtap='join' class="_jion" wx:if="{{info.intState === 1}}">
+            <text>报名参加</text>
+        </view>
+        <view class="_jion_over" wx:else>
+            <text>报名结束</text>
+        </view>
+    </view>
+
     <!-- 活动项目 -->
     <view class="case_card">
         <view class="head">
@@ -94,6 +118,7 @@
         </view>
     </view>
 </view>
+
 <view class="tab_content" hidden='{{tabIndex!==1}}'>
     <view class="html_content">
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
@@ -101,14 +126,19 @@
     <view class="scrollBtn" style="bottom: 180rpx;" catchtap="goTop">返回顶部</view>
 </view>
 <ad wx:if="{{info.isAd}}" unit-id="adunit-e0113343045a7cab"></ad>
-<view style='height:50px'></view>
-<view class="bottom_buttons">
-    <view class="button" hover-class='clicked' bindtap='join'>
-        <image src="/assets/images/bmcj.png"></image>报名参加</view>
-    <view class="button" hover-class='clicked' bindtap='goToInfoList'>
-        <image src="/assets/images/zl.png"></image>资料</view>
-    <view class="button" hover-class='clicked' bindtap='share'>
-        <image src="/assets/images/fx.png"></image>分享</view>
-    <view class="button" hover-class='clicked' bindtap='goToUsercenter'>
-        <image src="/assets/images/grzx.png"></image>个人中心</view>    
-</view>
+
+
+<wux-backdrop id="wux-backdrop" bind:click="closePayLayerEvent" />
+<wux-animation-group wux-class="pay-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+    <view class="pay-layer-box">
+        <view class="pay-layer-content">
+            <view class="_insert">
+                <view class="relative">
+                    <view class="_img"><text class="c-iconfont icon-zidingyilie"></text></view>
+                    <view class="_name">{{noticeContent.title}}</view>
+                    <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+</wux-animation-group>

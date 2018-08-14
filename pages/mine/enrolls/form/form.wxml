@@ -1,8 +1,6 @@
-<import src="../../../../components/actionsheet/actionsheet.wxml" />
-<import src="../../../../components/toptips/toptips.wxml" />
+<wux-actionsheet id="wux-actionsheet"></wux-actionsheet>
+<wux-toptips id="wux-toptips"></wux-toptips>
 
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
-<template is="toptips" data="{{ ...$wux.toptips }}" />
 <scroll-view scroll-y style="height: 100%;">
   <form bindsubmit="formSubmit" report-submit="ture">
     <view class="form">
@@ -166,6 +164,11 @@
   <view class="button" hover-class='clicked' bindtap='feedback'>
     <text class="c-iconfont icon-op-edit" />信息反馈</view>
 </view>
-<view style="height:0; overflow:hidden; padding:10px;">
-  <canvas class="qrcode" canvas-id="qrcode"></canvas>
-</view>
+
+
+<wux-backdrop id="wux-backdrop" bind:click="closeQrcode" />
+<wux-animation-group wux-class="code-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+  <view class="_insert">
+  <wux-qrcode wux-class="qrcode" data="{{ enrollInfo.EnrollCode }}" width="200" height="200" id="qrcode"/>
+  </view>
+</wux-animation-group>

@@ -294,3 +294,6 @@ page {
   height: 200px;
   width: 200px;
 }
+
+.code-layer{ position: fixed; width: 100%; text-align: center; padding: 160rpx; bottom: 0; z-index: 2999; background-color: white;}
+.code-layer ._insert{ margin: 0 auto; display: inline-block; vertical-align: middle;}

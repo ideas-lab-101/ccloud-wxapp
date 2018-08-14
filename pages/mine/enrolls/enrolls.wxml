@@ -1,5 +1,5 @@
-<import src="../../../components/actionsheet/actionsheet.wxml" />
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
+<wux-actionsheet id="wux-actionsheet"></wux-actionsheet>
+
 <view class="header">活动列表
     <view class="list_number">共{{ pager.totalEnroll }}项</view>
 </view>

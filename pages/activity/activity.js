@@ -1,5 +1,6 @@
+
 const WxParse = require('../../components/wxParse/wxParse.js')
-import { $wuxDialog, $wuxButton, $wuxActionSheet } from '../../components/wux/index'
+import { $wuxActionSheet, $wuxBackdrop } from '../../components/wux/index'
 
 const app = getApp()
 Page({
@@ -19,6 +20,7 @@ Page({
             isNoticeShow: false,
             deviceHeight: app.globalData.deviceHeight
         },
+        is_favor: false
     },
 
     /**
@@ -30,37 +32,37 @@ Page({
         //this.initButton()
     },
     initButton() {
-        const that = this
-        this.setData({
-            opened: !1,
-        })
-
-        this.button = $wuxButton.init('br', {
-            position: 'bottomRight',
-            buttons: [
-                {
-                    label: '留言',
-                    icon: "/assets/images/cytl.png",
-                    method: 'goToComment'
-
-                },
-                {
-                    label: '精彩瞬间',
-                    icon: "/assets/images/media.png",
-                    method: 'goToMedia'
-
-                }
-            ],
-            buttonClicked(index, item) {
-                that[item.method].call(that)
-                return true
-            },
-            callback(vm, opened) {
-                vm.setData({
-                    opened,
-                })
-            },
-        })
+        // const that = this
+        // this.setData({
+        //     opened: !1,
+        // })
+        //
+        // this.button = $wuxButton.init('br', {
+        //     position: 'bottomRight',
+        //     buttons: [
+        //         {
+        //             label: '留言',
+        //             icon: "/assets/images/cytl.png",
+        //             method: 'goToComment'
+        //
+        //         },
+        //         {
+        //             label: '精彩瞬间',
+        //             icon: "/assets/images/media.png",
+        //             method: 'goToMedia'
+        //
+        //         }
+        //     ],
+        //     buttonClicked(index, item) {
+        //         that[item.method].call(that)
+        //         return true
+        //     },
+        //     callback(vm, opened) {
+        //         vm.setData({
+        //             opened,
+        //         })
+        //     },
+        // })
     },
     setTabIndex: function (e) {
         this.setData({
@@ -72,7 +74,7 @@ Page({
         if (this.activityInfo.intState == 1) {
             if (this.data.info.mode == 3) {
                 const that = this
-                $wuxActionSheet.show({
+                $wuxActionSheet().showSheet({
                   titleText: '选择报名类型',
                   buttons: [{
                       text: '个人报名',
@@ -172,6 +174,7 @@ Page({
                         info: res.data.activityInfo,
                         org: orgInfo,
                         is_follow: res.data.is_follow,
+                        is_favor: res.data.is_favor,
                         cases: res.data.activityFee
                     })
                     WxParse.wxParse('detail', 'html', res.data.activityInfo.Content || '<p>暂无详情</p>', that, 5);
@@ -259,10 +262,11 @@ Page({
     },
     showSchedule: function () {
       if (this.activityInfo.Schedule) {
+        $wuxBackdrop().retain()
         this.setData({
           'noticeContent.title': '活动安排',
           'noticeContent.content': this.activityInfo.Schedule,
-          'noticeContent.isNoticeShow': true
+          in: true
         })
       }
     },
@@ -332,11 +336,18 @@ Page({
         })
     },
     showFeeDesc(e) {
+        $wuxBackdrop().retain()
         const index = e.target.dataset.index || e.currentTarget.dataset.index
         this.setData({
             'noticeContent.title': '项目介绍',
             'noticeContent.content': this.data.cases[index].FeeDesc,
-            'noticeContent.isNoticeShow': true
+            in: true
+        })
+    },
+    closePayLayerEvent(e) {
+        $wuxBackdrop().release()
+        this.setData({
+            in: false
         })
     },
     /**
@@ -357,5 +368,36 @@ Page({
                 // 转发失败
             }
         }
+    },
+
+    btn_favor: function(){
+        wx.showNavigationBarLoading()
+        app.user.isLogin(token => {
+            wx.request({
+                url: app.api.userFavor,
+                method: 'post',
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    token: token,
+                    dataID: this.aid,
+                    type: 'activity'
+                }, success: res => {
+                    if (res.data.result) {
+                        this.setData({
+                            is_favor: res.data.is_favor
+                        })
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none',
+                        })
+                    }
+                }, complete: res => {
+                    wx.hideNavigationBarLoading()
+                }
+            })
+        })
     }
 })

@@ -2,14 +2,15 @@
     <view class="item" wx:for="{{items}}" bindtap='showItemDetail' data-index="{{index}}">
         <view class="drawer{{item.isShowDetail? ' open':''}}" >
             <image class="drawer_bg" src='{{item.imgUrl}}' mode='aspectFill'></image>
-            <view class="button" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}">查看详情</view>
+            <view class="button {{item.type}}" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}">查看详情</view>
         </view>
         <view class="info {{item.type}}{{item.isShowDetail?' open':''}}">
             <view class="info_left">
                 <view class="type">
                     <image src="/assets/images/{{item.type}}-index{{item.isShowDetail?'-w':''}}.png"></image>
                     <text wx:if="{{item.type == 'activity'}}">活动</text>
-                    <text wx:if="{{item.type == 'news'}}">资讯</text>
+                    <text wx:elif="{{item.type == 'news'}}">资讯</text>
+                    <text wx:elif="{{item.type == 'vote'}}">投票</text>
                 </view>
                 <view class="title">时间</view>
                 <view class="time">{{item.time}}</view>

@@ -90,7 +90,7 @@ Page({
                     //根据是否支付来控制
                     this.data.enrollID = res.data.enrollID
                     if (res.data.orderInfo) {
-                        $wuxToptips.success({
+                        $wuxToptips().success({
                             hidden: !0,
                             text: '报名表提交成功',
                         })
@@ -171,7 +171,7 @@ Page({
         this.WxValidate = new WxValidate(this.validators, this.validationMsgs)
     },
     _showToptips(error) {
-        const hideToptips = $wuxToptips.show({
+        const hideToptips = $wuxToptips().show({
             timer: 3000,
             text: error.msg || error || '请填写正确的字段',
             hidden: true,
@@ -179,10 +179,10 @@ Page({
         })
     },
     chooseGender: function () {
-        $wuxActionSheet.show({
+        $wuxActionSheet().showSheet({
             titleText: '请选择性别',
             buttons: en.genders,
-            buttonClicked(index, item) {
+            buttonClicked: (index, item) => {
                 this.setData({
                     'formData.sex': item.text
                 })

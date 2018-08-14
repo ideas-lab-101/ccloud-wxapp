@@ -28,7 +28,7 @@ page {
     border-left: 5px solid #FF8200;
 }
 
-.info.activity.open .info_left {
+.info.activity.open .info_left, .drawer .button.activity{
     background-color: #FF8200;
 }
 
@@ -36,9 +36,18 @@ page {
     border-left: 5px solid #1596f2;
 }
 
-.info.news.open .info_left {
+.info.news.open .info_left,.drawer .button.news {
     background-color: #1596f2;
 }
+
+.info.vote {
+    border-left: 5px solid #d200ff;
+}
+
+.info.vote.open .info_left,.drawer .button.vote {
+    background-color: #d200ff;
+}
+
 
 .info.open .info_left .type, .info.open .info_left .title,
 .info.open .info_left .time {
@@ -54,10 +63,10 @@ page {
 .info_left .type {
     display: flex;
     align-items: center;
-    justify-content: center;
     height: 70px;
     font-size: 14px;
     color: #6e6b60;
+    padding-left: 5px;
 }
 
 .info_left .type image {

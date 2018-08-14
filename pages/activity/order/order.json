@@ -1,3 +1,7 @@
 {
-    "navigationBarTitleText": "填写报名表"
+    "navigationBarTitleText": "填写报名表",
+    "usingComponents": {
+        "wux-actionsheet": "/components/wux/actionsheet/index",
+        "wux-toptips": "/components/wux/toptips/index"
+    }
 }

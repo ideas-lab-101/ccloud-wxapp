@@ -1,3 +1,10 @@
 {
-  "navigationBarTitleText": "报名表"
+  "navigationBarTitleText": "报名表",
+  "usingComponents": {
+    "wux-actionsheet": "/components/wux/actionsheet/index",
+    "wux-toptips": "/components/wux/toptips/index",
+    "wux-qrcode": "/components/wux/qrcode/index",
+    "wux-backdrop": "/components/wux/backdrop/index",
+    "wux-animation-group": "/components/wux/animation-group/index"
+  }
 }

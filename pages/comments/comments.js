@@ -87,7 +87,7 @@ Page({
     },
     deleteComment(commentIndex) {
         const that = this;
-        $wuxActionSheet.show({
+        $wuxActionSheet().showSheet({
             titleText: '确认删除该条评论吗',
             className: 'cancel-action',
             buttons: [{ text: '删除' }],
@@ -139,7 +139,7 @@ Page({
                 that.deleteComment(commentIndex);
             };
         }
-        $wuxActionSheet.show(actionConfig);
+        $wuxActionSheet().showSheet(actionConfig);
     },
     hideTa: function () {
         this.setData({

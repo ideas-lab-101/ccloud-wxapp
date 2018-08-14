@@ -122,7 +122,7 @@ Page({
                 }
             });
         }
-        $wuxActionSheet.show(actionConfig);
+        $wuxActionSheet().showSheet(actionConfig);
     },
 
     next: function (e) {
