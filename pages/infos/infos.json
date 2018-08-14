@@ -3,6 +3,6 @@
     "navigationBarBackgroundColor": "#1596f2",
     "navigationBarTextStyle": "white",
     "usingComponents": {
-        "howard-pager": "/utils/pagination/pagination"
+        "howard-pager": "/components/pagination/pagination"
     }
 }

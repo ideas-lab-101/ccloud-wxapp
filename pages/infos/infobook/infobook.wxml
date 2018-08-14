@@ -1,4 +1,4 @@
-<import src="../../../assets/plugins/wxParse/wxParse.wxml" />
+<import src="/components/wxParse/wxParse.wxml" />
 
 <view class="title">{{ Title }}</view>
 <view class="source"><text>{{ Source }}</text> {{ AddTime }}</view>

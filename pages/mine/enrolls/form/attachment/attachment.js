@@ -1,12 +1,11 @@
 import { $wuxActionSheet } from '../../../../../components/wux'
 import { $wuxToptips } from '../../../../../components/wux'
 import { $wuxDialog } from '../../../../../components/wux'
-import WxValidate from '../../../../../assets/plugins/WxValidate'
-// import { formatTime } from '../../../../../utils/util.js'
+// import WxValidate from '../../../../../utlis/WxValidate'
 const qiniuUploader = require("../../../../../utils/qiniuUploader.js")
+const utils = require('../../../../../utils/util.js')
 
 const app = getApp()
-const utils = require('../../../../../utils/util.js')
 Page({
 
     /**
@@ -252,11 +251,11 @@ Page({
             }
         })
     },
-    validators: {},
-    validationMsgs: {},
-    _initValidate() {
-        this.WxValidate = new WxValidate(this.validators, this.validationMsgs)
-    },
+    // validators: {},
+    // validationMsgs: {},
+    // _initValidate() {
+    //     this.WxValidate = new WxValidate(this.validators, this.validationMsgs)
+    // },
     _showToptips(error) {
         const hideToptips = $wuxToptips.show({
             timer: 3000,
@@ -372,7 +371,7 @@ Page({
           })
       } else if (attachInfo.AttachType.indexOf('video/') >= 0){
           wx.navigateTo({
-              url: '../../../../system/video/video?attach_id=' + attachInfo.AttachID
+              url: '/pages/system/video/video?attach_id=' + attachInfo.AttachID
           })
       }
     },

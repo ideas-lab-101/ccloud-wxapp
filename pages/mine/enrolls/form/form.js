@@ -1,7 +1,7 @@
 import { $wuxActionSheet } from '../../../../components/wux'
 import { $wuxToptips } from '../../../../components/wux'
 import { $wuxQrcode } from '../../../../components/wux'
-import WxValidate from '../../../../assets/plugins/WxValidate'
+import WxValidate from '../../../../utils/WxValidate'
 import SystemEnum from '../../../../utils/SystemEnum'
 
 const app = getApp()
@@ -413,7 +413,7 @@ Page({
     },
     feedback() {
         wx.navigateTo({
-          url: `/pages/feedback/feedback?data_type=activity&data_id=${this.eid}`
+          url: `/pages/system/feedback/feedback?data_type=activity&data_id=${this.eid}`
         })
     },
     showQrcode() {

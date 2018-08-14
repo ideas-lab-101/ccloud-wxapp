@@ -13,12 +13,12 @@
     "pages/mine/enrolls/form/form",
     "pages/mine/enrolls/form/attachment/attachment",
     "pages/mine/enrolls/form/grouplist/grouplist",
-    "pages/feedback/feedback",
     "pages/comments/comments",
     "pages/infos/infos",
     "pages/infos/infobook/infobook",
     "pages/result/result",
     "pages/interact/interact",
+    "pages/system/feedback/feedback",
     "pages/system/video/video",
     "pages/system/webview/webview"
   ],

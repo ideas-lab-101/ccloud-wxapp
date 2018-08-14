@@ -1,4 +1,4 @@
-@import '/assets/plugins/wxParse/wxParse.wxss';
+@import '/components/wxParse/wxParse.wxss';
 
 page {
     background-color: #eceef8;

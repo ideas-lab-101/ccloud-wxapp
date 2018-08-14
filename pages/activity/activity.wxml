@@ -1,8 +1,7 @@
-<import src="../../assets/plugins/wxParse/wxParse.wxml" />
+<import src="/components/wxParse/wxParse.wxml" />
 <import src="../../components/dialog/dialog.wxml" />
 <import src="../../components/button/button.wxml" />
 <import src="../../components/notice/notice.wxml" />
-<import src="../../components/actionsheet/actionsheet.wxml" />
 
 <template is="notice" data="{{ ...noticeContent }}" />
 <template is="actionsheet" data="{{ ...$wux.actionSheet }}" />

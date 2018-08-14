@@ -1,6 +1,6 @@
 import { $wuxActionSheet } from '../../../components/wux'
 import { $wuxToptips } from '../../../components/wux'
-import WxValidate from '../../../assets/plugins/WxValidate'
+import WxValidate from '../../../utils/WxValidate'
 import SystemEnum from '../../../utils/SystemEnum'
 
 const app = getApp()

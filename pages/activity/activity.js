@@ -1,4 +1,4 @@
-const WxParse = require('../../assets/plugins/wxParse/wxParse.js')
+const WxParse = require('../../components/wxParse/wxParse.js')
 import { $wuxDialog, $wuxButton, $wuxActionSheet } from '../../components/wux'
 
 const app = getApp()

@@ -1,4 +1,4 @@
-@import '/assets/plugins/wxParse/wxParse.wxss';
+@import '/components/wxParse/wxParse.wxss';
 
 .html_content {
     padding: 30px 30rpx 60px 30rpx;
