@@ -1,0 +1,97 @@
+
+var resolveTime = function (time, full) {
+    var exp = getRegExp('-', 'g')
+    var temp = time.replace(exp, '/')
+    var d = getDate(temp)
+    var now = getDate()
+    var diff = (now - d) / 1000
+
+    if (diff < 30) {
+        return '刚刚'
+    } else if (diff < 3600) {
+        return Math.ceil(diff / 60) + '分钟前'
+    } else if (diff < 3600 * 24) {
+        return Math.ceil(diff / 3600) + '小时前'
+    } else if (diff < 3600 * 24 * 2) {
+        return '1天前'
+    }
+
+    if (getRegExp('').exec(time) == null) {
+        return (d.getMonth() + 1) + '月' + d.getDate() + '日 '
+    }
+    return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + setDecimals(d.getHours()) + ':' + setDecimals(d.getMinutes())
+}
+
+var setDecimals = function (val) {
+    return Number(val)<10? '0'+val:val
+}
+
+
+var changeTipText = function (type) {
+    var temp = ''
+    switch (type) {
+        case 'activity':
+            temp = '主办方'
+            break
+        case 'news':
+            temp = '发布方'
+            break
+        case 'vote':
+            temp = '主办方'
+            break
+        case 'app':
+            temp = ' '
+            break
+        default:
+            temp = ''
+    }
+    return temp
+}
+
+var changeTipNumber = function (type) {
+    var temp = ''
+    switch (type) {
+        case 'activity':
+            temp = '地点'
+            break
+        case 'news':
+            temp = '阅读数'
+            break
+        case 'vote':
+            temp = '参与数'
+            break
+        case 'app':
+            temp = '浏览数'
+            break
+        default:
+            temp = ''
+    }
+    return temp
+}
+
+var changeTipTimeName = function (type) {
+    var temp = ''
+    switch (type) {
+        case 'activity':
+            temp = '开始时间'
+            break
+        case 'news':
+            temp = '发布时间'
+            break
+        case 'vote':
+            temp = '截止时间'
+            break
+        case 'app':
+            temp = ' '
+            break
+        default:
+            temp = ''
+    }
+    return temp
+}
+
+module.exports = {
+    changeTipText: changeTipText,
+    changeTipNumber: changeTipNumber,
+    changeTipTimeName: changeTipTimeName
+}

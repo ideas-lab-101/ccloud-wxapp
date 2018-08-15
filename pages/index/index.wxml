@@ -1,34 +1,48 @@
+<wxs src="./index.wxs" module="moduleIndex" />
+
 <view class='container_fliud'>
     <view class="item" wx:for="{{items}}" bindtap='showItemDetail' data-index="{{index}}">
         <view class="drawer{{item.isShowDetail? ' open':''}}" >
             <image class="drawer_bg" src='{{item.imgUrl}}' mode='aspectFill'></image>
-            <view class="button {{item.type}}" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}">查看详情</view>
+            <view class="button {{item.type}}" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}" data-index="{{index}}">查看详情</view>
         </view>
         <view class="info {{item.type}}{{item.isShowDetail?' open':''}}">
             <view class="info_left">
-                <view class="type">
-                    <image src="/assets/images/{{item.type}}-index{{item.isShowDetail?'-w':''}}.png"></image>
-                    <text wx:if="{{item.type == 'activity'}}">活动</text>
-                    <text wx:elif="{{item.type == 'news'}}">资讯</text>
-                    <text wx:elif="{{item.type == 'vote'}}">投票</text>
+                <view class="type" wx:if="{{item.type == 'activity'}}">
+                    <text class="c-iconfont icon-leftjoin"></text>
+                    <text>活动</text>
                 </view>
-                <view class="title">时间</view>
-                <view class="time">{{item.time}}</view>
+                <view class="type" wx:elif="{{item.type == 'news'}}">
+                    <text class="c-iconfont icon-announcement"></text>
+                    <text>资讯</text>
+                </view>
+                <view class="type" wx:elif="{{item.type == 'vote'}}">
+                    <text class="c-iconfont icon-align2bottom"></text>
+                    <text>投票</text>
+                </view>
+                <view class="type" wx:elif="{{item.type == 'app'}}">
+                    <text class="c-iconfont icon-application"></text>
+                    <text>应用</text>
+                </view>
+                <block wx:if="{{item.type !== 'app'}}">
+                    <view class="title">{{moduleIndex.changeTipTimeName(item.type)}}</view>
+                    <view class="time">{{item.time}}</view>
+                </block>
             </view>
             <view class="info_right">
                 <view class="name">{{item.name}}</view>
-                <view class="bottom">
+                <view class="bottom" wx:if="{{item.type !== 'app'}}">
                     <view class="left">
-                        <view class="title" wx:if="{{item.type == 'activity'}}">主办方</view>
-                        <view class="title" wx:if="{{item.type == 'news'}}">发布方</view>
+                        <view class="title">{{moduleIndex.changeTipText(item.type)}}</view>
                         <view class="content">{{item.source}}</view>
                     </view>
                     <view class="right">
-                        <view class="title" wx:if="{{item.type == 'activity'}}">地点</view>
-                        <view class="title" wx:if="{{item.type == 'news'}}">阅读数</view>
+                        <view class="title">{{moduleIndex.changeTipNumber(item.type)}}</view>
                         <view class="content">{{item.extInfo}}</view>
                     </view>
                 </view>
+                <view wx:else class="_desc">{{item.desc}}</view>
+
             </view>
         </view>
     </view>

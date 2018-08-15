@@ -38,6 +38,7 @@ Page({
     goToDetail: function (e) {
         const dataType = e.target.dataset.type || e.currentTarget.dataset.type
         const dataID = e.target.dataset.id || e.currentTarget.dataset.id
+        const index = e.target.dataset.index || e.currentTarget.dataset.index
 
         switch (dataType){
           case "activity" :
@@ -45,11 +46,25 @@ Page({
               url: `/pages/activity/activity?aid=${dataID}`,
             })
             break;
-          case "news" :
-            wx.navigateTo({
-              url: `/pages/infos/infobook/infobook?gid=${dataID}`,
-            })
-            break;
+            case "news" :
+                wx.navigateTo({
+                    url: `/pages/infos/infobook/infobook?gid=${dataID}`,
+                })
+                break;
+            case "vote" :
+                wx.navigateTo({
+                    url: `/pages/infos/infobook/infobook?gid=${dataID}`,
+                })
+                break;
+            case "app" :
+                console.log(this.data.items[index])
+                wx.navigateToMiniProgram({
+                    appId: this.data.items[index].source,
+                    path: this.data.items[index].extInfo,
+                    envVersion: 'release',
+                    success(res) {}
+                })
+                break;
           default:
             break;
         }
@@ -72,6 +87,7 @@ Page({
             },
             data: {},
             success: res => {
+                console.log(res)
                 const datas = res.data.list.map(function (el, index) {
                   return {
                     id: el.ID,
@@ -97,9 +113,20 @@ Page({
     },
 
     showItemDetail(e) {
-        const datas = this.data.items,
-            index = e.target.dataset.index||e.currentTarget.dataset.index
-        datas[index].isShowDetail = !datas[index].isShowDetail
+        let datas = this.data.items
+        const index = e.target.dataset.index||e.currentTarget.dataset.index
+        datas = datas.map((item, i) => {
+            if (index === i) {
+                if (item.isShowDetail) {
+                    item.isShowDetail = false
+                }else {
+                    item.isShowDetail = true
+                }
+            }else {
+                item.isShowDetail = false
+            }
+            return item
+        })
         this.setData({
             items: datas
         })
