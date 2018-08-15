@@ -1,8 +1,8 @@
 const Version = '1.8.8';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
-const HOST = "https://ccloud.ideas-lab.cn/";
-// const HOST = "http://web.tunnel.cdqidi.cn/";
+//const HOST = "https://ccloud.ideas-lab.cn/";
+const HOST = "http://web.tunnel.cdqidi.cn/";
 
 App({
     onLaunch: function () {

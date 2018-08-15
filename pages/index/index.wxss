@@ -41,11 +41,30 @@ page {
 }
 
 .info.vote {
-    border-left: 5px solid #d200ff;
+    border-left: 5px solid #c007e8;
 }
 
 .info.vote.open .info_left,.drawer .button.vote {
-    background-color: #d200ff;
+    background-color: #c007e8;
+}
+
+.info.app {
+    border-left: 5px solid #15b505;
+}
+
+.info.app.open .info_left,.drawer .button.app {
+    background-color: #15b505;
+}
+
+.info.app .info_left{
+    border-right: 0;
+}
+.info.app .info_right .name{
+    height: auto; font-size: 44rpx; font-weight: 500; padding-top: 30rpx; padding-bottom: 30rpx; color: #15b505;
+}
+
+.info.app .info_right ._desc{
+    font-size: 28rpx; left: 1.6; color: #333;
 }
 
 
@@ -57,7 +76,7 @@ page {
 .info_left {
     flex: none;
     width: 80px;
-    border-right: 1px dashed #9e9b90;
+    border-right: 1px dashed #bbbbbb;
 }
 
 .info_left .type {
@@ -65,23 +84,17 @@ page {
     align-items: center;
     height: 70px;
     font-size: 14px;
-    color: #6e6b60;
     padding-left: 5px;
 }
-
-.info_left .type image {
-    flex: none;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-}
+.info_left .type text:last-child{ margin-left: 6rpx;}
+.info_left .type .c-iconfont {font-size: 26rpx;}
 
 .info_left .title {
     height: 20px;
     line-height: 20px;
     padding-left: 5px;
     font-size: 10px;
-    color: #9e9b90;
+    color: #999;
 }
 
 .info_left .time {
@@ -89,7 +102,7 @@ page {
     line-height: 15px;
     padding-left: 5px;
     font-size: 12px;
-    color: #6e6b60;
+    color: #333;
 }
 
 .info_right {
@@ -97,17 +110,16 @@ page {
 }
 
 .info_right .name {
-    height: 70px;
+    height: 140rpx;
     display: flex;
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 16px;
-    color: #333;
+    font-size: 34rpx;
 }
 
 .info_right .bottom {
-    height: 50px;
+    height: 100rpx;
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
@@ -118,26 +130,36 @@ page {
 }
 
 .info_right .title {
-    height: 20px;
+    height: 40rpx;
     line-height: 20px;
     padding-left: 10px;
-    font-size: 10px;
-    color: #9e9b90;
+    font-size: 20rpx;
+    color: #999999;
 }
 
 .info_right .content {
-    height: 30px;
+    height: 60rpx;
     line-height: 15px;
     padding-left: 10px;
-    font-size: 12px;
-    color: #6e6b60;
+    font-size: 24rpx;
+    color: #333;
     overflow: hidden;
     text-overflow: ellipsis;
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2; 
 }
-
+.info_right ._desc{
+    font-size: 24rpx;
+    color: #666;
+    padding: 0 40rpx;
+    line-height: 1.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+}
 .drawer {
     position: relative;
     height: 220px;
