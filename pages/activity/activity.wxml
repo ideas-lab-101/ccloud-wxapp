@@ -1,5 +1,4 @@
 <import src="/components/wxParse/wxParse.wxml" />
-
 <wux-actionsheet id="wux-actionsheet"/>
 
 <view class="image_container">
@@ -17,6 +16,7 @@
 </view>
 
 <view class="tab_content" hidden='{{tabIndex!==0}}'>
+    <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     <!-- 活动主办方 -->
     <view class="org-card">
         <view class='info-main'>
@@ -34,8 +34,6 @@
             </view> 
         </view>
     </view>
-
-    <view class="act_desc">{{info.Desc||'暂无介绍'}}</view>
     <!-- 活动操作-->
     <view class="org-btn">
         <view class="_oper">
@@ -127,14 +125,14 @@
 </view>
 <ad wx:if="{{info.isAd}}" unit-id="adunit-e0113343045a7cab"></ad>
 
-
-<wux-backdrop id="wux-backdrop" bind:click="closePayLayerEvent" />
-<wux-animation-group wux-class="pay-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
-    <view class="pay-layer-box">
-        <view class="pay-layer-content">
+<!-- 详情查看面板 -->
+<wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
+<wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+    <view class="info-layer-box">
+        <view class="info-layer-content">
             <view class="_insert">
                 <view class="relative">
-                    <view class="_img"><text class="c-iconfont icon-zidingyilie"></text></view>
+                    <view class="_img"><text class="c-iconfont icon-info"></text></view>
                     <view class="_name">{{noticeContent.title}}</view>
                     <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
                 </view>

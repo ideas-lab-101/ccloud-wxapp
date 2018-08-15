@@ -1,4 +1,4 @@
-import { $wuxActionSheet } from '../../../components/wux/index'
+import { $wuxActionSheet, $wuxBackdrop } from '../../../components/wux/index'
 const app = getApp()
 Page({
 
@@ -51,7 +51,7 @@ Page({
         cancel() {
         }
       };
-      $wuxActionSheet.show(actionConfig);
+      $wuxActionSheet().showSheet(actionConfig);
     },
 
     hideNotice() {
@@ -60,7 +60,21 @@ Page({
       })
     },
 
+    closeInfoLayerEvent(e) {
+      $wuxBackdrop().release()
+      this.setData({
+        in: false
+      })
+    },
+
     readMessage(index){
+      $wuxBackdrop().retain()
+      this.setData({
+        'noticeContent.title': '消息详情',
+        'noticeContent.content': this.data.messages[index].Content,
+        in: true
+      })
+      //更新消息阅读标志
       if (this.data.messages[index].ReadTime == null){
         wx.showNavigationBarLoading()
         app.user.isLogin(token => {
@@ -78,9 +92,7 @@ Page({
                 let data = this.data.messages
                 data[index].ReadTime = 'now'
                 this.setData({
-                  messages: data,
-                  'noticeContent.content': this.data.messages[index].Content,
-                  'noticeContent.isNoticeShow': true
+                  messages: data
                 })
               } else {
                 wx.showToast({
@@ -92,11 +104,6 @@ Page({
               wx.hideNavigationBarLoading()
             }
           })
-        })
-      }else{
-        this.setData({
-          'noticeContent.content': this.data.messages[index].Content,
-          'noticeContent.isNoticeShow': true
         })
       }
     },

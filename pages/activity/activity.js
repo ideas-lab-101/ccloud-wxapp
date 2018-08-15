@@ -344,7 +344,7 @@ Page({
             in: true
         })
     },
-    closePayLayerEvent(e) {
+    closeInfoLayerEvent(e) {
         $wuxBackdrop().release()
         this.setData({
             in: false

@@ -3,6 +3,9 @@
     "navigationBarBackgroundColor": "#1596f2",
     "navigationBarTextStyle": "white",
     "usingComponents": {
-        "howard-pager": "/components/pagination/pagination"
+        "howard-pager": "/components/pagination/pagination",
+        "wux-actionsheet": "/components/wux/actionsheet/index",
+        "wux-backdrop": "/components/wux/backdrop/index",
+        "wux-animation-group": "/components/wux/animation-group/index"
     }
 }

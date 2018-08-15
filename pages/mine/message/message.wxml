@@ -1,8 +1,5 @@
-<import src="../../../components/actionsheet/actionsheet.wxml" />
-<import src="../../../components/notice/notice.wxml" />
+<wux-actionsheet id="wux-actionsheet"/>
 
-<template is="notice" data="{{ ...noticeContent }}" />
-<template is="actionsheet" data="{{ ...$wux.actionSheet }}" />
 <view class="header">消息列表
     <view class="list_number">共{{ pager.totalMessage }}项</view>
 </view>
@@ -21,3 +18,19 @@
 </view>
 <view class="placeholder" wx:if="{{ messages.length === 0 }}">暂未收到消息~</view>
 <howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>
+
+<!-- 详情查看面板 -->
+<wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
+<wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+    <view class="info-layer-box">
+        <view class="info-layer-content">
+            <view class="_insert">
+                <view class="relative">
+                    <view class="_img"><text class="c-iconfont icon-info"></text></view>
+                    <view class="_name">{{noticeContent.title}}</view>
+                    <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+</wux-animation-group>

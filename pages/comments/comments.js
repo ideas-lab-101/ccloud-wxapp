@@ -1,6 +1,7 @@
 import { $wuxActionSheet } from '../../components/wux/index'
-const app = getApp()
 const utils = require('../../utils/util.js')
+
+const app = getApp()
 Page({
 
     /**
