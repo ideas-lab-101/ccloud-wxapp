@@ -1,0 +1,46 @@
+<wux-actionsheet id="wux-actionsheet"></wux-actionsheet>
+<wux-toptips id="wux-toptips"></wux-toptips>
+<wux-dialog id="wux-dialog" />
+
+<view class="header">附件列表
+  <view class="list_number">共{{ attachments.length }}项</view>
+  <text class="c-iconfont icon-info" bindtap='showInfo' />
+</view>
+<view class="form">
+  <view class="attachment" wx:for="{{ attachments }}" data-index="{{index}}">
+    <image class="attachment_thumb" src='/assets/images/attach-image-thumb.png' wx:if="{{ item.fileType === 'image' }}"></image>
+    <image class="attachment_thumb" src='/assets/images/attach-video-thumb.png' wx:if="{{ item.fileType === 'video' }}"></image>
+    <view class="attachment_info">
+      <view class="attachment_name">{{ item.AttachName }}</view>
+      <view class="attachment_desc">{{ item.AttachDesc || '无描述' }}</view>
+    </view>
+    <view class="attachment_size">{{ item.fileSize }}</view>
+    <view class="attachment_opts" hover-class='clicked' bindtap='moreOpts' data-index="{{ index }}">
+      <view class="c-iconfont icon-more"></view>
+    </view>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view bindtap="addAttachment" class="add_attachment" hover-class='clicked'>
+        <text>+</text>添加附件</view>
+      <view class="section_bottom"></view>
+      <input class="fake_input" name="FormID" type='text' value="{{ formData.FormID }}" />
+  </form>
+</view>  
+
+<!-- 详情查看面板 -->
+<wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
+<wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+  <view class="info-layer-box">
+    <view class="info-layer-content">
+      <view class="_insert">
+        <view class="relative">
+          <view class="_img">
+            <text class="c-iconfont icon-info"></text>
+          </view>
+          <view class="_name">{{noticeContent.title}}</view>
+          <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</wux-animation-group>

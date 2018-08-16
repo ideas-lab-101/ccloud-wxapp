@@ -1,13 +1,13 @@
 <view class="">
   <view class="header">分类列表
-    <view class="list_number">共{{ totalRows }}项</view>
+    <view class="list_number">共{{ pager.totalRow }}项</view>
   </view>
   <view class="list">
     <block wx:for="{{activitys}}" wx:key="{{item}}">
       <view class="list-item" data-id="{{item.id}}" data-index="{{index}}" bindtap='go_interact'>
         <view class="list-img-box">
           <navigator url="/pages/activity/activity?aid={{item.ActivityID}}">
-            <image mode="aspectFill" class="list-img-box-img" src="{{resourceURL}}{{item.AttachURL}}"></image>
+            <image mode="aspectFill" class="list-img-box-img" src="{{item.AttachURL}}"></image>
             <text class="date-info">{{item.StartTime}}</text>
             <view class="view-count">
               <text class="view-count-text">{{item.viewCount}} 浏览</text>
@@ -19,10 +19,10 @@
     </block>
   </view>
 
-  <view class="no_more" wx:if="{{hasMore}}">{{moreDataText}}</view>
-  <view class="no_more" wx:if="{{noMore && !noData}}">{{moreDataText}}</view>
-  <view class="no_data" wx:if="{{noData}}">
+  <view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
+  <view class="no_data" wx:if="{{pager.totalRow === 0}}">
     <image class="no_data_icon" src="/assets/images/no_data.png"></image>
     <view class="no_data_text">抱歉，当前分类暂未发布活动！</view>
   </view>
+
 </view>

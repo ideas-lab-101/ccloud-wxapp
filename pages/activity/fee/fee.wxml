@@ -1,9 +1,6 @@
-<import src="../../../components/notice/notice.wxml" />
-
-<template is="notice" data="{{ ...noticeContent }}" />
 
 <view class="header">项目列表
-    <view class="list_number">共{{ pager.totalFee }}项</view>
+    <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
 <view class="fee" wx:for="{{ fees }}">
     <view class="fee-main">
@@ -17,5 +14,21 @@
         <view class="c-iconfont icon-info"></view>
     </view>
 </view>
-<view class="placeholder" wx:if="{{ fees.length === 0 }}">暂未收到消息~</view>
-<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>
+
+<!-- 详情查看面板 -->
+<wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
+<wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
+  <view class="info-layer-box">
+    <view class="info-layer-content">
+      <view class="_insert">
+        <view class="relative">
+          <view class="_img">
+            <text class="c-iconfont icon-info"></text>
+          </view>
+          <view class="_name">{{noticeContent.title}}</view>
+          <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</wux-animation-group>

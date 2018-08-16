@@ -1,6 +1,6 @@
 page {
     padding-top: 30px;
-    background-color: #efefef;
+    background-color: #f7f7f7;
 }
 
 .header {

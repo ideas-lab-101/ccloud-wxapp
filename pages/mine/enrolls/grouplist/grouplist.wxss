@@ -30,35 +30,29 @@ page {
     color: #fff;
 }
 
-.fee {
+.member {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     background-color: #fff;
 }
 
-.fee-main {
+.member-main {
     flex: auto;
     padding-left: 30rpx;
 }
 
-.more_opts {
+.more_infos {
     flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 120px;
     color: #888;
     margin-left: 10px;
 }
-
-.more_opts.touched {
-    background-color: #eceef8;
-}
-
-.more_opts image {
-    width: 20px;
-    height: 20px;
+.more_infos text{
+    font-size: 22rpx;
 }
 
 .act-name {
@@ -73,18 +67,17 @@ page {
     flex: auto;
     display: flex;
     align-items: center;
-    color: #3f51b5;
+    color: #4e5e71;
 }
 
 .act-attr .c-iconfont {
     margin-right: 5px;
 }
 
-.info-layer{ position: fixed; z-index: 2000; left: 0; bottom: 0; right: 0; width: 100%;}
-.info-layer .info-layer-box{ padding-top: 120rpx;}
-.info-layer .info-layer-content{ background: white; box-shadow: 0px -20px 35px rgba(0, 0, 0, 0.08);}
-.info-layer .info-layer-content ._insert{padding: 40rpx;}
-.info-layer .info-layer-content ._img{ position: absolute; margin-top: -100rpx; display: inline-block; left: 40rpx; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); background-color: #ff8200; padding: 10rpx; border-radius: 50%}
-.info-layer .info-layer-content ._img .c-iconfont{  font-size:100rpx; color: white;}
-.info-layer .info-layer-content ._name{ padding-left: 180rpx; font-size: 36rpx;}
-.info-layer .info-layer-content ._desc{ margin-top: 30rpx; font-size: 30rpx; line-height: 1.8; min-height:30vh; max-height: 60vh; white-space: pre-line;}
+.placeholder {
+    line-height: 30px;
+    font-size: 14px;
+    color: #888;
+    padding: 30px;
+    text-align: center;
+}

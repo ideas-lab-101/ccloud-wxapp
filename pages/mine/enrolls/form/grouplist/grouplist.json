@@ -1,8 +1,0 @@
-{
-    "navigationBarTitleText": "团队清单",
-    "navigationBarBackgroundColor": "#1596f2",
-    "navigationBarTextStyle": "white",
-    "usingComponents": {
-        "howard-pager": "/components/pagination/pagination"
-    }
-}

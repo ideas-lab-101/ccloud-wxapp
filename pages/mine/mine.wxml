@@ -31,15 +31,15 @@
     </view>
 </view>
 <!-- 下方的业务入口 -->
-<view>
+<view class='list-item'>
     <view class="item" bindtap="goToEnrolls">
         <text class='c-iconfont icon-view-list'></text>
         <view class="item-text">活动记录</view>
         <view class="item-state has-more"></view>
     </view>
-    <view class="item" bindtap="goToCoupon">
-        <text class='c-iconfont icon-coupon'></text>
-        <view class="item-text">我的活动券</view>
+    <view class="item" bindtap="goToFavor">
+        <text class='c-iconfont icon-favorite'></text>
+        <view class="item-text">我的收藏</view>
         <view class="item-state has-more"></view>
     </view>
     <view class="item" bindtap="goToMessage">
@@ -49,6 +49,8 @@
             <label class='bubble'>{{msgCount}}</label>
         </view>
     </view>
+</view>
+<view>    
     <view class="item" bindtap="goToGuides">
         <text class='c-iconfont icon-help-circle'></text>
         <view class="item-text">使用帮助</view>

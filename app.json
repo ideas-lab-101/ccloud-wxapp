@@ -11,8 +11,8 @@
     "pages/mine/enrolls/enrolls",
     "pages/mine/message/message",
     "pages/mine/enrolls/form/form",
-    "pages/mine/enrolls/form/attachment/attachment",
-    "pages/mine/enrolls/form/grouplist/grouplist",
+    "pages/mine/enrolls/attachment/attachment",
+    "pages/mine/enrolls/grouplist/grouplist",
     "pages/comments/comments",
     "pages/infos/infos",
     "pages/infos/infobook/infobook",
@@ -20,7 +20,8 @@
     "pages/interact/interact",
     "pages/system/feedback/feedback",
     "pages/system/video/video",
-    "pages/system/webview/webview"
+    "pages/system/webview/webview",
+    "pages/mine/favor/favor"
   ],
   "window": {
     "backgroundTextStyle": "dark",

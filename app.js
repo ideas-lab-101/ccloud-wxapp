@@ -1,8 +1,8 @@
 const Version = '1.8.8';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
-//const HOST = "https://ccloud.ideas-lab.cn/";
-const HOST = "http://web.tunnel.cdqidi.cn/";
+const HOST = "https://ccloud.ideas-lab.cn/";
+// const HOST = "http://web.tunnel.cdqidi.cn/";
 
 App({
     onLaunch: function () {
@@ -37,6 +37,7 @@ App({
       accountInfo: HOST + "wxss/user/GetAccountInfo",
       uploadPhoto: HOST + 'wxss/user/UploadPhoto',
       enrollList: HOST + 'wxss/user/GetEnrollList',
+      favorList: HOST + 'wxss/user/getFavorList',
       userFavor: HOST + 'wxss/user/userFavor',
       userFollow: HOST + 'wxss/user/userFollow',
 
@@ -48,6 +49,8 @@ App({
       search: HOST + 'wxss/system/Search',
       hotSerach: HOST + 'wxss/system/GetHotSearch',
       searchTip: HOST + 'wxss/system/SearchTip',
+      objectType: HOST + 'wxss/system/GetObjectType',
+
       //活动相关
       catalog: HOST + 'wxss/activity/GetCatalogIndex',
       activityList: HOST + 'wxss/activity/GetActivityList',

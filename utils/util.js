@@ -46,34 +46,8 @@ const convertTime = time => {
     return Number(d.getMonth() + 1) + '月' + Number(d.getDate()) + '日 ' + Number(d.getHours()) + '时' + Number(d.getMinutes()) + '分'
 }
 
-// 分页调用方法
-const setPageMore = (pageModel, pageData) => {
-    if (pageData.totalRow <= 0) {
-        pageModel.setData({
-            noData: true,
-            noMore: false,
-            hasMore: false,
-        })
-    }
-    if (pageData.lastPage || pageData.totalRow == 0) {
-        pageModel.setData({
-            noMore: true,
-            hasMore: false,
-            moreDataText: "没有更多了"
-        })
-    } else {
-        pageModel.setData({
-            hasMore: true
-        })
-    }
-    pageModel.setData({
-        isLoading: false
-    })
-}
-
 module.exports = {
   formatTime: formatTime,
   formartFileSize: formartFileSize,
-  convertTime: convertTime,
-  setPageMore: setPageMore
+  convertTime: convertTime
 }

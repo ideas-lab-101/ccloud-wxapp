@@ -68,7 +68,7 @@ page {
 .func-grid {
   display: flex;
   justify-content: space-around;
-  border-bottom: 30rpx #f7f7f7 solid;
+  border-bottom: 20rpx #f7f7f7 solid;
 }
 
 .func-item {
@@ -92,6 +92,10 @@ page {
 .func-item .c-iconfont {
   font-size: 35px;
   margin-bottom: 20rpx;
+}
+
+.list-item {
+    border-bottom: 10rpx #f7f7f7 solid;
 }
 
 .item {

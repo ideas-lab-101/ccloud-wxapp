@@ -57,7 +57,6 @@ Page({
                 })
                 break;
             case "app" :
-                console.log(this.data.items[index])
                 wx.navigateToMiniProgram({
                     appId: this.data.items[index].source,
                     path: this.data.items[index].extInfo,

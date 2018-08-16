@@ -1,5 +1,3 @@
-const utils = require('../../utils/util.js')
-
 const app = getApp()
 Page({
 
@@ -7,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    infos: [],
+    members: [],
     pager: {
       totalRow: 0,
       totalPage: 0,
@@ -20,17 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.cid = options.cid
-    this._initData()
-  },
-
-  onShow: function() {
-
-  },
-
-  goToDetail: function(e) {
-    wx.navigateTo({
-      url: `infobook/infobook?gid=${e.target.dataset.iid}`,
+    this.aid = options.aid
+    app.user.isLogin(token => {
+      this._initData()
     })
   },
 
@@ -43,28 +33,26 @@ Page({
     })
     this._initData()
   },
-
+  
   _initData: function() {
     wx.showLoading({
       title: '请求数据...',
     })
     wx.request({
-      url: app.api.getInfoList,
+      url: app.api.getGroupEnrollList,
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        channelID: this.cid,
+        activityID: this.aid,
+        token: app.user.authToken,
         pageIndex: this.data.pager.pageNumber,
         pageSize: 10
       },
       success: res => {
         this.setData({
-          infos: this.data.infos.concat(res.data.list.map(info => {
-            info.FormatTime = utils.convertTime(info.AddTime)
-            return info
-          })),
+          members: this.data.members.concat(res.data.list),
           pager: {
             totalRow: res.data.totalRow,
             totalPage: res.data.totalPage,

@@ -9,15 +9,13 @@ Page({
   data: {
     typeId: '',
     orgId: '',
-    activitys: {},
-    totalRows: 0,
-    page: 0,
-    moreDataText: "正在加载更多..",
-    noMore: false,
-    noData: false,
-    hasMore: false,
-    isLoading: false,
-    resourceURL: ''
+    activitys: [],
+    pager: {
+      totalRow: 0,
+      totalPage: 0,
+      pageNumber: 0,
+      lastPage: true,
+    }
   },
 
   /**
@@ -34,39 +32,29 @@ Page({
   },
   _initData() {
     wx.showNavigationBarLoading()
-    this.setData({
-      isLoading: true
-    })
     wx.request({
       url: app.api.activityList,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-          pageIndex: this.data.page,
-          typeID: this.data.typeId,
-          orgID: this.data.orgId,
+        pageIndex: this.data.pager.pageNumber,
+        typeID: this.data.typeId,
+        orgID: this.data.orgId,
       },
       success: (res) => {
         this.setData({
-          totalRows: res.data.totalRow,
-          resourceURL: app.resourseUrl
-        })
-        if (this.data.page == 0) {
-          this.setData({
-            activitys: res.data.list
-          })
-        } else {
-          let o_data = this.data.activitys;
-          for (var index in res.data.list) {
-            o_data.push(res.data.list[index])
+          activitys: this.data.activitys.concat(res.data.list.map(activity => {
+            activity.AttachURL = app.resourseUrl + activity.AttachURL
+            return activity
+          })),
+          pager: {
+            totalRow: res.data.totalRow,
+            totalPage: res.data.totalPage,
+            lastPage: res.data.lastPage,
+            pageNumber: res.data.pageNumber - 1
           }
-          this.setData({
-            activitys: o_data
-          })
-        }
-        //统一的分页调用
-        utils.setPageMore(this, res.data)
+        })
       }, complete: () => {
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh()
@@ -107,9 +95,8 @@ Page({
    */
   onPullDownRefresh: function () {
     this.setData({
-      page: 0,
-      hasMore: false,
-      noMore: false
+      'pager.pageNumber': 0,
+      'pager.lastPage': true
     })
     this._initData()
   },
@@ -118,13 +105,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.hasMore && !this.data.isLoading) {
-      this.setData({
-        page: this.data.page + 1,
-        moreDataText: "正在加载更多.."
-      })
-      this._initData()
+    if (this.data.pager.lastPage) {
+      return false
     }
+    this.setData({
+      'pager.pageNumber': this.data.pager.pageNumber + 1
+    })
+    this._initData()
   },
 
   /**

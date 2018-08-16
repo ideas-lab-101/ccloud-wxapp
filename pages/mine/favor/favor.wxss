@@ -1,0 +1,87 @@
+page {
+  background-color: #f7f7f7;
+}
+
+.collect-type {
+  background-color: white;
+  padding: 30rpx 10rpx;
+  margin: 20rpx;
+  border-radius: 10rpx;
+}
+
+.collect-type text {
+  position: relative;
+  color: #4c9c47;
+  width: 33.33%;
+  text-align: center;
+  display: inline-block;
+  padding: 10rpx 0;
+  vertical-align: middle;
+}
+
+.collect-type text:nth-child(3n)::after {
+  content: "";
+}
+
+.collect-type text::after {
+  position: absolute;
+  content: "|";
+  right: 0;
+  top: 10rpx;
+  font-size: 28rpx;
+}
+
+.collect-type text.active {
+  color: #0c3a01;
+}
+
+.collect-listSingle {
+  background-color: white;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  padding: 40rpx 40rpx 20rpx 40rpx;
+}
+
+.collect-listSingle-h ._img {
+  float: left;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.collect-listSingle-h ._img image {
+  width: 95%;
+  height: 95%;
+  margin-top: 10rpx;
+}
+
+.collect-listSingle-h ._content {
+  padding-left: 160rpx;
+}
+
+.collect-listSingle-h ._content ._name {
+  font-size: 32rpx;
+}
+
+.collect-listSingle-h ._content ._desc {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.collect-listSingle ._del {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10rpx;
+  justify-content: space-between;
+}
+
+.collect-listSingle ._time {
+  color: #999;
+  font-size: 26rpx;
+  display: inline-block;
+}

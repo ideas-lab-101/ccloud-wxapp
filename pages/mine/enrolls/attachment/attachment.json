@@ -1,10 +1,12 @@
 {
-  "navigationBarTitleText": "我的消息",
+  "navigationBarTitleText": "附件管理",
   "navigationBarBackgroundColor": "#1596f2",
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "wux-actionsheet": "/components/wux/actionsheet/index",
     "wux-backdrop": "/components/wux/backdrop/index",
+    "wux-toptips": "/components/wux/toptips/index",
+    "wux-dialog": "/components/wux/dialog/index",
     "wux-animation-group": "/components/wux/animation-group/index"
   }
 }

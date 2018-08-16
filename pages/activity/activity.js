@@ -31,39 +31,6 @@ Page({
         this._initData(options.aid)
         //this.initButton()
     },
-    initButton() {
-        // const that = this
-        // this.setData({
-        //     opened: !1,
-        // })
-        //
-        // this.button = $wuxButton.init('br', {
-        //     position: 'bottomRight',
-        //     buttons: [
-        //         {
-        //             label: '留言',
-        //             icon: "/assets/images/cytl.png",
-        //             method: 'goToComment'
-        //
-        //         },
-        //         {
-        //             label: '精彩瞬间',
-        //             icon: "/assets/images/media.png",
-        //             method: 'goToMedia'
-        //
-        //         }
-        //     ],
-        //     buttonClicked(index, item) {
-        //         that[item.method].call(that)
-        //         return true
-        //     },
-        //     callback(vm, opened) {
-        //         vm.setData({
-        //             opened,
-        //         })
-        //     },
-        // })
-    },
     setTabIndex: function (e) {
         this.setData({
             tabIndex: parseInt(e.target.dataset.tabIndex)
@@ -339,7 +306,7 @@ Page({
         $wuxBackdrop().retain()
         const index = e.target.dataset.index || e.currentTarget.dataset.index
         this.setData({
-            'noticeContent.title': '项目介绍',
+            'noticeContent.title': '项目说明',
             'noticeContent.content': this.data.cases[index].FeeDesc,
             in: true
         })

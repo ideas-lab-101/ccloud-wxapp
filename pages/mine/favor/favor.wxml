@@ -1,0 +1,33 @@
+<view class="collect-type">
+  <view class="_insert">
+    <block wx:for="{{objectType}}">
+      <text catchtap="changeTypeEvent" class="{{current===index?'active':''}}" data-code="{{item.ObjectCode}}" data-index="{{index}}">{{item.ObjectName}}</text>
+    </block>
+  </view>
+</view>
+
+<view class="collect-con" wx:if="{{favors.length>0}}">
+  <view bindtap='goDetail' data-id="{{item.DataID}}"  class="collect-listSingle" wx:for="{{favors}}" wx:key="{{item.DataID}}">
+    <view class="clear collect-listSingle-h">
+      <view class="_img">
+        <image src="{{item.CoverURL}}" mode="aspectFill"></image>
+      </view>
+      <view class="_content">
+        <text class="_name">{{item.Name}}</text>
+        <view class="_desc">{{item.Desc}}</view>
+      </view>
+    </view>
+    <view class="_del" catchtap="true">
+      <text class="_time">{{item.FormartTime}}</text>
+      <view class="" bindtap="cancelFavorEvent" data-id="{{item.DataID}}" data-index="{{index}}" data-type="{{item.DataType}}">
+        <text class="c-iconfont icon-trash"></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
+<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+  <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+  <view class="no_data_text">还没有收藏哦！</view>
+</view>

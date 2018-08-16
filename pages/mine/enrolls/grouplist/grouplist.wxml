@@ -1,0 +1,21 @@
+
+<view class="header">成员列表
+    <view class="list_number">共{{ pager.totalRow }}项</view>
+</view>
+<view class="member" wx:for="{{ members }}">
+    <view class="member-main">
+        <view class="act-name">{{ item.name }}</view>
+        <view class="act-attr">
+            <view class='c-iconfont icon-menu'/> 
+            <text >报名项目：{{ item.FeeName}}</text>
+        </view>
+    </view>
+    <view class="more_infos">
+        <text>{{ item.AddTime}}</text>
+    </view>
+</view>
+<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
+<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+  <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+  <view class="no_data_text">没有成员数据</view>
+</view>

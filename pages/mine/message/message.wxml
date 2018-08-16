@@ -1,36 +1,43 @@
-<wux-actionsheet id="wux-actionsheet"/>
+<wux-actionsheet id="wux-actionsheet" />
 
 <view class="header">消息列表
-    <view class="list_number">共{{ pager.totalMessage }}项</view>
+  <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
 <view class="message" wx:for="{{ messages }}">
-    <view class="message-main">
-        <view class="act-name">{{ item.SourceName }}</view>
-        <view class="act-attr">
-            <view class="indicator" wx:if="{{ item.ReadTime == null }}"><label class='bubble'/></view> 
-            <text>{{ item.Summary}}</text>
-        </view>    
-        <view class="act-attr">{{ item.AddTime || '未知时间' }}</view>
+  <view class="message-main">
+    <view class="act-name">{{ item.SourceName }}</view>
+    <view class="act-attr">
+      <view class="indicator" wx:if="{{ item.ReadTime == null }}">
+        <label class='bubble' />
+      </view>
+      <text>{{ item.Summary}}</text>
     </view>
-    <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-        <view class="c-iconfont icon-more"></view>
-    </view>
+    <view class="act-attr _time">{{ item.FormatTime || '未知时间' }}</view>
+  </view>
+  <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+    <view class="c-iconfont icon-more"></view>
+  </view>
 </view>
-<view class="placeholder" wx:if="{{ messages.length === 0 }}">暂未收到消息~</view>
-<howard-pager cur-page="{{ pager.pageNumber }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalEnroll }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></howard-pager>
+<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
+<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+  <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+  <view class="no_data_text">暂未收到消息</view>
+</view>
 
 <!-- 详情查看面板 -->
 <wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
 <wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">
-    <view class="info-layer-box">
-        <view class="info-layer-content">
-            <view class="_insert">
-                <view class="relative">
-                    <view class="_img"><text class="c-iconfont icon-info"></text></view>
-                    <view class="_name">{{noticeContent.title}}</view>
-                    <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
-                </view>
-            </view>
+  <view class="info-layer-box">
+    <view class="info-layer-content">
+      <view class="_insert">
+        <view class="relative">
+          <view class="_img">
+            <text class="c-iconfont icon-info"></text>
+          </view>
+          <view class="_name">{{noticeContent.title}}</view>
+          <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
         </view>
+      </view>
     </view>
+  </view>
 </wux-animation-group>

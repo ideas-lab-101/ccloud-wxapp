@@ -1,7 +1,7 @@
 @import '/components/wxParse/wxParse.wxss';
 
 page {
-    background-color: #eceef8;
+    background-color: #f7f7f7;
 }
 
 .image_container {
@@ -61,7 +61,6 @@ page {
     width: 96%;
     padding-top: 20px;
     margin: 0 auto 0;
-    background-color: #eceef8;
     overflow: visible;
 }
 
@@ -428,7 +427,7 @@ page {
 .info-layer .info-layer-box{ padding-top: 120rpx;}
 .info-layer .info-layer-content{ background: white; box-shadow: 0px -20px 35px rgba(0, 0, 0, 0.08);}
 .info-layer .info-layer-content ._insert{padding: 40rpx;}
-.info-layer .info-layer-content ._img{ position: absolute; margin-top: -100rpx; display: inline-block; left: 40rpx; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); background-color: #ff8200; padding: 10rpx;}
+.info-layer .info-layer-content ._img{ position: absolute; margin-top: -100rpx; display: inline-block; left: 40rpx; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); background-color: #ff8200; padding: 10rpx; border-radius: 50%}
 .info-layer .info-layer-content ._img .c-iconfont{  font-size:100rpx; color: white;}
 .info-layer .info-layer-content ._name{ padding-left: 180rpx; font-size: 36rpx;}
-.info-layer .info-layer-content ._desc{ margin-top: 30rpx; font-size: 30rpx; line-height: 1.8; max-height: 60vh; white-space: pre-line;}
+.info-layer .info-layer-content ._desc{ margin-top: 30rpx; font-size: 30rpx; line-height: 1.8; min-height:30vh; max-height: 60vh; white-space: pre-line;}

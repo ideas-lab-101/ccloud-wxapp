@@ -98,6 +98,13 @@ Page({
         })
       })  
     },
+    goToFavor() {
+      getApp().user.isLogin(token => {
+        wx.navigateTo({
+          url: '/pages/mine/favor/favor',
+        })
+      })
+    },
     scan_code() {
       getApp().user.isLogin(token => {
         //调起扫码

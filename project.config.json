@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -46,8 +46,8 @@
 				{
 					"id": 2,
 					"name": "讨论区",
-					"pathName": "pages/activity/comments/comments",
-					"query": "aid=11"
+					"pathName": "pages/comments/comments",
+					"query": "dataType=activity&dataId=13"
 				},
 				{
 					"id": -1,
@@ -86,10 +86,10 @@
 					"query": "aid=13"
 				},
 				{
-					"id": 13,
+					"id": 9,
 					"name": "查看报名附件",
-					"pathName": "pages/mine/enrolls/form/attachment/attachment",
-					"query": "eid=1442&prev=false"
+					"pathName": "pages/mine/enrolls/attachment/attachment",
+					"query": "eid=1537&prev=false"
 				},
 				{
 					"id": -1,
@@ -120,6 +120,12 @@
 					"name": "视频详情",
 					"pathName": "pages/video/video",
 					"query": "attach_id=7304"
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/mine/favor/favor",
+					"query": ""
 				}
 			]
 		}
