@@ -111,11 +111,10 @@ Page({
             },
             success: res => {
               if (res.data.result) {
+                that.data.comments.splice(commentIndex, 1)
                 that.setData({
-                  comments: [],
-                  "pager.pageNumber": 0
+                  comments: that.data.comments
                 })
-                that._initData();
               } else {
                 that._openModal(res.data.msg);
               }
