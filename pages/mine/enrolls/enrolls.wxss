@@ -89,7 +89,7 @@ page {
     font-size: 28rpx;
 }
 
-.act-attr c-iconfont {
+.act-attr iconfont {
     margin-right: 5px;
 }
 

@@ -29,11 +29,11 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "详情页",
+					"name": "活动详情页",
 					"pathName": "pages/activity/activity",
 					"query": "aid=20"
 				},

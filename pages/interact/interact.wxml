@@ -15,5 +15,8 @@
       </block>
     </view>
 
-    <view class="placeholder" wx:if="{{ activitys.length === 0 }}">您还没有报名活动哦^_^~</view>
+    <view class="no_data" wx:if="{{activitys.length === 0}}">
+      <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+    <view class="no_data_text">暂时没有开放的互动哦^_^</view>
+</view>
 </view>

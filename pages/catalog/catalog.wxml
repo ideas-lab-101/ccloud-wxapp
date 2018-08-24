@@ -8,7 +8,7 @@
   <view class="class-list" wx:for="{{data_list}}" wx:key="{{item}}">
     <navigator class="class-title" url="../list/list?typeId={{item.TypeID}}">
       <text>{{item.TypeName}}</text>
-      <text class="c-iconfont icon-ellipsis"></text>
+      <text class="iconfont icon-morehoriz"></text>
     </navigator>
     <view class="class-data-list">
       <block wx:for="{{item.activity}}" wx:key="{{item}}">

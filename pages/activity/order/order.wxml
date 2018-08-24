@@ -101,7 +101,7 @@
             <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
           </view>
           <view class="picture_notice" bindtap='uploadPic'>
-            <view class="logo c-iconfont icon-upload"></view>
+            <view class="logo iconfont icon-upload"></view>
             <view class="notice">一寸免冠照片</view>
           </view>
         </view>

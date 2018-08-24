@@ -2,7 +2,7 @@
 
 <view class="header">留言列表
   <view class="comment_btn" bindtap='commentOnActivity'>
-    <view class="c-iconfont icon-border-color" />
+    <view class="iconfont icon-border-color" />
     <text>留言</text>
   </view>
 </view>
@@ -19,7 +19,7 @@
       <view class="time">{{ item.FormatTime }}</view>
     </view>
     <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-      <view class="c-iconfont icon-more"></view>
+      <view class="iconfont icon-morevert"></view>
     </view>
   </view>
   <view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>

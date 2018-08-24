@@ -20,7 +20,7 @@
     <view class="_del" catchtap="true">
       <text class="_time">{{item.FormartTime}}</text>
       <view class="" bindtap="cancelFavorEvent" data-id="{{item.DataID}}" data-index="{{index}}" data-type="{{item.DataType}}">
-        <text class="c-iconfont icon-trash"></text>
+        <text class="iconfont icon-del"></text>
       </view>
     </view>
   </view>

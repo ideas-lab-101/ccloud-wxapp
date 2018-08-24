@@ -1,59 +1,72 @@
-<block>
-    <view class="user-head" wx:if="{{is_login}}">
-        <view class="uerinfo">
-          <text class="nickname">{{userInfo.nickname}}</text>
-          <view class="userdata">
-            <view class="dataone">
-              <text class="user-num">{{userInfo.eCount}}</text>
-              <text>积分</text>
-            </view>
-            <view class="dataone">
-              <text class="user-num">{{userInfo.sCount}}</text>
-              <text>活动券</text>
-            </view>
-          </view>
-        </view>
-        <view class="avatar">
-          <image src="{{userInfo.avatarUrl}}" class="avatar-img"></image>
-        </view>
+<block wx:if="{{page_show}}">
+  <view class="user-head" wx:if="{{is_login}}">
+    <!-- 头像 -->
+    <view class="avatar">
+      <image src="{{userInfo.avatarUrl}}" class="avatar-img"></image>
     </view>
-    <view class="no-login" wx:else>
-        <button class="login-btn" type="warn" open-type="getUserInfo" bindgetuserinfo="get_userInfo">立即登录</button>
+    <!-- 用户信息 -->
+    <view class="uerinfo">
+      <text class="nickname">{{userInfo.nickname}}</text>
+      <view class="userdata">
+        <view class="dataone">
+          <text class="user-num">{{userInfo.eCount}}</text>
+          <text>积分</text>
+        </view>
+        <view class="dataone">
+          <text class="user-num">{{userInfo.sCount}}</text>
+          <text>活动券</text>
+        </view>
+      </view>
     </view>
+    <!-- 扫码登陆 -->
+    <view class="scan" bindtap='scan_code'>
+      <text class='iconfont icon-saomiao'/>登陆网页版
+    </view>
+  </view>
+  <!-- 未登陆按钮 -->
+  <view class="no-login" wx:else>
+    <button class="login-btn" type="warn" open-type="getUserInfo" bindgetuserinfo="get_userInfo">立即登录</button>
+  </view>
 </block>
 <!-- 中间的业务入口 -->
+<view class="fun-nav">
+  <view class="item-text">活动管理</view>
+</view>
 <view class="func-grid" hover-start-time='0'>
-    <view class="func-item" bindtap="scan_code" hover-class='clicked'>
-        <text class='c-iconfont icon-icon_scan'/>登陆网页版
-    </view>
-    <view class="func-item" bindtap="goto_interact" hover-class='clicked'>
-        <text class='c-iconfont icon-icon_airplay'/>活动上墙
-    </view>
+  <view class="func-item" bindtap="goToEnrolls" hover-class='clicked'>
+    <text class='iconfont icon-view-list' />活动
+  </view>
+  <view class="func-item" bindtap="goToVote" hover-class='clicked'>
+    <text class='iconfont icon-chart-bar' />投票
+  </view>
+  <view class="func-item" bindtap="goToInteract" hover-class='clicked'>
+    <text class='iconfont icon-wifitethering' />互动
+  </view>
 </view>
 <!-- 下方的业务入口 -->
 <view class='list-item'>
-    <view class="item" bindtap="goToEnrolls">
-        <text class='c-iconfont icon-view-list'></text>
-        <view class="item-text">活动记录</view>
-        <view class="item-state has-more"></view>
+  <view class="item" bindtap="goToFavor">
+    <text class='iconfont icon-favorite'></text>
+    <view class="item-text">我的收藏</view>
+    <view class="item-state has-more"></view>
+  </view>
+  <view class="item" bindtap="goToMessage">
+    <text class='iconfont icon-comment-processing'></text>
+    <view class="item-text">我的消息</view>
+    <view class="item-state has-more">
+      <label class='bubble'>{{msgCount}}</label>
     </view>
-    <view class="item" bindtap="goToFavor">
-        <text class='c-iconfont icon-favorite'></text>
-        <view class="item-text">我的收藏</view>
-        <view class="item-state has-more"></view>
-    </view>
-    <view class="item" bindtap="goToMessage">
-        <text class='c-iconfont icon-comment-processing'></text>
-        <view class="item-text">我的消息</view>
-        <view class="item-state has-more">
-            <label class='bubble'>{{msgCount}}</label>
-        </view>
-    </view>
+  </view>
 </view>
-<view>    
-    <view class="item" bindtap="goToGuides">
-        <text class='c-iconfont icon-help-circle'></text>
-        <view class="item-text">使用帮助</view>
+<view class='list-item'>
+  <view class="item" bindtap="goToGuides">
+    <text class='iconfont icon-help-circle'></text>
+    <view class="item-text">使用帮助</view>
+    <view class="item-state has-more"></view>
+  </view>
+  <!-- <view class="item" bindtap="goToShare">
+        <text class='iconfont icon-share-variant'></text>
+        <view class="item-text">分享应用</view>
         <view class="item-state has-more"></view>
-    </view>
-</view>    
+    </view> -->
+</view>

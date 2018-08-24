@@ -55,12 +55,12 @@
     font-size: 32rpx;
 }
 
-.bottom_buttons button .c-iconfont{
+.bottom_buttons button .iconfont{
     color: #fff;
     font-size: 40rpx;
     margin: 0px 3px;
 }
-.bottom_buttons button .c-iconfont.added{
+.bottom_buttons button .iconfont.added{
     color: red;
 }
 

@@ -87,7 +87,7 @@ page {
     padding-left: 5px;
 }
 .info_left .type text:last-child{ margin-left: 6rpx;}
-.info_left .type .c-iconfont {font-size: 26rpx;}
+.info_left .type .iconfont {font-size: 26rpx;}
 
 .info_left .title {
     height: 20px;

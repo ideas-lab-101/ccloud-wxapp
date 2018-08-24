@@ -7,12 +7,12 @@
 </view>
 <view class="bottom_buttons">
     <button hover-class='clicked' bindtap='go_home'>
-        <text class="c-iconfont icon-home"/><label> 首页</label>
+        <text class="iconfont icon-home"/><label> 首页</label>
     </button>
     <button hover-class='clicked' bindtap='btn_favor'>
-        <text class="c-iconfont{{is_favor?' added':''}} icon-favorite" /> <label>{{is_favor?'已收藏':'收藏'}}</label>
+        <text class="iconfont{{is_favor?' added':''}} icon-favorite" /> <label>{{is_favor?'已收藏':'收藏'}}</label>
     </button>
     <button hover-class='clicked' open-type='share'>
-        <text class="c-iconfont icon-share1" /><label> 转发</label>
+        <text class="iconfont icon-share1" /><label> 转发</label>
     </button>
 </view>

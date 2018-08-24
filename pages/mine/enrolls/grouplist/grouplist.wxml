@@ -6,7 +6,7 @@
     <view class="member-main">
         <view class="act-name">{{ item.name }}</view>
         <view class="act-attr">
-            <view class='c-iconfont icon-menu'/> 
+            <view class='iconfont icon-format-list-bulleted'/> 
             <text >报名项目：{{ item.FeeName}}</text>
         </view>
     </view>

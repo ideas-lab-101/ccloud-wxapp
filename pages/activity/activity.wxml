@@ -8,9 +8,9 @@
         <view class="tab_item{{tabIndex===1?' active':''}}" catchtap='setTabIndex' data-tab-index="1">详情</view>
     </view>
     <view class="card_head">
-        <image src="../../assets/images/info-w.png" class="head_icon"></image>
+        <text class='iconfont icon-information' />
         <view class="head_desc" bindtap="setTabIndex" data-tab-index="{{tabIndex==1?0:1}}">
-            活动介绍<text class="c-iconfont icon-ellipsis" data-tab-index="{{tabIndex==1?0:1}}"></text>
+            活动介绍<text class="iconfont icon-morehoriz" data-tab-index="{{tabIndex==1?0:1}}"></text>
         </view>
     </view>
 </view>
@@ -28,8 +28,8 @@
             </navigator>
             <view class='info-btn'>
                 <view class="mini-btn" bindtap="btn_follow" data-id="{{org.OrgID}}">
-                    <block wx:if="{{is_follow}}"><text class='c-iconfont icon-squareminus'/> 已关注</block>
-                    <block wx:if="{{!is_follow}}"><text class='c-iconfont icon-squareplus'/> 关注</block>
+                    <block wx:if="{{is_follow}}"><text class='iconfont icon-squareminus'/> 已关注</block>
+                    <block wx:if="{{!is_follow}}"><text class='iconfont icon-squareplus'/> 关注</block>
                 </view>
             </view> 
         </view>
@@ -38,23 +38,23 @@
     <view class="org-btn">
         <view class="_oper">
             <view bindtap="btn_favor" wx:if="{{!is_favor}}">
-                <text class="c-iconfont icon-favoriteoutline"></text>
+                <text class="iconfont icon-guanzhu1"></text>
                 <text>收藏</text>
             </view>
             <view bindtap="btn_favor" wx:else style="color: #FF8200;">
-                <text class="c-iconfont icon-favorite"></text>
+                <text class="iconfont icon-yiguanzhu"></text>
                 <text>取消</text>
             </view>
             <view bindtap='goToInfoList'>
-                <text class="c-iconfont icon-wendang"></text>
+                <text class="iconfont icon-wenjian"></text>
                 <text>资料</text>
             </view>
             <button plain open-type="share">
-                <text class="c-iconfont icon-share"></text>
+                <text class="iconfont icon-fenxiang"></text>
                 <text>分享</text>
             </button>
             <view bindtap="goToComment">
-                <text class="c-iconfont icon-comment-processing-outline"></text>
+                <text class="iconfont icon-xinxi"></text>
                 <text>留言</text>
             </view>
         </view>
@@ -69,7 +69,7 @@
     <!-- 活动项目 -->
     <view class="case_card">
         <view class="head">
-            <image src="../../assets/images/cases.png" class="head_icon"></image>
+            <text class='iconfont icon-view-grid' />
             <view class="head_desc">活动项目</view>
         </view>
         <view class="case_list">
@@ -86,29 +86,29 @@
     <!-- 活动简介 --> 
     <view class="case_card">
         <view class="head">
-            <image src="../../assets/images/query.png" class="head_icon"></image>
+            <text class='iconfont icon-chart-bubble' />
             <view class="head_desc">活动信息</view> 
         </view>
         <!-- 活动基本信息 -->
         <view class="act_info_group">
             <view class="act_info">
-                <text class='c-iconfont icon-widgets'/>
+                <text class='iconfont icon-bookmark'/>
                 <view class="data">{{info.ActivityName||'未知活动'}}</view>
             </view>
             <view class="act_info">
-                <text class='c-iconfont icon-calendar-clock'/>
+                <text class='iconfont icon-calendar-clock'/>
                 <view class="data {{info.Schedule?' has_more':''}}" hover-class='hover' bindtap='showSchedule'>
                 {{info.StartTime||'未知'}} ~ {{info.EndTime||'未知'}}
                 </view>
             </view>
             <view class="act_info" wx:if="{{info.blnShowContact}}">
-                <text class='c-iconfont icon-phone-outgoing'/>
+                <text class='iconfont icon-phone-outgoing'/>
                 <view class="data {{info.ContactTel?' has_more':''}}" hover-class='hover' bindtap='callTel'>
                 {{info.Contact||'无联系方式'}}
                 </view>
             </view>
             <view class="act_info" wx:if="{{info.blnShowAddress}}">
-                <text class='c-iconfont icon-location'/>
+                <text class='iconfont icon-location'/>
                 <view class="data {{info.Coordinate?' has_more':''}}" hover-class='hover' bindtap='openLocation'>
                 {{info.Address||'未知地点'}}
                 </view>
@@ -132,7 +132,7 @@
         <view class="info-layer-content">
             <view class="_insert">
                 <view class="relative">
-                    <view class="_img"><text class="c-iconfont icon-info"></text></view>
+                    <view class="_img"><text class="iconfont icon-info"></text></view>
                     <view class="_name">{{noticeContent.title}}</view>
                     <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>
                 </view>

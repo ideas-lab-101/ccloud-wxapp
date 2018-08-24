@@ -70,7 +70,7 @@ page {
     color: #4e5e71;
 }
 
-.act-attr .c-iconfont {
+.act-attr .iconfont {
     margin-right: 5px;
 }
 

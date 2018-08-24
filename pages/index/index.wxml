@@ -9,19 +9,19 @@
         <view class="info {{item.type}}{{item.isShowDetail?' open':''}}">
             <view class="info_left">
                 <view class="type" wx:if="{{item.type == 'activity'}}">
-                    <text class="c-iconfont icon-leftjoin"></text>
+                    <text class="iconfont icon-leftjoin"></text>
                     <text>活动</text>
                 </view>
                 <view class="type" wx:elif="{{item.type == 'news'}}">
-                    <text class="c-iconfont icon-announcement"></text>
+                    <text class="iconfont icon-announcement"></text>
                     <text>资讯</text>
                 </view>
                 <view class="type" wx:elif="{{item.type == 'vote'}}">
-                    <text class="c-iconfont icon-align2bottom"></text>
+                    <text class="iconfont icon-align2bottom"></text>
                     <text>投票</text>
                 </view>
                 <view class="type" wx:elif="{{item.type == 'app'}}">
-                    <text class="c-iconfont icon-application"></text>
+                    <text class="iconfont icon-application"></text>
                     <text>应用</text>
                 </view>
                 <block wx:if="{{item.type !== 'app'}}">

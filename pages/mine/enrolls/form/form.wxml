@@ -70,7 +70,7 @@
             <image src="{{ formData.photoURL }}" mode="aspectFill" bindlongtap='deletePic'></image>
           </view>
           <view class="picture_notice" bindtap='uploadPic'>
-            <view class="logo c-iconfont icon-upload"></view>
+            <view class="logo iconfont icon-upload"></view>
             <view class="notice">一寸免冠照片</view>
           </view>
         </view>
@@ -156,13 +156,13 @@
 </scroll-view>
 <view class="bottom_buttons">
   <view class='button' hover-class='clicked' bindtap='showQrcode'>
-    <text class="c-iconfont icon-erweima" />报名号</view>
+    <text class="iconfont icon-erweima" />报名号</view>
   <view wx:if="{{ enrollInfo.mode == 1}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
-    <text class="c-iconfont icon-fujian" />附件管理</view>
+    <text class="iconfont icon-fujian" />附件管理</view>
   <view wx:if="{{ enrollInfo.mode == 2}}" class="button" hover-class='clicked' bindtap='attachmentManage'>
-    <text class="c-iconfont icon-liebiaorongqi" />附件管理</view>
+    <text class="iconfont icon-liebiaorongqi" />附件管理</view>
   <view class="button" hover-class='clicked' bindtap='feedback'>
-    <text class="c-iconfont icon-op-edit" />信息反馈</view>
+    <text class="iconfont icon-op-edit" />信息反馈</view>
 </view>
 
 

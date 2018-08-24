@@ -4,19 +4,19 @@
 
 <view class="header">附件列表
   <view class="list_number">共{{ attachments.length }}项</view>
-  <text class="c-iconfont icon-info" bindtap='showInfo' />
+  <text class="iconfont icon-information" bindtap='showInfo' />
 </view>
 <view class="form">
   <view class="attachment" wx:for="{{ attachments }}" data-index="{{index}}">
-    <image class="attachment_thumb" src='/assets/images/attach-image-thumb.png' wx:if="{{ item.fileType === 'image' }}"></image>
-    <image class="attachment_thumb" src='/assets/images/attach-video-thumb.png' wx:if="{{ item.fileType === 'video' }}"></image>
+    <text class="iconfont icon-file-image" wx:if="{{ item.fileType === 'image' }}" />
+    <text class="iconfont icon-file-video" wx:if="{{ item.fileType === 'video' }}" />
     <view class="attachment_info">
       <view class="attachment_name">{{ item.AttachName }}</view>
       <view class="attachment_desc">{{ item.AttachDesc || '无描述' }}</view>
     </view>
     <view class="attachment_size">{{ item.fileSize }}</view>
     <view class="attachment_opts" hover-class='clicked' bindtap='moreOpts' data-index="{{ index }}">
-      <view class="c-iconfont icon-more"></view>
+      <view class="iconfont icon-morevert"></view>
     </view>
   </view>
   <form bindsubmit="formSubmit">
@@ -35,7 +35,7 @@
       <view class="_insert">
         <view class="relative">
           <view class="_img">
-            <text class="c-iconfont icon-info"></text>
+            <text class="iconfont icon-info"></text>
           </view>
           <view class="_name">{{noticeContent.title}}</view>
           <scroll-view scroll-y class="_desc color-666">{{noticeContent.content}}</scroll-view>

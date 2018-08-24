@@ -28,7 +28,7 @@ page {
     color: #fff;
 }
 
-.comment_btn .c-iconfont {
+.comment_btn .iconfont {
   font-size: 40rpx;
 }
 

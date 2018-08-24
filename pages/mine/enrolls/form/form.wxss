@@ -281,7 +281,7 @@ page {
     color: #fff;
     font-size: 12px;
 }
-.bottom_buttons .button .c-iconfont{
+.bottom_buttons .button .iconfont{
     margin-top: 5rpx;
     font-size: 18px;
 }
