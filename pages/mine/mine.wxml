@@ -1,4 +1,4 @@
-<block wx:if="{{page_show}}">
+<block>
   <view class="user-head" wx:if="{{is_login}}">
     <!-- 头像 -->
     <view class="avatar">
@@ -9,11 +9,11 @@
       <text class="nickname">{{userInfo.nickname}}</text>
       <view class="userdata">
         <view class="dataone">
-          <text class="user-num">{{userInfo.eCount}}</text>
+          <text class="user-num">{{userInfo.eCount || 0}}</text>
           <text>积分</text>
         </view>
         <view class="dataone">
-          <text class="user-num">{{userInfo.sCount}}</text>
+          <text class="user-num">{{userInfo.sCount || 0}}</text>
           <text>活动券</text>
         </view>
       </view>
@@ -46,27 +46,27 @@
 <!-- 下方的业务入口 -->
 <view class='list-item'>
   <view class="item" bindtap="goToFavor">
-    <text class='iconfont icon-favorite'></text>
+    <text class='iconfont icon-guanzhu'></text>
     <view class="item-text">我的收藏</view>
     <view class="item-state has-more"></view>
   </view>
   <view class="item" bindtap="goToMessage">
-    <text class='iconfont icon-comment-processing'></text>
+    <text class='iconfont icon-xinxi'></text>
     <view class="item-text">我的消息</view>
     <view class="item-state has-more">
-      <label class='bubble'>{{msgCount}}</label>
+      <label class='bubble'>{{userInfo.msgCount || 0}}</label>
     </view>
   </view>
 </view>
 <view class='list-item'>
   <view class="item" bindtap="goToGuides">
-    <text class='iconfont icon-help-circle'></text>
+    <text class='iconfont icon-iconmoban214'></text>
     <view class="item-text">使用帮助</view>
     <view class="item-state has-more"></view>
   </view>
-  <!-- <view class="item" bindtap="goToShare">
-        <text class='iconfont icon-share-variant'></text>
-        <view class="item-text">分享应用</view>
-        <view class="item-state has-more"></view>
-    </view> -->
+  <button class="item shareBtn" open-type="share" plain>
+    <text class='iconfont icon-fenxiang'></text>
+    <view class="item-text">分享应用</view>
+    <view class="item-state has-more"></view>
+  </button>
 </view>

@@ -14,6 +14,7 @@
         <view class="iconfont icon-morevert"></view>
     </view>
 </view>
+<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
 
 <!-- 详情查看面板 -->
 <wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />

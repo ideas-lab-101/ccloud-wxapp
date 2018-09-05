@@ -47,7 +47,7 @@ App({
       districts: HOST + 'wxss/system/GetDistricts',
       enumValues: HOST + 'wxss/system/GetEnumDetail',
       search: HOST + 'wxss/system/Search',
-      hotSerach: HOST + 'wxss/system/GetHotSearch',
+      hotSearch: HOST + 'wxss/system/GetHotSearch',
       searchTip: HOST + 'wxss/system/SearchTip',
       objectType: HOST + 'wxss/system/GetObjectType',
 

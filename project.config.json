@@ -35,7 +35,7 @@
 					"id": 0,
 					"name": "活动详情页",
 					"pathName": "pages/activity/activity",
-					"query": "aid=20"
+					"query": "aid=13"
 				},
 				{
 					"id": 1,

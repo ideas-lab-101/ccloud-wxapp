@@ -38,7 +38,7 @@ Page({
     })
 
     wx.request({
-      url: getApp().api.hotSerach,
+      url: getApp().api.hotSearch,
       success: (res) => {
         this.setData({
           hot_tag: res.data.list

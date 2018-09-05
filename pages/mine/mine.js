@@ -5,11 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page_show: false,
     is_login: false,
     token: app.user.ckLogin(),
     userInfo: [],
-    msgCount: 0,
+    // msgCount: 0,
   },
   /**
    * 活动记录
@@ -48,16 +47,16 @@ Page({
     app.pages.add(this);
   },
   onReady: function() {
-    if (app.user.ckLogin()) {
-      wx.showLoading({
-        title: '加载中',
-      })
-      this._initData()
-    } else {
-      this.setData({
-        page_show: true
-      })
-    }
+    // if (app.user.ckLogin()) {
+    //   wx.showLoading({
+    //     title: '加载中',
+    //   })
+    //   this._initData()
+    // } else {
+    //   this.setData({
+    //     page_show: true
+    //   })
+    // }
   },
   onShow: function() {
     this.setData({
@@ -65,16 +64,14 @@ Page({
     })
     if (app.user.ckLogin()) {
       //获取最新消息
-      this.get_systemNotice()
+      this._initData()
+      // this.get_systemNotice()
     }
   },
   login() {
     app.user.isLogin(token => {
       this.setData({
         token: token
-      })
-      wx.showLoading({
-        title: '加载中',
       })
       this._initData()
     })
@@ -84,26 +81,26 @@ Page({
       this.login()
     }
   },
-  get_systemNotice() {
-    wx.request({
-      url: app.api.getSystemNotice,
-      method: 'get',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        token: app.user.authToken
-      },
-      success: res => {
-        this.setData({
-          msgCount: res.data.msgCount
-        })
-      },
-      complete: res => {
+  // get_systemNotice() {
+  //   wx.request({
+  //     url: app.api.getSystemNotice,
+  //     method: 'get',
+  //     header: {
+  //       'content-type': 'application/x-www-form-urlencoded'
+  //     },
+  //     data: {
+  //       token: app.user.authToken
+  //     },
+  //     success: res => {
+  //       this.setData({
+  //         msgCount: res.data.msgCount
+  //       })
+  //     },
+  //     complete: res => {
 
-      }
-    })
-  },
+  //     }
+  //   })
+  // },
   /**
    * 活动互动
    */
@@ -210,9 +207,7 @@ Page({
     })
   },
   _initData: function() {
-    wx.showLoading({
-      title: '请求数据...',
-    })
+    wx.showNavigationBarLoading()
     wx.request({
       url: app.api.accountInfo,
       method: 'GET',
@@ -233,7 +228,7 @@ Page({
         this._showErrorModal(error.toString())
       },
       complete: () => {
-        wx.hideLoading()
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -245,5 +240,12 @@ Page({
       showCancel: false,
       confirmText: '知道了'
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '晓得La - 活动管理专家',
+      imageUrl: 'http://cloud.ideas-lab.cn/system/activity-management.jpg',
+      path: "/pages/index/index"
+    }
   }
 })
