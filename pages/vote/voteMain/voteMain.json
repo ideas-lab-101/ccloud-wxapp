@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "投票",
+  "backgroundColor": "#f7f7f7",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "wux-backdrop": "/components/wux/backdrop/index",
+    "wux-animation-group": "/components/wux/animation-group/index"
+  }
+}

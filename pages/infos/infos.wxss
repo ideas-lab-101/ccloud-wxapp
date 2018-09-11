@@ -30,7 +30,7 @@ page {
     color: #fff;
 }
 
-.list {
+.list-item {
     padding: 0 30rpx;
     margin-bottom: 10px;
     background-color: #fff;

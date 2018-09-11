@@ -66,10 +66,16 @@ Page({
         }
       ],
       buttonClicked(index, item) {
-        if (that.qiNiuToken) {
-          that[item.method]()
-        } else {
+        // if (that.qiNiuToken) {
+        //   that[item.method]()
+        // } else {
+        //   that._getUploadToken(that[item.method])
+        // }
+        // return true
+        if (!app.globalData.qiNiuToken) {
           that._getUploadToken(that[item.method])
+        } else {
+          that[item.method]
         }
         return true
       },
@@ -87,7 +93,8 @@ Page({
       data: {},
       success: res => {
         if (res.data.upToken) {
-          this.qiNiuToken = res.data.upToken
+          // this.qiNiuToken = res.data.upToken
+          app.globalData.qiNiuToken = res.data.upToken
           typeof callback === 'function' && callback()
         } else {
           this._showToptips('出错了，重试一下吧')
@@ -132,7 +139,6 @@ Page({
         })
         qiniuUploader
           .upload(filePath, (uploadRes) => {
-            // console.log(uploadRes.imageURL, uploadRes.key)
             const attachInfo = {
               AttachName: fileName,
               AttachSize: imageSize,
@@ -149,7 +155,7 @@ Page({
             region: 'SCN',
             domain: app.qiniuDomain,
             key: `${app.user.authToken}/${that.eid}/${fileName}`,
-            uptoken: that.qiNiuToken
+            uptoken: app.globalData.qiNiuToken
           })
       }
     })
@@ -191,7 +197,6 @@ Page({
         })
         qiniuUploader
           .upload(filePath, uploadRes => {
-            // console.log(uploadRes)
             const attachInfo = {
               AttachName: fileName,
               AttachSize: fileSize,
@@ -208,7 +213,7 @@ Page({
             region: 'SCN',
             domain: app.qiniuDomain,
             key: `${app.user.authToken}/${that.eid}/${fileName}`,
-            uptoken: that.qiNiuToken
+            uptoken: app.globalData.qiNiuToken
           }, res => {
             console.log('上传进度', res.progress)
             console.log('已经上传的数据长度', res.totalBytesSent)
@@ -252,11 +257,7 @@ Page({
       }
     })
   },
-  // validators: {},
-  // validationMsgs: {},
-  // _initValidate() {
-  //     this.WxValidate = new WxValidate(this.validators, this.validationMsgs)
-  // },
+
   _showToptips(error) {
     const hideToptips = $wuxToptips().show({
       timer: 3000,
@@ -265,6 +266,7 @@ Page({
       success: () => {}
     })
   },
+
   _initData() {
     var that = this
     wx.showLoading({
@@ -353,6 +355,9 @@ Page({
     }
     $wuxActionSheet().showSheet(actionConfig);
   },
+  /**
+   * 添加描述
+   */
   _editAttachmentDesc(attachInfo) {
     const that = this
     $wuxDialog().prompt({
@@ -368,6 +373,9 @@ Page({
       },
     })
   },
+  /**
+   * 查询附件
+   */
   _queryAttachment(attachInfo) {
     const that = this
     if (attachInfo.AttachType.indexOf('image/') >= 0) {

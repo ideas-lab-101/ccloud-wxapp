@@ -21,19 +21,23 @@
     "pages/system/feedback/feedback",
     "pages/system/video/video",
     "pages/system/webview/webview",
-    "pages/mine/favor/favor"
+    "pages/mine/favor/favor",
+    "pages/vote/voteMain/voteMain",
+    "pages/vote/voteList/voteList",
+    "pages/vote/voteDetail/voteDetail",
+    "pages/vote/vote"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "晓得La",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#efefef"
+    "backgroundColor": "#f7f7f7"
   },
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#fa9606",
-    "backgroundColor": "#f7f7f7",
+    "backgroundColor": "#efefef",
     "borderStyle": "white",
     "list": [
       {

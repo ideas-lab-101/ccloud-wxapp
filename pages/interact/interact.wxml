@@ -1,22 +1,22 @@
 <view class="">
   <view class="list">
-      <block wx:for="{{activitys}}" wx:key="{{item}}">
-        <view class="list-item" data-id="{{item.id}}" data-index="{{index}}" bindtap='go_interact'>
-          <view class="list-img-box">
-            <image mode="aspectFill" class="list-img-box-img" src="{{item.imgUrl}}"></image>
-              <text class="open-state" wx:if="{{item.blnOpen}}">正在进行</text>
-              <text class="open-state" wx:if="{{!item.blnOpen}}">未开启</text>
-              <view class="live-count">
-                <text class="live-count-text">{{item.liveCount}} 条留言</text>
-              </view>
+    <block wx:for="{{activitys}}" wx:key="{{item}}">
+      <view class="list-item" data-id="{{item.id}}" data-index="{{index}}" bindtap='go_interact'>
+        <view class="list-img-box">
+          <image mode="aspectFill" class="list-img-box-img" src="{{item.imgUrl}}"></image>
+          <text class="open-state" wx:if="{{item.blnOpen}}">正在进行</text>
+          <text class="open-state" wx:if="{{!item.blnOpen}}">未开启</text>
+          <view class="live-count">
+            <text class="live-count-text">{{item.liveCount}} 条留言</text>
           </view>
-          <view class="list-info-box">{{item.name}}</view>
         </view>
-      </block>
-    </view>
+        <view class="list-info-box">{{item.name}}</view>
+      </view>
+    </block>
+  </view>
 
-    <view class="no_data" wx:if="{{activitys.length === 0}}">
-      <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+  <view class="no_data" wx:if="{{activitys.length === 0}}">
+    <image class="no_data_icon" src="/assets/images/no_data.png"></image>
     <view class="no_data_text">暂时没有开放的互动哦^_^</view>
-</view>
+  </view>
 </view>

@@ -242,61 +242,6 @@ Page({
             urls: this.imgOriginUrls,
         })
     },
-    share() {
-        const that = this
-        app.user.isLogin(token => {
-            $wuxDialog.open({
-                title: '分享活动给好友',
-                content: this.activityInfo.ActivityName,
-                verticalButtons: !0,
-                buttons: [
-                    {
-                        text: '转发好友或群',
-                        bold: !0,
-                        onTap(e) {
-
-                        }
-                    },
-                    {
-                        text: '生成活动封面',
-                        bold: !0,
-                        onTap(e) {
-                            wx.request({
-                                url: app.api.getShareCode,
-                                header: {
-                                    'content-type': 'application/x-www-form-urlencoded'
-                                },
-                                data: {
-                                    token: token,
-                                    dataID: that.aid,
-                                    type: 'a',
-                                },
-                                success: res => {
-                                    if (res.data.result) {
-                                        wx.previewImage({
-                                            urls: [res.data.qr_code],
-                                        })
-                                    } else {
-                                        wx.showModal({
-                                            title: '出错了',
-                                            content: res.data.msg,
-                                            showCancel: false
-                                        })
-                                    }
-                                }
-                            })
-                        }
-                    },
-                    {
-                        text: '取消分享',
-                        bold: false,
-                        onTap(e) {
-                        }
-                    },
-                ],
-            })
-        })    
-    },
     hideNotice() {
         this.setData({
             'noticeContent.isNoticeShow': false
@@ -322,6 +267,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
+            imageUrl: this.data.imgUrls[0],
             title: this.activityInfo.ActivityName,
             path: `/pages/activity/activity?aid=${this.aid}`,
             success: function (res) {

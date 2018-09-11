@@ -6,7 +6,7 @@
     <text>留言</text>
   </view>
 </view>
-<view class="comments_wrapper">
+<view class="comments_wrapper" wx:if="{{pager.totalRow>0}}">
   <view class="comment" wx:for="{{ comments }}">
     <view class="comment_header">
       <image src="{{ item.avatarUrl }}"></image>
@@ -22,11 +22,11 @@
       <view class="iconfont icon-morevert"></view>
     </view>
   </view>
-  <view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-  <view class="no_data" wx:if="{{pager.totalRow === 0}}">
-    <image class="no_data_icon" src="/assets/images/no_data.png"></image>
-    <view class="no_data_text">暂无留言</view>
-  </view>
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
+</view>  
+<view class="no_data" wx:else>
+  <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+  <view class="no_data_text">暂无留言</view>
 </view>
 <!-- 留言按钮 -->
 <wux-backdrop id="wux-backdrop" bind:click="closeLayerEvent" />

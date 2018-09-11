@@ -1,0 +1,72 @@
+<wux-toast id="wux-toast" />
+
+<view class="">
+
+    <view class="l-active xiaoweiti-font">
+
+        <image src="{{voteItemInfo.CoverURL}}" mode="aspectFill"></image>
+        <view>
+            <text class="_title">{{voteItemInfo.ItemName}}</text>
+            <view class="_desc">{{voteItemInfo.Desc}}</view>
+        </view>
+
+    </view>
+
+    <view class="l-info" wx:if="{{voterDataIndex !== -1}}">
+        <view class="l-single info">
+            <text class="_rank">{{common.filterCount(voterDataIndex+1)}}</text>
+            <view class="_info" bindtap="infoEvent" data-id="{{voterData.EnrollID}}">
+                <view><image src="{{common.rangeImage(voterDataIndex)}}" mode="widthFix" class="_b"></image><image class="_t" src="{{voterData.photoURL}}" mode="aspectFill"></image></view>
+                <text>{{voterData.name}}</text>
+            </view>
+            <text class="_num">{{voterData.vCount}}</text>
+            <view class="_btn" catchtap="voteEvent" data-id="{{voterData.MemberID}}" data-index="{{voterDataIndex}}">投票</view>
+        </view>
+    </view>
+    <view class="l-info-font xiaoweiti-font" wx:else>
+        投票排行榜
+    </view>
+
+    <scroll-view scroll-y class="l-scroll">
+
+        <view class="l-single-box">
+            <view class="l-single" wx:for="{{ranking}}">
+                <text class="_rank">{{index+1}}</text>
+                <view class="_info" bindtap="infoEvent" data-id="{{item.EnrollID}}">
+                    <view><image src="{{common.rangeImage(index)}}" mode="widthFix" class="_b"></image><image class="_t" src="{{item.photoURL}}" mode="aspectFill"></image></view>
+                    <text wx:if="{{item.mode===1}}">{{item.name}}</text>
+                    <text wx:if="{{item.mode===2}}">{{item.group}}</text>
+                </view>
+                <text class="_num">{{item.vCount}}</text>
+                <view class="_btn" catchtap="voteEvent" data-id="{{item.MemberID}}" data-index="{{index}}">投票</view>
+            </view>
+        </view>
+
+    </scroll-view>
+
+</view>
+
+<wxs module="common">
+    var filterCount = function(val) {
+        if(val > 100) {
+            return "100+"
+        }
+        return val
+    }
+
+    var rangeImage = function(index) {
+        if (index === 0) {
+            return '/assets/images/001.png'
+        }else if(index === 1){
+            return '/assets/images/002.png'
+        }else if(index === 2){
+            return '/assets/images/003.png'
+        }else {
+            return '/assets/images/004.png'
+        }
+    }
+    module.exports = {
+        filterCount: filterCount,
+        rangeImage: rangeImage
+    }
+</wxs>

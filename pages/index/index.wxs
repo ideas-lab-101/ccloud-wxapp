@@ -58,7 +58,7 @@ var changeTipNumber = function (type) {
             temp = '阅读数'
             break
         case 'vote':
-            temp = '参与数'
+            temp = '投票数'
             break
         case 'app':
             temp = '浏览数'

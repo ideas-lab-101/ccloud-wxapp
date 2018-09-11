@@ -1,6 +1,6 @@
 /**index.wxss**/
 page {
-    background-color: #efefef;
+    background-color: #f7f7f7;
 }
 
 .search-view{

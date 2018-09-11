@@ -24,10 +24,10 @@
       </view>
     </view>
   </view>
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
 </view>
 
-<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+<view class="no_data" wx:else>
   <image class="no_data_icon" src="/assets/images/no_data.png"></image>
   <view class="no_data_text">还没有收藏哦！</view>
 </view>

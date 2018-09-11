@@ -2,20 +2,21 @@
 <view class="header">项目列表
     <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
-<view class="fee" wx:for="{{ fees }}">
-    <view class="fee-main">
-        <view class="act-name">{{ item.FeeName }}</view>
-        <view class="act-attr">
-            <view class='iconfont icon-format-list-bulleted'/> 
-            <text >{{item.TotalCost > 0? item.TotalCost+'元':'免费'}}</text>
-        </view>
-    </view>
-    <view class="more_opts" catchtap='showDetail' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-        <view class="iconfont icon-morevert"></view>
-    </view>
+<view class='list'>
+  <view class="fee" wx:for="{{ fees }}">
+      <view class="fee-main">
+          <view class="act-name">{{ item.FeeName }}</view>
+          <view class="act-attr">
+              <view class='iconfont icon-format-list-bulleted'/> 
+              <text >{{item.TotalCost > 0? item.TotalCost+'元':'免费'}}</text>
+          </view>
+      </view>
+      <view class="more_opts" catchtap='showDetail' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+          <view class="iconfont icon-morevert"></view>
+      </view>
+  </view>
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
 </view>
-<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-
 <!-- 详情查看面板 -->
 <wux-backdrop id="wux-backdrop" bind:click="closeInfoLayerEvent" />
 <wux-animation-group wux-class="info-layer" in="{{ in }}" class-names="wux-animate--slideInUp">

@@ -1,18 +1,21 @@
 <view class="header">文档列表
   <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
-<view class="list" wx:for="{{ infos }}">
-  <view class="act-name" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Title || '未知文档' }}</view>
-  <view class="list-main">
-    <view class="list-info">
-      <view class="act-attr" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Summary }}</view>
-      <view class="act-time">{{ item.FormatTime || '未知时间' }}</view>
-    </view>
-  </view>
-</view>
-
-<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+<view class="list" wx:if="{{pager.totalRow>0}}">
+  <block wx:for="{{ infos }}">
+    <view class='list-item'>
+      <view class="act-name" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Title || '未知文档' }}</view>
+      <view class="list-main">
+        <view class="list-info">
+          <view class="act-attr" bindtap='goToDetail' data-iid="{{ item.InfoID }}">{{ item.Summary || '暂无介绍' }}</view>
+          <view class="act-time">{{ item.FormatTime || '未知时间' }}</view>
+        </view>
+      </view>
+    </view>  
+  </block>
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
+</view>  
+<view class="no_data" wx:else>
   <image class="no_data_icon" src="/assets/images/no_data.png"></image>
   <view class="no_data_text">暂时没有文档哦！</view>
 </view>

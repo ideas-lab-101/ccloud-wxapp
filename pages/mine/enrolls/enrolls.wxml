@@ -3,39 +3,41 @@
 <view class="header">活动列表
     <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
-<view class="enroll" wx:for="{{ enrolls }}">
-    <view class="enroll-main">
-        <navigator url="/pages/activity/activity?aid={{item.ActivityID}}" class="act-name">{{ item.ActivityName }}</navigator>
-        <block wx:if="{{item.mode == 1}}">
-            <view class="act-attr" wx:if="{{ item.FeeID>0 }}"><text class="iconfont icon-format-list-bulleted"/> {{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
-            <view class="act-attr" wx:else>无效项</view>
-            <view class="act-attr">
-                <view class='iconfont icon-person'/>{{ item.name || '未知报名者' }} (
-                <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
-                <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
-                <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>
-                <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text> )
-            </view>
-        </block>
-        <block wx:if="{{item.mode == 2}}">
-            <view class="act-attr" wx:if="{{ item.FeeID>0 }}"><text class="iconfont icon-format-list-bulleted"/> {{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
-            <view class="act-attr" wx:else>无效项</view>    
-            <view class="act-attr">
-                <view class='iconfont icon-group'/>{{ item.group || '未知团队' }} (
-                <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
-                <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
-                <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>
-                <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text> )
-            </view>
-        </block>    
-        <view class="act-attr _time">{{ item.FormatTime || '未知时间' }}</view>
-    </view>
-    <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-        <view class="iconfont icon-morevert"></view>
-    </view>
-</view>
-<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+<view wx:if="{{pager.totalRow>0}}">
+  <view class="enroll" wx:for="{{ enrolls }}">
+      <view class="enroll-main">
+          <navigator url="/pages/activity/activity?aid={{item.ActivityID}}" class="act-name">{{ item.ActivityName }}</navigator>
+          <block wx:if="{{item.mode == 1}}">
+              <view class="act-attr" wx:if="{{ item.FeeID>0 }}"><text class="iconfont icon-format-list-bulleted"/> {{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
+              <view class="act-attr" wx:else>无效项</view>
+              <view class="act-attr">
+                  <view class='iconfont icon-person'/>{{ item.name || '未知报名者' }} (
+                  <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
+                  <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
+                  <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>
+                  <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text> )
+              </view>
+          </block>
+          <block wx:if="{{item.mode == 2}}">
+              <view class="act-attr" wx:if="{{ item.FeeID>0 }}"><text class="iconfont icon-format-list-bulleted"/> {{ item.FeeName }} ({{item.TotalCost>0? item.TotalCost+'元':'免费' }})</view>
+              <view class="act-attr" wx:else>无效项</view>    
+              <view class="act-attr">
+                  <view class='iconfont icon-group'/>{{ item.group || '未知团队' }} (
+                  <text style="color:#e64340;" wx:if="{{ item.orderState === 1001 }}">未缴费</text>
+                  <text style="color:#576b95;" wx:if="{{ item.intState === 0 }}">审核未通过</text>
+                  <text style="color:#09bb07;" wx:if="{{ item.intState === 2 }}">已确认</text>
+                  <text style="color:#999999;" wx:if="{{ item.intState === 99 }}">已归档</text> )
+              </view>
+          </block>    
+          <view class="act-attr _time">{{ item.FormatTime || '未知时间' }}</view>
+      </view>
+      <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+          <view class="iconfont icon-morevert"></view>
+      </view>
+  </view>
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
+</view>  
+<view wx:else class="no_data">
     <image class="no_data_icon" src="/assets/images/no_data.png"></image>
     <view class="no_data_text">您暂时未参与任何活动哦</view>
 </view>

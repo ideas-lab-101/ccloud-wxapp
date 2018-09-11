@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 800792 */
-  src: url('//at.alicdn.com/t/font_800792_4w3i0wamzbu.eot');
-  src: url('//at.alicdn.com/t/font_800792_4w3i0wamzbu.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_800792_4w3i0wamzbu.woff') format('woff'),
-  url('//at.alicdn.com/t/font_800792_4w3i0wamzbu.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_800792_4w3i0wamzbu.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.eot');
+  src: url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.woff') format('woff'),
+  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -64,6 +64,8 @@
 .icon-vip3:before { content: "\e6e2"; }
 
 .icon-coupon:before { content: "\e74b"; }
+
+.icon-videofill:before { content: "\e7c7"; }
 
 .icon-chat:before { content: "\e65f"; }
 

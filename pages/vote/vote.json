@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#f7f7f7",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "投票活动",
+  "navigationBarTextStyle": "black"
+}

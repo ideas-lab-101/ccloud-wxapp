@@ -1,0 +1,21 @@
+<view class="">
+  <view class="list">
+    <block wx:for="{{votes}}" wx:key="{{item}}">
+      <navigator url="/pages/vote/voteMain/voteMain?id={{item.VoteID}}" class="list-item">
+        <view class="list-img-box">
+          <image mode="aspectFill" class="list-img-box-img" src="{{item.CoverURL}}?imageView2/1/w/305/h/205"></image>
+          <text class="open-state">{{item.EndTime}} 结束</text>
+          <view class="live-count">
+            <text class="live-count-text">{{item.viewCount}} 浏览</text>
+          </view>
+        </view>
+        <view class="list-info-box">{{item.VoteName}}</view>
+      </navigator>
+    </block>
+  </view>
+
+  <view class="no_data" wx:if="{{votes.length === 0}}">
+    <image class="no_data_icon" src="/assets/images/no_data.png"></image>
+    <view class="no_data_text">暂时没有开放的投票哦^_^</view>
+  </view>
+</view>

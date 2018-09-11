@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "投票列表",
+  "backgroundColor": "#f7f7f7",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "wux-toast": "/components/wux/toast/index"
+  }
+}

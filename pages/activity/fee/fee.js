@@ -12,7 +12,6 @@ Page({
     fees: [],
     pager: {
       totalRow: 0,
-      totalPage: 0,
       pageNumber: 0,
       lastPage: true,
     },
@@ -75,12 +74,8 @@ Page({
       success: res => {
         this.setData({
           fees: this.data.fees.concat(res.data.list),
-          pager: {
-            totalRow: res.data.totalRow,
-            totalPage: res.data.totalPage,
-            lastPage: res.data.lastPage,
-            pageNumber: res.data.pageNumber - 1
-          }
+          'pager.totalRow': res.data.totalRow,
+          'pager.lastPage': res.data.lastPage
         })
       },
       fail: error => {

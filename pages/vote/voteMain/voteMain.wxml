@@ -1,0 +1,45 @@
+
+<view class="vote-back">
+
+  <view class="vote-explain" catchtap="documentEvent"><text>投票说明</text><image src="/assets/images/fontBack.png" mode="widthFix"/></view>
+  <view class="vote-title xiaoweiti-font">{{voteMain.VoteName}}</view>
+
+
+  <view class="vote-swiper-box">
+    <swiper class="vote-swiper" current="{{current}}" autoplay="{{false}}" bindchange="changeEvent">
+      <block wx:for="{{voteList}}">
+        <swiper-item bindtap="linkEvent" data-id="{{item.ItemID}}">
+
+          <view class="_title">{{item.ItemName}}</view>
+          <view class="_image"><image src="{{item.CoverURL}}" mode="aspectFill" class="vote-list-img"/></view>
+          <view class="_count">
+            <text>{{item.vCount}} / 投票总数</text>
+            <text>{{item.uCount}} / 参选人数</text>
+          </view>
+          <view class="_desc">{{item.Desc}}</view>
+
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="_swiperLeft" bindtap="prevEvent" wx:if="{{prev}}"><image src="/assets/images/left.png" mode="aspectFill"/></view>
+    <view class="_swiperRight" bindtap="nextEvent" wx:if="{{next}}"><image src="/assets/images/right.png" mode="aspectFill"/></view>
+  </view>
+
+  <view class="vote-footer">
+    <view>
+      <image src="{{voteMain.LogoURL}}" mode="widthFix"></image>
+    </view>
+    <view>
+      <button open-type="share" plain>分享活动</button>
+    </view>
+  </view>
+</view>
+
+<wux-backdrop id="wux-backdrop" bind:click="docCloseEvent" />
+<wux-animation-group wux-class="doc-box" in="{{ docin }}" class-names="wux-animate--slideInUp">
+    <view class="_title xiaoweiti-font">投票说明</view>
+    <scroll-view scroll-y class="_insert">
+      {{voteMain.Content}}
+    </scroll-view>
+</wux-animation-group>

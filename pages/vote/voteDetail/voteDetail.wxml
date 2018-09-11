@@ -1,0 +1,40 @@
+<scroll-view scroll-y class="del-scroll">
+
+  <view class="del-info">
+    <image class="_photo" src="{{form.photoURL}}" mode="widthFix"></image>
+    <view>
+      <view class="_name xiaoweiti-font" wx:if="{{enroll.mode===1}}">{{form.name}}</view>
+      <view class="_name xiaoweiti-font" wx:if="{{enroll.mode===2}}">{{form.group}}</view>
+      <view class="xiaoweiti-font" wx:if="{{enroll.mode===1}}">{{form.sex}} {{form.age}}岁</view>
+      <view wx:if="{{enroll.mode===2}}">{{form.groupNum}}人</view>
+      <view>{{form.province}} {{form.city}} {{form.district}}</view>
+    </view>
+  </view>
+
+  <view class="del-title xiaoweiti-font">参赛作品</view>
+  <view wx:for="{{attachList}}">
+
+    <view class="del-image" bindtap='previewEvent' data-index='{{index}}'>
+
+      <view wx:if="{{item.AttachType === 'video'}}" class="_play">
+        <text class="iconfont icon-videofill"></text>
+      </view>
+      <image wx:if="{{item.AttachType === 'image'}}" src="{{item.AttachURL}}" mode="aspectFill"></image>
+      <image wx:if="{{item.AttachType === 'video'}}" src="{{item.AttachURL}}?vframe/jpg/offset/3" mode="aspectFill"></image>
+      <view class="_desc">
+        <view>
+          <view>{{item.AttachDesc}}</view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+</scroll-view>
+
+<view class="vote-footer xiaoweiti-font">
+  <view>
+    <button open-type="share" plain>分享拉票</button>
+  </view>
+</view>

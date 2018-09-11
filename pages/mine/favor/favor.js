@@ -13,7 +13,6 @@ Page({
     favors: [],
     pager: {
       totalRow: 0,
-      totalPage: 0,
       pageNumber: 0,
       lastPage: true,
     }
@@ -125,12 +124,8 @@ Page({
             favor.FormartTime = utils.convertTime(favor.AddTime)
             return favor
           })),
-          pager: {
-            totalRow: res.data.totalRow,
-            totalPage: res.data.totalPage,
-            lastPage: res.data.lastPage,
-            pageNumber: res.data.pageNumber - 1
-          }
+          "pager.totalRow" : res.data.totalRow,
+          "pager.lastPage" : res.data.lastPage
         })
       },
       fail: error => {

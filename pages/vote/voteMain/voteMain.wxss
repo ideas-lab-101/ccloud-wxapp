@@ -1,0 +1,144 @@
+page {
+    font-size: 32rpx;
+    background: url('http://cloud.ideas-lab.cn/system/bg_vote_n.jpg') no-repeat top center; background-size: 100% 100%;
+    height: 100vh;
+}
+
+.vote-back{
+    position: relative;
+    font-family: Xiaoweiti;
+}
+
+.vote-explain{
+    position: absolute;
+    right: 10rpx;
+    top: 180rpx;
+    z-index: 10;
+}
+.vote-explain text{
+    position: absolute;
+    right: 20rpx;
+    top: 5rpx;
+    z-index: 10;
+    font-size: 24rpx;
+}
+.vote-explain image{
+    width: 200rpx;
+}
+
+.vote-title{
+    text-align: center;
+    font-size: 42rpx;
+    padding: 40rpx 40rpx 140rpx;
+    line-height: 1.4;
+}
+
+
+.vote-footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vote-footer view{
+    display: inline-block; vertical-align: middle;line-height: 2;
+}
+.vote-footer image{
+    width: 40rpx; height: 40rpx; margin-top: 20rpx;
+}
+
+.vote-footer button{
+    border: 0 !important;
+    width: 200rpx;
+    margin: 0;
+    padding: 0;
+    line-height: 2;
+}
+.vote-footer button::after,.vote-footer button::before{
+    border: 0 !important;
+}
+
+.vote-swiper-box{
+    position: relative;
+}
+.vote-swiper-box ._swiperLeft,.vote-swiper-box ._swiperRight{
+    display: inline-block; padding: 10rpx; position: absolute; z-index: 10; top: 35%;
+}
+.vote-swiper-box ._swiperLeft{
+    left: 10rpx;
+}
+.vote-swiper-box ._swiperRight{
+    right: 10rpx;
+}
+
+.vote-swiper-box ._swiperLeft image,.vote-swiper-box ._swiperRight image{
+    width: 50rpx;
+    height: 48rpx;
+    opacity: 0.5;
+}
+.vote-swiper{
+    height: 70vh;
+}
+.vote-swiper ._title{
+    text-align: center;
+    padding-bottom: 30rpx;
+    font-size: 34rpx;
+}
+
+.vote-swiper ._image{
+    text-align: center;
+    padding: 0 80rpx;
+}
+
+.vote-list-img{
+    width: 100%;
+    height: 440rpx;
+    /*box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.3);*/
+    box-shadow: 20rpx 20rpx 0rpx rgba(0, 0, 0, 0.2);
+}
+
+.vote-swiper ._count{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30rpx 80rpx 20rpx;
+    font-size: 28rpx;
+    color: #666666;
+}
+
+.vote-swiper ._desc{
+    font-size: 32rpx;
+    padding-top: 20rpx;
+    padding-left: 60rpx;
+    padding-right: 60rpx;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+}
+
+.doc-box{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 2999;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16rpx 16rpx 0 0;
+}
+.doc-box ._title{
+    text-align: center;
+    padding: 20rpx 0 40rpx; font-size: 30rpx;
+}
+.doc-box ._insert{
+    padding: 40rpx;
+    font-size: 28rpx;
+    line-height: 1.4;
+    height: 60vh;
+}

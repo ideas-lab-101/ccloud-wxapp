@@ -47,16 +47,7 @@ Page({
     app.pages.add(this);
   },
   onReady: function() {
-    // if (app.user.ckLogin()) {
-    //   wx.showLoading({
-    //     title: '加载中',
-    //   })
-    //   this._initData()
-    // } else {
-    //   this.setData({
-    //     page_show: true
-    //   })
-    // }
+
   },
   onShow: function() {
     this.setData({
@@ -81,26 +72,6 @@ Page({
       this.login()
     }
   },
-  // get_systemNotice() {
-  //   wx.request({
-  //     url: app.api.getSystemNotice,
-  //     method: 'get',
-  //     header: {
-  //       'content-type': 'application/x-www-form-urlencoded'
-  //     },
-  //     data: {
-  //       token: app.user.authToken
-  //     },
-  //     success: res => {
-  //       this.setData({
-  //         msgCount: res.data.msgCount
-  //       })
-  //     },
-  //     complete: res => {
-
-  //     }
-  //   })
-  // },
   /**
    * 活动互动
    */
@@ -115,11 +86,8 @@ Page({
    * 活动投票
    */
   goToVote() {
-    wx.showModal({
-      title: '提示',
-      content: '功能即将开放',
-      showCancel: false,
-      confirmText: '知道了'
+    wx.navigateTo({
+      url: '/pages/vote/vote',
     })
   },
   /**

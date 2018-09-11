@@ -11,7 +11,6 @@ Page({
     enrolls: [],
     pager: {
       totalRow: 0,
-      totalPage: 0,
       pageNumber: 0,
       lastPage: true,
     }
@@ -154,12 +153,9 @@ Page({
             enroll.FormatTime = utils.convertTime(enroll.AddTime)
             return enroll
           })),
-          pager: {
-            totalRow: res.data.totalRow,
-            totalPage: res.data.totalPage,
-            lastPage: res.data.lastPage,
-            pageNumber: res.data.pageNumber - 1
-          }
+          
+          'pager.totalRow' : res.data.totalRow,
+          'pager.lastPage' : res.data.lastPage
         })
       },
       fail: error => {

@@ -3,23 +3,25 @@
 <view class="header">消息列表
   <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
-<view class="message" wx:for="{{ messages }}">
-  <view class="message-main">
-    <view class="act-name">{{ item.SourceName }}</view>
-    <view class="act-attr">
-      <view class="indicator" wx:if="{{ item.ReadTime == null }}">
-        <label class='bubble' />
+<view class='list' wx:if="{{pager.totalRow>0}}">
+  <view class="message" wx:for="{{ messages }}">
+    <view class="message-main">
+      <view class="act-name">{{ item.SourceName }}</view>
+      <view class="act-attr">
+        <view class="indicator" wx:if="{{ item.ReadTime == null }}">
+          <label class='bubble' />
+        </view>
+        <text>{{ item.Summary}}</text>
       </view>
-      <text>{{ item.Summary}}</text>
+      <view class="act-attr _time">{{ item.FormatTime || '未知时间' }}</view>
     </view>
-    <view class="act-attr _time">{{ item.FormatTime || '未知时间' }}</view>
+    <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
+      <view class="iconfont icon-morevert"></view>
+    </view>
   </view>
-  <view class="more_opts" catchtap='moreOpts' data-index="{{index}}" hover-class='touched' hover-start-time='0'>
-    <view class="iconfont icon-morevert"></view>
-  </view>
-</view>
-<view class="no_more" wx:if="{{pager.lastPage && pager.totalRow > 0}}">额，数据到底了</view>
-<view class="no_data" wx:if="{{pager.totalRow === 0}}">
+  <view class="no_more" wx:if="{{pager.lastPage}}">额，数据到底了</view>
+</view>  
+<view class="no_data" wx:else>
   <image class="no_data_icon" src="/assets/images/no_data.png"></image>
   <view class="no_data_text">暂未收到消息</view>
 </view>

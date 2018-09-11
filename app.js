@@ -1,4 +1,4 @@
-const Version = '1.8.9';
+const Version = '1.9.0';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
@@ -15,11 +15,10 @@ App({
         })
     },
     resourseUrl: HOST+ 'resource/',
-    // resourseUrl: HOST + 'resource/ccloud/',
     qiniuUploadUrl: 'https://up-z2.qbox.me',
     qiniuDomain: 'http://cloud.ideas-lab.cn/',
     globalData: {
-
+      qiNiuToken : ''
     },
     user: new User(),
     pages: new Pages(),
@@ -78,6 +77,12 @@ App({
       getMessageList: HOST + 'wxss/message/GetMessageList',
       readMessage: HOST + 'wxss/message/SetMessage',
       //互动相关
-      getInteractActivity: HOST + 'wxss/interact/getInteractActivity'
+      getInteractActivity: HOST + 'wxss/interact/getInteractActivity',
+      // 投票
+      getVoteList: HOST + 'wxss/vote/getVoteList',
+      getVoteInfo: HOST + 'wxss/vote/getVoteInfo',
+      getVoteItemInfo: HOST + 'wxss/vote/getVoteItemInfo',
+      getVoteDetail: HOST + 'wxss/vote/getVoteDetail',
+      voteDeliver: HOST + 'wxss/vote/doVote'
     },
 })

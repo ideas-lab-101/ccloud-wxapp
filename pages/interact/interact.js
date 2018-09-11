@@ -13,10 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-      app.user.isLogin(token => {
-        this._initData()
-      })
+    this._initData()
   },
+  
   _initData() {
     wx.showNavigationBarLoading()
     wx.request({

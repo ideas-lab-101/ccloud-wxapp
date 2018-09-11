@@ -33,9 +33,10 @@ page {
 .message {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5rpx;
   background-color: #fff;
   padding: 30rpx 0;
+  margin-bottom: 6rpx;
+  box-shadow: 0 0 6rpx 0 #ccc;
   position: relative;
 }
 

@@ -1,4 +1,5 @@
 @import '/assets/styles/cloud-icon.wxss';
+@import '/assets/styles/xiaoweiti.wxss';
 
 view {
     box-sizing: border-box;

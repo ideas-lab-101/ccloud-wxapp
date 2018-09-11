@@ -24,8 +24,10 @@ Page({
                 wx.navigateTo({
                     url: `/pages/activity/activity?aid=${scene.slice(2)}`,
                 })
-            } else if (scene.indexOf('c_') >= 0) { //签到
-
+            } else if (scene.indexOf('v_') >= 0) { //投票
+                wx.navigateTo({
+                  url: `/pages/vote/voteMain/voteMain?id=${scene.slice(2)}`,
+                })
             } else {
                 wx.navigateTo({
                     url: `/pages/index/index`,
@@ -53,9 +55,9 @@ Page({
                 break;
             case "vote" :
                 wx.navigateTo({
-                    url: `/pages/infos/infobook/infobook?gid=${dataID}`,
+                    url: `/pages/vote/voteMain/voteMain?id=${dataID}`,
                 })
-                break;
+                break;    
             case "app" :
                 wx.navigateToMiniProgram({
                     appId: this.data.items[index].source,
@@ -86,7 +88,6 @@ Page({
             },
             data: {},
             success: res => {
-                console.log(res)
                 const datas = res.data.list.map(function (el, index) {
                   return {
                     id: el.ID,

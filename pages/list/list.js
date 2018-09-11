@@ -12,7 +12,6 @@ Page({
     activitys: [],
     pager: {
       totalRow: 0,
-      totalPage: 0,
       pageNumber: 0,
       lastPage: true,
     }
@@ -45,15 +44,11 @@ Page({
       success: (res) => {
         this.setData({
           activitys: this.data.activitys.concat(res.data.list.map(activity => {
-            activity.AttachURL = app.resourseUrl + activity.AttachURL
+            activity.CoverURL = app.resourseUrl + activity.AttachURL
             return activity
           })),
-          pager: {
-            totalRow: res.data.totalRow,
-            totalPage: res.data.totalPage,
-            lastPage: res.data.lastPage,
-            pageNumber: res.data.pageNumber - 1
-          }
+          'pager.totalRow': res.data.totalRow,
+          'pager.lastPage': res.data.lastPage
         })
       }, complete: () => {
         wx.hideNavigationBarLoading()
@@ -95,6 +90,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.setData({
+      activitys: [],
       'pager.pageNumber': 0,
       'pager.lastPage': true
     })
