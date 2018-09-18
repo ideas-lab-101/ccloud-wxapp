@@ -3,7 +3,7 @@
     <block wx:for="{{votes}}" wx:key="{{item}}">
       <navigator url="/pages/vote/voteMain/voteMain?id={{item.VoteID}}" class="list-item">
         <view class="list-img-box">
-          <image mode="aspectFill" class="list-img-box-img" src="{{item.CoverURL}}?imageView2/1/w/305/h/205"></image>
+          <image mode="aspectFill" class="list-img-box-img" src="{{item.CoverURL}}"></image>
           <text class="open-state">{{item.EndTime}} 结束</text>
           <view class="live-count">
             <text class="live-count-text">{{item.viewCount}} 浏览</text>

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    votes: {}
+    votes: []
   },
 
   /**
@@ -26,7 +26,10 @@ Page({
       data: {},
       success: (res) => {
         this.setData({
-          votes: res.data.list
+          votes: this.data.votes.concat(res.data.list.map(vote => {
+            vote.CoverURL = app.resourseUrl + vote.CoverURL
+            return vote
+          })),
         })
       }, complete: () => {
         wx.hideNavigationBarLoading()

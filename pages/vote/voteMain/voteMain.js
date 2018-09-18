@@ -1,5 +1,6 @@
 // doc-search.js
 var app = getApp()
+const WxParse = require('../../../components/wxParse/wxParse.js')
 import {
   $wuxBackdrop
 } from "../../../components/wux/index";
@@ -27,6 +28,7 @@ Page({
 
   onShareAppMessage: function() {
     return {
+      imageUrl: app.resourseUrl+this.data.voteMain.CoverURL,
       title: this.data.voteMain.VoteName,
       path: `/pages/vote/voteMain/voteMain?id=${this.vid}`,
       success: function (res) {
@@ -120,6 +122,7 @@ Page({
   },
 
   _initData: function() {
+    var that = this;
     wx.showLoading({
       title: '加载数据中...'
     })
@@ -142,7 +145,7 @@ Page({
           voteMain: voteInfo,
           voteList: res.data.list
         })
-
+        WxParse.wxParse('detail', 'html', voteInfo.Content || '<p>暂无说明</p>', that, 5);
         this._initSwiper()
       },
       complete: () => {

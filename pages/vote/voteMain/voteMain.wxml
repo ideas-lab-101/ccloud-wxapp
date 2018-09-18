@@ -1,4 +1,4 @@
-
+<import src="/components/wxParse/wxParse.wxml" />
 <view class="vote-back">
 
   <view class="vote-explain" catchtap="documentEvent"><text>投票说明</text><image src="/assets/images/fontBack.png" mode="widthFix"/></view>
@@ -40,6 +40,8 @@
 <wux-animation-group wux-class="doc-box" in="{{ docin }}" class-names="wux-animate--slideInUp">
     <view class="_title xiaoweiti-font">投票说明</view>
     <scroll-view scroll-y class="_insert">
-      {{voteMain.Content}}
+      <view class="html_content">
+        <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+      </view>
     </scroll-view>
 </wux-animation-group>

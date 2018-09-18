@@ -1,3 +1,5 @@
+@import '/components/wxParse/wxParse.wxss';
+
 page {
     font-size: 32rpx;
     background: url('http://cloud.ideas-lab.cn/system/bg_vote_n.jpg') no-repeat top center; background-size: 100% 100%;
@@ -141,4 +143,8 @@ page {
     font-size: 28rpx;
     line-height: 1.4;
     height: 60vh;
+}
+.html_content {
+  height: 100%;
+  width: 100%;
 }
