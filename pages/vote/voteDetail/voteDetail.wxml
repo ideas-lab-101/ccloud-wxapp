@@ -1,14 +1,25 @@
+<wux-toast id="wux-toast"></wux-toast>
+
 <scroll-view scroll-y class="del-scroll">
 
-  <view class="del-info">
-    <image class="_photo" src="{{form.photoURL}}" mode="widthFix"></image>
-    <view>
-      <view class="_name xiaoweiti-font" wx:if="{{enroll.mode===1}}">{{form.name}}</view>
-      <view class="_name xiaoweiti-font" wx:if="{{enroll.mode===2}}">{{form.group}}</view>
-      <view class="xiaoweiti-font" wx:if="{{enroll.mode===1}}">{{form.sex}} {{form.age}}岁</view>
-      <view wx:if="{{enroll.mode===2}}">{{form.groupNum}}人</view>
-      <view>{{form.province}} {{form.city}} {{form.district}}</view>
+  <view class="del-info-box">
+
+    <view class="del-type">
+      <text class="_f">{{enroll.ItemName}}</text>
     </view>
+
+    <view class="del-info">
+      <image  wx:if="{{enroll.mode===1}}" class="_photo" src="{{form.photoURL}}" mode="widthFix"></image>
+      <image  wx:if="{{enroll.mode===2}}" class="_photo" src="https://sagacity-ccloud-001855.tcb.qcloud.la/system/team_avatar.jpeg?sign=79d94473f57dfbb7ccdcca25579c9641&t=1538127584" mode="widthFix"></image>
+      <view>
+        <view class="_name" wx:if="{{enroll.mode===1}}">{{form.name}} ({{common.filterCode(enroll.EnrollCode)}})</view>
+        <view class="_name" wx:if="{{enroll.mode===2}}">{{form.group}} ({{common.filterCode(enroll.EnrollCode)}})</view>
+        <view class="" wx:if="{{enroll.mode===1}}">{{form.sex}} {{form.age}}岁</view>
+        <view wx:if="{{enroll.mode===2}}">{{form.groupNum}}人</view>
+        <view>{{form.province}} {{form.city}} {{form.district}}</view>
+      </view>
+    </view>
+
   </view>
 
   <view class="del-title xiaoweiti-font">参赛作品</view>
@@ -33,8 +44,21 @@
 
 </scroll-view>
 
-<view class="vote-footer xiaoweiti-font">
+<view class="vote-footer">
   <view>
     <button open-type="share" plain>分享拉票</button>
   </view>
+  <view>
+    <button class="vote-footer-t" catchtap="voteEvent">投TA一票</button>
+  </view>
 </view>
+
+<wxs module="common">
+  var filterCode = function(val) {
+    return val.substring(val.length-5, val.length)
+  }
+
+  module.exports = {
+  filterCode: filterCode
+  }
+</wxs>

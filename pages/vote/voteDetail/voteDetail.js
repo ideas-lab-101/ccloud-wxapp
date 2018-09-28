@@ -1,3 +1,5 @@
+import {$wuxToast} from "../../../components/wux/index";
+
 var app = getApp()
 Page({
 
@@ -8,6 +10,7 @@ Page({
   },
 
   onLoad: function(options) {
+    console.log(options)
     this._initData(options.id)
   },
 
@@ -51,6 +54,7 @@ Page({
         enrollID: id
       },
       success: (res) => {
+        console.log(res.data)
         this.setData({
           attachList: res.data.attachList,
           enroll: res.data.enroll,
@@ -79,6 +83,37 @@ Page({
         url: '/pages/system/video/video?attach_id=' + attachInfo.AttachID
       })
     }
-  }
+  },
+
+    voteEvent: function (e) {
+        getApp().user.isLogin(token => {
+            wx.request({
+                url: app.api.voteDeliver,
+                method: 'POST',
+                header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    token: token,
+                    memberID: this.data.enroll.MemberID
+                },
+                success: (res) => {
+                    if (res.data.result) {
+
+                        $wuxToast().show({
+                            type: 'success',
+                            duration: 1500,
+                            color: '#fff',
+                            text: '投票成功',
+                            success: () => {}
+                        })
+                    }else{
+                        //提示投票失败的原因
+                    }
+                },
+                complete: () => {}
+            })
+        })
+    },
 
 })

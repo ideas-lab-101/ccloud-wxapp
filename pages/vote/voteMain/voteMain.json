@@ -5,6 +5,7 @@
   "disableScroll": true,
   "usingComponents": {
     "wux-backdrop": "/components/wux/backdrop/index",
-    "wux-animation-group": "/components/wux/animation-group/index"
+    "wux-animation-group": "/components/wux/animation-group/index",
+    "wux-toast": "/components/wux/toast/index"
   }
 }

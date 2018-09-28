@@ -1,17 +1,28 @@
 page {
     font-size: 32rpx;
-    background: url('http://cloud.ideas-lab.cn/system/bg_vote_n.jpg') no-repeat top center; background-size: 100% 100%;
+    background: url('https://sagacity-ccloud-001855.tcb.qcloud.la/system/bg_vote.jpg?sign=d37ba9d5ead10da264377ca3f78ff0ff&t=1538128326') no-repeat top center; background-size: 100% 100%;
     height: 100vh;
 }
 .del-scroll{
-    height: calc(100vh - 86rpx);
+    height: calc(100vh - 112rpx);
 }
-.del-info{
-    display: flex;
-    margin: 40rpx 40rpx 20rpx;
+
+.del-info-box{
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10rpx;
+    margin: 40rpx 40rpx 20rpx;
     overflow: hidden;
+}
+.del-type{
+    padding: 20rpx 0; text-align: center;
+    background-color: rgba(255, 108, 0, 0.3);
+}
+.del-type ._f{
+    font-size: 36rpx; font-weight: 600; color: black;
+}
+
+.del-info{
+    display: flex;
 }
 
 .del-info ._photo{
@@ -21,12 +32,14 @@ page {
     flex: 1;
     padding: 20rpx 40rpx;
     line-height: 1.6;
-    font-size: 32rpx;
+    font-size: 30rpx;
     color: #666666;
+    margin-top: 5rpx;
 }
 
 .del-info ._name{
-   font-size: 40rpx;
+   font-size: 34rpx;
+    margin-top: 0;
    color: black;
 }
 
@@ -87,7 +100,7 @@ page {
 .vote-footer{
     position: relative;
     width: 100%;
-    height: 86rpx;
+    padding: 20rpx;
     text-align: center;
     display: flex;
     align-items: center;
@@ -102,11 +115,20 @@ page {
 
 .vote-footer button{
     border: 0 !important;
-    width: 200rpx;
+    width: 100%;
     margin: 0;
     padding: 0;
     line-height: 2;
 }
 .vote-footer button::after,.vote-footer button::before{
     border: 0 !important;
+}
+
+.vote-footer>view{
+    flex: 1; align-items: center; display: flex;
+}
+.vote-footer-t{
+    background-color: #ff7200;
+    color: white;
+    box-shadow: 0 10rpx 30rpx rgba(255, 108, 0, 0.3);
 }

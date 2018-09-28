@@ -1,8 +1,17 @@
 <import src="/components/wxParse/wxParse.wxml" />
-<view class="vote-back">
+<wux-toast id="wux-toast"></wux-toast>
+
+<view class="vote-back" style="background: url('https://sagacity-ccloud-001855.tcb.qcloud.la/system/bg_vote_info.jpg?sign=3819592afb332fb1acf305107965be4f&t=1538128254') no-repeat top center; background-size: 100% 100%; background-color: #d6f0fd;">
 
   <view class="vote-explain" catchtap="documentEvent"><text>投票说明</text><image src="/assets/images/fontBack.png" mode="widthFix"/></view>
-  <view class="vote-title xiaoweiti-font">{{voteMain.VoteName}}</view>
+  <view class="vote-title">
+    <form bindsubmit="searchSubmit">
+    <view class="vote-search">
+      <input  maxlength="10" placeholder="输入编号" type="number" name="code" class="vote-input"/>
+      <button formType="submit" plain class="vote-btn">查询</button>
+    </view>
+    </form>
+  </view>
 
 
   <view class="vote-swiper-box">
@@ -10,11 +19,11 @@
       <block wx:for="{{voteList}}">
         <swiper-item bindtap="linkEvent" data-id="{{item.ItemID}}">
 
-          <view class="_title">{{item.ItemName}}</view>
           <view class="_image"><image src="{{item.CoverURL}}" mode="aspectFill" class="vote-list-img"/></view>
+          <view class="_title">{{item.ItemName}}</view>
           <view class="_count">
-            <text>{{item.vCount}} / 投票总数</text>
-            <text>{{item.uCount}} / 参选人数</text>
+            <view>{{item.vCount}} <text>(投票总数)</text></view>
+            <view>{{item.uCount}} <text>(参选人数)</text></view>
           </view>
           <view class="_desc">{{item.Desc}}</view>
 
@@ -30,11 +39,11 @@
     <view>
       <image src="{{voteMain.LogoURL}}" mode="widthFix"></image>
     </view>
-    <view>
-      <button open-type="share" plain>分享活动</button>
-    </view>
+    <view catchtap="openShareEvent">分享活动</view>
   </view>
 </view>
+
+
 
 <wux-backdrop id="wux-backdrop" bind:click="docCloseEvent" />
 <wux-animation-group wux-class="doc-box" in="{{ docin }}" class-names="wux-animate--slideInUp">
@@ -44,4 +53,26 @@
         <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
       </view>
     </scroll-view>
+</wux-animation-group>
+
+<!--分享-->
+<wux-backdrop id="wux-backdrop-share" bind:click="closeShareLayerEvent" />
+<wux-animation-group wux-class="share-layer" in="{{ sharein }}" class-names="wux-animate--fadeInDown">
+  <view class="_insert">
+    <image src="{{shareData.CoverURL}}" mode="aspectFill"></image>
+    <view class="_link">
+      <button hover-class='navigator-hover-class' open-type='share' plain id="groupShare">
+        <text class="iconfont icon-iconfontzhizuobiaozhunbduan32"></text>
+        <view>好友或群</view>
+      </button>
+      <button hover-class='navigator-hover-class' plain bindtap="getShareCodeEvent">
+        <text class="iconfont icon-iconweixinpengyouquan"></text>
+        <view>作品封面</view>
+      </button>
+      <button hover-class='navigator-hover-class' plain>
+        <text class="iconfont icon-iconzhucetouxiang"></text>
+        <view>关注公众号</view>
+      </button>
+    </view>
+  </view>
 </wux-animation-group>

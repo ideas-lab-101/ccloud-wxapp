@@ -2,19 +2,19 @@
 
 page {
     font-size: 32rpx;
-    background: url('http://cloud.ideas-lab.cn/system/bg_vote_n.jpg') no-repeat top center; background-size: 100% 100%;
+    /*background: url('http://cloud.ideas-lab.cn/system/bg_vote_n.jpg') no-repeat top center; background-size: 100% 100%;*/
     height: 100vh;
 }
 
 .vote-back{
     position: relative;
-    font-family: Xiaoweiti;
+    height: 100vh;
 }
 
 .vote-explain{
     position: absolute;
-    right: 10rpx;
-    top: 180rpx;
+    right: 0rpx;
+    top: 130rpx;
     z-index: 10;
 }
 .vote-explain text{
@@ -22,7 +22,8 @@ page {
     right: 20rpx;
     top: 5rpx;
     z-index: 10;
-    font-size: 24rpx;
+    font-size: 30rpx;
+    font-weight: 500;
 }
 .vote-explain image{
     width: 200rpx;
@@ -31,9 +32,14 @@ page {
 .vote-title{
     text-align: center;
     font-size: 42rpx;
-    padding: 40rpx 40rpx 140rpx;
+    padding: 240rpx 70rpx 40rpx;
     line-height: 1.4;
 }
+
+.vote-search{ background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 200rpx; display: flex; align-items: center; padding-left: 40rpx; }
+.vote-input{ flex: 1; text-align: left; font-size: 30rpx;}
+.vote-btn{ border: 0 !important; font-size: 30rpx; padding: 0 50rpx; line-height: 2.2;}
 
 
 .vote-footer{
@@ -48,8 +54,9 @@ page {
     justify-content: center;
 }
 .vote-footer view{
-    display: inline-block; vertical-align: middle;line-height: 2;
+    display: inline-block; vertical-align: middle;line-height: 2; margin-right: 20rpx;
 }
+.vote-footer view:last-child{ margin-right: 0;}
 .vote-footer image{
     width: 40rpx; height: 40rpx; margin-top: 20rpx;
 }
@@ -69,7 +76,7 @@ page {
     position: relative;
 }
 .vote-swiper-box ._swiperLeft,.vote-swiper-box ._swiperRight{
-    display: inline-block; padding: 10rpx; position: absolute; z-index: 10; top: 35%;
+    display: inline-block; padding: 10rpx; position: absolute; z-index: 10; top: 25%;
 }
 .vote-swiper-box ._swiperLeft{
     left: 10rpx;
@@ -88,8 +95,9 @@ page {
 }
 .vote-swiper ._title{
     text-align: center;
-    padding-bottom: 30rpx;
-    font-size: 34rpx;
+    padding-top: 20rpx;
+    font-size: 38rpx;
+    font-family: Xiaoweiti;
 }
 
 .vote-swiper ._image{
@@ -108,21 +116,23 @@ page {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30rpx 80rpx 20rpx;
+    padding: 20rpx 60rpx;
     font-size: 28rpx;
-    color: #666666;
+}
+.vote-swiper ._count text{
+    color: #0476b7; font-size: 28rpx;
 }
 
 .vote-swiper ._desc{
-    font-size: 32rpx;
-    padding-top: 20rpx;
+    font-size: 30rpx;
+    line-height: 1.6;
     padding-left: 60rpx;
     padding-right: 60rpx;
     overflow:hidden;
     text-overflow:ellipsis;
     display:-webkit-box;
     -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
+    -webkit-line-clamp:3;
 }
 
 .doc-box{
@@ -131,20 +141,33 @@ page {
     left: 0;
     bottom: 0;
     z-index: 2999;
-    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 16rpx 16rpx 0 0;
+    background: rgba(255, 255, 255,0.75);
+    -webkit-backdrop-filter: saturate(180%) blur(40rpx);
+    backdrop-filter: saturate(180%) blur(40rpx);
 }
 .doc-box ._title{
     text-align: center;
     padding: 20rpx 0 40rpx; font-size: 30rpx;
 }
 .doc-box ._insert{
-    padding: 40rpx;
     font-size: 28rpx;
     line-height: 1.4;
     height: 60vh;
 }
 .html_content {
-  height: 100%;
-  width: 100%;
+  padding: 0 40rpx;
 }
+
+/**************/
+.share-layer{
+    position: absolute; z-index: 3999; left: 15vw; top: 25%; width: 70vw; background-color: white; border-radius: 20rpx;
+    box-shadow: 0 20rpx 80rpx rgba(0, 0, 0, 0.3);
+}
+.share-layer>._insert{}
+.share-layer image{ width: 100%; height: 40vh; border-radius: 20rpx 20rpx 0 0;}
+.share-layer ._link{display: flex; align-items: center; justify-content: space-around;}
+.share-layer ._link button{ border: 0 !important; font-size: 26rpx; line-height: 1.7; padding-top: 20rpx; padding-bottom: 20rpx;}
+.share-layer ._link button::after,.share-layer ._link button::before{ border: 0 !important;}
+.share-layer ._link button .iconfont{ font-size: 40rpx;}
+.share-layer ._link button:active{background-color: #efefef;}

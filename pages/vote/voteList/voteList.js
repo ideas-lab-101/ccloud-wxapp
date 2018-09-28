@@ -103,6 +103,7 @@ Page({
                 itemID: id
             },
             success: (res) => {
+                console.log(res)
               const temp = this._getDefaultVoter(res.data.list)
                 this.setData({
                     voteItemInfo: res.data.data,

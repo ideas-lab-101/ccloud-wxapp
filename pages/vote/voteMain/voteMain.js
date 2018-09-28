@@ -2,7 +2,7 @@
 var app = getApp()
 const WxParse = require('../../../components/wxParse/wxParse.js')
 import {
-  $wuxBackdrop
+  $wuxBackdrop, $wuxToast
 } from "../../../components/wux/index";
 
 Page({
@@ -110,6 +110,53 @@ Page({
       docin: false
     })
   },
+
+    openShareEvent: function () {
+        $wuxBackdrop('#wux-backdrop-share').retain()
+        this.setData({
+            sharein: true
+        })
+    },
+
+    closeShareLayerEvent: function () {
+        $wuxBackdrop('#wux-backdrop-share').release()
+        this.setData({
+            sharein: false
+        })
+    },
+
+    searchSubmit: function (e) {
+        if (e.detail.value.code.trim() === '') {
+          return false
+        }
+        wx.request({
+            url: app.api.doSearch,
+            method: 'GET',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                voteID: this.vid,
+                code: e.detail.value.code
+            },
+            success: (res) => {
+                console.log(res)
+                if (res.data.result) {
+                    const id = Number(res.data.data)
+                    wx.navigateTo({
+                        url: '/pages/vote/voteDetail/voteDetail?id='+id
+                    })
+                }else {
+                    $wuxToast().show({
+                        type: 'text',
+                        duration: 1000,
+                        text: res.data.msg
+                    })
+                }
+            },
+            complete: () => {}
+        })
+    },
   /**
    *  内置方法
    */

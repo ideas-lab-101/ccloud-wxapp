@@ -83,6 +83,7 @@ App({
       getVoteInfo: HOST + 'wxss/vote/getVoteInfo',
       getVoteItemInfo: HOST + 'wxss/vote/getVoteItemInfo',
       getVoteDetail: HOST + 'wxss/vote/getVoteDetail',
-      voteDeliver: HOST + 'wxss/vote/doVote'
+      voteDeliver: HOST + 'wxss/vote/doVote',
+      doSearch: HOST + 'wxss/vote/doSearch'
     },
 })
