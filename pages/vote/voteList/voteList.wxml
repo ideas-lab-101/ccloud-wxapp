@@ -12,12 +12,11 @@
 
     </view>
 
-    <view class="l-info" wx:if="{{voterDataIndex !== -1}}">
+    <view class="l-info" wx:if="{{voterData}}">
         <view class="l-single info">
-            <text class="_rank">{{common.filterCount(voterDataIndex+1)}}</text>
             <view class="_info" bindtap="infoEvent" data-id="{{voterData.EnrollID}}">
-                <view wx:if="{{voterData.mode===1}}"><image src="{{common.rangeImage(voterDataIndex)}}" mode="widthFix" class="_b"></image><image class="_t" src="{{voterData.photoURL}}" mode="aspectFill"></image></view>
-                <view wx:if="{{voterData.mode===2}}"><image src="{{common.rangeImage(voterDataIndex)}}" mode="widthFix" class="_b"></image><image class="_t" src="https://sagacity-ccloud-001855.tcb.qcloud.la/system/team_avatar.jpeg?sign=79d94473f57dfbb7ccdcca25579c9641&t=1538127584" mode="aspectFill"></image></view>
+                <view wx:if="{{voterData.mode===1}}"><image src="{{common.rangeImage(0)}}" mode="widthFix" class="_b"></image><image class="_t" src="{{voterData.photoURL}}" mode="aspectFill"></image></view>
+                <view wx:if="{{voterData.mode===2}}"><image src="{{common.rangeImage(0)}}" mode="widthFix" class="_b"></image><image class="_t" src="https://sagacity-ccloud-001855.tcb.qcloud.la/system/team_avatar.jpeg?sign=79d94473f57dfbb7ccdcca25579c9641&t=1538127584" mode="aspectFill"></image></view>
 
                 <view class="_k" wx:if="{{voterData.mode===1}}">
                     <text>{{voterData.name}}</text>
@@ -30,18 +29,17 @@
 
             </view>
             <text class="_num">{{voterData.vCount}}</text>
-            <view class="_btn" catchtap="voteEvent" data-id="{{voterData.MemberID}}" data-index="{{voterDataIndex}}">投票</view>
         </view>
     </view>
     <view class="l-info-font xiaoweiti-font" wx:else>
         投票排行榜
     </view>
 
-    <scroll-view scroll-y class="l-scroll">
+    <scroll-view scroll-y class="l-scroll" scroll-top="{{top}}" scroll-with-animation>
 
         <view class="l-single-box">
             <view class="l-single" wx:for="{{ranking}}">
-                <text class="_rank">{{index+1}}</text>
+                <text class="_rank">{{(pager.pageIndex-1)*20+index+1}}</text>
                 <view class="_info" bindtap="infoEvent" data-id="{{item.EnrollID}}">
                     <view wx:if="{{item.mode===1}}"><image src="{{common.rangeImage(index)}}" mode="widthFix" class="_b"></image><image class="_t" src="{{item.photoURL}}" mode="aspectFill"></image></view>
                     <view wx:if="{{item.mode===2}}"><image src="{{common.rangeImage(index)}}" mode="widthFix" class="_b"></image><image class="_t" src="https://sagacity-ccloud-001855.tcb.qcloud.la/system/team_avatar.jpeg?sign=79d94473f57dfbb7ccdcca25579c9641&t=1538127584" mode="aspectFill"></image></view>
@@ -58,6 +56,7 @@
                 <text class="_num">{{item.vCount}}</text>
                 <view class="_btn" catchtap="voteEvent" data-id="{{item.MemberID}}" data-index="{{index}}">投票</view>
             </view>
+            <pagination cur-page="{{ pager.pageIndex }}" total-page="{{ pager.totalPage }}" total-items="{{ pager.totalRow }}" bind:prev="prev" bind:next="next" bind:jumptopage='jumpToPage'></pagination>
         </view>
 
     </scroll-view>

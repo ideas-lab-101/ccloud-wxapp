@@ -4,6 +4,7 @@
   "enablePullDownRefresh": false,
   "disableScroll": true,
   "usingComponents": {
-    "wux-toast": "/components/wux/toast/index"
+    "wux-toast": "/components/wux/toast/index",
+    "pagination": "/components/pagination/pagination"
   }
 }

@@ -15,7 +15,7 @@
         <view class="_name" wx:if="{{enroll.mode===1}}">{{form.name}} ({{common.filterCode(enroll.EnrollCode)}})</view>
         <view class="_name" wx:if="{{enroll.mode===2}}">{{form.group}} ({{common.filterCode(enroll.EnrollCode)}})</view>
         <view class="" wx:if="{{enroll.mode===1}}">{{form.sex}} {{form.age}}岁</view>
-        <view wx:if="{{enroll.mode===2}}">{{form.groupNum}}人</view>
+        <view wx:if="{{enroll.mode===2}}">{{form.groupNum || '未知'}}人</view>
         <view>{{form.province}} {{form.city}} {{form.district}}</view>
       </view>
     </view>
@@ -41,7 +41,7 @@
     </view>
 
   </view>
-
+  
 </scroll-view>
 
 <view class="vote-footer">

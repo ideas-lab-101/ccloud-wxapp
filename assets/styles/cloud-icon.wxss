@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 800792 */
-  src: url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.eot');
-  src: url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.woff') format('woff'),
-  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_800792_ppnxqm4efqe.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_800792_53276dkd3xc.eot');
+  src: url('//at.alicdn.com/t/font_800792_53276dkd3xc.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_800792_53276dkd3xc.woff') format('woff'),
+  url('//at.alicdn.com/t/font_800792_53276dkd3xc.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_800792_53276dkd3xc.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -57,6 +57,8 @@
 
 .icon-wifitethering:before { content: "\e7bd"; }
 
+.icon-iconweixinpengyouquan:before { content: "\e635"; }
+
 .icon-vip1:before { content: "\e6dc"; }
 
 .icon-vip2:before { content: "\e6e1"; }
@@ -70,6 +72,8 @@
 .icon-chat:before { content: "\e65f"; }
 
 .icon-location:before { content: "\e66d"; }
+
+.icon-iconfontzhizuobiaozhunbduan32:before { content: "\e6e6"; }
 
 .icon-kaquan:before { content: "\e611"; }
 

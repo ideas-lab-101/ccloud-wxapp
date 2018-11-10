@@ -15,7 +15,7 @@ page {
 }
 .del-type{
     padding: 20rpx 0; text-align: center;
-    background-color: rgba(255, 108, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 .del-type ._f{
     font-size: 36rpx; font-weight: 600; color: black;

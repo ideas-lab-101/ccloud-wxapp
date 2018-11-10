@@ -278,12 +278,13 @@ page {
 }
 
 .case .case_name {
+  line-height: 1.2;
   flex: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 34rpx;
+  font-size: 30rpx;
 }
 
 .case .case_fee {

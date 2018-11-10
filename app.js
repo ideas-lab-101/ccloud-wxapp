@@ -1,8 +1,9 @@
-const Version = '1.9.0';
+const Version = '1.9.4';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
 // const HOST = "http://web.tunnel.cdqidi.cn/";
+// const HOST = "http://127.0.0.1:8080/";
 
 App({
     onLaunch: function () {
@@ -13,6 +14,32 @@ App({
                 app.globalData.deviceWidth = res.windowWidth
             },
         })
+        //检查代码更新
+      const updateManager = wx.getUpdateManager()
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+        if (res.hasUpdate) {
+          updateManager.onUpdateReady(function () {
+            wx.showModal({
+              title: '更新提示',
+              content: '新版本已经准备好，是否重启应用？',
+              success: function (res) {
+                if (res.confirm) {
+                  // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                  updateManager.applyUpdate()
+                }
+              }
+            })
+          })
+          updateManager.onUpdateFailed(function () {
+            // 新的版本下载失败
+            wx.showModal({
+              title: '更新失败',
+              content: '新版本已经准备好，更新失败，请删除后重新打开！',
+            })
+          })
+        }
+      })
     },
     resourseUrl: HOST+ 'resource/',
     qiniuUploadUrl: 'https://up-z2.qbox.me',
@@ -82,6 +109,7 @@ App({
       getVoteList: HOST + 'wxss/vote/getVoteList',
       getVoteInfo: HOST + 'wxss/vote/getVoteInfo',
       getVoteItemInfo: HOST + 'wxss/vote/getVoteItemInfo',
+      getVoteItemList: HOST + 'wxss/vote/getVoteItemList',
       getVoteDetail: HOST + 'wxss/vote/getVoteDetail',
       voteDeliver: HOST + 'wxss/vote/doVote',
       doSearch: HOST + 'wxss/vote/doSearch'

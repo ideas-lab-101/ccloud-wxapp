@@ -7,7 +7,7 @@
   <view class="vote-title">
     <form bindsubmit="searchSubmit">
     <view class="vote-search">
-      <input  maxlength="10" placeholder="输入编号" type="number" name="code" class="vote-input"/>
+      <input  maxlength="10" placeholder="输入编号或姓名" name="key" class="vote-input"/>
       <button formType="submit" plain class="vote-btn">查询</button>
     </view>
     </form>
@@ -22,8 +22,8 @@
           <view class="_image"><image src="{{item.CoverURL}}" mode="aspectFill" class="vote-list-img"/></view>
           <view class="_title">{{item.ItemName}}</view>
           <view class="_count">
-            <view>{{item.vCount}} <text>(投票总数)</text></view>
-            <view>{{item.uCount}} <text>(参选人数)</text></view>
+            <view>{{item.vCount || 0}} <text>(投票总数)</text></view>
+            <view>{{item.uCount || 0}} <text>(参选人数)</text></view>
           </view>
           <view class="_desc">{{item.Desc}}</view>
 
@@ -59,7 +59,7 @@
 <wux-backdrop id="wux-backdrop-share" bind:click="closeShareLayerEvent" />
 <wux-animation-group wux-class="share-layer" in="{{ sharein }}" class-names="wux-animate--fadeInDown">
   <view class="_insert">
-    <image src="{{shareData.CoverURL}}" mode="aspectFill"></image>
+    <image src="{{voteMain.CoverURL}}" mode="aspectFit"></image>
     <view class="_link">
       <button hover-class='navigator-hover-class' open-type='share' plain id="groupShare">
         <text class="iconfont icon-iconfontzhizuobiaozhunbduan32"></text>
@@ -67,11 +67,7 @@
       </button>
       <button hover-class='navigator-hover-class' plain bindtap="getShareCodeEvent">
         <text class="iconfont icon-iconweixinpengyouquan"></text>
-        <view>作品封面</view>
-      </button>
-      <button hover-class='navigator-hover-class' plain>
-        <text class="iconfont icon-iconzhucetouxiang"></text>
-        <view>关注公众号</view>
+        <view>活动封面</view>
       </button>
     </view>
   </view>

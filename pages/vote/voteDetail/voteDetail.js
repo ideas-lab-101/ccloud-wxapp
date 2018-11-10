@@ -20,7 +20,12 @@ Page({
 
   onShareAppMessage: function() {
     //导向到列表页面
-    let voter = this.data.form.name
+    var voter = ''
+    if(this.data.enroll.mode ==1){
+      voter = this.data.form.name
+    } else if (this.data.enroll.mode == 2){
+      voter = this.data.form.group
+    }
     return {
       title: `我是【${voter}】,请给我投一票吧！`,
       path: `/pages/vote/voteList/voteList?id=${this.data.enroll.ItemID}&voterId=${this.data.enroll.openid}`,
@@ -109,6 +114,13 @@ Page({
                         })
                     }else{
                         //提示投票失败的原因
+                      $wuxToast().show({
+                        type: 'text',
+                        duration: 1500,
+                        color: '#fff',
+                        text: res.data.msg,
+                        success: () => { }
+                      })
                     }
                 },
                 complete: () => {}

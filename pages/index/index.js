@@ -17,9 +17,6 @@ Page({
         // options 中的 scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
         var scene = decodeURIComponent(options.scene)
         if (scene !== 'undefined') {
-            // wx.navigateTo({
-            //     url: `/pages/activity/activity?aid=${scene}`,
-            // })
             if (scene.indexOf('a_') >= 0) { //活动
                 wx.navigateTo({
                     url: `/pages/activity/activity?aid=${scene.slice(2)}`,

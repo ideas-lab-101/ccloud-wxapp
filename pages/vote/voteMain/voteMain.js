@@ -2,7 +2,8 @@
 var app = getApp()
 const WxParse = require('../../../components/wxParse/wxParse.js')
 import {
-  $wuxBackdrop, $wuxToast
+  $wuxBackdrop,
+  $wuxToast
 } from "../../../components/wux/index";
 
 Page({
@@ -28,17 +29,17 @@ Page({
 
   onShareAppMessage: function() {
     return {
-      imageUrl: app.resourseUrl+this.data.voteMain.CoverURL,
+      imageUrl: this.data.voteMain.CoverURL,
       title: this.data.voteMain.VoteName,
       path: `/pages/vote/voteMain/voteMain?id=${this.vid}`,
-      success: function (res) {
+      success: function(res) {
         // 转发成功
         wx.showToast({
           title: '谢谢转发^_^:)',
           icon: 'success'
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }
@@ -111,52 +112,80 @@ Page({
     })
   },
 
-    openShareEvent: function () {
-        $wuxBackdrop('#wux-backdrop-share').retain()
-        this.setData({
-            sharein: true
-        })
-    },
-
-    closeShareLayerEvent: function () {
-        $wuxBackdrop('#wux-backdrop-share').release()
-        this.setData({
-            sharein: false
-        })
-    },
-
-    searchSubmit: function (e) {
-        if (e.detail.value.code.trim() === '') {
-          return false
+  getShareCodeEvent: function() {
+    const that = this
+    wx.request({
+      url: app.api.getShareCode,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      data: {
+        dataID: this.vid,
+        type: 'v'
+      },
+      success: res => {
+        //预览生成的图片
+        if (res.data.result) {
+          wx.previewImage({
+            urls: [res.data.qr_code],
+          })
+        } else {
+          wx.showModal({
+            title: '出错了',
+            content: res.data.msg,
+            showCancel: false
+          })
         }
-        wx.request({
-            url: app.api.doSearch,
-            method: 'GET',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                voteID: this.vid,
-                code: e.detail.value.code
-            },
-            success: (res) => {
-                console.log(res)
-                if (res.data.result) {
-                    const id = Number(res.data.data)
-                    wx.navigateTo({
-                        url: '/pages/vote/voteDetail/voteDetail?id='+id
-                    })
-                }else {
-                    $wuxToast().show({
-                        type: 'text',
-                        duration: 1000,
-                        text: res.data.msg
-                    })
-                }
-            },
-            complete: () => {}
-        })
-    },
+      }
+    });
+  },
+
+  openShareEvent: function() {
+    $wuxBackdrop('#wux-backdrop-share').retain()
+    this.setData({
+      sharein: true
+    })
+  },
+
+  closeShareLayerEvent: function() {
+    $wuxBackdrop('#wux-backdrop-share').release()
+    this.setData({
+      sharein: false
+    })
+  },
+
+  searchSubmit: function(e) {
+    if (e.detail.value.key.trim() === '') {
+      return false
+    }
+    wx.request({
+      url: app.api.doSearch,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        voteID: this.vid,
+        key: e.detail.value.key
+      },
+      success: (res) => {
+        if (res.data.result) {
+          const id = Number(res.data.data)
+          wx.navigateTo({
+            url: '/pages/vote/voteDetail/voteDetail?id=' + id
+          })
+        } else {
+          $wuxToast().show({
+            type: 'text',
+            duration: 1000,
+            text: res.data.msg
+          })
+        }
+      },
+      complete: () => {}
+    })
+  },
   /**
    *  内置方法
    */
@@ -185,6 +214,7 @@ Page({
       success: (res) => {
         let voteInfo = res.data.data
         voteInfo.LogoURL = app.resourseUrl + voteInfo.LogoURL
+        voteInfo.CoverURL = app.resourseUrl + voteInfo.CoverURL
         wx.setNavigationBarTitle({
           title: voteInfo.VoteName
         })

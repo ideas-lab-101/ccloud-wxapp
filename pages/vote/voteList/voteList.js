@@ -4,10 +4,16 @@ var app = getApp()
 Page({
 
     data: {
+        voteItemInfo: {},
         ranking: [],
-        voterData: {},
-        voterDataIndex: -1,
-        voteItemInfo: {}
+        top: 0,
+        pager: {
+          totalRow: 0,
+          totalPage: 0,
+          pageIndex: 1
+        },
+        /** 特定参赛人 */
+        voterData: {}
     },
 
     onLoad: function (options) {
@@ -19,7 +25,10 @@ Page({
         }else {
             this.voterId = app.user.authToken
         }
-        this._initData(options.id)
+        // this.voterId = "ov74Q0SywFpwoEWAJMmfYS8Gd4sg"
+        this.itemID = options.id
+        this._initData()
+        this.getRankingList()
     },
 
     onReady: function () {
@@ -62,12 +71,11 @@ Page({
                         this.setData({
                             [i]: res.data.vCount
                         })
-                        if (id === this.data.voterData.MemberID) {
+                      if (this.data.voterData && id === this.data.voterData.MemberID) {
                             this.setData({
                                 'voterData.vCount': res.data.vCount
                             })
                         }
-
                         $wuxToast().show({
                             type: 'success',
                             duration: 1500,
@@ -77,6 +85,13 @@ Page({
                         })
                     }else{
                         //提示投票失败的原因
+                        $wuxToast().show({
+                          type: 'text',
+                          duration: 1500,
+                          color: '#fff',
+                          text: res.data.msg,
+                          success: () => { }
+                        })
                     }
                 },
                 complete: () => {}
@@ -88,7 +103,7 @@ Page({
      *  内置方法
      */
 
-    _initData: function (id) {
+    _initData: function () {
         wx.showLoading({
             title: '加载数据中...'
         })
@@ -99,17 +114,15 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-                token: app.user.authToken,
-                itemID: id
+                itemID: this.itemID,
+                voterID: this.voterId
             },
             success: (res) => {
-                console.log(res)
-              const temp = this._getDefaultVoter(res.data.list)
+                // const temp = this._getDefaultVoter(res.data.list)
+                const temp = {}
                 this.setData({
                     voteItemInfo: res.data.data,
-                    ranking: res.data.list,
-                    voterData: temp,
-                    voterDataIndex: this.data.voterDataIndex
+                    voterData: res.data.voter
                 })
                 wx.setNavigationBarTitle({
                     title: res.data.data.ItemName
@@ -119,6 +132,42 @@ Page({
                 wx.hideLoading()
             }
         })
+    },
+
+    /**
+     * 获得列表数据
+     */
+    getRankingList(){
+      wx.showLoading({
+        title: '加载数据中...',
+      })
+      wx.request({
+        url: app.api.getVoteItemList,
+        method: 'GET',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          itemID: this.itemID,
+          pageIndex: this.data.pager.pageIndex -1,
+          pageSize: 20
+        },
+        success: res => {
+          console.log(res.data)
+          this.setData({
+            ranking: res.data.list,
+            pager: {
+              totalRow: res.data.totalRow,
+              totalPage: res.data.totalPage,
+              pageIndex: res.data.pageNumber
+            }
+          })
+        },
+        complete: () => {
+          wx.hideLoading()
+        }
+      })
+
     },
     
     /**
@@ -131,6 +180,27 @@ Page({
                 return item
             }
         })
+    },
+
+  prev() {
+      this.setData({
+        'pager.pageIndex': this.data.pager.pageIndex - 1,
+        top: 0
+      })
+      this.getRankingList()
+    },
+    next() {
+      this.setData({
+        'pager.pageIndex': this.data.pager.pageIndex +1,
+        top: 0
+      })
+      this.getRankingList()
+    },
+    jumpToPage(e) {
+      this.setData({
+        'pager.pageIndex': e.detail.value
+      })
+        this.getRankingList()
     }
 
 })
