@@ -58,13 +58,13 @@
         "iconPath": "/assets/images/account_blank.png",
         "selectedIconPath": "/assets/images/account_fill.png"
       }
-    ],
-    "networkTimeout": {
-      "request": 10000,
-      "downloadFile": 10000
-    },
-    "navigateToMiniProgramAppIdList": [
-      "wxe5db3a145921cdad"
     ]
-  }
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxe5db3a145921cdad"
+  ]
 }

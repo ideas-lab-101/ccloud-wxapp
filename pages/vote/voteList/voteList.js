@@ -63,6 +63,7 @@ Page({
                 },
                 data: {
                     token: token,
+                    voteID: this.data.voteItemInfo.VoteID,
                     memberID: id
                 },
                 success: (res) => {

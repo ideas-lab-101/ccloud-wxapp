@@ -59,7 +59,7 @@ Page({
         enrollID: id
       },
       success: (res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.setData({
           attachList: res.data.attachList,
           enroll: res.data.enroll,
@@ -100,6 +100,7 @@ Page({
                 },
                 data: {
                     token: token,
+                    voteID: this.data.enroll.VoteID,
                     memberID: this.data.enroll.MemberID
                 },
                 success: (res) => {
