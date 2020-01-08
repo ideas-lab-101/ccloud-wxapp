@@ -25,7 +25,8 @@
     "pages/vote/voteMain/voteMain",
     "pages/vote/voteList/voteList",
     "pages/vote/voteDetail/voteDetail",
-    "pages/vote/vote"
+    "pages/vote/vote",
+    "pages/mine/enrolls/paper/paper"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -66,5 +67,6 @@
   },
   "navigateToMiniProgramAppIdList": [
     "wxe5db3a145921cdad"
-  ]
+  ],
+  "sitemapLocation": "sitemap.json"
 }

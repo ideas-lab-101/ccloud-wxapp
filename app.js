@@ -2,8 +2,7 @@ const Version = '1.9.5';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";
-// const HOST = "http://web.tunnel.cdqidi.cn/";
-// const HOST = "http://127.0.0.1:8080/";
+// const HOST = "http://dev.linestorm.ltd/";
 
 App({
     onLaunch: function () {
@@ -86,6 +85,7 @@ App({
       activityEnroll: HOST + 'wxss/activity/GetActivityEnroll',
       updateEnroll: HOST + 'wxss/activity/UpdateEnrollInfo',
       enrollInfo: HOST + 'wxss/activity/GetEnrollInfo',
+      enrollPaper: HOST + 'wxss/activity/getEnrollPaper',
       getAttachList: HOST + 'wxss/activity/GetEnrollAttach',
       getAttachInfo: HOST + 'wxss/activity/GetAttachInfo',
       setEnrollAttachment: HOST + 'wxss/activity/SetEnrollAttach',

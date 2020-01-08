@@ -419,6 +419,19 @@ Page({
       url: `/pages/system/feedback/feedback?data_type=activity&data_id=${this.eid}`
     })
   },
+  showPaper() {
+    if (this.hasQrcode) {
+      wx.navigateTo({
+        url: `../paper/paper?eid=${this.eid}`
+      })
+    } else {
+      wx.showModal({
+        title: '获取电子票失败',
+        content: '报名号未生成',
+        showCancel: false
+      })
+    } 
+  },
   showQrcode() {
     if (this.hasQrcode) {
       $wuxBackdrop().retain()

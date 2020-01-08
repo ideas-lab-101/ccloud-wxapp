@@ -1,7 +1,7 @@
 <wxs src="./index.wxs" module="moduleIndex" />
 
 <view class='container_fliud'>
-    <view class="item" wx:for="{{items}}" bindtap='showItemDetail' data-index="{{index}}">
+    <view class="item" wx:for="{{items}}" wx:key="*this" bindtap='showItemDetail' data-index="{{index}}">
         <view class="drawer{{item.isShowDetail? ' open':''}}" >
             <image class="drawer_bg" src='{{item.imgUrl}}' mode='aspectFill'></image>
             <view class="button {{item.type}}" catchtap='goToDetail' data-id="{{item.id}}" data-type="{{item.type}}" data-index="{{index}}">查看详情</view>
