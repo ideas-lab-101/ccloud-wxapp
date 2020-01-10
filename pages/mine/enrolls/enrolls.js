@@ -24,7 +24,18 @@ Page({
       this._initData()
     })
   },
-
+  goEnroll: function (e) {
+    const enrollIndex = e.currentTarget.dataset.index
+    if (this.data.enrolls[enrollIndex].intState === 0 || this.data.enrolls[enrollIndex].intState === 1 || this.data.enrolls[enrollIndex].intState === 2) {
+      wx.navigateTo({
+        url: `form/form?aid=${this.data.enrolls[enrollIndex].ActivityID}&eid=${this.data.enrolls[enrollIndex].EnrollID}&prev=false`,
+      })
+    } else if (this.data.enrolls[enrollIndex].intState === 99){
+      wx.navigateTo({
+        url: `form/form?aid=${this.data.enrolls[enrollIndex].ActivityID}&eid=${this.data.enrolls[enrollIndex].EnrollID}&prev=true`,
+      })
+    }  
+  },
   moreOpts(e) {
     const that = this;
     const enrollIndex = e.currentTarget.dataset.index

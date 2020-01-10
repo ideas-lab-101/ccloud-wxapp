@@ -1,4 +1,4 @@
-const Version = '1.9.5';
+const Version = '1.9.8';
 const User = require('/utils/user')
 const Pages = require('/utils/pages')
 const HOST = "https://ccloud.ideas-lab.cn/";

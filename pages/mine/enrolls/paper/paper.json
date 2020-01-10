@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "wux-qrcode": "/components/wux/qrcode/index",
+    "poster": "wxa-plugin-canvas/poster/index"
+  }
 }

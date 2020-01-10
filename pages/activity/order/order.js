@@ -15,6 +15,7 @@ Page({
         info: {},
         isEnrolled: false,
         formData: {},
+        isRenderBase: false,
         isRenderBaseInfo: false,
         isRenderPhotoInfo: false,
         isRenderSchoolInfo: false,
@@ -308,12 +309,33 @@ Page({
             success: res => {
                 wx.hideLoading()
                 if (res.data.result) {
+                  const isRenderBase = res.data.formSetting.FormSetting.indexOf('miniInfo') >= 0
                     const isRenderBaseInfo = res.data.formSetting.FormSetting.indexOf('baseInfo') >= 0
                     const isRenderPhotoInfo = res.data.formSetting.FormSetting.indexOf('photoInfo') >= 0
                     const isRenderSchoolInfo = res.data.formSetting.FormSetting.indexOf('schoolInfo') >= 0
                     const isRenderReferInfo = res.data.formSetting.FormSetting.indexOf('referInfo') >= 0
                     const isRenderRegionInfo = res.data.formSetting.FormSetting.indexOf('regionInfo') >= 0
                     const isRenderGroupInfo = res.data.formSetting.FormSetting.indexOf('groupInfo') >= 0
+                    if (isRenderBase) {
+                      Object.assign(this.validators, {
+                        'name': {
+                          required: true
+                        },
+                        'tel': {
+                          required: true,
+                          tel: true,
+                        },
+                      })
+                      Object.assign(this.validationMsgs, {
+                        'name': {
+                          required: '请输入姓名',
+                        },
+                        'tel': {
+                          required: '请输入手机号',
+                          tel: '请输入正确的手机号',
+                        },
+                      })
+                    }
                     if (isRenderBaseInfo) {
                         en._getGenderData()
                         en._getNationData(function(){
@@ -453,6 +475,7 @@ Page({
                     }
                     this.setData({
                         imgUrl: app.resourseUrl + res.data.activityAttach[0].AttachURL,
+                        isRenderBase: isRenderBase,
                         isRenderBaseInfo: isRenderBaseInfo,
                         isRenderPhotoInfo: isRenderPhotoInfo,
                         isRenderSchoolInfo: isRenderSchoolInfo,

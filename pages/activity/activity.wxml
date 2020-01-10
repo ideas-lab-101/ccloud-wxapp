@@ -73,7 +73,7 @@
             <view class="head_desc">活动项目</view>
         </view>
         <view class="case_list">
-            <view class="case" wx:for="{{cases}}" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">
+            <view class="case" wx:for="{{cases}}" wx:key="*this" hover-class='clicked' hover-start-time='0' bindtap='showFeeDesc' data-index="{{index}}">
                 <view class="case_name">{{item.FeeName}}</view>
                 <view class="case_fee">{{item.TotalCost > 0? item.TotalCost+'元':'免费'}}</view>
             </view>

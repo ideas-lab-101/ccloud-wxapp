@@ -1,1 +1,16 @@
-/* pages/mine/enrolls/paper/paper.wxss */
+.hide-container{
+    position: absolute;
+    left: -9999px;
+    top: 0;
+}
+
+.model-code-box{
+    background-color: #1596f2;
+    width: 100%;
+    min-height: 100vh;
+}
+.model-code-format{
+    display: inline-block;
+    width: 100vw;
+    height: 100vh;
+}

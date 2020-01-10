@@ -60,6 +60,21 @@
           </view>
         <view class="section_bottom"></view>
       </block>
+      <!-- 简化基本信息 -->
+      <block wx:if="{{ isRenderBase }}">
+        <view class="form_block_head">基本信息</view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>姓名(中文)</view>
+          <input name="name" type='text' value="{{ formData.name }}" />
+        </view>
+        <view class="section">
+          <view class="section_title">
+            <text>*</text>联系电话</view>
+          <input name="tel" type='number' value="{{ formData.tel }}" />
+        </view>
+        <view class="section_bottom"></view>
+      </block>
       <!-- 个人基本信息     -->
       <block wx:if="{{ isRenderBaseInfo }}">
         <view class="form_block_head">基本信息</view>

@@ -1,2 +1,26 @@
-<!--pages/mine/enrolls/paper/paper.wxml-->
-<text>pages/mine/enrolls/paper/paper.wxml</text>
+<view class="hide-container">
+    <poster id="poster"
+            hide-loading="{{true}}"
+            preload="{{false}}"
+            config="{{posterConfig}}"
+            bind:success="onPosterSuccess"
+            bind:fail="onPosterFail">
+    </poster>
+</view>
+
+<view class="hide-container">
+    <wux-qrcode id="qrcode"
+            wux-class="qrcode"
+                data="{{ value }}"
+                fg-color="{{ fgColor }}"
+                width="200"
+                height="200"/>
+</view>
+
+
+<view class="model-code-box">
+    <image src="{{posterUrl}}" wx:if="{{posterUrl}}"
+           class="model-code-format"
+           show-menu-by-longpress
+           mode="widthFix"></image>
+</view>

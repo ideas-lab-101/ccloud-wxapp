@@ -4,7 +4,7 @@
     <view class="list_number">共{{ pager.totalRow }}项</view>
 </view>
 <view wx:if="{{pager.totalRow>0}}">
-  <view class="enroll" wx:for="{{ enrolls }}">
+  <view bindtap='goEnroll'  class="enroll" data-index="{{index}}" wx:for="{{ enrolls }}">
       <view class="enroll-main">
           <navigator url="/pages/activity/activity?aid={{item.ActivityID}}" class="act-name">{{ item.ActivityName }}</navigator>
           <block wx:if="{{item.mode == 1}}">
